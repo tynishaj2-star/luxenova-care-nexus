@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-family.jpg";
 
 export function Hero() {
@@ -24,18 +25,18 @@ export function Hero() {
               wellness advocacy, and community-based programs.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href="#intake"
+              <Link
+                to="/referral"
                 className="inline-flex items-center rounded-full bg-gradient-rosewood px-6 py-3 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-95"
               >
                 Request Services
-              </a>
-              <a
-                href="#intake"
+              </Link>
+              <Link
+                to="/referral"
                 className="inline-flex items-center rounded-full border border-border bg-card px-6 py-3 text-sm font-medium text-foreground shadow-soft transition hover:border-foreground/30"
               >
                 Submit a Referral
-              </a>
+              </Link>
             </div>
             <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-border/70 pt-8">
               {[

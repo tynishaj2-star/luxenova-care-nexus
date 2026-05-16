@@ -39,7 +39,7 @@ export function Footer() {
               <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-rosewood text-rosewood-foreground font-display">
                 L
               </span>
-              <span className="font-display text-lg">LuxeNova · Wellness</span>
+              <span className="font-display text-lg">LuxeNova Community Wellness</span>
             </Link>
             <p className="mt-5 max-w-sm text-sm text-muted-foreground">
               Compassionate community-based care, organized with the discipline

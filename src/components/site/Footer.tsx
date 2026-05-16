@@ -4,20 +4,29 @@ import { Instagram, Linkedin, Facebook, Mail, Phone, MapPin } from "lucide-react
 export function Footer() {
   const cols = [
     {
-      title: "Services",
-      links: ["Care Coordination", "Housing Navigation", "Family Support", "Wellness Advocacy"],
+      title: "Explore",
+      links: [
+        { label: "About", to: "/about" as const },
+        { label: "Services", to: "/services" as const },
+        { label: "Insurance", to: "/insurance" as const },
+        { label: "Contact", to: "/contact" as const },
+      ],
     },
     {
       title: "Partners",
-      links: ["Submit a Referral", "Become a Partner", "Provider Network", "Community Orgs"],
+      links: [
+        { label: "Submit a Referral", to: "/referrals" as const },
+        { label: "Become a Partner", to: "/contact" as const },
+        { label: "Careers", to: "/careers" as const },
+      ],
     },
     {
-      title: "Company",
-      links: ["About", "Careers", "Press", "Contact"],
-    },
-    {
-      title: "Resources",
-      links: ["Client Portal", "Support", "Privacy", "HIPAA Notice"],
+      title: "Legal",
+      links: [
+        { label: "Privacy Policy", to: "/privacy" as const },
+        { label: "HIPAA Notice", to: "/hipaa" as const },
+        { label: "Terms of Service", to: "/terms" as const },
+      ],
     },
   ];
 
@@ -54,14 +63,16 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-8">
             {cols.map((c) => (
               <div key={c.title}>
                 <h4 className="font-display text-sm text-foreground">{c.title}</h4>
                 <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
                   {c.links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="transition hover:text-foreground">{l}</a>
+                    <li key={l.label}>
+                      <Link to={l.to} className="transition hover:text-foreground">
+                        {l.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>

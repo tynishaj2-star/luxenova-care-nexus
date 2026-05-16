@@ -2,10 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "Why Us", href: "#why" },
-  { label: "Partners", href: "#partners" },
-  { label: "Intake", href: "#intake" },
+  { label: "Services", href: "/#services" },
+  { label: "Why Us", href: "/#why" },
+  { label: "Partners", href: "/#partners" },
 ];
 
 export function Navbar() {
@@ -52,18 +51,18 @@ export function Navbar() {
           </Link>
         </nav>
         <div className="flex items-center gap-2">
-          <a
-            href="#intake"
+          <Link
+            to="/referral"
             className="hidden rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-soft transition hover:border-foreground/30 sm:inline-flex"
           >
             Submit Referral
-          </a>
-          <a
-            href="#intake"
+          </Link>
+          <Link
+            to="/referral"
             className="inline-flex items-center rounded-full bg-gradient-rosewood px-5 py-2.5 text-sm font-medium text-rosewood-foreground shadow-soft transition hover:opacity-95"
           >
             Request Services
-          </a>
+          </Link>
         </div>
       </div>
     </header>

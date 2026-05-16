@@ -4,7 +4,7 @@ import { Hero } from "@/components/site/Hero";
 import { Services } from "@/components/site/Services";
 import { WhyUs } from "@/components/site/WhyUs";
 import { Partners } from "@/components/site/Partners";
-import { Intake } from "@/components/site/Intake";
+
 import { Testimonials } from "@/components/site/Testimonials";
 import { Footer } from "@/components/site/Footer";
 
@@ -37,7 +37,6 @@ function Index() {
         <Services />
         <WhyUs />
         <Partners />
-        <Intake />
         <Testimonials />
       </main>
       <Footer />

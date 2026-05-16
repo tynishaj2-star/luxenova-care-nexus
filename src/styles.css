@@ -124,6 +124,26 @@
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
 
+  .form-input {
+    margin-top: 0.5rem;
+    height: 3rem;
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-foreground);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-input::placeholder { color: var(--color-muted-foreground); }
+  .form-input:focus {
+    border-color: var(--color-rosewood);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-rosewood) 20%, transparent);
+  }
+
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }

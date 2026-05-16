@@ -33,14 +33,14 @@ export function Partners() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  to="/referral"
+                  to="/referrals"
                   className="inline-flex items-center gap-2 rounded-full bg-ivory px-6 py-3 text-sm font-medium text-espresso transition hover:bg-ivory/90"
                 >
                   Submit a Referral
                   <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} />
                 </Link>
                 <Link
-                  to="/referral"
+                  to="/referrals"
                   className="inline-flex items-center gap-2 rounded-full border border-ivory/25 px-6 py-3 text-sm font-medium text-ivory transition hover:border-ivory/60"
                 >
                   Become a Partner

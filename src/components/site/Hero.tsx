@@ -26,13 +26,13 @@ export function Hero() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
-                to="/referral"
+                to="/referrals"
                 className="inline-flex items-center rounded-full bg-gradient-rosewood px-6 py-3 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-95"
               >
                 Request Services
               </Link>
               <Link
-                to="/referral"
+                to="/referrals"
                 className="inline-flex items-center rounded-full border border-border bg-card px-6 py-3 text-sm font-medium text-foreground shadow-soft transition hover:border-foreground/30"
               >
                 Submit a Referral

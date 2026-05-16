@@ -42,8 +42,8 @@ export function Navbar() {
           <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-rosewood text-rosewood-foreground font-display text-base">
             L
           </span>
-          <span className="font-display text-lg tracking-tight">
-            LuxeNova<span className="text-muted-foreground"> · Wellness</span>
+          <span className="font-display text-lg tracking-tight leading-tight">
+            LuxeNova<span className="text-muted-foreground"> Community Wellness</span>
           </span>
         </Link>
 

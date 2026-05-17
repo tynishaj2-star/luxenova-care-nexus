@@ -42,9 +42,9 @@ function Portal() {
           A secure, modern hub for partners, clients, and our team.
         </h1>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          The LuxeNova portal is being rolled out in phases. Below is a preview
-          of the workspaces we're building. Connect a backend to enable secure
-          accounts, document storage, messaging, and referral workflows.
+          The LuxeNova Community Wellness portal is being rolled out in phases.
+          Below are the workspaces we're building. Connect a backend to enable
+          secure accounts, document storage, messaging, and referral workflows.
         </p>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2">

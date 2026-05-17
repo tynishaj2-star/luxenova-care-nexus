@@ -51,7 +51,7 @@ const sections = [
   {
     title: "Contact Information",
     body:
-      "Questions about this Privacy Policy can be directed to hello@luxenova.care or (617) 555-0142.",
+      "Questions about this Privacy Policy can be directed to contact information that will be added before launch.",
   },
 ];
 

@@ -56,14 +56,14 @@ function ContactPage() {
                       <Phone className="mt-0.5 h-4 w-4 text-rosewood" />
                       <div>
                         <p className="text-muted-foreground text-xs uppercase tracking-[0.14em]">Phone</p>
-                        <p>(617) 555-0142</p>
+                        <p className="text-muted-foreground">To be added before launch</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
                       <Mail className="mt-0.5 h-4 w-4 text-rosewood" />
                       <div>
                         <p className="text-muted-foreground text-xs uppercase tracking-[0.14em]">Email</p>
-                        <p>hello@luxenova.care</p>
+                        <p className="text-muted-foreground">To be added before launch</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">

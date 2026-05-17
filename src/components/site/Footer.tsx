@@ -46,8 +46,8 @@ export function Footer() {
               of modern healthcare.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> (617) 555-0142</li>
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> hello@luxenova.care</li>
+              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> Phone — to be added before launch</li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> Email — to be added before launch</li>
               <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Greater Boston · Statewide MA</li>
             </ul>
             <div className="mt-6 flex items-center gap-2">

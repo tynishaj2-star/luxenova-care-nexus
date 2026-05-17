@@ -46,7 +46,7 @@ const sections = [
   {
     title: "Contact",
     body:
-      "For questions about this notice, contact hello@luxenova.care or (617) 555-0142.",
+      "For questions about this notice, contact information will be added before launch.",
   },
 ];
 

@@ -12,7 +12,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative — built on dignity, transparency, and care.",
+          "LuxeNova Community Wellness is a Massachusetts Community Stabilization initiative — built on dignity, transparency, and care.",
       },
       { property: "og:title", content: "Our Mission — LuxeNova Community Wellness" },
       {
@@ -33,7 +33,7 @@ function AboutPage() {
         <PageHeader
           eyebrow="Mission"
           title="Stabilizing families. Strengthening communities."
-          description="LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative supporting households through housing, utility, autism-related, and resource barriers."
+          description="LuxeNova Community Wellness is a Massachusetts Community Stabilization initiative supporting households through housing, utility, autism-related, and resource barriers."
         />
         <WhoWeAre />
         <WhyUs />

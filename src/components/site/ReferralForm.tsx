@@ -103,7 +103,7 @@ const supportOptions = [
   "Emergency Rental Assistance",
   "Utility Relief",
   "Autism Family Support",
-  "Family Stabilization",
+  "Community Stabilization",
   "Resource Navigation",
   "Documentation Assistance",
   "Community Outreach",
@@ -154,7 +154,7 @@ export function ReferralForm() {
         <div className="mb-10 flex items-start gap-3 rounded-2xl border border-border/70 bg-accent/40 p-5 text-sm text-foreground/80">
           <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-rosewood" strokeWidth={1.5} />
           <p>
-            This is a confidential community stabilization request. By submitting
+            This is a confidential Community Stabilization request. By submitting
             this form, you agree that LuxeNova Community Wellness may contact you
             by phone, email, or text regarding this request. Message and data
             rates may apply. You may opt out of text messages at any time by

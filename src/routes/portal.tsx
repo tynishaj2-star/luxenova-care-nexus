@@ -203,8 +203,15 @@ function PortalAuthed() {
   });
 
   const createMut = useMutation({
-    mutationFn: (vars: Parameters<typeof createFn>[0]["data"]) =>
-      createFn({ data: vars }),
+    mutationFn: (vars: {
+      household: string;
+      primary_barrier: string;
+      zip: string;
+      urgency: "Routine" | "Priority" | "Urgent";
+      submitter_name: string;
+      submitter_org: string;
+      notes_intake: string;
+    }) => createFn({ data: vars }),
     onSuccess: (row) => {
       qc.invalidateQueries({ queryKey: ["referrals"] });
       setSelectedId(row.id);

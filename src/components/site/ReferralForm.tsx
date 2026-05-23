@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, Upload, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Upload, ShieldCheck, Lock, FileCheck2, X } from "lucide-react";
 
 const sections = [
   "Household",

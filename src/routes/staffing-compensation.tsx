@@ -8,7 +8,7 @@ import {
   CalloutNote,
 } from "@/components/site/ContentPage";
 import {
-  ScaleIcon,
+  Scale,
   Wallet,
   ClipboardCheck,
   ShieldCheck,
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/staffing-compensation")({
 
 const principles = [
   {
-    icon: ScaleIcon,
+    icon: Scale,
     title: "Reasonable compensation",
     body: "Pay for any role is benchmarked against comparable nonprofits of similar size, mission, and region — and documented in board minutes.",
   },

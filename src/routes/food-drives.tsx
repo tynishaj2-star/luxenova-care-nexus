@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
-import { ContentSection, CardGrid, CalloutNote } from "@/components/site/ContentPage";
+import { ContentSection, CalloutNote } from "@/components/site/ContentPage";
 import { Apple, HandHeart, Users, Building2, CheckCircle2, Drumstick, Gift, Snowflake, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/food-drives")({
@@ -26,36 +26,75 @@ export const Route = createFileRoute("/food-drives")({
   component: FoodDrivesPage,
 });
 
+const INTERESTS = [
+  "Hosting a food drive",
+  "Volunteering at a drive",
+  "Donating food or essentials",
+  "Requesting food or essentials support",
+  "Partnering as a church, school, business, or community group",
+  "Thanksgiving Drive — host, sponsor, or contribute",
+  "Christmas Toy & Gift Drive — host, sponsor, or contribute",
+  "Winter Warmth Drive — host, sponsor, or contribute",
+  "Easter / Back-to-School / Seasonal Drive",
+] as const;
+
 const ways = [
   {
     icon: Apple,
     title: "Host a food drive",
     body: "Partner with LuxeNova to organize a drive at your church, school, business, or community space.",
+    interest: "Hosting a food drive",
   },
   {
     icon: HandHeart,
     title: "Volunteer at a drive",
     body: "Help with intake, sorting, packing, and distribution to families across the service area.",
+    interest: "Volunteering at a drive",
   },
   {
     icon: Users,
     title: "Donate food or essentials",
     body: "Contribute non-perishable food, baby items, hygiene products, and household essentials.",
+    interest: "Donating food or essentials",
   },
   {
     icon: Building2,
     title: "Request support",
     body: "Families in need can request food, baby items, and household essentials through the form below.",
+    interest: "Requesting food or essentials support",
   },
-];
+] as const;
 
-const INTERESTS = [
-  "Hosting a food drive",
-  "Volunteering at a food drive",
-  "Donating food or essentials",
-  "Requesting food or essentials support",
-  "Partnering as a church, school, business, or community group",
-];
+const holidayDrives = [
+  {
+    icon: Drumstick,
+    season: "November",
+    title: "Thanksgiving Drive",
+    body: "Full Thanksgiving meal boxes — turkey, sides, and pantry staples — distributed to families ahead of the holiday.",
+    interest: "Thanksgiving Drive — host, sponsor, or contribute",
+  },
+  {
+    icon: Gift,
+    season: "December",
+    title: "Christmas Toy & Gift Drive",
+    body: "New, unwrapped toys and gifts for children and teens, paired with family essentials and seasonal joy.",
+    interest: "Christmas Toy & Gift Drive — host, sponsor, or contribute",
+  },
+  {
+    icon: Snowflake,
+    season: "December – February",
+    title: "Winter Warmth Drive",
+    body: "Coats, hats, gloves, blankets, and heating essentials for households facing the coldest months.",
+    interest: "Winter Warmth Drive — host, sponsor, or contribute",
+  },
+  {
+    icon: Sparkles,
+    season: "Year-Round Holidays",
+    title: "Easter, Back-to-School & More",
+    body: "Seasonal baskets, school supply giveaways, and Mother's / Father's Day appreciation drives throughout the year.",
+    interest: "Easter / Back-to-School / Seasonal Drive",
+  },
+] as const;
 
 type FormState = {
   fullName: string;
@@ -88,6 +127,16 @@ function FoodDrivesPage() {
 
   function set<K extends keyof FormState>(k: K, v: FormState[K]) {
     setForm((f) => ({ ...f, [k]: v }));
+  }
+
+  function chooseInterest(interest: string) {
+    setForm((f) => ({ ...f, interest }));
+    setSubmitted(false);
+    if (typeof document !== "undefined") {
+      document
+        .getElementById("interest-form")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 
   async function onSubmit(e: React.FormEvent) {
@@ -132,7 +181,32 @@ function FoodDrivesPage() {
           description="Food drives, volunteer days, essentials donations, and direct family support — coordinated with dignity across Massachusetts."
         />
 
-        <CardGrid items={ways} columns={4} />
+        <section className="pb-12">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {ways.map((w) => (
+                <button
+                  key={w.title}
+                  type="button"
+                  onClick={() => chooseInterest(w.interest)}
+                  className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-7 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-rosewood/30 hover:shadow-luxe focus:outline-none focus-visible:ring-2 focus-visible:ring-rosewood/40"
+                >
+                  <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-rosewood/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-accent text-rosewood transition-colors group-hover:bg-rosewood group-hover:text-rosewood-foreground">
+                    <w.icon className="h-5 w-5" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="mt-5 font-display text-xl">{w.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {w.body}
+                  </p>
+                  <p className="mt-5 text-xs font-medium text-rosewood underline-offset-4 group-hover:underline">
+                    Get started →
+                  </p>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className="pb-8">
           <div className="mx-auto max-w-6xl px-6">
@@ -151,42 +225,19 @@ function FoodDrivesPage() {
                 </p>
               </div>
               <p className="max-w-sm text-sm text-muted-foreground">
-                Host, sponsor, or contribute to a holiday drive using the
-                interest form below — select the drive you'd like to
-                support.
+                Tap any drive below to open the interest form with that
+                drive pre-selected — then tell us how you'd like to host,
+                sponsor, or contribute.
               </p>
             </div>
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  icon: Drumstick,
-                  season: "November",
-                  title: "Thanksgiving Drive",
-                  body: "Full Thanksgiving meal boxes — turkey, sides, and pantry staples — distributed to families ahead of the holiday.",
-                },
-                {
-                  icon: Gift,
-                  season: "December",
-                  title: "Christmas Toy & Gift Drive",
-                  body: "New, unwrapped toys and gifts for children and teens, paired with family essentials and seasonal joy.",
-                },
-                {
-                  icon: Snowflake,
-                  season: "December – February",
-                  title: "Winter Warmth Drive",
-                  body: "Coats, hats, gloves, blankets, and heating essentials for households facing the coldest months.",
-                },
-                {
-                  icon: Sparkles,
-                  season: "Year-Round Holidays",
-                  title: "Easter, Back-to-School & More",
-                  body: "Seasonal baskets, school supply giveaways, and Mother's / Father's Day appreciation drives throughout the year.",
-                },
-              ].map((h) => (
-                <article
+              {holidayDrives.map((h) => (
+                <button
                   key={h.title}
-                  className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-7 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-rosewood/30 hover:shadow-luxe"
+                  type="button"
+                  onClick={() => chooseInterest(h.interest)}
+                  className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-7 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-rosewood/30 hover:shadow-luxe focus:outline-none focus-visible:ring-2 focus-visible:ring-rosewood/40"
                 >
                   <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-rosewood/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="grid h-11 w-11 place-items-center rounded-2xl bg-accent text-rosewood transition-colors group-hover:bg-rosewood group-hover:text-rosewood-foreground">
@@ -199,13 +250,16 @@ function FoodDrivesPage() {
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {h.body}
                   </p>
-                </article>
+                  <p className="mt-5 text-xs font-medium text-rosewood underline-offset-4 group-hover:underline">
+                    Sign up for this drive →
+                  </p>
+                </button>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="pb-20">
+        <section id="interest-form" className="scroll-mt-24 pb-20">
           <div className="mx-auto max-w-3xl px-6">
             <div className="rounded-3xl border border-border/70 bg-card p-7 shadow-soft md:p-10">
               <p className="text-xs uppercase tracking-[0.22em] text-rosewood/80">

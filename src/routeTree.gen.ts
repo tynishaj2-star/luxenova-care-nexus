@@ -22,6 +22,7 @@ import { Route as ReferralsRouteImport } from './routes/referrals'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as NonprofitStatusRouteImport } from './routes/nonprofit-status'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as InsuranceRouteImport } from './routes/insurance'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as HowFundsAreUsedRouteImport } from './routes/how-funds-are-used'
@@ -102,6 +103,11 @@ const PortalRoute = PortalRouteImport.update({
 const NonprofitStatusRoute = NonprofitStatusRouteImport.update({
   id: '/nonprofit-status',
   path: '/nonprofit-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsuranceRoute = InsuranceRouteImport.update({
@@ -202,6 +208,7 @@ export interface FileRoutesByFullPath {
   '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
+  '/login': typeof LoginRoute
   '/nonprofit-status': typeof NonprofitStatusRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
@@ -233,6 +240,7 @@ export interface FileRoutesByTo {
   '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
+  '/login': typeof LoginRoute
   '/nonprofit-status': typeof NonprofitStatusRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
@@ -265,6 +273,7 @@ export interface FileRoutesById {
   '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
+  '/login': typeof LoginRoute
   '/nonprofit-status': typeof NonprofitStatusRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
@@ -298,6 +307,7 @@ export interface FileRouteTypes {
     | '/how-funds-are-used'
     | '/impact'
     | '/insurance'
+    | '/login'
     | '/nonprofit-status'
     | '/portal'
     | '/privacy'
@@ -329,6 +339,7 @@ export interface FileRouteTypes {
     | '/how-funds-are-used'
     | '/impact'
     | '/insurance'
+    | '/login'
     | '/nonprofit-status'
     | '/portal'
     | '/privacy'
@@ -360,6 +371,7 @@ export interface FileRouteTypes {
     | '/how-funds-are-used'
     | '/impact'
     | '/insurance'
+    | '/login'
     | '/nonprofit-status'
     | '/portal'
     | '/privacy'
@@ -392,6 +404,7 @@ export interface RootRouteChildren {
   HowFundsAreUsedRoute: typeof HowFundsAreUsedRoute
   ImpactRoute: typeof ImpactRoute
   InsuranceRoute: typeof InsuranceRoute
+  LoginRoute: typeof LoginRoute
   NonprofitStatusRoute: typeof NonprofitStatusRoute
   PortalRoute: typeof PortalRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -498,6 +511,13 @@ declare module '@tanstack/react-router' {
       path: '/nonprofit-status'
       fullPath: '/nonprofit-status'
       preLoaderRoute: typeof NonprofitStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insurance': {
@@ -632,6 +652,7 @@ const rootRouteChildren: RootRouteChildren = {
   HowFundsAreUsedRoute: HowFundsAreUsedRoute,
   ImpactRoute: ImpactRoute,
   InsuranceRoute: InsuranceRoute,
+  LoginRoute: LoginRoute,
   NonprofitStatusRoute: NonprofitStatusRoute,
   PortalRoute: PortalRoute,
   PrivacyRoute: PrivacyRoute,

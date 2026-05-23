@@ -80,7 +80,7 @@ export function Services() {
           </div>
           <p className="max-w-md text-muted-foreground">
             Every request begins with listening. From there, we organize
-            stabilization, documentation, and community resources into one
+            Community Stabilization, documentation, and community resources into one
             coordinated response.
           </p>
         </div>

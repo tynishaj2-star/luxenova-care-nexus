@@ -111,13 +111,17 @@ const supportOptions = [
   "Other",
 ];
 
-const uploadCategories = [
-  "Rent Notice / Lease",
-  "Utility Bill / Shutoff Notice",
-  "Autism Support Documents",
-  "Income or Benefit Documents",
-  "School / Agency Letter",
-  "Supporting Documentation",
+const uploadCategories: { label: string; hint: string; required?: boolean }[] = [
+  { label: "Partner Intake Form", hint: "Agency or school intake referral packet", required: true },
+  { label: "HIPAA Authorization (Release of PHI)", hint: "Signed authorization to share protected health info", required: true },
+  { label: "Release of Information (ROI)", hint: "Consent to coordinate with partner agencies" },
+  { label: "Rent Notice / Lease", hint: "Eviction notice, NTQ, or current lease" },
+  { label: "Utility Bill / Shutoff Notice", hint: "Most recent statement or disconnect notice" },
+  { label: "Autism / IEP / IFSP Documents", hint: "Diagnosis letter, IEP, IFSP, or care plan" },
+  { label: "Income or Benefit Documents", hint: "Paystubs, SNAP/TAFDC, SSI/SSDI letters" },
+  { label: "School / Agency Letter", hint: "Letter of support from school or partner" },
+  { label: "Photo ID (Head of Household)", hint: "State ID, license, or equivalent" },
+  { label: "Supporting Documentation", hint: "Anything else relevant to the request" },
 ];
 
 export function ReferralForm() {

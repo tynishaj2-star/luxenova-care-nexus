@@ -3,77 +3,53 @@ import { useState } from "react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
-import { CheckCircle2, Upload, Sparkles, HeartHandshake, Users, Briefcase, Stethoscope } from "lucide-react";
+import { CheckCircle2, Upload, HeartHandshake, Users, Compass, Megaphone } from "lucide-react";
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
-      { title: "Careers — LuxeNova Community Wellness" },
+      { title: "Get Involved — LuxeNova Community Wellness" },
       {
         name: "description",
         content:
-          "Join the LuxeNova Community Wellness team. Clinician, care coordination, support staff, and administrative opportunities.",
+          "Volunteer with LuxeNova Community Wellness. Community volunteers, resource navigators, intake coordinators, and grant & outreach support roles.",
       },
-      { property: "og:title", content: "Careers at LuxeNova" },
+      { property: "og:title", content: "Get Involved — LuxeNova" },
       {
         property: "og:description",
         content:
-          "Build your career with a compassionate, modern community wellness team.",
+          "Join a Massachusetts community relief team helping families stabilize.",
       },
     ],
   }),
-  component: CareersPage,
+  component: GetInvolvedPage,
 });
 
-const why = [
-  { icon: Sparkles, title: "Modern, organized systems", body: "Premium tooling that keeps your caseload visible and your day humane." },
-  { icon: HeartHandshake, title: "Mission with integrity", body: "Community-rooted work, delivered with discipline and respect." },
-  { icon: Users, title: "Collaborative team", body: "Coordinators, clinicians, and support staff who actually back each other up." },
+const roles = [
+  { icon: Users, title: "Community Volunteers", body: "Help with outreach events, supply drives, and family check-ins across Massachusetts." },
+  { icon: Compass, title: "Resource Navigators", body: "Connect families to housing, utility, autism, and benefit resources." },
+  { icon: HeartHandshake, title: "Intake Coordinators", body: "Review stabilization requests and coordinate next steps with families." },
+  { icon: Megaphone, title: "Grant & Outreach Support", body: "Help with grant writing, sponsor outreach, and partner communication." },
 ];
 
-const opportunities = [
-  { icon: Stethoscope, title: "Clinician Opportunities", body: "Licensed clinicians ready to deliver compassionate, community-based care." },
-  { icon: HeartHandshake, title: "Care Coordination Opportunities", body: "Coordinators who thrive on follow-through and trusted communication." },
-  { icon: Users, title: "Support Staff Opportunities", body: "Community-based support roles working directly with clients and families." },
-  { icon: Briefcase, title: "Administrative Opportunities", body: "Operations, intake, and program support roles powering the organization." },
-];
-
-function CareersPage() {
+function GetInvolvedPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [licensed, setLicensed] = useState("No");
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
         <PageHeader
-          eyebrow="Careers"
-          title="Join Our Team"
-          description="LuxeNova Community Wellness is building a compassionate, organized, and community-focused team dedicated to supporting individuals and families."
+          eyebrow="Get Involved"
+          title="Stand with Massachusetts families."
+          description="LuxeNova Community Wellness is building a community-rooted team of volunteers, navigators, and outreach supporters helping families stabilize."
         />
 
         <section className="pb-16">
           <div className="mx-auto max-w-7xl px-6">
-            <h2 className="font-display text-3xl md:text-4xl">Why work with us</h2>
-            <div className="mt-8 grid gap-5 md:grid-cols-3">
-              {why.map((w) => (
-                <div key={w.title} className="rounded-3xl border border-border/70 bg-card p-7 shadow-soft">
-                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-accent text-rosewood">
-                    <w.icon className="h-5 w-5" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="mt-5 font-display text-xl">{w.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{w.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="pb-20">
-          <div className="mx-auto max-w-7xl px-6">
-            <h2 className="font-display text-3xl md:text-4xl">Open opportunities</h2>
+            <h2 className="font-display text-3xl md:text-4xl">Roles we welcome</h2>
             <div className="mt-8 grid gap-5 md:grid-cols-2">
-              {opportunities.map((o) => (
+              {roles.map((o) => (
                 <article key={o.title} className="rounded-3xl border border-border/70 bg-card p-7 shadow-soft">
                   <div className="flex items-center gap-3">
                     <span className="grid h-11 w-11 place-items-center rounded-2xl bg-accent text-rosewood">
@@ -94,10 +70,9 @@ function CareersPage() {
               {submitted ? (
                 <div className="py-10 text-center">
                   <CheckCircle2 className="mx-auto h-12 w-12 text-rosewood" strokeWidth={1.5} />
-                  <h3 className="mt-5 font-display text-2xl">Application received.</h3>
+                  <h3 className="mt-5 font-display text-2xl">Thank you — interest received.</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Thank you for your interest. Our team will review your
-                    application and follow up shortly.
+                    Our team will review your interest and follow up shortly.
                   </p>
                 </div>
               ) : (
@@ -108,38 +83,32 @@ function CareersPage() {
                   }}
                   className="grid gap-5 sm:grid-cols-2"
                 >
-                  <h3 className="font-display text-2xl sm:col-span-2">Apply now</h3>
+                  <h3 className="font-display text-2xl sm:col-span-2">Express interest</h3>
                   <FormField label="Full Name" required>
                     <input required className="form-input" name="name" />
                   </FormField>
-                  <FormField label="Phone Number" required>
+                  <FormField label="Phone" required>
                     <input required type="tel" className="form-input" name="phone" />
                   </FormField>
-                  <FormField label="Email Address" required span="full">
+                  <FormField label="Email" required span="full">
                     <input required type="email" className="form-input" name="email" />
                   </FormField>
-                  <FormField label="Position Applying For" required>
-                    <input required className="form-input" name="position" />
-                  </FormField>
-                  <FormField label="Years of Experience">
-                    <input type="number" min={0} className="form-input" name="years" />
-                  </FormField>
-                  <FormField label="Licensed or Credentialed?">
-                    <select
-                      value={licensed}
-                      onChange={(e) => setLicensed(e.target.value)}
-                      className="form-input"
-                    >
-                      <option>No</option>
-                      <option>Yes</option>
+                  <FormField label="Area of Interest" required>
+                    <select required className="form-input" defaultValue="">
+                      <option value="" disabled>Select…</option>
+                      {roles.map((r) => (
+                        <option key={r.title}>{r.title}</option>
+                      ))}
+                      <option>Other</option>
                     </select>
                   </FormField>
-                  {licensed === "Yes" && (
-                    <FormField label="License Type">
-                      <input className="form-input" name="licenseType" />
-                    </FormField>
-                  )}
-                  <FormField label="Upload Resume" span="full">
+                  <FormField label="Availability">
+                    <input className="form-input" name="availability" placeholder="e.g. weekday evenings" />
+                  </FormField>
+                  <FormField label="Relevant Experience" span="full">
+                    <textarea rows={3} className="form-input min-h-[110px] py-3" name="experience" />
+                  </FormField>
+                  <FormField label="Upload Resume or Bio" span="full">
                     <label className="mt-2 flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-border bg-background px-4 py-4 text-sm transition hover:border-rosewood/50">
                       <span className="grid h-9 w-9 place-items-center rounded-full bg-accent text-rosewood">
                         <Upload className="h-4 w-4" strokeWidth={1.5} />
@@ -148,15 +117,15 @@ function CareersPage() {
                       <input type="file" accept=".pdf,.doc,.docx" className="hidden" />
                     </label>
                   </FormField>
-                  <FormField label="Additional Message" span="full">
-                    <textarea rows={4} className="form-input min-h-[120px] py-3" />
+                  <FormField label="Message" span="full">
+                    <textarea rows={4} className="form-input min-h-[120px] py-3" name="message" />
                   </FormField>
                   <div className="sm:col-span-2 flex justify-end">
                     <button
                       type="submit"
                       className="inline-flex items-center rounded-full bg-gradient-rosewood px-7 py-3 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-95"
                     >
-                      Submit Application
+                      Submit Interest
                     </button>
                   </div>
                 </form>

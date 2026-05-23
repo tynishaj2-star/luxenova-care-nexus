@@ -6,59 +6,64 @@ import { PageHeader } from "@/components/site/PageHeader";
 export const Route = createFileRoute("/hipaa")({
   head: () => ({
     meta: [
-      { title: "HIPAA Notice — LuxeNova Community Wellness" },
+      { title: "Confidentiality Notice — LuxeNova Community Wellness" },
       {
         name: "description",
         content:
-          "HIPAA Notice of Privacy Practices for LuxeNova Community Wellness.",
+          "Confidentiality Notice describing how LuxeNova Community Wellness handles family information, support requests, and household documents.",
       },
     ],
   }),
-  component: HipaaPage,
+  component: ConfidentialityPage,
 });
 
 const sections = [
   {
-    title: "Our Commitment to Privacy",
+    title: "Our Commitment to Confidentiality",
     body:
-      "LuxeNova Community Wellness is committed to protecting the privacy of protected health information (PHI) in alignment with the Health Insurance Portability and Accountability Act (HIPAA).",
+      "LuxeNova Community Wellness treats every family's information as confidential. Support requests, household details, donation inquiries, volunteer interest, partner communications, and uploaded household documents are handled with care and respect.",
   },
   {
-    title: "Uses & Disclosures",
+    title: "What We Collect",
     body:
-      "PHI may be used or disclosed for treatment, payment, or operations, and where required or permitted by law. We will obtain written authorization for uses outside these categories.",
+      "We collect only what's needed to coordinate relief: family contact details, household composition, the barrier being faced, requested support, and supporting documents you choose to upload.",
+  },
+  {
+    title: "How Information Is Used",
+    body:
+      "Information is used to review stabilization requests, coordinate community support, communicate with the family or submitter, and report aggregate impact. It is not sold or shared for marketing.",
+  },
+  {
+    title: "Who Can Access It",
+    body:
+      "Only authorized LuxeNova staff and navigators directly involved in coordinating a family's support may access household information. Coordination with trusted partners only occurs when relevant and respectful of the family's needs.",
+  },
+  {
+    title: "Document Handling",
+    body:
+      "Documents you upload — rent notices, utility bills, autism support documents, and supporting letters — are transmitted over encrypted connections and stored with secure access controls.",
   },
   {
     title: "Your Rights",
     body:
-      "You have the right to request access to your information, request corrections, request restrictions on certain uses, and receive an accounting of disclosures. Requests can be submitted in writing to our team.",
-  },
-  {
-    title: "Safeguards",
-    body:
-      "We use administrative, physical, and technical safeguards to protect PHI, including secure portals, access controls, and staff training.",
-  },
-  {
-    title: "Complaints",
-    body:
-      "If you believe your privacy rights have been violated, you may file a complaint with LuxeNova Community Wellness or with the U.S. Department of Health and Human Services. We will not retaliate against you for filing a complaint.",
+      "You may request that we update or remove your information at any time by contacting our team.",
   },
   {
     title: "Contact",
     body:
-      "For questions about this notice, contact information will be added before launch.",
+      "For questions about this Confidentiality Notice, contact information will be added before launch.",
   },
 ];
 
-function HipaaPage() {
+function ConfidentialityPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
         <PageHeader
           eyebrow="Legal"
-          title="HIPAA Notice"
-          description="Notice of Privacy Practices for protected health information."
+          title="Confidentiality Notice"
+          description="How LuxeNova Community Wellness handles family information, support requests, and household documents."
         />
         <section className="pb-24">
           <div className="mx-auto max-w-3xl px-6">

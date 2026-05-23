@@ -10,7 +10,7 @@ export const Route = createFileRoute("/terms")({
       {
         name: "description",
         content:
-          "Terms of Service for the LuxeNova Community Wellness website and referral portal.",
+          "Terms of Service for the LuxeNova Community Wellness website and Request Help portal.",
       },
     ],
   }),
@@ -21,7 +21,7 @@ const sections = [
   {
     title: "Acceptance of Terms",
     body:
-      "By accessing or using the LuxeNova Community Wellness website, referral portal, or related services, you agree to be bound by these Terms of Service.",
+      "By accessing or using the LuxeNova Community Wellness website, Request Help portal, donor pages, or related services, you agree to be bound by these Terms of Service.",
   },
   {
     title: "Use of Website",
@@ -29,9 +29,14 @@ const sections = [
       "You agree to use this website only for lawful purposes and in a manner that does not infringe the rights of, or restrict the use of this site by, any third party.",
   },
   {
-    title: "Referrals & Submissions",
+    title: "Stabilization Requests",
     body:
-      "Submitting a referral or form does not create a client relationship or guarantee acceptance into services. Acceptance is determined after review by our coordination team.",
+      "Submitting an Emergency Stabilization Request does not guarantee specific relief, financial assistance, or services. Each request is reviewed by our coordination team and routed to the most appropriate community response.",
+  },
+  {
+    title: "Donations & Sponsorships",
+    body:
+      "Donations and sponsorships are used to support community relief and family stabilization. Specific allocation may vary based on need and program capacity.",
   },
   {
     title: "Intellectual Property",

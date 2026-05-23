@@ -12,7 +12,17 @@ const mainLinks = [
 ];
 
 const moreLinks = [
+  { label: "Founder", to: "/founder" as const },
+  { label: "FAQ", to: "/faq" as const },
+  { label: "Eligibility", to: "/eligibility" as const },
   { label: "Impact", to: "/impact" as const },
+  { label: "Resource Hub", to: "/resources" as const },
+  { label: "Updates", to: "/updates" as const },
+  { label: "Transparency", to: "/transparency" as const },
+  { label: "Nonprofit Status", to: "/nonprofit-status" as const },
+  { label: "Board", to: "/board" as const },
+  { label: "Sponsor a Family", to: "/sponsor-a-family" as const },
+  { label: "Community Partners", to: "/community-partners" as const },
   { label: "Get Involved", to: "/careers" as const },
   { label: "Employee Login", to: "/portal" as const },
   { label: "Privacy Policy", to: "/privacy" as const },

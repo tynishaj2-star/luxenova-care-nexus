@@ -24,6 +24,7 @@ export function Footer() {
         { label: "Get Involved", to: "/careers" as const },
         { label: "Community Partners", to: "/community-partners" as const },
         { label: "Employee Login / Intake", to: "/portal" as const },
+        { label: "Board Portal", to: "/board-portal" as const },
       ],
     },
     {

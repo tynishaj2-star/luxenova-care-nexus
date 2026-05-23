@@ -44,15 +44,15 @@ const boardMembers = [
   },
   {
     name: "Trina Everett",
-    role: "Co-Founder / Community Impact & Program Oversight",
+    role: "Co-Founder / Treasurer / Community Impact & Program Oversight",
     summary:
-      "Mission leadership, organizational formation, and community impact review.",
+      "Mission leadership, financial stewardship, donation tracking, organizational formation, and community impact review.",
   },
   {
     name: "Victoria Roscoe",
-    role: "Board Chair / President / Community Impact & Program Oversight",
+    role: "Board Chair / President",
     summary:
-      "Board leadership, meeting oversight, mission accountability, governance direction, and community impact review.",
+      "Board leadership, meeting oversight, mission accountability, and governance direction.",
   },
   {
     name: "Latoia Moses",
@@ -129,8 +129,8 @@ function BoardPage() {
               <p className="mt-5 max-w-3xl text-foreground/85 leading-relaxed md:text-lg">
                 The founding board supports mission accountability,
                 responsible growth, donation oversight, family-centered
-                decision-making, and the formation of LuxeNova Community
-                Wellness's nonprofit governance structure.
+                decision-making, and the formation of LuxeNova's
+                nonprofit governance structure.
               </p>
             </div>
           </div>

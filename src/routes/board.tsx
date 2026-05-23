@@ -38,15 +38,15 @@ export const Route = createFileRoute("/board")({
 const boardMembers = [
   {
     name: "Tynisha Johnson",
-    role: "Founder / Treasurer",
+    role: "Founder / Treasurer / Community Impact & Program Oversight",
     summary:
-      "Mission leadership, financial stewardship, donation tracking, and organizational formation.",
+      "Mission leadership, financial stewardship, donation tracking, organizational formation, and community impact review.",
   },
   {
     name: "Victoria Roscoe",
-    role: "Board Chair / President",
+    role: "Board Chair / President / Community Impact & Program Oversight",
     summary:
-      "Board leadership, meeting oversight, mission accountability, and governance direction.",
+      "Board leadership, meeting oversight, mission accountability, governance direction, and community impact review.",
   },
   {
     name: "Latoia Moses",
@@ -60,13 +60,8 @@ const boardMembers = [
     summary:
       "Meeting records, official documents, board minutes, policy tracking, and compliance organization.",
   },
-  {
-    name: "Rene Tarrant",
-    role: "Community Impact & Program Oversight",
-    summary:
-      "Family-centered program feedback, community needs review, and impact accountability.",
-  },
 ];
+
 
 
 

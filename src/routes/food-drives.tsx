@@ -90,7 +90,7 @@ function FoodDrivesPage() {
     setForm((f) => ({ ...f, [k]: v }));
   }
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const nextErrors: Partial<Record<keyof FormState, string>> = {};
     if (!form.fullName.trim()) nextErrors.fullName = "Required";
@@ -103,6 +103,22 @@ function FoodDrivesPage() {
       return;
     }
     setErrors({});
+    try {
+      const { notifyStaff } = await import("@/lib/notify-staff");
+      await notifyStaff("Food Drive Interest Form", [
+        { label: "Full Name", value: form.fullName },
+        { label: "Phone", value: form.phone },
+        { label: "Email", value: form.email },
+        { label: "Interest", value: form.interest },
+        { label: "Organization", value: form.organization },
+        { label: "Preferred Date/Timeframe", value: form.timeframe },
+        { label: "City", value: form.city },
+        { label: "Items to Donate / Request", value: form.items },
+        { label: "Message", value: form.message },
+      ]);
+    } catch (err) {
+      console.error(err);
+    }
     setSubmitted(true);
   }
 

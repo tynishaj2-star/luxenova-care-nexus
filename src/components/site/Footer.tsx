@@ -20,7 +20,7 @@ export function Footer() {
         { label: "Request Help", to: "/referrals" as const },
         { label: "Donate", to: "/donate" as const },
         { label: "Sponsor a Family", to: "/sponsor-a-family" as const },
-        { label: "Food Drives", to: "/food-drives" as const },
+        { label: "Community Drives", to: "/food-drives" as const },
         { label: "Get Involved", to: "/careers" as const },
         { label: "Community Partners", to: "/community-partners" as const },
         { label: "Employee Login / Intake", to: "/portal" as const },

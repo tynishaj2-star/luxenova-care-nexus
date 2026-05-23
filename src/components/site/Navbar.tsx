@@ -23,7 +23,7 @@ const moreLinks = [
   { label: "Nonprofit Status", to: "/nonprofit-status" as const },
   { label: "Board", to: "/board" as const },
   { label: "Sponsor a Family", to: "/sponsor-a-family" as const },
-  { label: "Food Drives", to: "/food-drives" as const },
+  { label: "Community Drives", to: "/food-drives" as const },
   { label: "Community Partners", to: "/community-partners" as const },
   { label: "Get Involved", to: "/careers" as const },
   { label: "Employee Login", to: "/portal" as const },

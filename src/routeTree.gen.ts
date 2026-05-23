@@ -22,6 +22,7 @@ import { Route as ReferralsRouteImport } from './routes/referrals'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as NonprofitStatusRouteImport } from './routes/nonprofit-status'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as InsuranceRouteImport } from './routes/insurance'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as HowFundsAreUsedRouteImport } from './routes/how-funds-are-used'
@@ -31,6 +32,7 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EligibilityRouteImport } from './routes/eligibility'
 import { Route as DonationPolicyRouteImport } from './routes/donation-policy'
 import { Route as DonateRouteImport } from './routes/donate'
+import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommunityPartnersRouteImport } from './routes/community-partners'
 import { Route as CareersRouteImport } from './routes/careers'
@@ -103,6 +105,11 @@ const NonprofitStatusRoute = NonprofitStatusRouteImport.update({
   path: '/nonprofit-status',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InsuranceRoute = InsuranceRouteImport.update({
   id: '/insurance',
   path: '/insurance',
@@ -148,6 +155,11 @@ const DonateRoute = DonateRouteImport.update({
   path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocumentsRoute = DocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -186,6 +198,7 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
+  '/documents': typeof DocumentsRoute
   '/donate': typeof DonateRoute
   '/donation-policy': typeof DonationPolicyRoute
   '/eligibility': typeof EligibilityRoute
@@ -195,6 +208,7 @@ export interface FileRoutesByFullPath {
   '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
+  '/login': typeof LoginRoute
   '/nonprofit-status': typeof NonprofitStatusRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
@@ -216,6 +230,7 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
+  '/documents': typeof DocumentsRoute
   '/donate': typeof DonateRoute
   '/donation-policy': typeof DonationPolicyRoute
   '/eligibility': typeof EligibilityRoute
@@ -225,6 +240,7 @@ export interface FileRoutesByTo {
   '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
+  '/login': typeof LoginRoute
   '/nonprofit-status': typeof NonprofitStatusRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
@@ -247,6 +263,7 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
+  '/documents': typeof DocumentsRoute
   '/donate': typeof DonateRoute
   '/donation-policy': typeof DonationPolicyRoute
   '/eligibility': typeof EligibilityRoute
@@ -256,6 +273,7 @@ export interface FileRoutesById {
   '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
+  '/login': typeof LoginRoute
   '/nonprofit-status': typeof NonprofitStatusRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
@@ -279,6 +297,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/community-partners'
     | '/contact'
+    | '/documents'
     | '/donate'
     | '/donation-policy'
     | '/eligibility'
@@ -288,6 +307,7 @@ export interface FileRouteTypes {
     | '/how-funds-are-used'
     | '/impact'
     | '/insurance'
+    | '/login'
     | '/nonprofit-status'
     | '/portal'
     | '/privacy'
@@ -309,6 +329,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/community-partners'
     | '/contact'
+    | '/documents'
     | '/donate'
     | '/donation-policy'
     | '/eligibility'
@@ -318,6 +339,7 @@ export interface FileRouteTypes {
     | '/how-funds-are-used'
     | '/impact'
     | '/insurance'
+    | '/login'
     | '/nonprofit-status'
     | '/portal'
     | '/privacy'
@@ -339,6 +361,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/community-partners'
     | '/contact'
+    | '/documents'
     | '/donate'
     | '/donation-policy'
     | '/eligibility'
@@ -348,6 +371,7 @@ export interface FileRouteTypes {
     | '/how-funds-are-used'
     | '/impact'
     | '/insurance'
+    | '/login'
     | '/nonprofit-status'
     | '/portal'
     | '/privacy'
@@ -370,6 +394,7 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   CommunityPartnersRoute: typeof CommunityPartnersRoute
   ContactRoute: typeof ContactRoute
+  DocumentsRoute: typeof DocumentsRoute
   DonateRoute: typeof DonateRoute
   DonationPolicyRoute: typeof DonationPolicyRoute
   EligibilityRoute: typeof EligibilityRoute
@@ -379,6 +404,7 @@ export interface RootRouteChildren {
   HowFundsAreUsedRoute: typeof HowFundsAreUsedRoute
   ImpactRoute: typeof ImpactRoute
   InsuranceRoute: typeof InsuranceRoute
+  LoginRoute: typeof LoginRoute
   NonprofitStatusRoute: typeof NonprofitStatusRoute
   PortalRoute: typeof PortalRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -487,6 +513,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NonprofitStatusRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/insurance': {
       id: '/insurance'
       path: '/insurance'
@@ -550,6 +583,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DonateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/documents': {
+      id: '/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -602,6 +642,7 @@ const rootRouteChildren: RootRouteChildren = {
   CareersRoute: CareersRoute,
   CommunityPartnersRoute: CommunityPartnersRoute,
   ContactRoute: ContactRoute,
+  DocumentsRoute: DocumentsRoute,
   DonateRoute: DonateRoute,
   DonationPolicyRoute: DonationPolicyRoute,
   EligibilityRoute: EligibilityRoute,
@@ -611,6 +652,7 @@ const rootRouteChildren: RootRouteChildren = {
   HowFundsAreUsedRoute: HowFundsAreUsedRoute,
   ImpactRoute: ImpactRoute,
   InsuranceRoute: InsuranceRoute,
+  LoginRoute: LoginRoute,
   NonprofitStatusRoute: NonprofitStatusRoute,
   PortalRoute: PortalRoute,
   PrivacyRoute: PrivacyRoute,

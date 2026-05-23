@@ -35,6 +35,7 @@ export function Footer() {
         { label: "Donation Policy", to: "/donation-policy" as const },
         { label: "Volunteer Policy", to: "/volunteer-policy" as const },
         { label: "Staffing & Compensation", to: "/staffing-compensation" as const },
+        { label: "Document Hub (Internal)", to: "/documents" as const },
       ],
     },
 

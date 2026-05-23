@@ -118,38 +118,23 @@ function BoardPage() {
           </div>
         </section>
 
-        {/* Role 5 — Community Impact & Program Oversight */}
+        {/* Founding board statement */}
         <section className="pb-16">
           <div className="mx-auto max-w-5xl px-6">
             <div className="rounded-3xl border border-rosewood/25 bg-accent/40 p-8 shadow-soft md:p-10">
               <p className="text-[11px] uppercase tracking-[0.22em] text-rosewood">
-                Role 5 · Community Impact &amp; Program Oversight
+                Founding Board
               </p>
-              <h2 className="mt-3 font-display text-3xl text-balance md:text-4xl">
-                Program oversight is shared by mission leadership.
-              </h2>
-              <p className="mt-5 max-w-3xl text-foreground/85 leading-relaxed">
-                This role helps LuxeNova review family stabilization
-                priorities, food drive needs, disability and autism family
-                support gaps, donation impact, community feedback, and
-                program fairness.
+              <p className="mt-5 max-w-3xl text-foreground/85 leading-relaxed md:text-lg">
+                The founding board supports mission accountability,
+                responsible growth, donation oversight, family-centered
+                decision-making, and the formation of LuxeNova Community
+                Wellness's nonprofit governance structure.
               </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                {oversightMembers.map((name) => (
-                  <div
-                    key={name}
-                    className="rounded-2xl border border-border/70 bg-card p-5 shadow-soft transition hover:-translate-y-0.5 hover:border-rosewood/30 hover:shadow-luxe"
-                  >
-                    <p className="font-display text-lg">{name}</p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-rosewood/80">
-                      Community Impact &amp; Program Oversight
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
+
 
         {/* Board responsibilities */}
         <section className="pb-4">

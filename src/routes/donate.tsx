@@ -25,10 +25,10 @@ export const Route = createFileRoute("/donate")({
 });
 
 const tiers = [
-  { amount: "$25", body: "Helps with urgent essentials for a family." },
-  { amount: "$75", body: "Supports documentation and resource navigation." },
-  { amount: "$150", body: "Helps stabilize a household emergency." },
-  { amount: "Monthly", body: "Sustains ongoing family relief and outreach." },
+  { amount: "$25", body: "Helps with documents, transportation, or urgent basics." },
+  { amount: "$75", body: "Supports utility relief navigation and family follow-up." },
+  { amount: "$150", body: "Helps stabilize a household facing an urgent gap." },
+  { amount: "Monthly", body: "Builds consistent emergency relief capacity." },
 ];
 
 function DonatePage() {

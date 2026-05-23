@@ -11,15 +11,15 @@ export function ReferralCTA() {
             <div className="lg:col-span-8">
               <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-3.5 py-1.5 text-xs tracking-wide text-muted-foreground">
                 <ShieldCheck className="h-3.5 w-3.5 text-rosewood" />
-                Confidential Community Stabilization request
+                Confidential stabilization request
               </span>
               <h2 className="mt-5 font-display text-4xl md:text-5xl text-balance">
-                Need Community Stabilization support for a family?
+                Need stabilization support for a family?
               </h2>
               <p className="mt-5 max-w-2xl text-muted-foreground">
                 Families, partners, schools, shelters, faith groups, and
                 community agencies can request help through our confidential
-                Community Stabilization Request form.
+                Emergency Stabilization Request form.
               </p>
             </div>
             <div className="lg:col-span-4 lg:text-right">

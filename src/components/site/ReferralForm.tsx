@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, Upload, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Upload, ShieldCheck, Lock, FileCheck2, X } from "lucide-react";
 
 const sections = [
   "Household",
@@ -111,22 +111,35 @@ const supportOptions = [
   "Other",
 ];
 
-const uploadCategories = [
-  "Rent Notice / Lease",
-  "Utility Bill / Shutoff Notice",
-  "Autism Support Documents",
-  "Income or Benefit Documents",
-  "School / Agency Letter",
-  "Supporting Documentation",
+const uploadCategories: { label: string; hint: string; required?: boolean }[] = [
+  { label: "Partner Intake Form", hint: "Agency or school intake referral packet", required: true },
+  { label: "HIPAA Authorization (Release of PHI)", hint: "Signed authorization to share protected health info", required: true },
+  { label: "Release of Information (ROI)", hint: "Consent to coordinate with partner agencies" },
+  { label: "Rent Notice / Lease", hint: "Eviction notice, NTQ, or current lease" },
+  { label: "Utility Bill / Shutoff Notice", hint: "Most recent statement or disconnect notice" },
+  { label: "Autism / IEP / IFSP Documents", hint: "Diagnosis letter, IEP, IFSP, or care plan" },
+  { label: "Income or Benefit Documents", hint: "Paystubs, SNAP/TAFDC, SSI/SSDI letters" },
+  { label: "School / Agency Letter", hint: "Letter of support from school or partner" },
+  { label: "Photo ID (Head of Household)", hint: "State ID, license, or equivalent" },
+  { label: "Supporting Documentation", hint: "Anything else relevant to the request" },
 ];
 
 export function ReferralForm() {
   const [submitted, setSubmitted] = useState(false);
   const [autismHousehold, setAutismHousehold] = useState(false);
   const [safety, setSafety] = useState("No");
-  const [consents, setConsents] = useState({ a: false, b: false, c: false });
+  const [consents, setConsents] = useState({ a: false, b: false, c: false, hipaa: false });
+  const [uploaded, setUploaded] = useState<Record<string, File[]>>({});
 
-  const allConsented = consents.a && consents.b && consents.c;
+  const handleFiles = (label: string, files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setUploaded((u) => ({ ...u, [label]: [...(u[label] ?? []), ...Array.from(files)] }));
+  };
+  const removeFile = (label: string, idx: number) => {
+    setUploaded((u) => ({ ...u, [label]: u[label].filter((_, i) => i !== idx) }));
+  };
+
+  const allConsented = consents.a && consents.b && consents.c && consents.hipaa;
 
   if (submitted) {
     return (
@@ -406,33 +419,101 @@ export function ReferralForm() {
             {/* SECTION 6 — Documents */}
             <SectionCard
               index={6}
-              title="Upload Documents"
-              description="Rent notices, utility bills, autism support documents, income or benefit documents, or supporting letters."
+              title="Secure Document Upload"
+              description="HIPAA-aware intake. Attach partner intake forms, signed authorizations, and supporting documentation."
             >
-              <div className="grid gap-4 sm:grid-cols-2">
-                {uploadCategories.map((label) => (
-                  <label
-                    key={label}
-                    className="group flex cursor-pointer flex-col items-start gap-2 rounded-2xl border border-dashed border-border bg-background p-5 text-sm transition hover:border-rosewood/50"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="grid h-9 w-9 place-items-center rounded-full bg-accent text-rosewood">
-                        <Upload className="h-4 w-4" strokeWidth={1.5} />
-                      </span>
-                      <span className="font-medium text-foreground">{label}</span>
-                    </div>
-                    <span className="text-xs text-muted-foreground">
-                      Click to upload · PDF, JPG, PNG
-                    </span>
-                    <input
-                      type="file"
-                      multiple
-                      accept=".pdf,.jpg,.jpeg,.png"
-                      className="hidden"
-                    />
-                  </label>
-                ))}
+              <div className="mb-6 flex items-start gap-3 rounded-2xl border border-rosewood/20 bg-gradient-to-br from-accent/60 to-accent/20 p-4 text-sm text-foreground/85">
+                <Lock className="mt-0.5 h-5 w-5 shrink-0 text-rosewood" strokeWidth={1.5} />
+                <div className="space-y-1">
+                  <p className="font-medium text-foreground">Protected Health Information (PHI) handling</p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    Uploads are encrypted in transit (TLS 1.2+) and access-restricted to authorized LuxeNova navigators.
+                    Documents containing PHI require a signed HIPAA authorization. Accepted formats: PDF, JPG, PNG · Max 25 MB per file.
+                  </p>
+                </div>
               </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {uploadCategories.map((cat) => {
+                  const files = uploaded[cat.label] ?? [];
+                  const hasFiles = files.length > 0;
+                  return (
+                    <div
+                      key={cat.label}
+                      className={`group flex flex-col gap-3 rounded-2xl border-2 border-dashed p-5 text-sm transition ${
+                        hasFiles
+                          ? "border-rosewood/50 bg-accent/30"
+                          : "border-border bg-background hover:border-rosewood/40"
+                      }`}
+                    >
+                      <label className="flex cursor-pointer flex-col gap-2">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex items-center gap-3">
+                            <span className={`grid h-9 w-9 place-items-center rounded-full transition ${
+                              hasFiles ? "bg-rosewood text-rosewood-foreground" : "bg-accent text-rosewood"
+                            }`}>
+                              {hasFiles ? (
+                                <FileCheck2 className="h-4 w-4" strokeWidth={1.5} />
+                              ) : (
+                                <Upload className="h-4 w-4" strokeWidth={1.5} />
+                              )}
+                            </span>
+                            <div>
+                              <p className="font-medium text-foreground">
+                                {cat.label}
+                                {cat.required && <span className="ml-1 text-rosewood">*</span>}
+                              </p>
+                              <p className="text-xs text-muted-foreground">{cat.hint}</p>
+                            </div>
+                          </div>
+                          <Lock className="mt-1 h-3.5 w-3.5 shrink-0 text-muted-foreground/70" strokeWidth={1.5} />
+                        </div>
+                        <span className="mt-1 text-xs text-muted-foreground">
+                          {hasFiles ? "Add another file" : "Click to upload · PDF, JPG, PNG"}
+                        </span>
+                        <input
+                          type="file"
+                          multiple
+                          accept=".pdf,.jpg,.jpeg,.png"
+                          className="hidden"
+                          onChange={(e) => handleFiles(cat.label, e.target.files)}
+                        />
+                      </label>
+
+                      {hasFiles && (
+                        <ul className="space-y-1.5 border-t border-border/60 pt-3">
+                          {files.map((f, i) => (
+                            <li
+                              key={`${f.name}-${i}`}
+                              className="flex items-center justify-between gap-2 rounded-lg bg-background px-3 py-2 text-xs"
+                            >
+                              <span className="flex items-center gap-2 truncate text-foreground/85">
+                                <FileCheck2 className="h-3.5 w-3.5 shrink-0 text-rosewood" strokeWidth={1.5} />
+                                <span className="truncate">{f.name}</span>
+                                <span className="shrink-0 text-muted-foreground">
+                                  {(f.size / 1024).toFixed(0)} KB
+                                </span>
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => removeFile(cat.label, i)}
+                                className="rounded-full p-1 text-muted-foreground transition hover:bg-accent hover:text-rosewood"
+                                aria-label={`Remove ${f.name}`}
+                              >
+                                <X className="h-3.5 w-3.5" strokeWidth={1.5} />
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <p className="mt-5 text-xs text-muted-foreground">
+                <span className="text-rosewood">*</span> Required for HIPAA-compliant intake. If you can't attach a document now, our team will follow up with a secure link.
+              </p>
             </SectionCard>
 
             {/* SECTION 7 — Consent */}
@@ -453,6 +534,11 @@ export function ReferralForm() {
                     key: "c" as const,
                     label:
                       "I acknowledge LuxeNova Community Wellness may contact the family or submitter regarding this request and may coordinate with trusted community partners as appropriate.",
+                  },
+                  {
+                    key: "hipaa" as const,
+                    label:
+                      "HIPAA Authorization: I authorize LuxeNova Community Wellness and the submitting partner to exchange the uploaded documents and any Protected Health Information (PHI) contained within for the limited purpose of coordinating stabilization services. This authorization may be revoked in writing at any time.",
                   },
                 ].map(({ key, label }) => (
                   <label

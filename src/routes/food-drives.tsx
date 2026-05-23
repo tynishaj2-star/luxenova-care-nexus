@@ -9,17 +9,17 @@ import { Apple, HandHeart, Users, Building2, CheckCircle2, Drumstick, Gift, Snow
 export const Route = createFileRoute("/food-drives")({
   head: () => ({
     meta: [
-      { title: "Food Drives — LuxeNova Community Wellness" },
+      { title: "Community Drives — LuxeNova Community Wellness" },
       {
         name: "description",
         content:
-          "Host a food drive, volunteer, donate essentials, or request food and household support through LuxeNova Community Wellness.",
+          "Host, volunteer for, donate to, or request support from LuxeNova Community Wellness drives — food, holiday, winter warmth, and seasonal essentials.",
       },
-      { property: "og:title", content: "Food Drives — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Community Drives — LuxeNova Community Wellness" },
       {
         property: "og:description",
         content:
-          "Food drive hosting, volunteering, donations, and family essentials support across Massachusetts.",
+          "Food, holiday, and seasonal drives across Massachusetts — hosting, volunteering, donations, and family essentials support.",
       },
     ],
   }),
@@ -105,7 +105,7 @@ function FoodDrivesPage() {
     setErrors({});
     try {
       const { notifyStaff } = await import("@/lib/notify-staff");
-      await notifyStaff("Food Drive Interest Form", [
+      await notifyStaff("Community Drive Interest Form", [
         { label: "Full Name", value: form.fullName },
         { label: "Phone", value: form.phone },
         { label: "Email", value: form.email },
@@ -127,7 +127,7 @@ function FoodDrivesPage() {
       <Navbar />
       <main>
         <PageHeader
-          eyebrow="Food Drives"
+          eyebrow="Community Drives"
           title="Feed neighbors. Stabilize families."
           description="Food drives, volunteer days, essentials donations, and direct family support — coordinated with dignity across Massachusetts."
         />
@@ -209,10 +209,10 @@ function FoodDrivesPage() {
           <div className="mx-auto max-w-3xl px-6">
             <div className="rounded-3xl border border-border/70 bg-card p-7 shadow-soft md:p-10">
               <p className="text-xs uppercase tracking-[0.22em] text-rosewood/80">
-                Food Drive Interest Form
+                Community Drive Interest Form
               </p>
               <h2 className="mt-2 font-display text-3xl md:text-4xl">
-                Food Drive Interest Form
+                Community Drive Interest Form
               </h2>
               <p className="mt-3 text-sm text-muted-foreground">
                 Use this form to host a food drive, volunteer for a drive,
@@ -316,7 +316,7 @@ function FoodDrivesPage() {
                       type="submit"
                       className="inline-flex h-12 items-center justify-center rounded-full bg-gradient-rosewood px-7 text-sm font-medium text-rosewood-foreground shadow-soft transition hover:opacity-95"
                     >
-                      Submit Food Drive Interest
+                      Submit Community Drive Interest
                     </button>
                   </div>
                 </form>

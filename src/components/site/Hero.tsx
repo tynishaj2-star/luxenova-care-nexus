@@ -22,17 +22,17 @@ export function Hero() {
           <div className="lg:col-span-6 animate-fade-up">
             <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/70 px-3.5 py-1.5 text-xs tracking-wide text-muted-foreground backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-rosewood" />
-              Massachusetts community relief & family stabilization
+              We prevent collapse before homelessness happens.
             </div>
             <h1 className="mt-6 font-display text-5xl leading-[1.05] text-balance md:text-6xl lg:text-7xl">
-              Helping Families Stabilize.
-              <span className="block text-rosewood italic">Before Crisis Becomes Collapse.</span>
+              Quiet, Decisive Support.
+              <span className="block text-rosewood italic">For Families on the Edge.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground text-pretty">
-              LuxeNova Community Wellness helps Massachusetts families facing
-              housing instability, utility shutoffs, autism-related support
-              gaps, and resource barriers access organized community support
-              with dignity, transparency, and care.
+              LuxeNova Community Wellness steps in for Massachusetts families
+              the moment instability appears — rental shortfalls, utility
+              shutoffs, autism support gaps, and resource barriers — with
+              composed, coordinated relief delivered with dignity and care.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link

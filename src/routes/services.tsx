@@ -12,7 +12,7 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "LuxeNova programs include emergency rental assistance, utility relief, autism family support, family stabilization, resource navigation, community outreach, documentation assistance, and partner coordination.",
+          "LuxeNova programs include emergency rental assistance, utility relief, autism family support, Community Stabilization, resource navigation, community outreach, documentation assistance, and partner coordination.",
       },
       { property: "og:title", content: "LuxeNova Programs" },
       {

@@ -4,17 +4,19 @@ import { ChevronDown, Menu, X } from "lucide-react";
 
 const mainLinks = [
   { label: "Home", to: "/" as const },
-  { label: "About", to: "/about" as const },
-  { label: "Services", to: "/services" as const },
-  { label: "Insurance", to: "/insurance" as const },
-  { label: "Referrals", to: "/referrals" as const },
+  { label: "Mission", to: "/about" as const },
+  { label: "Programs", to: "/services" as const },
+  { label: "Request Help", to: "/referrals" as const },
+  { label: "Donate", to: "/donate" as const },
   { label: "Contact", to: "/contact" as const },
 ];
 
 const moreLinks = [
-  { label: "Careers", to: "/careers" as const },
+  { label: "Impact", to: "/impact" as const },
+  { label: "Get Involved", to: "/careers" as const },
+  { label: "Employee Login", to: "/portal" as const },
   { label: "Privacy Policy", to: "/privacy" as const },
-  { label: "HIPAA Notice", to: "/hipaa" as const },
+  { label: "Confidentiality Notice", to: "/hipaa" as const },
 ];
 
 export function Navbar() {
@@ -47,7 +49,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {mainLinks.map((l) => (
             <Link
               key={l.to}
@@ -68,7 +70,7 @@ export function Navbar() {
               More <ChevronDown className="h-3.5 w-3.5" />
             </button>
             {moreOpen && (
-              <div className="absolute right-0 top-full w-56 pt-3">
+              <div className="absolute right-0 top-full w-60 pt-3">
                 <div className="rounded-2xl border border-border/70 bg-card p-2 shadow-luxe">
                   {moreLinks.map((l) => (
                     <Link
@@ -90,7 +92,7 @@ export function Navbar() {
             to="/referrals"
             className="hidden rounded-full bg-gradient-rosewood px-5 py-2.5 text-sm font-medium text-rosewood-foreground shadow-soft transition hover:opacity-95 sm:inline-flex"
           >
-            Submit Referral
+            Request Help
           </Link>
           <button
             aria-label="Open menu"

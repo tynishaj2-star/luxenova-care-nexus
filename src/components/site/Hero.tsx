@@ -1,6 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-family.jpg";
 
+const trustBadges = [
+  "Emergency Rental Assistance",
+  "Utility Relief",
+  "Autism Family Support",
+  "Family Stabilization",
+  "Resource Navigation",
+  "Documented Impact",
+];
+
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
@@ -13,50 +22,49 @@ export function Hero() {
           <div className="lg:col-span-6 animate-fade-up">
             <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/70 px-3.5 py-1.5 text-xs tracking-wide text-muted-foreground backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-rosewood" />
-              Community-based wellness, reimagined
+              Massachusetts community relief & family stabilization
             </div>
             <h1 className="mt-6 font-display text-5xl leading-[1.05] text-balance md:text-6xl lg:text-7xl">
-              Compassionate community support.
-              <span className="block text-rosewood italic">Modern care coordination.</span>
+              Helping Families Stabilize.
+              <span className="block text-rosewood italic">Before Crisis Becomes Collapse.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground text-pretty">
-              LuxeNova Community Wellness helps individuals and families navigate
-              life's challenges through personalized support, housing assistance,
-              wellness advocacy, and community-based programs.
+              LuxeNova Community Wellness helps Massachusetts families facing
+              housing instability, utility shutoffs, autism-related support
+              gaps, and resource barriers access organized community support
+              with dignity, transparency, and care.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 to="/referrals"
                 className="inline-flex items-center rounded-full bg-gradient-rosewood px-6 py-3 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-95"
               >
-                Request Services
+                Request Help
               </Link>
               <Link
-                to="/referrals"
+                to="/donate"
                 className="inline-flex items-center rounded-full border border-border bg-card px-6 py-3 text-sm font-medium text-foreground shadow-soft transition hover:border-foreground/30"
               >
-                Submit a Referral
+                Donate
               </Link>
             </div>
-            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-border/70 pt-8">
-              {[
-                { k: "24h", v: "Referral response" },
-                { k: "98%", v: "Partner satisfaction" },
-                { k: "1:1", v: "Care coordinators" },
-              ].map((s) => (
-                <div key={s.k}>
-                  <dt className="font-display text-2xl text-foreground">{s.k}</dt>
-                  <dd className="mt-1 text-xs text-muted-foreground">{s.v}</dd>
-                </div>
+            <ul className="mt-10 flex flex-wrap gap-2">
+              {trustBadges.map((b) => (
+                <li
+                  key={b}
+                  className="rounded-full border border-border/70 bg-card/80 px-3 py-1.5 text-xs text-foreground/80 backdrop-blur"
+                >
+                  {b}
+                </li>
               ))}
-            </dl>
+            </ul>
           </div>
 
           <div className="relative lg:col-span-6">
             <div className="relative overflow-hidden rounded-3xl bg-card shadow-luxe">
               <img
                 src={heroImg}
-                alt="A care coordinator meeting with a multigenerational family in a warm, sunlit living room"
+                alt="A Black Massachusetts family with two young children sitting together on the front porch of their home at golden hour"
                 width={1536}
                 height={1280}
                 className="h-[520px] w-full object-cover md:h-[620px]"
@@ -70,8 +78,8 @@ export function Hero() {
                   <span className="h-2 w-2 rounded-full bg-rosewood" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Care plan active</p>
-                  <p className="text-sm font-medium">Coordinator assigned</p>
+                  <p className="text-xs text-muted-foreground">Stabilization plan</p>
+                  <p className="text-sm font-medium">Navigator assigned</p>
                 </div>
               </div>
               <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">

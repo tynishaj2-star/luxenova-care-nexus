@@ -1,21 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ShieldCheck, LayoutDashboard, Users, Inbox } from "lucide-react";
+import { ShieldCheck, LayoutDashboard, Users, Inbox, FileText, Heart } from "lucide-react";
 
 export const Route = createFileRoute("/portal")({
   head: () => ({
     meta: [
-      { title: "Portal — LuxeNova Community Wellness" },
-      { name: "description", content: "Secure portal for referral partners, clients, and LuxeNova staff." },
+      { title: "Employee Login — LuxeNova Community Wellness" },
+      { name: "description", content: "Internal relief intake dashboard for LuxeNova navigators and outreach staff." },
     ],
   }),
   component: Portal,
 });
 
 const tiles = [
-  { icon: Users, title: "Referral Partner Portal", body: "Submit referrals, upload documents, and track status in real time." },
-  { icon: ShieldCheck, title: "Client Portal", body: "Securely complete intake, view appointments, and message your coordinator." },
-  { icon: LayoutDashboard, title: "Admin Dashboard", body: "Manage intake, assignments, analytics, and audit logs across the organization." },
-  { icon: Inbox, title: "Communication Center", body: "Encrypted messaging and notifications between partners, clients, and staff." },
+  { icon: Inbox, title: "Stabilization Requests", body: "Review incoming Emergency Stabilization Requests, urgency level, and primary barrier." },
+  { icon: FileText, title: "Household Documents", body: "Securely access uploaded rent notices, utility bills, and supporting documentation." },
+  { icon: Users, title: "Navigators & Assignments", body: "Assign navigators, track household size, children, and autism family support needs." },
+  { icon: Heart, title: "Relief Tracking", body: "Document requested amounts, relief delivered, utility shutoffs avoided, and outcomes." },
+  { icon: LayoutDashboard, title: "Impact Dashboard", body: "Aggregate metrics across zip codes, programs, and stabilization indicators." },
+  { icon: ShieldCheck, title: "Internal Notes", body: "Confidential internal notes, status updates, and partner coordination logs." },
 ];
 
 function Portal() {
@@ -26,7 +28,7 @@ function Portal() {
           <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-rosewood text-rosewood-foreground font-display">
             L
           </span>
-          <span className="font-display text-lg">LuxeNova · Portal</span>
+          <span className="font-display text-lg">LuxeNova Community Wellness — Relief Intake</span>
         </Link>
         <Link
           to="/"
@@ -37,17 +39,18 @@ function Portal() {
       </header>
 
       <main className="mx-auto max-w-6xl px-6 pb-24 pt-12">
-        <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Coming soon</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Employee Login</p>
         <h1 className="mt-3 max-w-3xl font-display text-4xl text-balance md:text-6xl">
-          A secure, modern hub for partners, clients, and our team.
+          The internal relief intake dashboard.
         </h1>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          The LuxeNova Community Wellness portal is being rolled out in phases.
-          Below are the workspaces we're building. Connect a backend to enable
-          secure accounts, document storage, messaging, and referral workflows.
+          A secure workspace for LuxeNova navigators and outreach staff to
+          track Emergency Stabilization Requests, household needs, uploaded
+          documents, assigned navigators, status, internal notes, and
+          documented impact.
         </p>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {tiles.map((t) => (
             <article
               key={t.title}
@@ -56,19 +59,18 @@ function Portal() {
               <div className="grid h-12 w-12 place-items-center rounded-xl bg-accent text-rosewood transition-colors group-hover:bg-rosewood group-hover:text-rosewood-foreground">
                 <t.icon className="h-5 w-5" strokeWidth={1.5} />
               </div>
-              <h2 className="mt-6 font-display text-2xl">{t.title}</h2>
+              <h2 className="mt-6 font-display text-xl">{t.title}</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.body}</p>
             </article>
           ))}
         </div>
 
         <div className="mt-14 rounded-3xl border border-border/70 bg-card p-8 shadow-soft">
-          <h3 className="font-display text-xl">Ready to activate accounts & data?</h3>
+          <h3 className="font-display text-xl">Ready to activate secure logins & data?</h3>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            To enable secure logins, document uploads, referral tracking, and
-            admin dashboards, we'll need to connect Lovable Cloud (authentication,
-            database, file storage, and serverless functions). Let me know when
-            you'd like to enable it and I'll wire up the portal end-to-end.
+            To enable employee accounts, secure document storage, request
+            tracking, and impact dashboards, we'll connect a secure backend.
+            Let us know when you'd like to activate it.
           </p>
         </div>
       </main>

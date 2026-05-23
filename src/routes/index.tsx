@@ -13,17 +13,17 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "LuxeNova Community Wellness — Care Coordination & Community Support" },
+      { title: "LuxeNova Community Wellness — Helping Massachusetts Families Stabilize" },
       {
         name: "description",
         content:
-          "LuxeNova Community Wellness provides modern care coordination, housing navigation, family support, and community-based behavioral health services.",
+          "LuxeNova Community Wellness is a Massachusetts community relief initiative supporting families through emergency rental assistance, utility relief, autism family support, and resource navigation.",
       },
       { property: "og:title", content: "LuxeNova Community Wellness" },
       {
         property: "og:description",
         content:
-          "Compassionate community support. Modern care coordination for individuals, families, and referral partners.",
+          "Helping families stabilize before crisis becomes collapse. Massachusetts community relief and family stabilization support.",
       },
     ],
   }),

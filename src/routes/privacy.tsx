@@ -10,7 +10,7 @@ export const Route = createFileRoute("/privacy")({
       {
         name: "description",
         content:
-          "Privacy Policy for LuxeNova Community Wellness, including SMS consent, HIPAA-aligned practices, and document upload security.",
+          "Privacy Policy describing how LuxeNova Community Wellness collects, uses, and safeguards family information, support requests, donor inquiries, and volunteer interest.",
       },
     ],
   }),
@@ -21,32 +21,32 @@ const sections = [
   {
     title: "Information We Collect",
     body:
-      "We collect information you provide when submitting referrals, contact forms, applications, or newsletter sign-ups. This may include name, contact information, demographic details, insurance information, referral details, and any documents you upload.",
+      "We collect information you provide through support requests, contact forms, donor inquiries, volunteer interest forms, and newsletter sign-ups. This may include name, contact information, household details, the barrier you're facing, and any documents you upload.",
   },
   {
     title: "How Information Is Used",
     body:
-      "Information is used to review referrals, coordinate care, respond to inquiries, evaluate employment applications, and support client services. Information is shared only with team members and partners involved in providing services, and only as permitted by law.",
+      "Information is used to review Emergency Stabilization Requests, coordinate community relief, respond to inquiries, process donor and volunteer interest, and report aggregate impact. Information is shared only with team members and trusted partners involved in coordinating a family's support, and only as appropriate.",
   },
   {
     title: "Communication by Phone, Email, and Text",
     body:
-      "We may contact you by phone, email, or text regarding your referral, inquiry, or services. Standard rates may apply for phone calls and text messages.",
+      "We may contact you by phone, email, or text regarding your support request, inquiry, or interest. Standard rates may apply.",
   },
   {
     title: "SMS Consent",
     body:
-      "By submitting a form or providing your mobile number, you consent to receive text messages from LuxeNova Community Wellness related to your referral or service request. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties. Message frequency may vary. Message and data rates may apply. You may opt out of text messages at any time by replying STOP.",
+      "By submitting a form or providing your mobile number, you consent to receive text messages from LuxeNova Community Wellness related to your support request or inquiry. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties. Message frequency may vary. Message and data rates may apply. You may opt out of text messages at any time by replying STOP.",
   },
   {
-    title: "HIPAA & Confidentiality",
+    title: "Confidentiality",
     body:
-      "LuxeNova Community Wellness follows HIPAA-aligned practices for handling protected health information. Information is treated as confidential and is accessed only by authorized team members for purposes of treatment, payment, or operations.",
+      "Family information, support requests, donor inquiries, volunteer interest, household documents, and partner communications are treated as confidential. See our Confidentiality Notice for additional detail on how household information is handled.",
   },
   {
     title: "Document Upload Security",
     body:
-      "Documents uploaded through our referral portal are transmitted over encrypted connections and stored using secure access controls. Only authorized personnel involved in reviewing the referral may access uploaded documents.",
+      "Documents uploaded through our Request Help form are transmitted over encrypted connections and stored using secure access controls. Only authorized personnel involved in coordinating the request may access uploaded documents.",
   },
   {
     title: "Contact Information",
@@ -63,7 +63,7 @@ function PrivacyPage() {
         <PageHeader
           eyebrow="Legal"
           title="Privacy Policy"
-          description="How LuxeNova Community Wellness collects, uses, and safeguards the information you provide."
+          description="How LuxeNova Community Wellness collects, uses, and safeguards information you provide."
         />
         <section className="pb-24">
           <div className="mx-auto max-w-3xl px-6">

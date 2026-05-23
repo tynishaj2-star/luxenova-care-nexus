@@ -16,7 +16,9 @@ import { Route as ReferralsRouteImport } from './routes/referrals'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as InsuranceRouteImport } from './routes/insurance'
+import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as HipaaRouteImport } from './routes/hipaa'
+import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
@@ -57,9 +59,19 @@ const InsuranceRoute = InsuranceRouteImport.update({
   path: '/insurance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HipaaRoute = HipaaRouteImport.update({
   id: '/hipaa',
   path: '/hipaa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -88,7 +100,9 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/donate': typeof DonateRoute
   '/hipaa': typeof HipaaRoute
+  '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
@@ -102,7 +116,9 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/donate': typeof DonateRoute
   '/hipaa': typeof HipaaRoute
+  '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
@@ -117,7 +133,9 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/donate': typeof DonateRoute
   '/hipaa': typeof HipaaRoute
+  '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
@@ -133,7 +151,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/donate'
     | '/hipaa'
+    | '/impact'
     | '/insurance'
     | '/portal'
     | '/privacy'
@@ -147,7 +167,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/donate'
     | '/hipaa'
+    | '/impact'
     | '/insurance'
     | '/portal'
     | '/privacy'
@@ -161,7 +183,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/donate'
     | '/hipaa'
+    | '/impact'
     | '/insurance'
     | '/portal'
     | '/privacy'
@@ -176,7 +200,9 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
+  DonateRoute: typeof DonateRoute
   HipaaRoute: typeof HipaaRoute
+  ImpactRoute: typeof ImpactRoute
   InsuranceRoute: typeof InsuranceRoute
   PortalRoute: typeof PortalRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -237,11 +263,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsuranceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hipaa': {
       id: '/hipaa'
       path: '/hipaa'
       fullPath: '/hipaa'
       preLoaderRoute: typeof HipaaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -280,7 +320,9 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
+  DonateRoute: DonateRoute,
   HipaaRoute: HipaaRoute,
+  ImpactRoute: ImpactRoute,
   InsuranceRoute: InsuranceRoute,
   PortalRoute: PortalRoute,
   PrivacyRoute: PrivacyRoute,
@@ -292,13 +334,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

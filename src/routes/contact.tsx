@@ -78,10 +78,9 @@ function ContactPage() {
                 <div className="mt-5 flex items-start gap-3 rounded-2xl border border-border/70 bg-accent/40 p-5 text-xs text-foreground/75">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-rosewood" strokeWidth={1.5} />
                   <p>
-                    Secure Communication Disclaimer: Please do not include
-                    sensitive protected health information in general email or
-                    text messages. For protected information, use our secure
-                    referral portal.
+                    Confidentiality note: please do not include sensitive
+                    household details in general email or text messages. For
+                    confidential information, use our Request Help form.
                   </p>
                 </div>
               </aside>

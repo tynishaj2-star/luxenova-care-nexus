@@ -8,17 +8,17 @@ import { WhyUs } from "@/components/site/WhyUs";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — LuxeNova Community Wellness" },
+      { title: "Mission — LuxeNova Community Wellness" },
       {
         name: "description",
         content:
-          "Learn about LuxeNova Community Wellness — our mission, support approach, and commitment to compassionate, community-based care.",
+          "LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative — built on dignity, transparency, and care.",
       },
-      { property: "og:title", content: "About LuxeNova Community Wellness" },
+      { property: "og:title", content: "Our Mission — LuxeNova Community Wellness" },
       {
         property: "og:description",
         content:
-          "Compassionate, organized, community-based support services for individuals and families.",
+          "Helping Massachusetts families stabilize through housing, utility, autism support, and resource barriers.",
       },
     ],
   }),
@@ -31,9 +31,9 @@ function AboutPage() {
       <Navbar />
       <main>
         <PageHeader
-          eyebrow="About"
-          title="Care with discipline. Community with heart."
-          description="LuxeNova Community Wellness is a modern provider organization built around the families and partners we serve."
+          eyebrow="Mission"
+          title="Stabilizing families. Strengthening communities."
+          description="LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative supporting households through housing, utility, autism-related, and resource barriers."
         />
         <WhoWeAre />
         <WhyUs />

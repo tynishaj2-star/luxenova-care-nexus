@@ -8,32 +8,32 @@ import { ReferralCTA } from "@/components/site/ReferralCTA";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — LuxeNova Community Wellness" },
+      { title: "Programs — LuxeNova Community Wellness" },
       {
         name: "description",
         content:
-          "Explore LuxeNova Community Wellness services: care coordination, housing navigation, family support, wellness advocacy, and more.",
+          "LuxeNova programs include emergency rental assistance, utility relief, autism family support, family stabilization, resource navigation, community outreach, documentation assistance, and partner coordination.",
       },
-      { property: "og:title", content: "LuxeNova Services" },
+      { property: "og:title", content: "LuxeNova Programs" },
       {
         property: "og:description",
         content:
-          "A continuum of care — organized around the people we serve.",
+          "Community relief, organized around the families we serve.",
       },
     ],
   }),
-  component: ServicesPage,
+  component: ProgramsPage,
 });
 
-function ServicesPage() {
+function ProgramsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
         <PageHeader
-          eyebrow="Services"
-          title="Built for the whole person."
-          description="Personalized care coordination across clinical, social, and community resources."
+          eyebrow="Programs"
+          title="Relief for the whole household."
+          description="Coordinated programs that meet families where they are — across housing, utilities, autism support, documentation, and community resources."
         />
         <Services />
         <ReferralCTA />

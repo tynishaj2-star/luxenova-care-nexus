@@ -3,18 +3,18 @@ import { Building2, HeartHandshake, ShieldCheck } from "lucide-react";
 const cards = [
   {
     icon: Building2,
-    title: "Our Agency",
-    body: "LuxeNova Community Wellness provides compassionate, organized, community-based support services focused on helping individuals and families navigate challenges, access resources, and move forward with stability and dignity.",
+    title: "Our Mission",
+    body: "LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative helping households move through housing, utility, autism support, and resource barriers with dignity.",
   },
   {
     icon: HeartHandshake,
-    title: "Our Support Approach",
-    body: "Our team focuses on personalized care coordination, communication, resource navigation, wellness advocacy, and responsive support tailored to each client's unique needs.",
+    title: "Our Approach",
+    body: "We listen first, then organize stabilization plans across rent assistance, utility relief, autism family support, documentation, and trusted community partnerships.",
   },
   {
     icon: ShieldCheck,
     title: "Our Commitment",
-    body: "We are committed to professionalism, timely follow-up, respectful communication, secure systems, and client-centered support throughout every stage of care coordination.",
+    body: "Transparent impact, responsible data handling, respectful communication, and timely follow-up at every step of a family's relief journey.",
   },
 ];
 
@@ -25,7 +25,7 @@ export function WhoWeAre() {
         <div className="max-w-2xl">
           <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Who We Are</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl text-balance">
-            Built on care, organized for impact.
+            Stabilizing families. Strengthening communities.
           </h2>
         </div>
         <div className="mt-14 grid gap-5 md:grid-cols-3">

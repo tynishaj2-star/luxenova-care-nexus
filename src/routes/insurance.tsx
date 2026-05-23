@@ -2,64 +2,54 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
-import { ShieldCheck, FileText, ClipboardCheck, HelpCircle } from "lucide-react";
+import { Home, Zap, Puzzle, Compass } from "lucide-react";
 
 export const Route = createFileRoute("/insurance")({
   head: () => ({
     meta: [
-      { title: "Insurance & Service Access — LuxeNova Community Wellness" },
+      { title: "Eligibility & Access — LuxeNova Community Wellness" },
       {
         name: "description",
         content:
-          "Insurance information, MassHealth readiness, referral review process, and eligibility questions for LuxeNova Community Wellness.",
-      },
-      { property: "og:title", content: "Insurance & Service Access" },
-      {
-        property: "og:description",
-        content:
-          "Preparing to support clients through eligible insurance programs and referral partnerships.",
+          "Who LuxeNova Community Wellness can help — Massachusetts families facing rent, utility, autism support, and resource barriers.",
       },
     ],
   }),
-  component: InsurancePage,
+  component: EligibilityPage,
 });
 
 const blocks = [
   {
-    icon: ShieldCheck,
-    title: "Insurance Information",
-    body:
-      "We are actively building relationships with payors and community-based programs to expand client access. Eligibility and accepted plans will be confirmed during the referral review.",
+    icon: Home,
+    title: "Rent & Housing Stress",
+    body: "Families facing rent emergencies, late notices, eviction risk, or housing instability across Massachusetts.",
   },
   {
-    icon: FileText,
-    title: "MassHealth Readiness",
-    body:
-      "LuxeNova Community Wellness is preparing for participation in MassHealth-aligned community support programs as we grow our service infrastructure across Massachusetts.",
+    icon: Zap,
+    title: "Utility Shutoff Risk",
+    body: "Households facing gas, electric, or water shutoff notices, especially during heat or cold-weather emergencies.",
   },
   {
-    icon: ClipboardCheck,
-    title: "Referral Review Process",
-    body:
-      "Every referral is reviewed by a member of our coordination team. We confirm needs, available services, and the right next step — whether direct support, partner referral, or resource navigation.",
+    icon: Puzzle,
+    title: "Autism Family Support",
+    body: "Households raising autistic children who need resource navigation, family support, or community connection.",
   },
   {
-    icon: HelpCircle,
-    title: "Questions About Eligibility",
-    body:
-      "Not sure if a client qualifies? Reach out before submitting a referral and our team will help determine the best pathway forward.",
+    icon: Compass,
+    title: "Resource & Documentation Barriers",
+    body: "Families struggling to access benefits, complete documentation, or navigate fragmented community resources.",
   },
 ];
 
-function InsurancePage() {
+function EligibilityPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
         <PageHeader
-          eyebrow="Insurance & Access"
-          title="Insurance & Service Access"
-          description="LuxeNova Community Wellness is preparing to support clients through eligible insurance programs, referral partnerships, and community-based service coordination."
+          eyebrow="Eligibility & Access"
+          title="Who LuxeNova helps."
+          description="LuxeNova Community Wellness supports Massachusetts families facing housing, utility, autism-related, and resource barriers. Every request is reviewed individually."
         />
         <section className="pb-16 md:pb-24">
           <div className="mx-auto max-w-6xl px-6">
@@ -79,10 +69,16 @@ function InsurancePage() {
                 </article>
               ))}
             </div>
-            <div className="mt-12 text-center">
+            <div className="mt-12 flex flex-wrap justify-center gap-3">
+              <Link
+                to="/referrals"
+                className="inline-flex items-center rounded-full bg-gradient-rosewood px-7 py-3.5 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-95"
+              >
+                Request Help
+              </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center rounded-full bg-gradient-rosewood px-7 py-3.5 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-95"
+                className="inline-flex items-center rounded-full border border-border bg-card px-7 py-3.5 text-sm font-medium text-foreground transition hover:border-foreground/30"
               >
                 Contact Our Team
               </Link>

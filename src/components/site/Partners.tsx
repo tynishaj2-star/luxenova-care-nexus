@@ -2,14 +2,14 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
 const partners = [
-  "Hospitals",
-  "Shelters",
-  "Social Workers",
-  "Clinics",
-  "Providers",
   "Schools",
-  "Community Orgs",
+  "Shelters",
+  "Housing Partners",
   "Faith Groups",
+  "Food Pantries",
+  "Family Resource Centers",
+  "Autism Networks",
+  "Community Orgs",
 ];
 
 export function Partners() {
@@ -22,25 +22,25 @@ export function Partners() {
 
           <div className="relative grid gap-12 p-10 md:p-16 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-ivory/70">Referral Partners</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-ivory/70">Community Partners</p>
               <h2 className="mt-3 font-display text-4xl text-balance md:text-5xl">
                 Partner with LuxeNova Community Wellness.
               </h2>
               <p className="mt-5 max-w-xl text-ivory/75">
                 We work alongside the organizations that touch families every
-                day — providing reliable follow-through, real-time updates, and
-                a partner you can stake your reputation on.
+                day — providing reliable follow-through, coordinated
+                stabilization, and transparent impact you can stand behind.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   to="/referrals"
                   className="inline-flex items-center gap-2 rounded-full bg-ivory px-6 py-3 text-sm font-medium text-espresso transition hover:bg-ivory/90"
                 >
-                  Submit a Referral
+                  Request Help
                   <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} />
                 </Link>
                 <Link
-                  to="/referrals"
+                  to="/contact"
                   className="inline-flex items-center gap-2 rounded-full border border-ivory/25 px-6 py-3 text-sm font-medium text-ivory transition hover:border-ivory/60"
                 >
                   Become a Partner

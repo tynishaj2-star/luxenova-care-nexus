@@ -7,26 +7,26 @@ import { ReferralForm } from "@/components/site/ReferralForm";
 export const Route = createFileRoute("/referrals")({
   head: () => ({
     meta: [
-      { title: "Submit a Referral — LuxeNova Community Wellness" },
+      { title: "Request Help — LuxeNova Community Wellness" },
       {
         name: "description",
         content:
-          "Securely submit a referral to LuxeNova Community Wellness. A coordinator reviews each referral and follows up regarding next steps.",
+          "Submit a confidential Emergency Stabilization Request to LuxeNova Community Wellness. Our team reviews each request and follows up regarding next steps.",
       },
     ],
   }),
-  component: ReferralsPage,
+  component: RequestHelpPage,
 });
 
-function ReferralsPage() {
+function RequestHelpPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
         <PageHeader
-          eyebrow="Referral Portal"
-          title="Submit a Referral"
-          description="Please complete the referral form below so our team can review the client's needs and determine appropriate next steps."
+          eyebrow="Request Help"
+          title="Emergency Stabilization Request"
+          description="Tell us what's happening in the household. Our team will review the request and follow up with next steps and available community support."
         />
         <ReferralForm />
       </main>

@@ -249,7 +249,7 @@ function FoodDrivesPage() {
           </div>
         </section>
 
-        <section className="pb-20">
+        <section id="interest-form" className="scroll-mt-24 pb-20">
           <div className="mx-auto max-w-3xl px-6">
             <div className="rounded-3xl border border-border/70 bg-card p-7 shadow-soft md:p-10">
               <p className="text-xs uppercase tracking-[0.22em] text-rosewood/80">

@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import {
   ShieldCheck,
   DollarSign,
@@ -18,15 +18,17 @@ import {
   Briefcase,
   Lock,
 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/board-portal")({
   head: () => ({
     meta: [
       { title: "Board Portal — LuxeNova Community Wellness" },
+      { name: "robots", content: "noindex, nofollow" },
       {
         name: "description",
         content:
-          "Confidential board portal for LuxeNova Community Wellness founding board members. Role-based oversight, governance, financial review, and impact reporting.",
+          "Confidential board portal for LuxeNova Community Wellness founding board members.",
       },
     ],
   }),
@@ -127,9 +129,83 @@ const members: BoardMember[] = [
   },
 ];
 
+type AuthStatus =
+  | { state: "loading" }
+  | { state: "unauthenticated" }
+  | { state: "unauthorized"; email: string | null }
+  | { state: "authorized"; memberKey: string };
+
 function BoardPortalPage() {
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const active = members.find((m) => m.id === activeId) ?? null;
+  const navigate = useNavigate();
+  const [status, setStatus] = useState<AuthStatus>({ state: "loading" });
+
+  useEffect(() => {
+    let cancelled = false;
+    async function check() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        if (!cancelled) setStatus({ state: "unauthenticated" });
+        return;
+      }
+      const { data, error } = await supabase
+        .from("board_members")
+        .select("member_key")
+        .eq("user_id", session.user.id)
+        .maybeSingle();
+      if (cancelled) return;
+      if (error || !data) {
+        setStatus({ state: "unauthorized", email: session.user.email ?? null });
+      } else {
+        setStatus({ state: "authorized", memberKey: data.member_key });
+      }
+    }
+    check();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => check());
+    return () => { cancelled = true; subscription.unsubscribe(); };
+  }, []);
+
+  if (status.state === "loading") {
+    return (
+      <div className="min-h-screen grid place-items-center bg-gradient-warm">
+        <p className="text-sm text-muted-foreground">Verifying board access…</p>
+      </div>
+    );
+  }
+
+  if (status.state === "unauthenticated") {
+    return (
+      <Gate
+        title="Board sign-in required"
+        body="This portal is restricted to LuxeNova Community Wellness founding board members. Please sign in to continue."
+        primary={{ label: "Sign in", onClick: () => navigate({ to: "/login" }) }}
+      />
+    );
+  }
+
+  if (status.state === "unauthorized") {
+    return (
+      <Gate
+        title="Access not authorized"
+        body={`The account ${status.email ?? ""} is signed in but is not provisioned as a board member. Contact the LuxeNova administrator to request board portal access.`}
+        primary={{
+          label: "Sign out",
+          onClick: async () => {
+            await supabase.auth.signOut();
+          },
+        }}
+      />
+    );
+  }
+
+  const member = members.find((m) => m.id === status.memberKey);
+  if (!member) {
+    return (
+      <Gate
+        title="Board profile not configured"
+        body="Your account is recognized but no matching board profile is set up. Contact the LuxeNova administrator."
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-warm">
@@ -141,14 +217,12 @@ function BoardPortalPage() {
           <span className="font-display text-lg">LuxeNova Community Wellness</span>
         </Link>
         <div className="flex items-center gap-3">
-          {active && (
-            <button
-              onClick={() => setActiveId(null)}
-              className="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-soft transition hover:border-foreground/30"
-            >
-              Switch member
-            </button>
-          )}
+          <button
+            onClick={async () => { await supabase.auth.signOut(); }}
+            className="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-soft transition hover:border-foreground/30"
+          >
+            Sign out
+          </button>
           <Link
             to="/"
             className="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-soft transition hover:border-foreground/30"
@@ -157,60 +231,48 @@ function BoardPortalPage() {
           </Link>
         </div>
       </header>
-
       <main className="mx-auto max-w-7xl px-6 pb-24 pt-4">
-        {!active ? (
-          <SelectMember onPick={setActiveId} />
-        ) : (
-          <Dashboard member={active} />
-        )}
+        <Dashboard member={member} />
       </main>
     </div>
   );
 }
 
-function SelectMember({ onPick }: { onPick: (id: string) => void }) {
+function Gate({
+  title,
+  body,
+  primary,
+}: {
+  title: string;
+  body: string;
+  primary?: { label: string; onClick: () => void };
+}) {
   return (
-    <section className="mx-auto max-w-4xl">
-      <div className="text-center">
-        <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Board Portal</p>
-        <h1 className="mt-3 font-display text-4xl md:text-5xl text-balance">
-          Confidential oversight for the LuxeNova founding board
-        </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-          Select your board profile to access your role-based dashboard. Each
-          view is tailored to the responsibilities you carry on behalf of
-          LuxeNova Community Wellness — governance, finance, programs, and
-          impact.
-        </p>
-        <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-          <Lock className="h-3.5 w-3.5 text-rosewood" strokeWidth={1.5} /> Preview · Mock board login
-        </p>
-      </div>
-
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
-        {members.map((m) => (
-          <button
-            key={m.id}
-            onClick={() => onPick(m.id)}
-            className="group flex items-start gap-4 rounded-3xl border border-border/70 bg-card p-6 text-left shadow-soft transition hover:-translate-y-0.5 hover:border-rosewood/40 hover:shadow-luxe"
+    <div className="min-h-screen grid place-items-center bg-gradient-warm px-6">
+      <div className="max-w-md rounded-3xl border border-border/70 bg-card p-8 text-center shadow-soft">
+        <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-accent/60 text-rosewood">
+          <Lock className="h-5 w-5" strokeWidth={1.5} />
+        </span>
+        <h1 className="mt-5 font-display text-2xl">{title}</h1>
+        <p className="mt-3 text-sm text-muted-foreground">{body}</p>
+        <div className="mt-6 flex justify-center gap-3">
+          {primary && (
+            <button
+              onClick={primary.onClick}
+              className="rounded-full bg-gradient-rosewood px-5 py-2 text-sm text-rosewood-foreground shadow-luxe"
+            >
+              {primary.label}
+            </button>
+          )}
+          <Link
+            to="/"
+            className="rounded-full border border-border bg-background px-5 py-2 text-sm text-foreground"
           >
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-rosewood font-display text-rosewood-foreground">
-              {m.initials}
-            </span>
-            <div className="min-w-0">
-              <p className="font-display text-lg">{m.name}</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.14em] text-rosewood">
-                {m.role}
-              </p>
-              <p className="mt-3 text-sm text-muted-foreground">
-                {m.sections.length} dashboard sections
-              </p>
-            </div>
-          </button>
-        ))}
+            Back to site
+          </Link>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -253,12 +315,6 @@ function Dashboard({ member }: { member: BoardMember }) {
           </article>
         ))}
       </div>
-
-      <p className="mt-10 text-center text-xs text-muted-foreground">
-        Data shown here will populate from the LuxeNova operations backend once
-        board accounts are activated. This preview confirms each member's
-        role-based view.
-      </p>
     </section>
   );
 }

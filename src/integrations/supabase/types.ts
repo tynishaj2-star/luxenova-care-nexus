@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      board_members: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          member_key: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          full_name: string
+          id?: string
+          member_key: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          member_key?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
@@ -298,7 +322,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "staff" | "partner" | "admin"
+      app_role: "staff" | "partner" | "admin" | "board"
       referral_status:
         | "New"
         | "In Review"
@@ -439,7 +463,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["staff", "partner", "admin"],
+      app_role: ["staff", "partner", "admin", "board"],
       referral_status: [
         "New",
         "In Review",

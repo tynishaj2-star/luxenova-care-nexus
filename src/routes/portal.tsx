@@ -132,6 +132,19 @@ function PortalAuthed() {
     queryFn: () => fetchProfile(),
   });
 
+  // Route admins and staff to the Admin Intake Dashboard;
+  // partners continue to see the partner-only view below.
+  if (profileQ.isLoading) {
+    return (
+      <div className="grid min-h-screen place-items-center bg-gradient-warm">
+        <div className="text-sm text-muted-foreground">Loading workspace…</div>
+      </div>
+    );
+  }
+  if (profileQ.data?.isAdmin || profileQ.data?.isStaff) {
+    return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
+  }
+
   const listQ = useQuery({
     queryKey: ["referrals"],
     queryFn: () => fetchList(),

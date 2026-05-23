@@ -12,11 +12,11 @@ import {
 const featured = [
   {
     icon: HeartHandshake,
-    title: "Community Stabilization",
+    title: "Family Stabilization",
     tagline: "Signature Program",
-    body: "A wraparound Community Stabilization plan that moves a household from crisis to steady ground — rent, utilities, documentation, and follow-through coordinated by a dedicated navigator.",
+    body: "A wraparound stabilization plan that moves a household from crisis to steady ground — rent, utilities, documentation, and follow-through coordinated by a dedicated navigator.",
     points: [
-      "Dedicated Community Stabilization navigator",
+      "Dedicated stabilization navigator",
       "30 / 60 / 90-day follow-through",
       "Coordinated with schools, housing, and benefits partners",
     ],
@@ -80,7 +80,7 @@ export function Services() {
           </div>
           <p className="max-w-md text-muted-foreground">
             Every request begins with listening. From there, we organize
-            Community Stabilization, documentation, and community resources into one
+            stabilization, documentation, and community resources into one
             coordinated response.
           </p>
         </div>

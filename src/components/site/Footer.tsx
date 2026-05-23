@@ -4,28 +4,47 @@ import { Instagram, Linkedin, Facebook, Mail, Phone, MapPin } from "lucide-react
 export function Footer() {
   const cols = [
     {
-      title: "Organization",
+      title: "Explore",
       links: [
         { label: "Mission", to: "/about" as const },
+        { label: "Founder", to: "/founder" as const },
         { label: "Programs", to: "/services" as const },
         { label: "Impact", to: "/impact" as const },
+        { label: "Transparency", to: "/transparency" as const },
         { label: "Contact", to: "/contact" as const },
       ],
     },
     {
-      title: "Get Involved",
+      title: "Community",
       links: [
         { label: "Request Help", to: "/referrals" as const },
         { label: "Donate", to: "/donate" as const },
+        { label: "Sponsor a Family", to: "/sponsor-a-family" as const },
         { label: "Get Involved", to: "/careers" as const },
+        { label: "Community Partners", to: "/community-partners" as const },
+        { label: "Employee Login / Intake", to: "/portal" as const },
       ],
     },
     {
-      title: "Legal",
+      title: "Trust",
+      links: [
+        { label: "Board", to: "/board" as const },
+        { label: "Eligibility", to: "/eligibility" as const },
+        { label: "FAQ", to: "/faq" as const },
+        { label: "How Funds Are Used", to: "/how-funds-are-used" as const },
+        { label: "Donation Policy", to: "/donation-policy" as const },
+        { label: "Volunteer Policy", to: "/volunteer-policy" as const },
+      ],
+    },
+    {
+      title: "Legal & More",
       links: [
         { label: "Privacy Policy", to: "/privacy" as const },
         { label: "Confidentiality Notice", to: "/hipaa" as const },
         { label: "Terms of Service", to: "/terms" as const },
+        { label: "Resource Hub", to: "/resources" as const },
+        { label: "Updates", to: "/updates" as const },
+        { label: "Nonprofit Status", to: "/nonprofit-status" as const },
       ],
     },
   ];
@@ -63,7 +82,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-8">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
             {cols.map((c) => (
               <div key={c.title}>
                 <h4 className="font-display text-sm text-foreground">{c.title}</h4>

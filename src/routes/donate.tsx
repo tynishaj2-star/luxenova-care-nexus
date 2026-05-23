@@ -25,10 +25,10 @@ export const Route = createFileRoute("/donate")({
 });
 
 const tiers = [
-  { amount: "$25", body: "Helps with urgent essentials for a family." },
-  { amount: "$75", body: "Supports documentation and resource navigation." },
-  { amount: "$150", body: "Helps stabilize a household emergency." },
-  { amount: "Monthly", body: "Sustains ongoing family relief and outreach." },
+  { amount: "$25", body: "Helps with documents, transportation, or urgent basics." },
+  { amount: "$75", body: "Supports utility relief navigation and family follow-up." },
+  { amount: "$150", body: "Helps stabilize a household facing an urgent gap." },
+  { amount: "Monthly", body: "Builds consistent emergency relief capacity." },
 ];
 
 function DonatePage() {
@@ -79,7 +79,7 @@ function DonatePage() {
                     <Heart className="h-4 w-4" /> Donation Link Coming Soon
                   </button>
                   <Link
-                    to="/contact"
+                    to="/sponsor-a-family"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-7 py-3.5 text-sm font-medium text-foreground transition hover:border-foreground/30"
                   >
                     <Users className="h-4 w-4" /> Sponsor a Family

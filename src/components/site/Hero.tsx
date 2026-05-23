@@ -25,14 +25,14 @@ export function Hero() {
               We prevent collapse before homelessness happens.
             </div>
             <h1 className="mt-6 font-display text-5xl leading-[1.05] text-balance md:text-6xl lg:text-7xl">
-              Quiet, Decisive Support.
-              <span className="block text-rosewood italic">For Families on the Edge.</span>
+              Helping Families Stabilize.
+              <span className="block text-rosewood italic">Before Crisis Becomes Collapse.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground text-pretty">
-              LuxeNova Community Wellness steps in for Massachusetts families
-              the moment instability appears — rental shortfalls, utility
-              shutoffs, autism support gaps, and resource barriers — with
-              composed, coordinated relief delivered with dignity and care.
+              LuxeNova Community Wellness helps Massachusetts families facing
+              housing instability, utility shutoffs, autism-related support
+              gaps, and resource barriers access organized community support
+              with dignity, transparency, and care.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link

@@ -12,7 +12,17 @@ const mainLinks = [
 ];
 
 const moreLinks = [
+  { label: "Founder", to: "/founder" as const },
+  { label: "FAQ", to: "/faq" as const },
+  { label: "Eligibility", to: "/eligibility" as const },
   { label: "Impact", to: "/impact" as const },
+  { label: "Resource Hub", to: "/resources" as const },
+  { label: "Updates", to: "/updates" as const },
+  { label: "Transparency", to: "/transparency" as const },
+  { label: "Nonprofit Status", to: "/nonprofit-status" as const },
+  { label: "Board", to: "/board" as const },
+  { label: "Sponsor a Family", to: "/sponsor-a-family" as const },
+  { label: "Community Partners", to: "/community-partners" as const },
   { label: "Get Involved", to: "/careers" as const },
   { label: "Employee Login", to: "/portal" as const },
   { label: "Privacy Policy", to: "/privacy" as const },
@@ -70,8 +80,8 @@ export function Navbar() {
               More <ChevronDown className="h-3.5 w-3.5" />
             </button>
             {moreOpen && (
-              <div className="absolute right-0 top-full w-60 pt-3">
-                <div className="rounded-2xl border border-border/70 bg-card p-2 shadow-luxe">
+              <div className="absolute right-0 top-full w-64 pt-3">
+                <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-border/70 bg-card p-2 shadow-luxe">
                   {moreLinks.map((l) => (
                     <Link
                       key={l.to}

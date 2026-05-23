@@ -4,12 +4,12 @@ const cards = [
   {
     icon: Building2,
     title: "Our Mission",
-    body: "LuxeNova Community Wellness is a Massachusetts Community Stabilization initiative helping households move through housing, utility, autism support, and resource barriers with dignity.",
+    body: "LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative helping households move through housing, utility, autism support, and resource barriers with dignity.",
   },
   {
     icon: HeartHandshake,
     title: "Our Approach",
-    body: "We listen first, then organize Community Stabilization plans across rent assistance, utility relief, autism family support, documentation, and trusted community partnerships.",
+    body: "We listen first, then organize stabilization plans across rent assistance, utility relief, autism family support, documentation, and trusted community partnerships.",
   },
   {
     icon: ShieldCheck,

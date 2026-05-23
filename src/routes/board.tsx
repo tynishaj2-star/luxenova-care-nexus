@@ -129,8 +129,8 @@ function BoardPage() {
               <p className="mt-5 max-w-3xl text-foreground/85 leading-relaxed md:text-lg">
                 The founding board supports mission accountability,
                 responsible growth, donation oversight, family-centered
-                decision-making, and the formation of LuxeNova Community
-                Wellness's nonprofit governance structure.
+                decision-making, and the formation of LuxeNova's
+                nonprofit governance structure.
               </p>
             </div>
           </div>

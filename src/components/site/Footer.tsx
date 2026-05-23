@@ -20,6 +20,7 @@ export function Footer() {
         { label: "Request Help", to: "/referrals" as const },
         { label: "Donate", to: "/donate" as const },
         { label: "Sponsor a Family", to: "/sponsor-a-family" as const },
+        { label: "Food Drives", to: "/food-drives" as const },
         { label: "Get Involved", to: "/careers" as const },
         { label: "Community Partners", to: "/community-partners" as const },
         { label: "Employee Login / Intake", to: "/portal" as const },
@@ -29,6 +30,7 @@ export function Footer() {
       title: "Trust",
       links: [
         { label: "Board", to: "/board" as const },
+        { label: "Governance & Bylaws", to: "/governance" as const },
         { label: "Eligibility", to: "/eligibility" as const },
         { label: "FAQ", to: "/faq" as const },
         { label: "How Funds Are Used", to: "/how-funds-are-used" as const },

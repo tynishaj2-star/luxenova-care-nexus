@@ -306,6 +306,11 @@ export type Database = {
         | "Navigator Assigned"
         | "Relief Delivered"
         | "Closed"
+        | "Missing Documents"
+        | "Partner Referral Needed"
+        | "Food / Essentials Support"
+        | "Sponsor Match Needed"
+        | "Completed"
       referral_urgency: "Routine" | "Priority" | "Urgent"
     }
     CompositeTypes: {
@@ -442,6 +447,11 @@ export const Constants = {
         "Navigator Assigned",
         "Relief Delivered",
         "Closed",
+        "Missing Documents",
+        "Partner Referral Needed",
+        "Food / Essentials Support",
+        "Sponsor Match Needed",
+        "Completed",
       ],
       referral_urgency: ["Routine", "Priority", "Urgent"],
     },

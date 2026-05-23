@@ -28,15 +28,16 @@ import {
   addReferralNote,
   getCurrentProfile,
 } from "@/lib/referrals.functions";
+import { AdminDashboard } from "@/components/portal/AdminDashboard";
 
 export const Route = createFileRoute("/portal")({
   head: () => ({
     meta: [
-      { title: "Partner Portal — LuxeNova Community Wellness" },
+      { title: "Admin Intake Dashboard — LuxeNova Community Wellness" },
       {
         name: "description",
         content:
-          "Secure partner portal for submitting and tracking Emergency Stabilization Requests with LuxeNova Community Wellness.",
+          "Secure LuxeNova Community Wellness intake dashboard for staff and partners to manage requests, referrals, and support submissions.",
       },
     ],
   }),
@@ -130,6 +131,19 @@ function PortalAuthed() {
     queryKey: ["profile"],
     queryFn: () => fetchProfile(),
   });
+
+  // Route admins and staff to the Admin Intake Dashboard;
+  // partners continue to see the partner-only view below.
+  if (profileQ.isLoading) {
+    return (
+      <div className="grid min-h-screen place-items-center bg-gradient-warm">
+        <div className="text-sm text-muted-foreground">Loading workspace…</div>
+      </div>
+    );
+  }
+  if (profileQ.data?.isAdmin || profileQ.data?.isStaff) {
+    return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
+  }
 
   const listQ = useQuery({
     queryKey: ["referrals"],

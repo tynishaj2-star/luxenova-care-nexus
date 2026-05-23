@@ -4,27 +4,27 @@ import { Instagram, Linkedin, Facebook, Mail, Phone, MapPin } from "lucide-react
 export function Footer() {
   const cols = [
     {
-      title: "Explore",
+      title: "Organization",
       links: [
-        { label: "About", to: "/about" as const },
-        { label: "Services", to: "/services" as const },
-        { label: "Insurance", to: "/insurance" as const },
+        { label: "Mission", to: "/about" as const },
+        { label: "Programs", to: "/services" as const },
+        { label: "Impact", to: "/impact" as const },
         { label: "Contact", to: "/contact" as const },
       ],
     },
     {
-      title: "Partners",
+      title: "Get Involved",
       links: [
-        { label: "Submit a Referral", to: "/referrals" as const },
-        { label: "Become a Partner", to: "/contact" as const },
-        { label: "Careers", to: "/careers" as const },
+        { label: "Request Help", to: "/referrals" as const },
+        { label: "Donate", to: "/donate" as const },
+        { label: "Get Involved", to: "/careers" as const },
       ],
     },
     {
       title: "Legal",
       links: [
         { label: "Privacy Policy", to: "/privacy" as const },
-        { label: "HIPAA Notice", to: "/hipaa" as const },
+        { label: "Confidentiality Notice", to: "/hipaa" as const },
         { label: "Terms of Service", to: "/terms" as const },
       ],
     },
@@ -42,8 +42,8 @@ export function Footer() {
               <span className="font-display text-lg">LuxeNova Community Wellness</span>
             </Link>
             <p className="mt-5 max-w-sm text-sm text-muted-foreground">
-              Compassionate community-based care, organized with the discipline
-              of modern healthcare.
+              A Massachusetts community relief and family stabilization
+              initiative — built on dignity, transparency, and care.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> Phone — to be added before launch</li>
@@ -83,7 +83,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border/70 pt-6 text-xs text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} LuxeNova Community Wellness. All rights reserved.</p>
-          <p>HIPAA-aligned · Confidential · Trauma-informed</p>
+          <p>Confidential · Community-centered · Transparent impact</p>
         </div>
       </div>
     </footer>

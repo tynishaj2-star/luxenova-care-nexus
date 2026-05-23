@@ -2,12 +2,12 @@ import { Check } from "lucide-react";
 import vesselImg from "@/assets/accent-vessel.jpg";
 
 const points = [
-  { t: "Compassionate support", d: "Trauma-informed, culturally responsive care from people who listen first." },
-  { t: "Timely follow-up", d: "Most referrals receive a coordinator response within 24 business hours." },
-  { t: "Organized systems", d: "A modern platform keeps your case visible, tracked, and accountable." },
-  { t: "Personalized care", d: "No two plans are alike — we design around each family's goals." },
-  { t: "Community partnerships", d: "Tight integration with hospitals, schools, shelters, and providers." },
-  { t: "Client-centered approach", d: "You stay in the driver's seat; we make the road easier to travel." },
+  { t: "Family-centered", d: "Every plan is built around the household's actual barriers — not a one-size-fits-all script." },
+  { t: "Timely response", d: "Stabilization requests are reviewed quickly so families can act before a crisis deepens." },
+  { t: "Transparent impact", d: "We track families supported, relief delivered, and outcomes documented." },
+  { t: "Autism-aware support", d: "Coordinated care for households raising autistic children, with sensitivity and respect." },
+  { t: "Community partnerships", d: "Tight coordination with schools, shelters, faith groups, and local agencies." },
+  { t: "Dignity first", d: "Confidential, respectful, and never paternalistic — families stay in the lead." },
 ];
 
 export function WhyUs() {
@@ -18,19 +18,19 @@ export function WhyUs() {
         <div className="lg:col-span-5">
           <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Why LuxeNova</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl text-balance">
-            Premium care, delivered with quiet excellence.
+            Relief delivered with dignity and discipline.
           </h2>
           <p className="mt-5 text-muted-foreground">
-            We blend the warmth of community-based work with the discipline of
-            modern healthcare operations — so families feel seen, and partners
-            feel confident.
+            We pair the warmth of community-based work with the discipline of
+            modern operations — so families feel respected and partners and
+            funders see real, documented impact.
           </p>
           <div className="mt-10 hidden overflow-hidden rounded-3xl border border-border/70 bg-card shadow-luxe lg:block">
             <img
               src={vesselImg}
-              alt="A handcrafted ceramic vessel in warm taupe tones — a symbol of quiet craft"
+              alt="A Black mother gently embracing her young son in a softly lit living room"
               width={1024}
-              height={1280}
+              height={1024}
               loading="lazy"
               className="h-80 w-full object-cover"
             />

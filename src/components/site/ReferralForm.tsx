@@ -201,9 +201,20 @@ export function ReferralForm() {
 
           <form
             className="space-y-8 lg:col-span-9"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
               if (!allConsented) return;
+              const fd = new FormData(e.currentTarget as HTMLFormElement);
+              const fields: Array<{ label: string; value: string }> = [];
+              fd.forEach((v, k) => {
+                if (typeof v === "string") fields.push({ label: k, value: v });
+              });
+              try {
+                const { notifyStaff } = await import("@/lib/notify-staff");
+                await notifyStaff("Referral / Intake Form", fields);
+              } catch (err) {
+                console.error(err);
+              }
               setSubmitted(true);
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}

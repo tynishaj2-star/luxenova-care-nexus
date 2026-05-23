@@ -128,7 +128,16 @@ export function ReferralForm() {
   const [submitted, setSubmitted] = useState(false);
   const [autismHousehold, setAutismHousehold] = useState(false);
   const [safety, setSafety] = useState("No");
-  const [consents, setConsents] = useState({ a: false, b: false, c: false });
+  const [consents, setConsents] = useState({ a: false, b: false, c: false, hipaa: false });
+  const [uploaded, setUploaded] = useState<Record<string, File[]>>({});
+
+  const handleFiles = (label: string, files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setUploaded((u) => ({ ...u, [label]: [...(u[label] ?? []), ...Array.from(files)] }));
+  };
+  const removeFile = (label: string, idx: number) => {
+    setUploaded((u) => ({ ...u, [label]: u[label].filter((_, i) => i !== idx) }));
+  };
 
   const allConsented = consents.a && consents.b && consents.c;
 

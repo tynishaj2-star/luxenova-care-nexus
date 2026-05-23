@@ -9,24 +9,57 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VolunteerPolicyRouteImport } from './routes/volunteer-policy'
+import { Route as UpdatesRouteImport } from './routes/updates'
+import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SponsorAFamilyRouteImport } from './routes/sponsor-a-family'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ReferralsRouteImport } from './routes/referrals'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortalRouteImport } from './routes/portal'
+import { Route as NonprofitStatusRouteImport } from './routes/nonprofit-status'
 import { Route as InsuranceRouteImport } from './routes/insurance'
 import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as HowFundsAreUsedRouteImport } from './routes/how-funds-are-used'
 import { Route as HipaaRouteImport } from './routes/hipaa'
+import { Route as FounderRouteImport } from './routes/founder'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as EligibilityRouteImport } from './routes/eligibility'
+import { Route as DonationPolicyRouteImport } from './routes/donation-policy'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CommunityPartnersRouteImport } from './routes/community-partners'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as BoardRouteImport } from './routes/board'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VolunteerPolicyRoute = VolunteerPolicyRouteImport.update({
+  id: '/volunteer-policy',
+  path: '/volunteer-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UpdatesRoute = UpdatesRouteImport.update({
+  id: '/updates',
+  path: '/updates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransparencyRoute = TransparencyRouteImport.update({
+  id: '/transparency',
+  path: '/transparency',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SponsorAFamilyRoute = SponsorAFamilyRouteImport.update({
+  id: '/sponsor-a-family',
+  path: '/sponsor-a-family',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -37,6 +70,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReferralsRoute = ReferralsRouteImport.update({
@@ -54,6 +92,11 @@ const PortalRoute = PortalRouteImport.update({
   path: '/portal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NonprofitStatusRoute = NonprofitStatusRouteImport.update({
+  id: '/nonprofit-status',
+  path: '/nonprofit-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InsuranceRoute = InsuranceRouteImport.update({
   id: '/insurance',
   path: '/insurance',
@@ -64,9 +107,34 @@ const ImpactRoute = ImpactRouteImport.update({
   path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HowFundsAreUsedRoute = HowFundsAreUsedRouteImport.update({
+  id: '/how-funds-are-used',
+  path: '/how-funds-are-used',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HipaaRoute = HipaaRouteImport.update({
   id: '/hipaa',
   path: '/hipaa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FounderRoute = FounderRouteImport.update({
+  id: '/founder',
+  path: '/founder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EligibilityRoute = EligibilityRouteImport.update({
+  id: '/eligibility',
+  path: '/eligibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonationPolicyRoute = DonationPolicyRouteImport.update({
+  id: '/donation-policy',
+  path: '/donation-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DonateRoute = DonateRouteImport.update({
@@ -79,9 +147,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityPartnersRoute = CommunityPartnersRouteImport.update({
+  id: '/community-partners',
+  path: '/community-partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BoardRoute = BoardRouteImport.update({
+  id: '/board',
+  path: '/board',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -98,127 +176,246 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/board': typeof BoardRoute
   '/careers': typeof CareersRoute
+  '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/donation-policy': typeof DonationPolicyRoute
+  '/eligibility': typeof EligibilityRoute
+  '/faq': typeof FaqRoute
+  '/founder': typeof FounderRoute
   '/hipaa': typeof HipaaRoute
+  '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
+  '/nonprofit-status': typeof NonprofitStatusRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
   '/referrals': typeof ReferralsRoute
+  '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sponsor-a-family': typeof SponsorAFamilyRoute
   '/terms': typeof TermsRoute
+  '/transparency': typeof TransparencyRoute
+  '/updates': typeof UpdatesRoute
+  '/volunteer-policy': typeof VolunteerPolicyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/board': typeof BoardRoute
   '/careers': typeof CareersRoute
+  '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/donation-policy': typeof DonationPolicyRoute
+  '/eligibility': typeof EligibilityRoute
+  '/faq': typeof FaqRoute
+  '/founder': typeof FounderRoute
   '/hipaa': typeof HipaaRoute
+  '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
+  '/nonprofit-status': typeof NonprofitStatusRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
   '/referrals': typeof ReferralsRoute
+  '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sponsor-a-family': typeof SponsorAFamilyRoute
   '/terms': typeof TermsRoute
+  '/transparency': typeof TransparencyRoute
+  '/updates': typeof UpdatesRoute
+  '/volunteer-policy': typeof VolunteerPolicyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/board': typeof BoardRoute
   '/careers': typeof CareersRoute
+  '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/donation-policy': typeof DonationPolicyRoute
+  '/eligibility': typeof EligibilityRoute
+  '/faq': typeof FaqRoute
+  '/founder': typeof FounderRoute
   '/hipaa': typeof HipaaRoute
+  '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
   '/insurance': typeof InsuranceRoute
+  '/nonprofit-status': typeof NonprofitStatusRoute
   '/portal': typeof PortalRoute
   '/privacy': typeof PrivacyRoute
   '/referrals': typeof ReferralsRoute
+  '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sponsor-a-family': typeof SponsorAFamilyRoute
   '/terms': typeof TermsRoute
+  '/transparency': typeof TransparencyRoute
+  '/updates': typeof UpdatesRoute
+  '/volunteer-policy': typeof VolunteerPolicyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/board'
     | '/careers'
+    | '/community-partners'
     | '/contact'
     | '/donate'
+    | '/donation-policy'
+    | '/eligibility'
+    | '/faq'
+    | '/founder'
     | '/hipaa'
+    | '/how-funds-are-used'
     | '/impact'
     | '/insurance'
+    | '/nonprofit-status'
     | '/portal'
     | '/privacy'
     | '/referrals'
+    | '/resources'
     | '/services'
     | '/sitemap.xml'
+    | '/sponsor-a-family'
     | '/terms'
+    | '/transparency'
+    | '/updates'
+    | '/volunteer-policy'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/board'
     | '/careers'
+    | '/community-partners'
     | '/contact'
     | '/donate'
+    | '/donation-policy'
+    | '/eligibility'
+    | '/faq'
+    | '/founder'
     | '/hipaa'
+    | '/how-funds-are-used'
     | '/impact'
     | '/insurance'
+    | '/nonprofit-status'
     | '/portal'
     | '/privacy'
     | '/referrals'
+    | '/resources'
     | '/services'
     | '/sitemap.xml'
+    | '/sponsor-a-family'
     | '/terms'
+    | '/transparency'
+    | '/updates'
+    | '/volunteer-policy'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/board'
     | '/careers'
+    | '/community-partners'
     | '/contact'
     | '/donate'
+    | '/donation-policy'
+    | '/eligibility'
+    | '/faq'
+    | '/founder'
     | '/hipaa'
+    | '/how-funds-are-used'
     | '/impact'
     | '/insurance'
+    | '/nonprofit-status'
     | '/portal'
     | '/privacy'
     | '/referrals'
+    | '/resources'
     | '/services'
     | '/sitemap.xml'
+    | '/sponsor-a-family'
     | '/terms'
+    | '/transparency'
+    | '/updates'
+    | '/volunteer-policy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BoardRoute: typeof BoardRoute
   CareersRoute: typeof CareersRoute
+  CommunityPartnersRoute: typeof CommunityPartnersRoute
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
+  DonationPolicyRoute: typeof DonationPolicyRoute
+  EligibilityRoute: typeof EligibilityRoute
+  FaqRoute: typeof FaqRoute
+  FounderRoute: typeof FounderRoute
   HipaaRoute: typeof HipaaRoute
+  HowFundsAreUsedRoute: typeof HowFundsAreUsedRoute
   ImpactRoute: typeof ImpactRoute
   InsuranceRoute: typeof InsuranceRoute
+  NonprofitStatusRoute: typeof NonprofitStatusRoute
   PortalRoute: typeof PortalRoute
   PrivacyRoute: typeof PrivacyRoute
   ReferralsRoute: typeof ReferralsRoute
+  ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SponsorAFamilyRoute: typeof SponsorAFamilyRoute
   TermsRoute: typeof TermsRoute
+  TransparencyRoute: typeof TransparencyRoute
+  UpdatesRoute: typeof UpdatesRoute
+  VolunteerPolicyRoute: typeof VolunteerPolicyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/volunteer-policy': {
+      id: '/volunteer-policy'
+      path: '/volunteer-policy'
+      fullPath: '/volunteer-policy'
+      preLoaderRoute: typeof VolunteerPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/updates': {
+      id: '/updates'
+      path: '/updates'
+      fullPath: '/updates'
+      preLoaderRoute: typeof UpdatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transparency': {
+      id: '/transparency'
+      path: '/transparency'
+      fullPath: '/transparency'
+      preLoaderRoute: typeof TransparencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sponsor-a-family': {
+      id: '/sponsor-a-family'
+      path: '/sponsor-a-family'
+      fullPath: '/sponsor-a-family'
+      preLoaderRoute: typeof SponsorAFamilyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -233,6 +430,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/referrals': {
@@ -256,6 +460,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nonprofit-status': {
+      id: '/nonprofit-status'
+      path: '/nonprofit-status'
+      fullPath: '/nonprofit-status'
+      preLoaderRoute: typeof NonprofitStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/insurance': {
       id: '/insurance'
       path: '/insurance'
@@ -270,11 +481,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/how-funds-are-used': {
+      id: '/how-funds-are-used'
+      path: '/how-funds-are-used'
+      fullPath: '/how-funds-are-used'
+      preLoaderRoute: typeof HowFundsAreUsedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hipaa': {
       id: '/hipaa'
       path: '/hipaa'
       fullPath: '/hipaa'
       preLoaderRoute: typeof HipaaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/founder': {
+      id: '/founder'
+      path: '/founder'
+      fullPath: '/founder'
+      preLoaderRoute: typeof FounderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eligibility': {
+      id: '/eligibility'
+      path: '/eligibility'
+      fullPath: '/eligibility'
+      preLoaderRoute: typeof EligibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donation-policy': {
+      id: '/donation-policy'
+      path: '/donation-policy'
+      fullPath: '/donation-policy'
+      preLoaderRoute: typeof DonationPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/donate': {
@@ -291,11 +537,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community-partners': {
+      id: '/community-partners'
+      path: '/community-partners'
+      fullPath: '/community-partners'
+      preLoaderRoute: typeof CommunityPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/careers': {
       id: '/careers'
       path: '/careers'
       fullPath: '/careers'
       preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/board': {
+      id: '/board'
+      path: '/board'
+      fullPath: '/board'
+      preLoaderRoute: typeof BoardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -318,18 +578,31 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BoardRoute: BoardRoute,
   CareersRoute: CareersRoute,
+  CommunityPartnersRoute: CommunityPartnersRoute,
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
+  DonationPolicyRoute: DonationPolicyRoute,
+  EligibilityRoute: EligibilityRoute,
+  FaqRoute: FaqRoute,
+  FounderRoute: FounderRoute,
   HipaaRoute: HipaaRoute,
+  HowFundsAreUsedRoute: HowFundsAreUsedRoute,
   ImpactRoute: ImpactRoute,
   InsuranceRoute: InsuranceRoute,
+  NonprofitStatusRoute: NonprofitStatusRoute,
   PortalRoute: PortalRoute,
   PrivacyRoute: PrivacyRoute,
   ReferralsRoute: ReferralsRoute,
+  ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SponsorAFamilyRoute: SponsorAFamilyRoute,
   TermsRoute: TermsRoute,
+  TransparencyRoute: TransparencyRoute,
+  UpdatesRoute: UpdatesRoute,
+  VolunteerPolicyRoute: VolunteerPolicyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

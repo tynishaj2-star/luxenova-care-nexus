@@ -139,7 +139,7 @@ export function ReferralForm() {
     setUploaded((u) => ({ ...u, [label]: u[label].filter((_, i) => i !== idx) }));
   };
 
-  const allConsented = consents.a && consents.b && consents.c;
+  const allConsented = consents.a && consents.b && consents.c && consents.hipaa;
 
   if (submitted) {
     return (

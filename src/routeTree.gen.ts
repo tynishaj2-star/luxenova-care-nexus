@@ -27,7 +27,9 @@ import { Route as InsuranceRouteImport } from './routes/insurance'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as HowFundsAreUsedRouteImport } from './routes/how-funds-are-used'
 import { Route as HipaaRouteImport } from './routes/hipaa'
+import { Route as GovernanceRouteImport } from './routes/governance'
 import { Route as FounderRouteImport } from './routes/founder'
+import { Route as FoodDrivesRouteImport } from './routes/food-drives'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EligibilityRouteImport } from './routes/eligibility'
 import { Route as DonationPolicyRouteImport } from './routes/donation-policy'
@@ -130,9 +132,19 @@ const HipaaRoute = HipaaRouteImport.update({
   path: '/hipaa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GovernanceRoute = GovernanceRouteImport.update({
+  id: '/governance',
+  path: '/governance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FounderRoute = FounderRouteImport.update({
   id: '/founder',
   path: '/founder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoodDrivesRoute = FoodDrivesRouteImport.update({
+  id: '/food-drives',
+  path: '/food-drives',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -203,7 +215,9 @@ export interface FileRoutesByFullPath {
   '/donation-policy': typeof DonationPolicyRoute
   '/eligibility': typeof EligibilityRoute
   '/faq': typeof FaqRoute
+  '/food-drives': typeof FoodDrivesRoute
   '/founder': typeof FounderRoute
+  '/governance': typeof GovernanceRoute
   '/hipaa': typeof HipaaRoute
   '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
@@ -235,7 +249,9 @@ export interface FileRoutesByTo {
   '/donation-policy': typeof DonationPolicyRoute
   '/eligibility': typeof EligibilityRoute
   '/faq': typeof FaqRoute
+  '/food-drives': typeof FoodDrivesRoute
   '/founder': typeof FounderRoute
+  '/governance': typeof GovernanceRoute
   '/hipaa': typeof HipaaRoute
   '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
@@ -268,7 +284,9 @@ export interface FileRoutesById {
   '/donation-policy': typeof DonationPolicyRoute
   '/eligibility': typeof EligibilityRoute
   '/faq': typeof FaqRoute
+  '/food-drives': typeof FoodDrivesRoute
   '/founder': typeof FounderRoute
+  '/governance': typeof GovernanceRoute
   '/hipaa': typeof HipaaRoute
   '/how-funds-are-used': typeof HowFundsAreUsedRoute
   '/impact': typeof ImpactRoute
@@ -302,7 +320,9 @@ export interface FileRouteTypes {
     | '/donation-policy'
     | '/eligibility'
     | '/faq'
+    | '/food-drives'
     | '/founder'
+    | '/governance'
     | '/hipaa'
     | '/how-funds-are-used'
     | '/impact'
@@ -334,7 +354,9 @@ export interface FileRouteTypes {
     | '/donation-policy'
     | '/eligibility'
     | '/faq'
+    | '/food-drives'
     | '/founder'
+    | '/governance'
     | '/hipaa'
     | '/how-funds-are-used'
     | '/impact'
@@ -366,7 +388,9 @@ export interface FileRouteTypes {
     | '/donation-policy'
     | '/eligibility'
     | '/faq'
+    | '/food-drives'
     | '/founder'
+    | '/governance'
     | '/hipaa'
     | '/how-funds-are-used'
     | '/impact'
@@ -399,7 +423,9 @@ export interface RootRouteChildren {
   DonationPolicyRoute: typeof DonationPolicyRoute
   EligibilityRoute: typeof EligibilityRoute
   FaqRoute: typeof FaqRoute
+  FoodDrivesRoute: typeof FoodDrivesRoute
   FounderRoute: typeof FounderRoute
+  GovernanceRoute: typeof GovernanceRoute
   HipaaRoute: typeof HipaaRoute
   HowFundsAreUsedRoute: typeof HowFundsAreUsedRoute
   ImpactRoute: typeof ImpactRoute
@@ -548,11 +574,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HipaaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/governance': {
+      id: '/governance'
+      path: '/governance'
+      fullPath: '/governance'
+      preLoaderRoute: typeof GovernanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/founder': {
       id: '/founder'
       path: '/founder'
       fullPath: '/founder'
       preLoaderRoute: typeof FounderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/food-drives': {
+      id: '/food-drives'
+      path: '/food-drives'
+      fullPath: '/food-drives'
+      preLoaderRoute: typeof FoodDrivesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -647,7 +687,9 @@ const rootRouteChildren: RootRouteChildren = {
   DonationPolicyRoute: DonationPolicyRoute,
   EligibilityRoute: EligibilityRoute,
   FaqRoute: FaqRoute,
+  FoodDrivesRoute: FoodDrivesRoute,
   FounderRoute: FounderRoute,
+  GovernanceRoute: GovernanceRoute,
   HipaaRoute: HipaaRoute,
   HowFundsAreUsedRoute: HowFundsAreUsedRoute,
   ImpactRoute: ImpactRoute,

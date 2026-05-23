@@ -11,7 +11,7 @@ export const Route = createFileRoute("/referrals")({
       {
         name: "description",
         content:
-          "Submit a confidential Emergency Stabilization Request to LuxeNova Community Wellness. Our team reviews each request and follows up regarding next steps.",
+          "Submit a confidential Community Stabilization Request to LuxeNova Community Wellness. Our team reviews each request and follows up regarding next steps.",
       },
     ],
   }),
@@ -25,7 +25,7 @@ function RequestHelpPage() {
       <main>
         <PageHeader
           eyebrow="Request Help"
-          title="Emergency Stabilization Request"
+          title="Community Stabilization Request"
           description="Tell us what's happening in the household. Our team will review the request and follow up with next steps and available community support."
         />
         <ReferralForm />

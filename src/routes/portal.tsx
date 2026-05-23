@@ -43,18 +43,6 @@ export const Route = createFileRoute("/portal")({
   }),
   component: Portal,
 });
-  head: () => ({
-    meta: [
-      { title: "Partner Portal — LuxeNova Community Wellness" },
-      {
-        name: "description",
-        content:
-          "Secure partner portal for submitting and tracking Emergency Stabilization Requests with LuxeNova Community Wellness.",
-      },
-    ],
-  }),
-  component: Portal,
-});
 
 type Status =
   | "New"

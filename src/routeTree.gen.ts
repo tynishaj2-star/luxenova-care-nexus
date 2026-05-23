@@ -38,6 +38,7 @@ import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommunityPartnersRouteImport } from './routes/community-partners'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as BoardPortalRouteImport } from './routes/board-portal'
 import { Route as BoardRouteImport } from './routes/board'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -193,6 +194,11 @@ const CareersRoute = CareersRouteImport.update({
   path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BoardPortalRoute = BoardPortalRouteImport.update({
+  id: '/board-portal',
+  path: '/board-portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BoardRoute = BoardRouteImport.update({
   id: '/board',
   path: '/board',
@@ -246,6 +252,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
+  '/board-portal': typeof BoardPortalRoute
   '/careers': typeof CareersRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
@@ -286,6 +293,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
+  '/board-portal': typeof BoardPortalRoute
   '/careers': typeof CareersRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
@@ -327,6 +335,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
+  '/board-portal': typeof BoardPortalRoute
   '/careers': typeof CareersRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
@@ -369,6 +378,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/board'
+    | '/board-portal'
     | '/careers'
     | '/community-partners'
     | '/contact'
@@ -409,6 +419,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/board'
+    | '/board-portal'
     | '/careers'
     | '/community-partners'
     | '/contact'
@@ -449,6 +460,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/board'
+    | '/board-portal'
     | '/careers'
     | '/community-partners'
     | '/contact'
@@ -490,6 +502,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BoardRoute: typeof BoardRoute
+  BoardPortalRoute: typeof BoardPortalRoute
   CareersRoute: typeof CareersRoute
   CommunityPartnersRoute: typeof CommunityPartnersRoute
   ContactRoute: typeof ContactRoute
@@ -732,6 +745,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/board-portal': {
+      id: '/board-portal'
+      path: '/board-portal'
+      fullPath: '/board-portal'
+      preLoaderRoute: typeof BoardPortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/board': {
       id: '/board'
       path: '/board'
@@ -802,6 +822,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BoardRoute: BoardRoute,
+  BoardPortalRoute: BoardPortalRoute,
   CareersRoute: CareersRoute,
   CommunityPartnersRoute: CommunityPartnersRoute,
   ContactRoute: ContactRoute,

@@ -12,7 +12,7 @@ import {
 const featured = [
   {
     icon: HeartHandshake,
-    title: "Community Stabilization",
+    title: "Family Stabilization",
     tagline: "Signature Program",
     body: "A wraparound stabilization plan that moves a household from crisis to steady ground — rent, utilities, documentation, and follow-through coordinated by a dedicated navigator.",
     points: [

@@ -103,7 +103,7 @@ const supportOptions = [
   "Emergency Rental Assistance",
   "Utility Relief",
   "Autism Family Support",
-  "Community Stabilization",
+  "Family Stabilization",
   "Resource Navigation",
   "Documentation Assistance",
   "Community Outreach",

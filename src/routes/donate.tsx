@@ -79,7 +79,7 @@ function DonatePage() {
                     <Heart className="h-4 w-4" /> Donation Link Coming Soon
                   </button>
                   <Link
-                    to="/contact"
+                    to="/sponsor-a-family"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-7 py-3.5 text-sm font-medium text-foreground transition hover:border-foreground/30"
                   >
                     <Users className="h-4 w-4" /> Sponsor a Family

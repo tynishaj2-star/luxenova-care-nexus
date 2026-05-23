@@ -35,8 +35,9 @@ export function Footer() {
         { label: "Donation Policy", to: "/donation-policy" as const },
         { label: "Volunteer Policy", to: "/volunteer-policy" as const },
         { label: "Staffing & Compensation", to: "/staffing-compensation" as const },
-
+      ],
     },
+
     {
       title: "Legal & More",
       links: [

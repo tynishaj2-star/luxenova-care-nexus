@@ -28,8 +28,21 @@ import {
   addReferralNote,
   getCurrentProfile,
 } from "@/lib/referrals.functions";
+import { AdminDashboard } from "@/components/portal/AdminDashboard";
 
 export const Route = createFileRoute("/portal")({
+  head: () => ({
+    meta: [
+      { title: "Admin Intake Dashboard — LuxeNova Community Wellness" },
+      {
+        name: "description",
+        content:
+          "Secure LuxeNova Community Wellness intake dashboard for staff and partners to manage requests, referrals, and support submissions.",
+      },
+    ],
+  }),
+  component: Portal,
+});
   head: () => ({
     meta: [
       { title: "Partner Portal — LuxeNova Community Wellness" },

@@ -535,7 +535,11 @@ export function ReferralForm() {
                     label:
                       "I acknowledge LuxeNova Community Wellness may contact the family or submitter regarding this request and may coordinate with trusted community partners as appropriate.",
                   },
-                ].map(({ key, label }) => (
+                  {
+                    key: "hipaa" as const,
+                    label:
+                      "HIPAA Authorization: I authorize LuxeNova Community Wellness and the submitting partner to exchange the uploaded documents and any Protected Health Information (PHI) contained within for the limited purpose of coordinating stabilization services. This authorization may be revoked in writing at any time.",
+                  },
                   <label
                     key={key}
                     className="flex cursor-pointer items-start gap-3 rounded-2xl border border-border bg-background p-4 text-sm text-foreground/85 transition hover:border-rosewood/40"

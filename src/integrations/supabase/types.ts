@@ -14,16 +14,163 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string | null
+          id: string
+          organization: string | null
+          phone: string | null
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string | null
+          id: string
+          organization?: string | null
+          phone?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          organization?: string | null
+          phone?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      referral_notes: {
+        Row: {
+          author_id: string
+          body: string
+          created_at: string
+          id: string
+          is_system: boolean
+          referral_id: string
+        }
+        Insert: {
+          author_id: string
+          body: string
+          created_at?: string
+          id?: string
+          is_system?: boolean
+          referral_id: string
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          created_at?: string
+          id?: string
+          is_system?: boolean
+          referral_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referral_notes_referral_id_fkey"
+            columns: ["referral_id"]
+            isOneToOne: false
+            referencedRelation: "referrals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      referrals: {
+        Row: {
+          created_at: string
+          created_by: string
+          household: string
+          id: string
+          navigator: string | null
+          notes_intake: string | null
+          primary_barrier: string
+          status: Database["public"]["Enums"]["referral_status"]
+          submitter_name: string | null
+          submitter_org: string | null
+          updated_at: string
+          urgency: Database["public"]["Enums"]["referral_urgency"]
+          zip: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          household: string
+          id?: string
+          navigator?: string | null
+          notes_intake?: string | null
+          primary_barrier: string
+          status?: Database["public"]["Enums"]["referral_status"]
+          submitter_name?: string | null
+          submitter_org?: string | null
+          updated_at?: string
+          urgency?: Database["public"]["Enums"]["referral_urgency"]
+          zip?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          household?: string
+          id?: string
+          navigator?: string | null
+          notes_intake?: string | null
+          primary_barrier?: string
+          status?: Database["public"]["Enums"]["referral_status"]
+          submitter_name?: string | null
+          submitter_org?: string | null
+          updated_at?: string
+          urgency?: Database["public"]["Enums"]["referral_urgency"]
+          zip?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "staff" | "partner"
+      referral_status:
+        | "New"
+        | "In Review"
+        | "Awaiting Documents"
+        | "Navigator Assigned"
+        | "Relief Delivered"
+        | "Closed"
+      referral_urgency: "Routine" | "Priority" | "Urgent"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +297,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["staff", "partner"],
+      referral_status: [
+        "New",
+        "In Review",
+        "Awaiting Documents",
+        "Navigator Assigned",
+        "Relief Delivered",
+        "Closed",
+      ],
+      referral_urgency: ["Routine", "Priority", "Urgent"],
+    },
   },
 } as const

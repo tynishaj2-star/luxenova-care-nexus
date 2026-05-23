@@ -80,8 +80,8 @@ export function Navbar() {
               More <ChevronDown className="h-3.5 w-3.5" />
             </button>
             {moreOpen && (
-              <div className="absolute right-0 top-full w-60 pt-3">
-                <div className="rounded-2xl border border-border/70 bg-card p-2 shadow-luxe">
+              <div className="absolute right-0 top-full w-64 pt-3">
+                <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-border/70 bg-card p-2 shadow-luxe">
                   {moreLinks.map((l) => (
                     <Link
                       key={l.to}

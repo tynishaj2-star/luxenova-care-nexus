@@ -38,15 +38,15 @@ export const Route = createFileRoute("/board")({
 const boardMembers = [
   {
     name: "Tynisha Johnson",
-    role: "Founder / Treasurer / Community Impact & Program Oversight",
+    role: "Founder / Treasurer",
     summary:
-      "Mission leadership, financial stewardship, donation tracking, organizational formation, and community impact review.",
+      "Mission leadership, financial stewardship, donation tracking, and organizational formation.",
   },
   {
     name: "Victoria Roscoe",
-    role: "Board Chair / President / Community Impact & Program Oversight",
+    role: "Board Chair / President",
     summary:
-      "Board leadership, meeting oversight, mission accountability, governance direction, and community impact review.",
+      "Board leadership, meeting oversight, mission accountability, and governance direction.",
   },
   {
     name: "Latoia Moses",
@@ -62,13 +62,13 @@ const boardMembers = [
   },
   {
     name: "Rene Tarrant",
-    role: "Founding Board Member",
+    role: "Community Impact & Program Oversight",
     summary:
-      "Family-centered feedback, community needs awareness, and mission support.",
+      "Family-centered program feedback, community needs review, and impact accountability.",
   },
 ];
 
-const oversightMembers = ["Tynisha Johnson", "Latoia Moses", "Victoria Roscoe"];
+
 
 const responsibilities = [
   { icon: ShieldAlert, title: "Protecting the mission", body: "Safeguarding the purpose, values, and community focus of LuxeNova Community Wellness." },
@@ -118,38 +118,23 @@ function BoardPage() {
           </div>
         </section>
 
-        {/* Role 5 — Community Impact & Program Oversight */}
+        {/* Founding board statement */}
         <section className="pb-16">
           <div className="mx-auto max-w-5xl px-6">
             <div className="rounded-3xl border border-rosewood/25 bg-accent/40 p-8 shadow-soft md:p-10">
               <p className="text-[11px] uppercase tracking-[0.22em] text-rosewood">
-                Role 5 · Community Impact &amp; Program Oversight
+                Founding Board
               </p>
-              <h2 className="mt-3 font-display text-3xl text-balance md:text-4xl">
-                Program oversight is shared by mission leadership.
-              </h2>
-              <p className="mt-5 max-w-3xl text-foreground/85 leading-relaxed">
-                This role helps LuxeNova review family stabilization
-                priorities, food drive needs, disability and autism family
-                support gaps, donation impact, community feedback, and
-                program fairness.
+              <p className="mt-5 max-w-3xl text-foreground/85 leading-relaxed md:text-lg">
+                The founding board supports mission accountability,
+                responsible growth, donation oversight, family-centered
+                decision-making, and the formation of LuxeNova Community
+                Wellness's nonprofit governance structure.
               </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                {oversightMembers.map((name) => (
-                  <div
-                    key={name}
-                    className="rounded-2xl border border-border/70 bg-card p-5 shadow-soft transition hover:-translate-y-0.5 hover:border-rosewood/30 hover:shadow-luxe"
-                  >
-                    <p className="font-display text-lg">{name}</p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-rosewood/80">
-                      Community Impact &amp; Program Oversight
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
+
 
         {/* Board responsibilities */}
         <section className="pb-4">

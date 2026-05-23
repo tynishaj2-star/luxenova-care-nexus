@@ -26,36 +26,75 @@ export const Route = createFileRoute("/food-drives")({
   component: FoodDrivesPage,
 });
 
+const INTERESTS = [
+  "Hosting a food drive",
+  "Volunteering at a drive",
+  "Donating food or essentials",
+  "Requesting food or essentials support",
+  "Partnering as a church, school, business, or community group",
+  "Thanksgiving Drive — host, sponsor, or contribute",
+  "Christmas Toy & Gift Drive — host, sponsor, or contribute",
+  "Winter Warmth Drive — host, sponsor, or contribute",
+  "Easter / Back-to-School / Seasonal Drive",
+] as const;
+
 const ways = [
   {
     icon: Apple,
     title: "Host a food drive",
     body: "Partner with LuxeNova to organize a drive at your church, school, business, or community space.",
+    interest: "Hosting a food drive",
   },
   {
     icon: HandHeart,
     title: "Volunteer at a drive",
     body: "Help with intake, sorting, packing, and distribution to families across the service area.",
+    interest: "Volunteering at a drive",
   },
   {
     icon: Users,
     title: "Donate food or essentials",
     body: "Contribute non-perishable food, baby items, hygiene products, and household essentials.",
+    interest: "Donating food or essentials",
   },
   {
     icon: Building2,
     title: "Request support",
     body: "Families in need can request food, baby items, and household essentials through the form below.",
+    interest: "Requesting food or essentials support",
   },
-];
+] as const;
 
-const INTERESTS = [
-  "Hosting a food drive",
-  "Volunteering at a food drive",
-  "Donating food or essentials",
-  "Requesting food or essentials support",
-  "Partnering as a church, school, business, or community group",
-];
+const holidayDrives = [
+  {
+    icon: Drumstick,
+    season: "November",
+    title: "Thanksgiving Drive",
+    body: "Full Thanksgiving meal boxes — turkey, sides, and pantry staples — distributed to families ahead of the holiday.",
+    interest: "Thanksgiving Drive — host, sponsor, or contribute",
+  },
+  {
+    icon: Gift,
+    season: "December",
+    title: "Christmas Toy & Gift Drive",
+    body: "New, unwrapped toys and gifts for children and teens, paired with family essentials and seasonal joy.",
+    interest: "Christmas Toy & Gift Drive — host, sponsor, or contribute",
+  },
+  {
+    icon: Snowflake,
+    season: "December – February",
+    title: "Winter Warmth Drive",
+    body: "Coats, hats, gloves, blankets, and heating essentials for households facing the coldest months.",
+    interest: "Winter Warmth Drive — host, sponsor, or contribute",
+  },
+  {
+    icon: Sparkles,
+    season: "Year-Round Holidays",
+    title: "Easter, Back-to-School & More",
+    body: "Seasonal baskets, school supply giveaways, and Mother's / Father's Day appreciation drives throughout the year.",
+    interest: "Easter / Back-to-School / Seasonal Drive",
+  },
+] as const;
 
 type FormState = {
   fullName: string;

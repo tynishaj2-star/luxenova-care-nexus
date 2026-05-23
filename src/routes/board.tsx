@@ -44,9 +44,9 @@ const boardMembers = [
   },
   {
     name: "Trina Everett",
-    role: "Founder / Treasurer / Community Impact & Program Oversight",
+    role: "Co-Founder / Community Impact & Program Oversight",
     summary:
-      "Mission leadership, financial stewardship, donation tracking, organizational formation, and community impact review.",
+      "Mission leadership, organizational formation, and community impact review.",
   },
   {
     name: "Victoria Roscoe",

@@ -9,6 +9,31 @@ import {
   Handshake,
 } from "lucide-react";
 
+const featured = [
+  {
+    icon: HeartHandshake,
+    title: "Family Stabilization",
+    tagline: "Signature Program",
+    body: "A wraparound stabilization plan that moves a household from crisis to steady ground — rent, utilities, documentation, and follow-through coordinated by a dedicated navigator.",
+    points: [
+      "Dedicated stabilization navigator",
+      "30 / 60 / 90-day follow-through",
+      "Coordinated with schools, housing, and benefits partners",
+    ],
+  },
+  {
+    icon: Puzzle,
+    title: "Autism & Special Needs Family Support",
+    tagline: "Specialized Care",
+    body: "Composed, informed support for households raising autistic children and children with special needs — resource navigation, advocacy, and respite-aware planning that honors how each family lives.",
+    points: [
+      "IEP, EI, and DDS resource navigation",
+      "Sensory-aware intake and communication",
+      "Connections to respite and specialized providers",
+    ],
+  },
+];
+
 const programs = [
   {
     icon: Home,
@@ -19,16 +44,6 @@ const programs = [
     icon: Zap,
     title: "Utility Relief",
     body: "Support for households facing utility shutoffs — gas, electric, and water — before service is lost.",
-  },
-  {
-    icon: Puzzle,
-    title: "Autism Family Support",
-    body: "Resource connection, navigation, and family support for households raising autistic children.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Family Stabilization",
-    body: "Wraparound coordination that helps households move from crisis to stability with dignity.",
   },
   {
     icon: Compass,
@@ -70,7 +85,48 @@ export function Services() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+          {featured.map((f) => (
+            <article
+              key={f.title}
+              className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-8 shadow-soft transition-all duration-700 hover:-translate-y-1.5 hover:border-rosewood/40 hover:shadow-luxe md:p-10"
+            >
+              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100 bg-gradient-warm" />
+              <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-rosewood/10 blur-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-rosewood/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+              <div className="relative">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-accent text-rosewood transition-all duration-500 group-hover:scale-110 group-hover:bg-rosewood group-hover:text-rosewood-foreground group-hover:shadow-luxe">
+                    <f.icon className="h-5 w-5" strokeWidth={1.5} />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.22em] text-rosewood/80">
+                    {f.tagline}
+                  </span>
+                </div>
+                <h3 className="mt-6 font-display text-2xl md:text-3xl text-balance">
+                  {f.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {f.body}
+                </p>
+                <ul className="mt-6 space-y-2">
+                  {f.points.map((p) => (
+                    <li
+                      key={p}
+                      className="flex items-start gap-3 text-sm text-foreground/80"
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-rosewood transition-transform duration-500 group-hover:scale-150" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {programs.map((s) => (
             <article
               key={s.title}

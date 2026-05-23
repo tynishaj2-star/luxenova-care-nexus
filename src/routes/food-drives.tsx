@@ -4,7 +4,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ContentSection, CardGrid, CalloutNote } from "@/components/site/ContentPage";
-import { Apple, HandHeart, Users, Building2, CheckCircle2 } from "lucide-react";
+import { Apple, HandHeart, Users, Building2, CheckCircle2, Drumstick, Gift, Snowflake, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/food-drives")({
   head: () => ({

@@ -13,6 +13,7 @@ import { Route as VolunteerPolicyRouteImport } from './routes/volunteer-policy'
 import { Route as UpdatesRouteImport } from './routes/updates'
 import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as StaffingCompensationRouteImport } from './routes/staffing-compensation'
 import { Route as SponsorAFamilyRouteImport } from './routes/sponsor-a-family'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -55,6 +56,11 @@ const TransparencyRoute = TransparencyRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StaffingCompensationRoute = StaffingCompensationRouteImport.update({
+  id: '/staffing-compensation',
+  path: '/staffing-compensation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SponsorAFamilyRoute = SponsorAFamilyRouteImport.update({
@@ -197,6 +203,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsor-a-family': typeof SponsorAFamilyRoute
+  '/staffing-compensation': typeof StaffingCompensationRoute
   '/terms': typeof TermsRoute
   '/transparency': typeof TransparencyRoute
   '/updates': typeof UpdatesRoute
@@ -226,6 +233,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsor-a-family': typeof SponsorAFamilyRoute
+  '/staffing-compensation': typeof StaffingCompensationRoute
   '/terms': typeof TermsRoute
   '/transparency': typeof TransparencyRoute
   '/updates': typeof UpdatesRoute
@@ -256,6 +264,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsor-a-family': typeof SponsorAFamilyRoute
+  '/staffing-compensation': typeof StaffingCompensationRoute
   '/terms': typeof TermsRoute
   '/transparency': typeof TransparencyRoute
   '/updates': typeof UpdatesRoute
@@ -287,6 +296,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/sponsor-a-family'
+    | '/staffing-compensation'
     | '/terms'
     | '/transparency'
     | '/updates'
@@ -316,6 +326,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/sponsor-a-family'
+    | '/staffing-compensation'
     | '/terms'
     | '/transparency'
     | '/updates'
@@ -345,6 +356,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/sponsor-a-family'
+    | '/staffing-compensation'
     | '/terms'
     | '/transparency'
     | '/updates'
@@ -375,6 +387,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SponsorAFamilyRoute: typeof SponsorAFamilyRoute
+  StaffingCompensationRoute: typeof StaffingCompensationRoute
   TermsRoute: typeof TermsRoute
   TransparencyRoute: typeof TransparencyRoute
   UpdatesRoute: typeof UpdatesRoute
@@ -409,6 +422,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/staffing-compensation': {
+      id: '/staffing-compensation'
+      path: '/staffing-compensation'
+      fullPath: '/staffing-compensation'
+      preLoaderRoute: typeof StaffingCompensationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sponsor-a-family': {
@@ -599,6 +619,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SponsorAFamilyRoute: SponsorAFamilyRoute,
+  StaffingCompensationRoute: StaffingCompensationRoute,
   TermsRoute: TermsRoute,
   TransparencyRoute: TransparencyRoute,
   UpdatesRoute: UpdatesRoute,

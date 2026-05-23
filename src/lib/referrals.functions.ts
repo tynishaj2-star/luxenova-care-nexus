@@ -19,6 +19,11 @@ const statusEnum = z.enum([
   "Navigator Assigned",
   "Relief Delivered",
   "Closed",
+  "Missing Documents",
+  "Partner Referral Needed",
+  "Food / Essentials Support",
+  "Sponsor Match Needed",
+  "Completed",
 ]);
 
 export const listReferrals = createServerFn({ method: "GET" })
@@ -138,9 +143,11 @@ export const getCurrentProfile = createServerFn({ method: "GET" })
       supabase.from("profiles").select("*").eq("id", userId).maybeSingle(),
       supabase.from("user_roles").select("role").eq("user_id", userId),
     ]);
+    const roleList = roles?.map((r) => r.role) ?? [];
     return {
       profile,
-      isStaff: !!roles?.some((r) => r.role === "staff"),
-      roles: roles?.map((r) => r.role) ?? [],
+      isStaff: roleList.includes("staff"),
+      isAdmin: roleList.includes("admin"),
+      roles: roleList,
     };
   });

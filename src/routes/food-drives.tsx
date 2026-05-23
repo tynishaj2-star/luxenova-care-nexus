@@ -4,7 +4,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ContentSection, CardGrid, CalloutNote } from "@/components/site/ContentPage";
-import { Apple, HandHeart, Users, Building2, CheckCircle2 } from "lucide-react";
+import { Apple, HandHeart, Users, Building2, CheckCircle2, Drumstick, Gift, Snowflake, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/food-drives")({
   head: () => ({
@@ -133,6 +133,77 @@ function FoodDrivesPage() {
         />
 
         <CardGrid items={ways} columns={4} />
+
+        <section className="pb-8">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+              <div className="max-w-2xl">
+                <p className="text-xs uppercase tracking-[0.22em] text-rosewood/80">
+                  Seasonal Programs
+                </p>
+                <h2 className="mt-3 font-display text-4xl md:text-5xl text-balance">
+                  Holiday Drives
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  Each year LuxeNova Community Wellness organizes seasonal
+                  drives so families across our service area can experience
+                  the warmth, dignity, and joy of the holidays.
+                </p>
+              </div>
+              <p className="max-w-sm text-sm text-muted-foreground">
+                Host, sponsor, or contribute to a holiday drive using the
+                interest form below — select the drive you'd like to
+                support.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                {
+                  icon: Drumstick,
+                  season: "November",
+                  title: "Thanksgiving Drive",
+                  body: "Full Thanksgiving meal boxes — turkey, sides, and pantry staples — distributed to families ahead of the holiday.",
+                },
+                {
+                  icon: Gift,
+                  season: "December",
+                  title: "Christmas Toy & Gift Drive",
+                  body: "New, unwrapped toys and gifts for children and teens, paired with family essentials and seasonal joy.",
+                },
+                {
+                  icon: Snowflake,
+                  season: "December – February",
+                  title: "Winter Warmth Drive",
+                  body: "Coats, hats, gloves, blankets, and heating essentials for households facing the coldest months.",
+                },
+                {
+                  icon: Sparkles,
+                  season: "Year-Round Holidays",
+                  title: "Easter, Back-to-School & More",
+                  body: "Seasonal baskets, school supply giveaways, and Mother's / Father's Day appreciation drives throughout the year.",
+                },
+              ].map((h) => (
+                <article
+                  key={h.title}
+                  className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-7 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-rosewood/30 hover:shadow-luxe"
+                >
+                  <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-rosewood/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-accent text-rosewood transition-colors group-hover:bg-rosewood group-hover:text-rosewood-foreground">
+                    <h.icon className="h-5 w-5" strokeWidth={1.5} />
+                  </div>
+                  <p className="mt-5 text-[10px] uppercase tracking-[0.22em] text-rosewood/80">
+                    {h.season}
+                  </p>
+                  <h3 className="mt-2 font-display text-xl">{h.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {h.body}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className="pb-20">
           <div className="mx-auto max-w-3xl px-6">

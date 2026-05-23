@@ -38,15 +38,15 @@ export const Route = createFileRoute("/board")({
 const boardMembers = [
   {
     name: "Tynisha Johnson",
-    role: "Founder / Treasurer / Community Impact & Program Oversight",
+    role: "Founder / Treasurer",
     summary:
-      "Mission leadership, financial stewardship, donation tracking, organizational formation, and community impact review.",
+      "Mission leadership, financial stewardship, donation tracking, and organizational formation.",
   },
   {
     name: "Victoria Roscoe",
-    role: "Board Chair / President / Community Impact & Program Oversight",
+    role: "Board Chair / President",
     summary:
-      "Board leadership, meeting oversight, mission accountability, governance direction, and community impact review.",
+      "Board leadership, meeting oversight, mission accountability, and governance direction.",
   },
   {
     name: "Latoia Moses",
@@ -62,13 +62,13 @@ const boardMembers = [
   },
   {
     name: "Rene Tarrant",
-    role: "Founding Board Member",
+    role: "Community Impact & Program Oversight",
     summary:
-      "Family-centered feedback, community needs awareness, and mission support.",
+      "Family-centered program feedback, community needs review, and impact accountability.",
   },
 ];
 
-const oversightMembers = ["Tynisha Johnson", "Latoia Moses", "Victoria Roscoe"];
+
 
 const responsibilities = [
   { icon: ShieldAlert, title: "Protecting the mission", body: "Safeguarding the purpose, values, and community focus of LuxeNova Community Wellness." },

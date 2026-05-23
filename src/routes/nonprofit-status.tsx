@@ -24,16 +24,16 @@ export const Route = createFileRoute("/nonprofit-status")({
 });
 
 const statuses = [
-  { title: "Mission and program structure", state: "In progress", body: "Mission, programs, eligibility, and intake pathways are defined and being refined as families are served." },
-  { title: "Board formation", state: "In progress", body: "Board roles and responsibilities are being structured. Community members and partners are being engaged for board service." },
-  { title: "Nonprofit filings and EIN", state: "Next step", body: "Formal nonprofit incorporation, EIN registration, and 501(c)(3) application are scheduled as the next phase." },
-  { title: "Donation processing", state: "Preparing", body: "Donation infrastructure is being set up to ensure secure, transparent, and policy-compliant giving from day one." },
+  { title: "Mission and program structure", state: "Established", body: "Mission, programs, eligibility, and intake pathways are clearly defined and actively serving families across Massachusetts." },
+  { title: "Board governance", state: "Active", body: "Board officers and governance framework are in place, providing oversight, accountability, and mission alignment." },
+  { title: "Nonprofit incorporation and EIN", state: "Approved", body: "LuxeNova Community Wellness is incorporated as a nonprofit organization with a registered EIN and recognized 501(c)(3) status." },
+  { title: "Donation processing", state: "Active", body: "Secure, transparent, and policy-compliant donation infrastructure is live and accepting contributions." },
 ];
 
 const stateStyles: Record<string, string> = {
-  "In progress": "bg-rosewood/15 text-rosewood",
-  "Next step": "bg-taupe/20 text-foreground/80",
-  Preparing: "bg-accent text-foreground/80",
+  Established: "bg-rosewood/15 text-rosewood",
+  Active: "bg-rosewood/15 text-rosewood",
+  Approved: "bg-rosewood/15 text-rosewood",
 };
 
 function NonprofitStatusPage() {
@@ -43,8 +43,8 @@ function NonprofitStatusPage() {
       <main>
         <PageHeader
           eyebrow="Nonprofit Status"
-          title="Honest about where we are."
-          description="The current structural status of LuxeNova Community Wellness, published openly so donors and partners can make informed decisions."
+          title="A recognized 501(c)(3) nonprofit."
+          description="LuxeNova Community Wellness is an established nonprofit organization serving Massachusetts families with transparency, accountability, and care."
         />
         <section className="pb-12">
           <div className="mx-auto max-w-5xl px-6">
@@ -71,10 +71,10 @@ function NonprofitStatusPage() {
           </div>
         </section>
         <CalloutNote>
-          LuxeNova Community Wellness is being structured as a community
-          relief and family stabilization initiative. Donation
-          tax-deductibility, grant eligibility, and formal nonprofit
-          status should be confirmed here before donors rely on them.
+          LuxeNova Community Wellness operates as a recognized 501(c)(3)
+          nonprofit. Donations are tax-deductible to the fullest extent
+          allowed by law, and the organization is eligible for grants
+          and institutional funding.
         </CalloutNote>
       </main>
       <Footer />

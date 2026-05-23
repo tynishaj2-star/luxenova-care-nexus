@@ -129,6 +129,16 @@ function FoodDrivesPage() {
     setForm((f) => ({ ...f, [k]: v }));
   }
 
+  function chooseInterest(interest: string) {
+    setForm((f) => ({ ...f, interest }));
+    setSubmitted(false);
+    if (typeof document !== "undefined") {
+      document
+        .getElementById("interest-form")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const nextErrors: Partial<Record<keyof FormState, string>> = {};

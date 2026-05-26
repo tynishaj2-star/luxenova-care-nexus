@@ -38,19 +38,19 @@ export const Route = createFileRoute("/board")({
 const boardMembers = [
   {
     name: "Tynisha Johnson",
-    role: "Founder / Treasurer / Community Impact & Program Oversight",
+    role: "Founder / President / Treasurer / Director (State Filing)",
     summary:
-      "Mission leadership, financial stewardship, donation tracking, organizational formation, and community impact review.",
+      "Mission leadership, executive direction, financial stewardship, donation oversight, state-filed director of record, and organizational formation.",
   },
   {
     name: "Trina Everett",
-    role: "Co-Founder / Treasurer / Community Impact & Program Oversight",
+    role: "Co-Founder / Community Impact & Program Oversight",
     summary:
-      "Mission leadership, financial stewardship, donation tracking, organizational formation, and community impact review.",
+      "Mission leadership, family stabilization priorities, program review, partner relationships, and community impact guidance.",
   },
   {
     name: "Victoria Roscoe",
-    role: "Board Chair / President",
+    role: "Board Chair",
     summary:
       "Board leadership, meeting oversight, mission accountability, and governance direction.",
   },
@@ -62,9 +62,9 @@ const boardMembers = [
   },
   {
     name: "Joe Younge",
-    role: "Secretary",
+    role: "Clerk / Secretary / Treasurer Support",
     summary:
-      "Meeting records, official documents, board minutes, policy tracking, and compliance organization.",
+      "Meeting records, official documents, board minutes, policy tracking, compliance organization, and hands-on treasurer support for donation logging, expense tracking, and financial reporting.",
   },
 ];
 

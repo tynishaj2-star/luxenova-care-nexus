@@ -65,6 +65,15 @@ const articles: Article[] = [
           "No part of the net earnings of the Corporation shall inure to the benefit of any director, officer, or private individual, except as reasonable compensation for services rendered to the Corporation.",
         ],
       },
+      {
+        num: "1.4",
+        title: "Limitations on Activities",
+        paragraphs: [
+          "Notwithstanding any other provision of these bylaws, the Corporation shall not, except to an insubstantial degree, engage in any activities or exercise any powers that are not in furtherance of the charitable purposes of the Corporation as set forth in Section 1.3.",
+          "No substantial part of the activities of the Corporation shall consist of carrying on propaganda or otherwise attempting to influence legislation, and the Corporation shall not participate in, or intervene in (including the publishing or distribution of statements), any political campaign on behalf of, or in opposition to, any candidate for public office.",
+          "The Corporation shall not carry on any other activities not permitted to be carried on (a) by an organization exempt from federal income tax under Section 501(c)(3) of the Internal Revenue Code, or (b) by an organization to which contributions are deductible under Section 170(c)(2) of the Internal Revenue Code.",
+        ],
+      },
     ],
   },
   {

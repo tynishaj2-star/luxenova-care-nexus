@@ -53,7 +53,11 @@ type Doc = {
     | "/nonprofit-status"
     | "/eligibility"
     | "/board"
-    | "/insurance";
+    | "/insurance"
+    | "/bylaws"
+    | "/conflict-of-interest"
+    | "/governance";
+
   icon: typeof ShieldCheck;
   meta: string;
   tags: string[];

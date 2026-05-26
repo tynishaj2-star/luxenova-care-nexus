@@ -36,8 +36,10 @@ import { Route as DonationPolicyRouteImport } from './routes/donation-policy'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConflictOfInterestRouteImport } from './routes/conflict-of-interest'
 import { Route as CommunityPartnersRouteImport } from './routes/community-partners'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as BylawsRouteImport } from './routes/bylaws'
 import { Route as BoardPortalRouteImport } from './routes/board-portal'
 import { Route as BoardRouteImport } from './routes/board'
 import { Route as AboutRouteImport } from './routes/about'
@@ -184,6 +186,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConflictOfInterestRoute = ConflictOfInterestRouteImport.update({
+  id: '/conflict-of-interest',
+  path: '/conflict-of-interest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommunityPartnersRoute = CommunityPartnersRouteImport.update({
   id: '/community-partners',
   path: '/community-partners',
@@ -192,6 +199,11 @@ const CommunityPartnersRoute = CommunityPartnersRouteImport.update({
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BylawsRoute = BylawsRouteImport.update({
+  id: '/bylaws',
+  path: '/bylaws',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BoardPortalRoute = BoardPortalRouteImport.update({
@@ -253,8 +265,10 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
   '/board-portal': typeof BoardPortalRoute
+  '/bylaws': typeof BylawsRoute
   '/careers': typeof CareersRoute
   '/community-partners': typeof CommunityPartnersRoute
+  '/conflict-of-interest': typeof ConflictOfInterestRoute
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
   '/donate': typeof DonateRoute
@@ -294,8 +308,10 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
   '/board-portal': typeof BoardPortalRoute
+  '/bylaws': typeof BylawsRoute
   '/careers': typeof CareersRoute
   '/community-partners': typeof CommunityPartnersRoute
+  '/conflict-of-interest': typeof ConflictOfInterestRoute
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
   '/donate': typeof DonateRoute
@@ -336,8 +352,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
   '/board-portal': typeof BoardPortalRoute
+  '/bylaws': typeof BylawsRoute
   '/careers': typeof CareersRoute
   '/community-partners': typeof CommunityPartnersRoute
+  '/conflict-of-interest': typeof ConflictOfInterestRoute
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
   '/donate': typeof DonateRoute
@@ -379,8 +397,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/board'
     | '/board-portal'
+    | '/bylaws'
     | '/careers'
     | '/community-partners'
+    | '/conflict-of-interest'
     | '/contact'
     | '/documents'
     | '/donate'
@@ -420,8 +440,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/board'
     | '/board-portal'
+    | '/bylaws'
     | '/careers'
     | '/community-partners'
+    | '/conflict-of-interest'
     | '/contact'
     | '/documents'
     | '/donate'
@@ -461,8 +483,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/board'
     | '/board-portal'
+    | '/bylaws'
     | '/careers'
     | '/community-partners'
+    | '/conflict-of-interest'
     | '/contact'
     | '/documents'
     | '/donate'
@@ -503,8 +527,10 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BoardRoute: typeof BoardRoute
   BoardPortalRoute: typeof BoardPortalRoute
+  BylawsRoute: typeof BylawsRoute
   CareersRoute: typeof CareersRoute
   CommunityPartnersRoute: typeof CommunityPartnersRoute
+  ConflictOfInterestRoute: typeof ConflictOfInterestRoute
   ContactRoute: typeof ContactRoute
   DocumentsRoute: typeof DocumentsRoute
   DonateRoute: typeof DonateRoute
@@ -731,6 +757,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/conflict-of-interest': {
+      id: '/conflict-of-interest'
+      path: '/conflict-of-interest'
+      fullPath: '/conflict-of-interest'
+      preLoaderRoute: typeof ConflictOfInterestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/community-partners': {
       id: '/community-partners'
       path: '/community-partners'
@@ -743,6 +776,13 @@ declare module '@tanstack/react-router' {
       path: '/careers'
       fullPath: '/careers'
       preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bylaws': {
+      id: '/bylaws'
+      path: '/bylaws'
+      fullPath: '/bylaws'
+      preLoaderRoute: typeof BylawsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/board-portal': {
@@ -823,8 +863,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BoardRoute: BoardRoute,
   BoardPortalRoute: BoardPortalRoute,
+  BylawsRoute: BylawsRoute,
   CareersRoute: CareersRoute,
   CommunityPartnersRoute: CommunityPartnersRoute,
+  ConflictOfInterestRoute: ConflictOfInterestRoute,
   ContactRoute: ContactRoute,
   DocumentsRoute: DocumentsRoute,
   DonateRoute: DonateRoute,
@@ -862,13 +904,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

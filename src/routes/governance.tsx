@@ -184,8 +184,20 @@ function GovernancePage() {
         <section className="pb-20">
           <div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-3 px-6 sm:flex-row">
             <Link
-              to="/board"
+              to="/bylaws"
               className="inline-flex h-12 items-center justify-center rounded-full bg-gradient-rosewood px-7 text-sm font-medium text-rosewood-foreground shadow-soft transition hover:opacity-95"
+            >
+              Read Full Bylaws
+            </Link>
+            <Link
+              to="/conflict-of-interest"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-card px-7 text-sm font-medium text-foreground transition hover:border-rosewood/40 hover:text-rosewood"
+            >
+              Conflict of Interest Policy
+            </Link>
+            <Link
+              to="/board"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-card px-7 text-sm font-medium text-foreground transition hover:border-rosewood/40 hover:text-rosewood"
             >
               View Board
             </Link>
@@ -197,6 +209,7 @@ function GovernancePage() {
             </Link>
           </div>
         </section>
+
 
         <CalloutNote>
           Governance practices are continuously developed. This page

@@ -53,7 +53,11 @@ type Doc = {
     | "/nonprofit-status"
     | "/eligibility"
     | "/board"
-    | "/insurance";
+    | "/insurance"
+    | "/bylaws"
+    | "/conflict-of-interest"
+    | "/governance";
+
   icon: typeof ShieldCheck;
   meta: string;
   tags: string[];
@@ -138,6 +142,31 @@ const sections: { id: string; title: string; description: string; docs: Doc[] }[
         meta: "Governance",
         tags: ["board", "governance", "oversight"],
       },
+      {
+        title: "Bylaws",
+        body: "Full adopted bylaws — purpose, board structure, officers, meetings, finances, conflicts, indemnification, amendments, and dissolution.",
+        to: "/bylaws",
+        icon: Scale,
+        meta: "Governance",
+        tags: ["bylaws", "governance", "board"],
+      },
+      {
+        title: "Conflict of Interest Policy",
+        body: "Disclosure, recusal, and annual disclosure form for directors, officers, and key personnel.",
+        to: "/conflict-of-interest",
+        icon: FileText,
+        meta: "Governance",
+        tags: ["conflict", "ethics", "disclosure"],
+      },
+      {
+        title: "Governance Overview",
+        body: "Governance framework, financial controls, recordkeeping, and policy development summary.",
+        to: "/governance",
+        icon: Landmark,
+        meta: "Governance",
+        tags: ["governance", "overview"],
+      },
+
       {
         title: "Nonprofit Status",
         body: "Organizational formation, EIN, and 501(c)(3) standing — what's on file and how to verify.",

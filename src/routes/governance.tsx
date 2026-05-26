@@ -37,12 +37,12 @@ export const Route = createFileRoute("/governance")({
 const officers = [
   {
     icon: Crown,
-    title: "Founder / Treasurer",
-    body: "Stewards the founding mission, oversees financial activity, signs off on disbursement records, and partners with the Board Chair on fiduciary responsibility.",
+    title: "Founder / President / Treasurer / Director",
+    body: "Stewards the founding mission, leads executive direction, oversees financial activity, signs off on disbursement records, and serves as the director of record on state filings.",
   },
   {
     icon: Gavel,
-    title: "Board Chair / President",
+    title: "Board Chair",
     body: "Leads board meetings, sets governance priorities, and represents LuxeNova in formal and partner-facing matters.",
   },
   {
@@ -52,8 +52,8 @@ const officers = [
   },
   {
     icon: BookOpenCheck,
-    title: "Secretary",
-    body: "Maintains official records — including minutes, policies, votes, and organizational documents — for transparency and continuity.",
+    title: "Clerk / Secretary / Treasurer Support",
+    body: "Maintains official records — minutes, policies, votes, and organizational documents — and assists the Treasurer with donation logging, expense tracking, and financial report preparation.",
   },
   {
     icon: ShieldCheck,

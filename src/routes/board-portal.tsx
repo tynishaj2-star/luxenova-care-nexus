@@ -64,21 +64,28 @@ const members: BoardMember[] = [
   {
     id: "tynisha",
     name: "Tynisha Johnson",
-    role: "Founder / Treasurer / Community Impact & Program Oversight",
+    role: "Founder / President / Treasurer / Director (State Filing)",
     initials: "TJ",
     sections: treasurySections,
   },
   {
     id: "trina",
     name: "Trina Everett",
-    role: "Co-Founder / Treasurer / Community Impact & Program Oversight",
+    role: "Co-Founder / Community Impact & Program Oversight",
     initials: "TE",
-    sections: treasurySections,
+    sections: [
+      { title: "Family Stabilization Summary", icon: HeartHandshake, description: "Aggregate view of families currently in stabilization." },
+      { title: "Program Outcomes", icon: PieChart, description: "Program-level KPIs and trend lines." },
+      { title: "Community Impact Reports", icon: BookOpenCheck, description: "Narrative + data reports for community sharing." },
+      { title: "Partner Feedback", icon: Users, description: "Notes from churches, schools, and agencies." },
+      { title: "Program Review Tasks", icon: CheckSquare, description: "Open program review and QA assignments." },
+      { title: "Resource Gaps", icon: TrendingUp, description: "Identified service gaps awaiting partner match." },
+    ],
   },
   {
     id: "victoria",
     name: "Victoria Roscoe",
-    role: "Board Chair / President",
+    role: "Board Chair",
     initials: "VR",
     sections: [
       { title: "Board Meeting Agenda", icon: CalendarCheck, description: "Upcoming agendas and circulated pre-reads." },
@@ -112,7 +119,7 @@ const members: BoardMember[] = [
   {
     id: "joe",
     name: "Joe Younge",
-    role: "Secretary",
+    role: "Clerk / Secretary / Treasurer Support",
     initials: "JY",
     sections: [
       { title: "Board Minutes", icon: ScrollText, description: "Drafted and approved meeting minutes." },
@@ -125,6 +132,9 @@ const members: BoardMember[] = [
       { title: "Board Vote Records", icon: ScrollText, description: "Recorded motions and voting outcomes." },
       { title: "Governance Calendar", icon: CalendarCheck, description: "Annual governance and reporting calendar." },
       { title: "Document Archive", icon: Archive, description: "Historical records and signed resolutions." },
+      { title: "Treasurer Support — Donation Log", icon: Wallet, description: "Assist Treasurer with logging incoming donations and acknowledgments." },
+      { title: "Treasurer Support — Expense Tracking", icon: ClipboardList, description: "Help reconcile receipts, disbursements, and program expenses." },
+      { title: "Treasurer Support — Financial Reports", icon: PieChart, description: "Prep monthly and quarterly financial summaries for board review." },
     ],
   },
 ];

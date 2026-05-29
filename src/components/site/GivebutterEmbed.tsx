@@ -28,6 +28,16 @@ export function GivebutterEmbed({
   return (
     <div className={className}>
       {createElement("givebutter-widget", { id: campaignId })}
+      <div className="mt-6 flex justify-center">
+        <a
+          href={`https://givebutter.com/luxenova-community-relief-fund-${campaignId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-rosewood px-7 py-3 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-90"
+        >
+          Donate on Givebutter
+        </a>
+      </div>
     </div>
   );
 }

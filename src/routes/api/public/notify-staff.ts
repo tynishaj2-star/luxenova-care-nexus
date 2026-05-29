@@ -47,7 +47,17 @@ export const Route = createFileRoute('/api/public/notify-staff')({
           request.headers.get('cf-connecting-ip') ||
           request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
           'unknown'
-        if (rateLimited(ip)) {
+
+        const supabase = createClient(supabaseUrl, supabaseServiceKey)
+        const { data: allowed, error: rateError } = await supabase.rpc(
+          'check_notify_staff_rate_limit',
+          { _ip: ip, _max: MAX_PER_WINDOW, _window_seconds: WINDOW_SECONDS },
+        )
+        if (rateError) {
+          console.error('Rate limit check failed', { error: rateError })
+          return Response.json({ error: 'Server error' }, { status: 500 })
+        }
+        if (allowed === false) {
           return Response.json({ error: 'Too many requests' }, { status: 429 })
         }
 

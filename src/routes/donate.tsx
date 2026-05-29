@@ -60,32 +60,26 @@ function DonatePage() {
               ))}
             </div>
 
-            <div className="mt-10 rounded-3xl border border-border/70 bg-card p-8 shadow-luxe md:p-12">
-              <div className="grid items-center gap-8 md:grid-cols-2">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Give today</p>
-                  <h2 className="mt-3 font-display text-3xl md:text-4xl">Direct support for families in crisis.</h2>
-                  <p className="mt-4 text-sm text-muted-foreground">
-                    Our secure donation portal is being finalized. In the
-                    meantime, sponsor a family or contact our team to coordinate
-                    a gift, partnership, or recurring sponsorship.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-3">
-                  <button
-                    type="button"
-                    disabled
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-rosewood px-7 py-3.5 text-sm font-medium text-rosewood-foreground shadow-luxe opacity-70"
-                  >
-                    <Heart className="h-4 w-4" /> Donation Link Coming Soon
-                  </button>
-                  <Link
-                    to="/sponsor-a-family"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-7 py-3.5 text-sm font-medium text-foreground transition hover:border-foreground/30"
-                  >
-                    <Users className="h-4 w-4" /> Sponsor a Family
-                  </Link>
-                </div>
+            <div className="mt-10 rounded-3xl border border-border/70 bg-card p-6 shadow-luxe md:p-10">
+              <div className="text-center mb-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Give today</p>
+                <h2 className="mt-3 font-display text-3xl md:text-4xl">
+                  LuxeNova Community Relief Fund
+                </h2>
+                <p className="mt-3 text-sm text-muted-foreground max-w-2xl mx-auto">
+                  Donate securely through our Givebutter campaign. 100% of gifts
+                  support family stabilization, Chauntae's Voice, homeless
+                  outreach, and our education and empowerment programs.
+                </p>
+              </div>
+              <GivebutterEmbed />
+              <div className="mt-6 flex justify-center">
+                <Link
+                  to="/sponsor-a-family"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-7 py-3 text-sm font-medium text-foreground transition hover:border-foreground/30"
+                >
+                  <Users className="h-4 w-4" /> Sponsor a Family
+                </Link>
               </div>
             </div>
 

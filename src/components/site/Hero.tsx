@@ -2,12 +2,14 @@ import { Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-family.jpg";
 
 const trustBadges = [
+  "Family Stabilization",
+  "Chauntae's Voice · DV Support",
   "Emergency Rental Assistance",
   "Utility Relief",
   "Autism Family Support",
-  "Family Stabilization",
-  "Resource Navigation",
-  "Documented Impact",
+  "Feed & Clothe the Homeless",
+  "Education & Empowerment",
+  "Business & Credit Coaching",
 ];
 
 export function Hero() {
@@ -30,9 +32,10 @@ export function Hero() {
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground text-pretty">
               LuxeNova Community Wellness helps Massachusetts families facing
-              housing instability, utility shutoffs, autism-related support
-              gaps, and resource barriers access organized community support
-              with dignity, transparency, and care.
+              housing instability, utility shutoffs, domestic violence,
+              homelessness, autism-related support gaps, and resource barriers —
+              with stabilization, education, and economic empowerment
+              programs delivered with dignity, transparency, and care.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link

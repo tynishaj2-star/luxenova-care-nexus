@@ -36,6 +36,7 @@ const inquiryTypes = [
 
 function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">

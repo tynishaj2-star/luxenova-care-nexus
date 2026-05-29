@@ -19,21 +19,8 @@ const BodySchema = z.object({
   fields: z.array(FieldSchema).min(1).max(60),
 })
 
-// Tiny in-memory rate limit (per Worker instance — best-effort).
-const RATE: Map<string, { count: number; reset: number }> = new Map()
-const WINDOW_MS = 60_000
+const WINDOW_SECONDS = 60
 const MAX_PER_WINDOW = 5
-
-function rateLimited(ip: string): boolean {
-  const now = Date.now()
-  const entry = RATE.get(ip)
-  if (!entry || entry.reset < now) {
-    RATE.set(ip, { count: 1, reset: now + WINDOW_MS })
-    return false
-  }
-  entry.count += 1
-  return entry.count > MAX_PER_WINDOW
-}
 
 function generateToken(): string {
   const bytes = new Uint8Array(32)
@@ -60,7 +47,17 @@ export const Route = createFileRoute('/api/public/notify-staff')({
           request.headers.get('cf-connecting-ip') ||
           request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
           'unknown'
-        if (rateLimited(ip)) {
+
+        const supabase = createClient(supabaseUrl, supabaseServiceKey)
+        const { data: allowed, error: rateError } = await supabase.rpc(
+          'check_notify_staff_rate_limit',
+          { _ip: ip, _max: MAX_PER_WINDOW, _window_seconds: WINDOW_SECONDS },
+        )
+        if (rateError) {
+          console.error('Rate limit check failed', { error: rateError })
+          return Response.json({ error: 'Server error' }, { status: 500 })
+        }
+        if (allowed === false) {
           return Response.json({ error: 'Too many requests' }, { status: 429 })
         }
 
@@ -85,7 +82,6 @@ export const Route = createFileRoute('/api/public/notify-staff')({
         const messageId = crypto.randomUUID()
         const submittedAt = new Date().toISOString()
 
-        const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
         // Ensure an unsubscribe token exists for the recipient (required by queue).
         const normalized = recipient.toLowerCase()

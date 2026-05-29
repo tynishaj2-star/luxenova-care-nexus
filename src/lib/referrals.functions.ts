@@ -95,6 +95,18 @@ export const updateReferralStatus = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     const { supabase, userId } = context;
+
+    // Server-side authorization: only staff or admin can change referral status.
+    // The UI hides controls, but partners could otherwise POST directly here and
+    // mark their own referrals as "Relief Delivered" / "Completed".
+    const { data: roleRow } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .in("role", ["staff", "admin"])
+      .maybeSingle();
+    if (!roleRow) throw new Error("Forbidden: staff or admin role required");
+
     const { error } = await supabase
       .from("referrals")
       .update({ status: data.status })

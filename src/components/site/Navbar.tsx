@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import logo from "@/assets/luxenova-logo.png";
 
 const mainLinks = [
   { label: "Home", to: "/" as const },
@@ -53,10 +54,14 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-rosewood text-rosewood-foreground font-display text-base">
-            L
-          </span>
+        <Link to="/" className="flex items-center gap-3">
+          <img
+            src={logo}
+            alt="LuxeNova Community Wellness logo"
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+          />
           <span className="font-display text-lg tracking-tight leading-tight">
             LuxeNova<span className="text-muted-foreground"> Community Wellness</span>
           </span>

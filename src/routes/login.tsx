@@ -1,14 +1,16 @@
 import { createFileRoute, Link, useNavigate, redirect } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { z } from "zod";
-import { Lock, Mail, ShieldCheck, ArrowRight } from "lucide-react";
+import { Lock, Mail, ShieldCheck, ArrowRight, KeyRound } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/hooks/use-auth";
 
+type Mode = "signin" | "forgot";
+
 const searchSchema = z.object({
   redirect: z.string().optional().default("/portal"),
-  mode: z.enum(["signin", "signup"]).optional().default("signin"),
+  mode: z.enum(["signin", "forgot"]).optional().default("signin"),
 });
 
 export const Route = createFileRoute("/login")({
@@ -29,23 +31,23 @@ export const Route = createFileRoute("/login")({
 const credentialsSchema = z.object({
   email: z.string().trim().email().max(255),
   password: z.string().min(8).max(128),
-  fullName: z.string().trim().max(120).optional(),
-  organization: z.string().trim().max(120).optional(),
+});
+
+const emailOnlySchema = z.object({
+  email: z.string().trim().email().max(255),
 });
 
 function LoginPage() {
   const search = Route.useSearch();
   const navigate = useNavigate();
   const { user, loading } = useAuth();
-  const [mode, setMode] = useState<"signin" | "signup">(search.mode);
+  const [mode, setMode] = useState<Mode>(search.mode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [organization, setOrganization] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  // Redirect once authenticated
   useEffect(() => {
     if (!loading && user) {
       navigate({ to: search.redirect as "/portal" });
@@ -55,33 +57,41 @@ function LoginPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
-    const parsed = credentialsSchema.safeParse({ email, password, fullName, organization });
+    setInfo(null);
+
+    if (mode === "forgot") {
+      const parsed = emailOnlySchema.safeParse({ email });
+      if (!parsed.success) {
+        setError("Please enter a valid email.");
+        return;
+      }
+      setBusy(true);
+      try {
+        const { error: e } = await supabase.auth.resetPasswordForEmail(parsed.data.email, {
+          redirectTo: `${window.location.origin}/reset-password`,
+        });
+        if (e) throw e;
+        setInfo("If an account exists for that email, a reset link is on its way.");
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Could not send reset email.");
+      } finally {
+        setBusy(false);
+      }
+      return;
+    }
+
+    const parsed = credentialsSchema.safeParse({ email, password });
     if (!parsed.success) {
       setError(parsed.error.issues[0]?.message ?? "Please check the form.");
       return;
     }
     setBusy(true);
     try {
-      if (mode === "signup") {
-        const { error: e } = await supabase.auth.signUp({
-          email: parsed.data.email,
-          password: parsed.data.password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/portal`,
-            data: {
-              full_name: parsed.data.fullName ?? "",
-              organization: parsed.data.organization ?? "",
-            },
-          },
-        });
-        if (e) throw e;
-      } else {
-        const { error: e } = await supabase.auth.signInWithPassword({
-          email: parsed.data.email,
-          password: parsed.data.password,
-        });
-        if (e) throw e;
-      }
+      const { error: e } = await supabase.auth.signInWithPassword({
+        email: parsed.data.email,
+        password: parsed.data.password,
+      });
+      if (e) throw e;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Authentication failed");
     } finally {
@@ -101,7 +111,6 @@ function LoginPage() {
         setBusy(false);
         return;
       }
-      // If not redirected, session is set — useAuth effect will navigate.
     } catch (err) {
       setError(err instanceof Error ? err.message : "Google sign-in failed");
       setBusy(false);
@@ -126,7 +135,6 @@ function LoginPage() {
       </header>
 
       <main className="mx-auto grid max-w-6xl gap-12 px-6 pb-24 pt-8 lg:grid-cols-2 lg:items-center">
-        {/* Left: copy */}
         <section className="space-y-6">
           <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Partner Portal</p>
           <h1 className="font-display text-4xl md:text-5xl text-balance">
@@ -151,71 +159,54 @@ function LoginPage() {
           </ul>
         </section>
 
-        {/* Right: form */}
         <section>
           <div className="rounded-3xl border border-border/70 bg-card p-8 shadow-luxe md:p-10">
             <div className="mb-6 inline-flex rounded-full border border-border bg-background p-1">
-              {(["signin", "signup"] as const).map((m) => (
+              {(["signin", "forgot"] as const).map((m) => (
                 <button
                   key={m}
                   type="button"
-                  onClick={() => setMode(m)}
+                  onClick={() => { setMode(m); setError(null); setInfo(null); }}
                   className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${
                     mode === m
                       ? "bg-rosewood text-rosewood-foreground shadow-soft"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {m === "signin" ? "Sign in" : "Create account"}
+                  {m === "signin" ? "Sign in" : "Forgot password"}
                 </button>
               ))}
             </div>
 
             <h2 className="font-display text-2xl">
-              {mode === "signin" ? "Welcome back" : "Create a partner account"}
+              {mode === "signin" ? "Welcome back" : "Reset your password"}
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
               {mode === "signin"
                 ? "Use your partner credentials to access the referral dashboard."
-                : "Free for community partners. Auto-approved on signup."}
+                : "We'll email you a secure link to choose a new password."}
             </p>
 
-            <button
-              type="button"
-              onClick={handleGoogle}
-              disabled={busy}
-              className="mt-6 flex w-full items-center justify-center gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm font-medium text-foreground shadow-soft transition hover:border-foreground/30 disabled:opacity-50"
-            >
-              <GoogleIcon /> Continue with Google
-            </button>
+            {mode === "signin" && (
+              <>
+                <button
+                  type="button"
+                  onClick={handleGoogle}
+                  disabled={busy}
+                  className="mt-6 flex w-full items-center justify-center gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm font-medium text-foreground shadow-soft transition hover:border-foreground/30 disabled:opacity-50"
+                >
+                  <GoogleIcon /> Continue with Google
+                </button>
 
-            <div className="my-5 flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              <span className="h-px flex-1 bg-border" />
-              or with email
-              <span className="h-px flex-1 bg-border" />
-            </div>
+                <div className="my-5 flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  <span className="h-px flex-1 bg-border" />
+                  or with email
+                  <span className="h-px flex-1 bg-border" />
+                </div>
+              </>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              {mode === "signup" && (
-                <>
-                  <Field label="Full name">
-                    <input
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      placeholder="Jane Doe"
-                      className={inputCls}
-                    />
-                  </Field>
-                  <Field label="Organization">
-                    <input
-                      value={organization}
-                      onChange={(e) => setOrganization(e.target.value)}
-                      placeholder="Lincoln Elementary, Grace Church…"
-                      className={inputCls}
-                    />
-                  </Field>
-                </>
-              )}
               <Field label="Email">
                 <div className="relative">
                   <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" strokeWidth={1.5} />
@@ -230,25 +221,33 @@ function LoginPage() {
                   />
                 </div>
               </Field>
-              <Field label="Password">
-                <div className="relative">
-                  <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" strokeWidth={1.5} />
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    minLength={8}
-                    autoComplete={mode === "signin" ? "current-password" : "new-password"}
-                    placeholder="At least 8 characters"
-                    className={`${inputCls} pl-9`}
-                  />
-                </div>
-              </Field>
+
+              {mode === "signin" && (
+                <Field label="Password">
+                  <div className="relative">
+                    <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" strokeWidth={1.5} />
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      minLength={8}
+                      autoComplete="current-password"
+                      placeholder="At least 8 characters"
+                      className={`${inputCls} pl-9`}
+                    />
+                  </div>
+                </Field>
+              )}
 
               {error && (
                 <p className="rounded-xl border border-rosewood/30 bg-accent/40 px-3 py-2 text-xs text-rosewood">
                   {error}
+                </p>
+              )}
+              {info && (
+                <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
+                  {info}
                 </p>
               )}
 
@@ -257,12 +256,24 @@ function LoginPage() {
                 disabled={busy}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-rosewood px-6 py-3 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-95 disabled:opacity-50"
               >
-                {busy ? "Please wait…" : mode === "signin" ? "Sign in" : "Create account"}
-                <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+                {busy ? "Please wait…" : mode === "signin" ? "Sign in" : "Send reset link"}
+                {mode === "signin"
+                  ? <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+                  : <KeyRound className="h-4 w-4" strokeWidth={1.5} />}
               </button>
             </form>
 
-            <p className="mt-6 text-xs text-muted-foreground">
+            <div className="mt-6 rounded-xl border border-border/70 bg-background px-4 py-3 text-xs text-muted-foreground">
+              <strong className="block text-foreground">Invite-only access</strong>
+              New partner accounts are created by invitation from a LuxeNova
+              Community Wellness admin. Contact us at{" "}
+              <a href="mailto:partners@luxenovacommunitywellnessinc.com" className="text-rosewood underline">
+                partners@luxenovacommunitywellnessinc.com
+              </a>{" "}
+              to request access.
+            </div>
+
+            <p className="mt-4 text-xs text-muted-foreground">
               By continuing you agree to our{" "}
               <Link to="/terms" className="underline hover:text-rosewood">Terms</Link>,{" "}
               <Link to="/privacy" className="underline hover:text-rosewood">Privacy Policy</Link>, and{" "}
@@ -298,7 +309,6 @@ function GoogleIcon() {
   );
 }
 
-// Helpful redirect convenience for places that want to gate via Route.beforeLoad
 export function requireSignedOutRedirect() {
   throw redirect({ to: "/portal" });
 }

@@ -7,6 +7,9 @@ import {
   Megaphone,
   FileText,
   Handshake,
+  ShieldHeart,
+  Shirt,
+  GraduationCap,
 } from "lucide-react";
 
 const featured = [
@@ -19,6 +22,17 @@ const featured = [
       "Dedicated stabilization navigator",
       "30 / 60 / 90-day follow-through",
       "Coordinated with schools, housing, and benefits partners",
+    ],
+  },
+  {
+    icon: ShieldHeart,
+    title: "Chauntae's Voice — Domestic Violence Support",
+    tagline: "In Loving Memory · Est. in honor of Chauntae Renee Jones (1985–1999)",
+    body: "A dignified, confidential pathway for women and families experiencing domestic violence — safety planning, shelter and legal referrals, and trauma-informed advocacy. Built in honor of a friend whose life was taken too soon, so that other women have somewhere to turn.",
+    points: [
+      "Confidential intake and safety planning",
+      "Shelter, legal, and counseling referrals",
+      "Trauma-informed advocacy and follow-through",
     ],
   },
   {
@@ -44,6 +58,16 @@ const programs = [
     icon: Zap,
     title: "Utility Relief",
     body: "Support for households facing utility shutoffs — gas, electric, and water — before service is lost.",
+  },
+  {
+    icon: Shirt,
+    title: "Feed & Clothe the Homeless",
+    body: "Community meals, seasonal coat drives, hygiene kits, and dignified clothing distributions for neighbors living unsheltered.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Education & Empowerment",
+    body: "Free community classes — tax preparation basics, resume building, and financial literacy — with more workshops being added.",
   },
   {
     icon: Compass,

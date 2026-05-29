@@ -10,6 +10,8 @@ import {
   Shield,
   Shirt,
   GraduationCap,
+  Briefcase,
+  CreditCard,
 } from "lucide-react";
 
 const featured = [
@@ -67,7 +69,17 @@ const programs = [
   {
     icon: GraduationCap,
     title: "Education & Empowerment",
-    body: "Free community classes — tax preparation basics, resume building, and financial literacy — with more workshops being added.",
+    body: "Free community classes — tax preparation basics, resume building, and financial literacy — with more workshops added each season.",
+  },
+  {
+    icon: Briefcase,
+    title: "Business Structuring 101",
+    body: "Practical workshops on how to start a business — entity setup, EIN, licensing, and basic bookkeeping — for aspiring community entrepreneurs.",
+  },
+  {
+    icon: CreditCard,
+    title: "Credit Repair & Financial Health",
+    body: "Guided sessions on reading credit reports, disputing errors, rebuilding credit, and building toward long-term financial stability.",
   },
   {
     icon: Compass,

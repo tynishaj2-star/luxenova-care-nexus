@@ -34,6 +34,11 @@ import {
   updateReferralStatus,
   addReferralNote,
 } from "@/lib/referrals.functions";
+import {
+  inviteUser,
+  listRoleRequests,
+  decideRoleRequest,
+} from "@/lib/admin.functions";
 
 type Status =
   | "New"
@@ -353,13 +358,7 @@ export function AdminDashboard({
               ctaLabel="Open public Impact page"
             />
           )}
-          {section === "settings" && (
-            <ComingSoonSection
-              icon={SettingsIcon}
-              title="Settings"
-              body="Manage staff accounts, role assignments, navigator pool, status workflow defaults, and notification preferences."
-            />
-          )}
+          {section === "settings" && <SettingsSection />}
         </main>
       </div>
     </div>
@@ -757,5 +756,210 @@ function ComingSoonSection({
         )}
       </div>
     </div>
+  );
+}
+
+function SettingsSection() {
+  return (
+    <div className="space-y-8">
+      <div>
+        <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Settings</p>
+        <h1 className="mt-2 font-display text-3xl md:text-4xl">Access & invitations</h1>
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+          Public sign-up is disabled. Invite partners and staff by email, and
+          approve role-elevation requests from existing partners.
+        </p>
+      </div>
+      <InviteUserPanel />
+      <RoleRequestsPanel />
+    </div>
+  );
+}
+
+function InviteUserPanel() {
+  const inviteFn = useServerFn(inviteUser);
+  const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [organization, setOrganization] = useState("");
+  const [role, setRole] = useState<"partner" | "staff" | "admin">("partner");
+  const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
+
+  const mut = useMutation({
+    mutationFn: () =>
+      inviteFn({ data: { email, full_name: fullName, organization, role } }),
+    onSuccess: (r) => {
+      setInfo(`Invitation sent to ${r.email}.`);
+      setError(null);
+      setEmail("");
+      setFullName("");
+      setOrganization("");
+      setRole("partner");
+    },
+    onError: (e: any) => {
+      setError(e?.message ?? "Could not send invitation.");
+      setInfo(null);
+    },
+  });
+
+  return (
+    <section className="rounded-2xl border border-border/70 bg-card p-6 shadow-soft">
+      <div className="flex items-center gap-3">
+        <UserPlus className="h-5 w-5 text-rosewood" strokeWidth={1.5} />
+        <h2 className="font-display text-xl">Invite a user</h2>
+      </div>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Sends a secure invitation email. They'll set their own password before
+        signing in.
+      </p>
+
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email@organization.org"
+          className="h-10 rounded-xl border border-border bg-background px-3 text-sm outline-none focus:border-rosewood focus:ring-2 focus:ring-rosewood/20"
+        />
+        <select
+          value={role}
+          onChange={(e) => setRole(e.target.value as any)}
+          className="h-10 rounded-xl border border-border bg-background px-3 text-sm outline-none focus:border-rosewood focus:ring-2 focus:ring-rosewood/20"
+        >
+          <option value="partner">Partner</option>
+          <option value="staff">Staff</option>
+          <option value="admin">Admin</option>
+        </select>
+        <input
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          placeholder="Full name (optional)"
+          className="h-10 rounded-xl border border-border bg-background px-3 text-sm outline-none focus:border-rosewood focus:ring-2 focus:ring-rosewood/20"
+        />
+        <input
+          value={organization}
+          onChange={(e) => setOrganization(e.target.value)}
+          placeholder="Organization (optional)"
+          className="h-10 rounded-xl border border-border bg-background px-3 text-sm outline-none focus:border-rosewood focus:ring-2 focus:ring-rosewood/20"
+        />
+      </div>
+
+      {error && (
+        <p className="mt-3 rounded-xl border border-rosewood/30 bg-accent/40 px-3 py-2 text-xs text-rosewood">
+          {error}
+        </p>
+      )}
+      {info && (
+        <p className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
+          {info}
+        </p>
+      )}
+
+      <button
+        onClick={() => mut.mutate()}
+        disabled={mut.isPending || !email}
+        className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-rosewood px-5 py-2 text-sm font-medium text-rosewood-foreground shadow-luxe disabled:opacity-50"
+      >
+        <Send className="h-4 w-4" strokeWidth={1.5} />
+        {mut.isPending ? "Sending…" : "Send invitation"}
+      </button>
+    </section>
+  );
+}
+
+function RoleRequestsPanel() {
+  const listFn = useServerFn(listRoleRequests);
+  const decideFn = useServerFn(decideRoleRequest);
+  const qc = useQueryClient();
+  const q = useQuery({ queryKey: ["admin-role-requests"], queryFn: () => listFn() });
+
+  const mut = useMutation({
+    mutationFn: (vars: { id: string; decision: "approved" | "denied" }) =>
+      decideFn({ data: vars }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["admin-role-requests"] }),
+  });
+
+  const reqs = q.data ?? [];
+  const pending = reqs.filter((r: any) => r.status === "pending");
+  const past = reqs.filter((r: any) => r.status !== "pending").slice(0, 10);
+
+  return (
+    <section className="rounded-2xl border border-border/70 bg-card p-6 shadow-soft">
+      <div className="flex items-center gap-3">
+        <HandHeart className="h-5 w-5 text-rosewood" strokeWidth={1.5} />
+        <h2 className="font-display text-xl">Role-elevation requests</h2>
+      </div>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Approve to grant the requested role immediately. Deny to leave the user
+        at their current access level.
+      </p>
+
+      <div className="mt-5 space-y-3">
+        {q.isLoading && <p className="text-sm text-muted-foreground">Loading…</p>}
+        {!q.isLoading && pending.length === 0 && (
+          <p className="text-sm text-muted-foreground">No pending requests.</p>
+        )}
+        {pending.map((r: any) => (
+          <div key={r.id} className="rounded-xl border border-border/70 bg-background p-4">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="font-medium">
+                  {r.profile?.full_name || "Unknown user"}
+                  <span className="ml-2 text-xs text-muted-foreground">
+                    {r.profile?.organization || "—"}
+                  </span>
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Requested role:{" "}
+                  <span className="font-medium text-foreground">{r.requested_role}</span>
+                  {" · "}
+                  {new Date(r.created_at).toLocaleString()}
+                </p>
+                {r.message && (
+                  <p className="mt-2 rounded-lg bg-accent/40 px-3 py-2 text-sm text-foreground/85">
+                    {r.message}
+                  </p>
+                )}
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => mut.mutate({ id: r.id, decision: "approved" })}
+                  disabled={mut.isPending}
+                  className="rounded-full bg-emerald-600 px-4 py-1.5 text-xs font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
+                >
+                  Approve
+                </button>
+                <button
+                  onClick={() => mut.mutate({ id: r.id, decision: "denied" })}
+                  disabled={mut.isPending}
+                  className="rounded-full border border-border bg-background px-4 py-1.5 text-xs font-medium hover:border-foreground/30 disabled:opacity-50"
+                >
+                  Deny
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {past.length > 0 && (
+          <div className="pt-4">
+            <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Recent decisions</p>
+            <ul className="mt-2 divide-y divide-border/60 text-sm">
+              {past.map((r: any) => (
+                <li key={r.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
+                  <span>
+                    {r.profile?.full_name || "User"} — {r.requested_role}
+                  </span>
+                  <span className={r.status === "approved" ? "text-emerald-700" : "text-muted-foreground"}>
+                    {r.status}
+                    {r.decided_at ? ` · ${new Date(r.decided_at).toLocaleDateString()}` : ""}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

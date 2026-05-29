@@ -3,6 +3,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { Services } from "@/components/site/Services";
 import { WhoWeAre } from "@/components/site/WhoWeAre";
+import { CommunitiesWeServe } from "@/components/site/CommunitiesWeServe";
 import { WhyUs } from "@/components/site/WhyUs";
 import { Partners } from "@/components/site/Partners";
 import { ReferralCTA } from "@/components/site/ReferralCTA";
@@ -37,6 +38,7 @@ function Index() {
       <main>
         <Hero />
         <WhoWeAre />
+        <CommunitiesWeServe />
         <Services />
         <WhyUs />
         <ReferralCTA />

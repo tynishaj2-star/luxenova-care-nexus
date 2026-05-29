@@ -38,6 +38,7 @@ import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConflictOfInterestRouteImport } from './routes/conflict-of-interest'
 import { Route as CommunityPartnersRouteImport } from './routes/community-partners'
+import { Route as ChauntaesVoiceRouteImport } from './routes/chauntaes-voice'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BylawsRouteImport } from './routes/bylaws'
 import { Route as BoardPortalRouteImport } from './routes/board-portal'
@@ -196,6 +197,11 @@ const CommunityPartnersRoute = CommunityPartnersRouteImport.update({
   path: '/community-partners',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChauntaesVoiceRoute = ChauntaesVoiceRouteImport.update({
+  id: '/chauntaes-voice',
+  path: '/chauntaes-voice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
@@ -267,6 +273,7 @@ export interface FileRoutesByFullPath {
   '/board-portal': typeof BoardPortalRoute
   '/bylaws': typeof BylawsRoute
   '/careers': typeof CareersRoute
+  '/chauntaes-voice': typeof ChauntaesVoiceRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/conflict-of-interest': typeof ConflictOfInterestRoute
   '/contact': typeof ContactRoute
@@ -310,6 +317,7 @@ export interface FileRoutesByTo {
   '/board-portal': typeof BoardPortalRoute
   '/bylaws': typeof BylawsRoute
   '/careers': typeof CareersRoute
+  '/chauntaes-voice': typeof ChauntaesVoiceRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/conflict-of-interest': typeof ConflictOfInterestRoute
   '/contact': typeof ContactRoute
@@ -354,6 +362,7 @@ export interface FileRoutesById {
   '/board-portal': typeof BoardPortalRoute
   '/bylaws': typeof BylawsRoute
   '/careers': typeof CareersRoute
+  '/chauntaes-voice': typeof ChauntaesVoiceRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/conflict-of-interest': typeof ConflictOfInterestRoute
   '/contact': typeof ContactRoute
@@ -399,6 +408,7 @@ export interface FileRouteTypes {
     | '/board-portal'
     | '/bylaws'
     | '/careers'
+    | '/chauntaes-voice'
     | '/community-partners'
     | '/conflict-of-interest'
     | '/contact'
@@ -442,6 +452,7 @@ export interface FileRouteTypes {
     | '/board-portal'
     | '/bylaws'
     | '/careers'
+    | '/chauntaes-voice'
     | '/community-partners'
     | '/conflict-of-interest'
     | '/contact'
@@ -485,6 +496,7 @@ export interface FileRouteTypes {
     | '/board-portal'
     | '/bylaws'
     | '/careers'
+    | '/chauntaes-voice'
     | '/community-partners'
     | '/conflict-of-interest'
     | '/contact'
@@ -529,6 +541,7 @@ export interface RootRouteChildren {
   BoardPortalRoute: typeof BoardPortalRoute
   BylawsRoute: typeof BylawsRoute
   CareersRoute: typeof CareersRoute
+  ChauntaesVoiceRoute: typeof ChauntaesVoiceRoute
   CommunityPartnersRoute: typeof CommunityPartnersRoute
   ConflictOfInterestRoute: typeof ConflictOfInterestRoute
   ContactRoute: typeof ContactRoute
@@ -771,6 +784,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunityPartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chauntaes-voice': {
+      id: '/chauntaes-voice'
+      path: '/chauntaes-voice'
+      fullPath: '/chauntaes-voice'
+      preLoaderRoute: typeof ChauntaesVoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/careers': {
       id: '/careers'
       path: '/careers'
@@ -865,6 +885,7 @@ const rootRouteChildren: RootRouteChildren = {
   BoardPortalRoute: BoardPortalRoute,
   BylawsRoute: BylawsRoute,
   CareersRoute: CareersRoute,
+  ChauntaesVoiceRoute: ChauntaesVoiceRoute,
   CommunityPartnersRoute: CommunityPartnersRoute,
   ConflictOfInterestRoute: ConflictOfInterestRoute,
   ContactRoute: ContactRoute,

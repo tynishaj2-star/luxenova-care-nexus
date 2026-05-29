@@ -12,6 +12,7 @@ const mainLinks = [
 ];
 
 const moreLinks = [
+  { label: "Chauntae's Voice (DV Support)", to: "/chauntaes-voice" as const },
   { label: "Founder", to: "/founder" as const },
   { label: "FAQ", to: "/faq" as const },
   { label: "Eligibility", to: "/eligibility" as const },

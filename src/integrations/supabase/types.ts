@@ -125,6 +125,24 @@ export type Database = {
         }
         Relationships: []
       }
+      notify_staff_rate_limits: {
+        Row: {
+          count: number
+          ip: string
+          window_start: string
+        }
+        Insert: {
+          count?: number
+          ip: string
+          window_start: string
+        }
+        Update: {
+          count?: number
+          ip?: string
+          window_start?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -288,6 +306,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_notify_staff_rate_limit: {
+        Args: { _ip: string; _max: number; _window_seconds: number }
+        Returns: boolean
+      }
       delete_email: {
         Args: { message_id: number; queue_name: string }
         Returns: boolean

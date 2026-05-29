@@ -102,8 +102,13 @@ function SectionCard({
 const supportOptions = [
   "Emergency Rental Assistance",
   "Utility Relief",
+  "Chauntae's Voice — Domestic Violence Support",
+  "Feed & Clothe the Homeless",
   "Autism Family Support",
   "Family Stabilization",
+  "Education & Empowerment (Tax / Resume / Financial Literacy)",
+  "Business Structuring 101",
+  "Credit Repair & Financial Health",
   "Resource Navigation",
   "Documentation Assistance",
   "Community Outreach",
@@ -302,7 +307,12 @@ export function ReferralForm() {
                     <option value="" disabled>Select…</option>
                     <option>Rent emergency / eviction risk</option>
                     <option>Utility shutoff notice</option>
+                    <option>Domestic violence / safety (Chauntae's Voice)</option>
+                    <option>Homelessness / food & clothing needs</option>
                     <option>Autism family support gap</option>
+                    <option>Education / job readiness (tax, resume, financial literacy)</option>
+                    <option>Business start-up / structuring guidance</option>
+                    <option>Credit repair / financial health</option>
                     <option>Food / essentials</option>
                     <option>Documentation / benefits</option>
                     <option>Multiple compounding barriers</option>

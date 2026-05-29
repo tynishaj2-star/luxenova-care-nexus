@@ -18,6 +18,7 @@ export function Footer() {
       title: "Community",
       links: [
         { label: "Request Help", to: "/referrals" as const },
+        { label: "Chauntae's Voice (DV Support)", to: "/chauntaes-voice" as const },
         { label: "Donate", to: "/donate" as const },
         { label: "Sponsor a Family", to: "/sponsor-a-family" as const },
         { label: "Community Drives", to: "/food-drives" as const },

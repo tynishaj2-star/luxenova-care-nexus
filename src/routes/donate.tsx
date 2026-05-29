@@ -11,13 +11,13 @@ export const Route = createFileRoute("/donate")({
       {
         name: "description",
         content:
-          "Support LuxeNova Community Wellness — transparent community relief funding for Massachusetts families facing rent emergencies, utility shutoffs, autism support needs, and stabilization barriers.",
+          "Support LuxeNova Community Wellness — transparent community relief funding for Massachusetts families facing rent emergencies, utility shutoffs, domestic violence, homelessness, autism support needs, and education and empowerment programs.",
       },
       { property: "og:title", content: "Donate — LuxeNova Community Wellness" },
       {
         property: "og:description",
         content:
-          "Help stabilize Massachusetts families with transparent community relief funding.",
+          "Help stabilize and empower Massachusetts families with transparent community relief funding.",
       },
     ],
   }),
@@ -25,10 +25,10 @@ export const Route = createFileRoute("/donate")({
 });
 
 const tiers = [
-  { amount: "$25", body: "Helps with documents, transportation, or urgent basics." },
-  { amount: "$75", body: "Supports utility relief navigation and family follow-up." },
-  { amount: "$150", body: "Helps stabilize a household facing an urgent gap." },
-  { amount: "Monthly", body: "Builds consistent emergency relief capacity." },
+  { amount: "$25", body: "Hygiene kits, meals, or transportation for a neighbor in need." },
+  { amount: "$75", body: "Utility relief follow-up, or supplies for an education or resume class." },
+  { amount: "$150", body: "Helps stabilize a household or fund a Chauntae's Voice safety plan." },
+  { amount: "Monthly", body: "Builds consistent capacity across stabilization, DV support, and empowerment programs." },
 ];
 
 function DonatePage() {
@@ -38,8 +38,8 @@ function DonatePage() {
       <main>
         <PageHeader
           eyebrow="Donate"
-          title="Fund family stabilization. With transparency."
-          description="LuxeNova Community Wellness is building transparent community relief funding for Massachusetts families facing rent emergencies, utility shutoffs, autism-related support needs, and stabilization barriers."
+          title="Fund family stabilization & empowerment. With transparency."
+          description="LuxeNova Community Wellness is building transparent community relief funding for Massachusetts families — rent and utility emergencies, Chauntae's Voice domestic violence support, feed & clothe the homeless outreach, autism family support, and education programs including tax prep, resume building, business structuring, and credit repair."
         />
 
         <section className="pb-16">

@@ -4,17 +4,17 @@ const cards = [
   {
     icon: Building2,
     title: "Our Mission",
-    body: "LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative helping households move through housing, utility, autism support, and resource barriers with dignity.",
+    body: "LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative helping households move through housing, utility, domestic violence, homelessness, autism support, education, and economic empowerment barriers with dignity.",
   },
   {
     icon: HeartHandshake,
     title: "Our Approach",
-    body: "We listen first, then organize stabilization plans across rent assistance, utility relief, autism family support, documentation, and trusted community partnerships.",
+    body: "We listen first, then organize stabilization plans across rent and utility assistance, Chauntae's Voice domestic violence support, food and clothing outreach, autism family support, education classes, business and credit coaching, and trusted community partnerships.",
   },
   {
     icon: ShieldCheck,
     title: "Our Commitment",
-    body: "Transparent impact, responsible data handling, respectful communication, and timely follow-up at every step of a family's relief journey.",
+    body: "Transparent impact, responsible data handling, respectful communication, and timely follow-up at every step of a family's relief and empowerment journey.",
   },
 ];
 

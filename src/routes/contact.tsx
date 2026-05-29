@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Phone, Mail, MapPin, CheckCircle2, ShieldCheck } from "lucide-react";
+import { notifyStaff } from "@/lib/notify-staff";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -34,6 +36,7 @@ const inquiryTypes = [
 
 function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -101,23 +104,41 @@ function ContactPage() {
                     </div>
                   ) : (
                     <form
-                      onSubmit={(e) => {
+                      onSubmit={async (e) => {
                         e.preventDefault();
-                        setSubmitted(true);
+                        if (submitting) return;
+                        const form = e.currentTarget;
+                        const fd = new FormData(form);
+                        setSubmitting(true);
+                        try {
+                          await notifyStaff("Contact Form", [
+                            { label: "Full Name", value: String(fd.get("name") || "") },
+                            { label: "Email", value: String(fd.get("email") || "") },
+                            { label: "Phone", value: String(fd.get("phone") || "") },
+                            { label: "Inquiry Type", value: String(fd.get("inquiry_type") || "") },
+                            { label: "Message", value: String(fd.get("message") || "") },
+                          ]);
+                          setSubmitted(true);
+                        } catch (err) {
+                          console.error(err);
+                          toast.error("Couldn't send your message. Please try again or email us directly.");
+                        } finally {
+                          setSubmitting(false);
+                        }
                       }}
                       className="grid gap-5 sm:grid-cols-2"
                     >
                       <FormField label="Full Name" required>
-                        <input required className="form-input" />
+                        <input name="name" required className="form-input" />
                       </FormField>
                       <FormField label="Email" required>
-                        <input required type="email" className="form-input" />
+                        <input name="email" required type="email" className="form-input" />
                       </FormField>
                       <FormField label="Phone">
-                        <input type="tel" className="form-input" />
+                        <input name="phone" type="tel" className="form-input" />
                       </FormField>
                       <FormField label="Inquiry Type" required>
-                        <select required className="form-input" defaultValue="">
+                        <select name="inquiry_type" required className="form-input" defaultValue="">
                           <option value="" disabled>Select…</option>
                           {inquiryTypes.map((i) => (
                             <option key={i}>{i}</option>
@@ -125,14 +146,15 @@ function ContactPage() {
                         </select>
                       </FormField>
                       <FormField label="Message" required span="full">
-                        <textarea required rows={5} className="form-input min-h-[140px] py-3" />
+                        <textarea name="message" required rows={5} className="form-input min-h-[140px] py-3" />
                       </FormField>
                       <div className="sm:col-span-2 flex justify-end">
                         <button
                           type="submit"
-                          className="inline-flex items-center rounded-full bg-gradient-rosewood px-7 py-3 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-95"
+                          disabled={submitting}
+                          className="inline-flex items-center rounded-full bg-gradient-rosewood px-7 py-3 text-sm font-medium text-rosewood-foreground shadow-luxe transition hover:opacity-95 disabled:opacity-60"
                         >
-                          Send Message
+                          {submitting ? "Sending…" : "Send Message"}
                         </button>
                       </div>
                     </form>

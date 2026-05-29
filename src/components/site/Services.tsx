@@ -25,7 +25,7 @@ const featured = [
     ],
   },
   {
-    icon: ShieldHeart,
+    icon: Shield,
     title: "Chauntae's Voice — Domestic Violence Support",
     tagline: "In Loving Memory · Est. in honor of Chauntae Renee Jones (1985–1999)",
     body: "A dignified, confidential pathway for women and families experiencing domestic violence — safety planning, shelter and legal referrals, and trauma-informed advocacy. Built in honor of a friend whose life was taken too soon, so that other women have somewhere to turn.",

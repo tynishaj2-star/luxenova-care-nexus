@@ -19,21 +19,8 @@ const BodySchema = z.object({
   fields: z.array(FieldSchema).min(1).max(60),
 })
 
-// Tiny in-memory rate limit (per Worker instance — best-effort).
-const RATE: Map<string, { count: number; reset: number }> = new Map()
-const WINDOW_MS = 60_000
+const WINDOW_SECONDS = 60
 const MAX_PER_WINDOW = 5
-
-function rateLimited(ip: string): boolean {
-  const now = Date.now()
-  const entry = RATE.get(ip)
-  if (!entry || entry.reset < now) {
-    RATE.set(ip, { count: 1, reset: now + WINDOW_MS })
-    return false
-  }
-  entry.count += 1
-  return entry.count > MAX_PER_WINDOW
-}
 
 function generateToken(): string {
   const bytes = new Uint8Array(32)

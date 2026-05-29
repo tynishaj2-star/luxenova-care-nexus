@@ -28,6 +28,10 @@ import {
   addReferralNote,
   getCurrentProfile,
 } from "@/lib/referrals.functions";
+import {
+  listMyRoleRequests,
+  requestRoleElevation,
+} from "@/lib/role-requests.functions";
 import { AdminDashboard } from "@/components/portal/AdminDashboard";
 
 export const Route = createFileRoute("/portal")({
@@ -286,6 +290,8 @@ function PortalAuthed() {
               : "Submit new referrals and follow each one through to relief delivered. You see only the referrals your account has submitted."}
           </p>
         </div>
+
+        <RequestStaffAccessPanel />
 
         {/* KPIs */}
         <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

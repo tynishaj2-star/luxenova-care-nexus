@@ -7,7 +7,7 @@ import {
   Megaphone,
   FileText,
   Handshake,
-  ShieldHeart,
+  Shield,
   Shirt,
   GraduationCap,
 } from "lucide-react";

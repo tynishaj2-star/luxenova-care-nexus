@@ -1,18 +1,6 @@
-import { useEffect } from "react";
+import { createElement, useEffect } from "react";
 
 const SCRIPT_SRC = "https://widgets.givebutter.com/latest.umd.cjs?acct=Q19LbjjEPHbW5HwI&p=other";
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
-    interface IntrinsicElements {
-      "givebutter-widget": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement> & { id?: string },
-        HTMLElement
-      >;
-    }
-  }
-}
 
 interface GivebutterEmbedProps {
   campaignId?: string;
@@ -39,7 +27,8 @@ export function GivebutterEmbed({
 
   return (
     <div className={className}>
-      <givebutter-widget id={campaignId}></givebutter-widget>
+      {createElement("givebutter-widget", { id: campaignId })}
     </div>
   );
 }
+

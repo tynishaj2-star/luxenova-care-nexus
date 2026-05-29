@@ -38,6 +38,20 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
+        <section className="border-y border-border/60 bg-accent/30 py-10">
+          <div className="mx-auto max-w-4xl px-6">
+            <div className="text-center mb-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Donate</p>
+              <h2 className="mt-2 font-display text-2xl md:text-3xl">
+                Support the LuxeNova Community Relief Fund
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Every gift helps a Massachusetts family stabilize today.
+              </p>
+            </div>
+            <GivebutterEmbed />
+          </div>
+        </section>
         <WhoWeAre />
         <CommunitiesWeServe />
         <Services />

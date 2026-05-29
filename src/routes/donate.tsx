@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
-import { Heart, HandCoins, Users, Sparkles } from "lucide-react";
+import { GivebutterEmbed } from "@/components/site/GivebutterEmbed";
+import { HandCoins, Users, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/donate")({
   head: () => ({

@@ -82,7 +82,6 @@ export const Route = createFileRoute('/api/public/notify-staff')({
         const messageId = crypto.randomUUID()
         const submittedAt = new Date().toISOString()
 
-        const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
         // Ensure an unsubscribe token exists for the recipient (required by queue).
         const normalized = recipient.toLowerCase()

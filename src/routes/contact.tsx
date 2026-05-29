@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Phone, Mail, MapPin, CheckCircle2, ShieldCheck } from "lucide-react";
+import { notifyStaff } from "@/lib/notify-staff";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({

@@ -34,6 +34,11 @@ import {
   updateReferralStatus,
   addReferralNote,
 } from "@/lib/referrals.functions";
+import {
+  inviteUser,
+  listRoleRequests,
+  decideRoleRequest,
+} from "@/lib/admin.functions";
 
 type Status =
   | "New"
@@ -353,13 +358,7 @@ export function AdminDashboard({
               ctaLabel="Open public Impact page"
             />
           )}
-          {section === "settings" && (
-            <ComingSoonSection
-              icon={SettingsIcon}
-              title="Settings"
-              body="Manage staff accounts, role assignments, navigator pool, status workflow defaults, and notification preferences."
-            />
-          )}
+          {section === "settings" && <SettingsSection />}
         </main>
       </div>
     </div>

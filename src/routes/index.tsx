@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { GivebutterEmbed } from "@/components/site/GivebutterEmbed";
-import { Link } from "@tanstack/react-router";
-import { Heart } from "lucide-react";
 import { Services } from "@/components/site/Services";
 import { WhoWeAre } from "@/components/site/WhoWeAre";
 import { CommunitiesWeServe } from "@/components/site/CommunitiesWeServe";

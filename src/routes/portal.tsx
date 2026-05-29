@@ -686,3 +686,87 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
     </label>
   );
 }
+
+function RequestStaffAccessPanel() {
+  const fetchMine = useServerFn(listMyRoleRequests);
+  const requestFn = useServerFn(requestRoleElevation);
+  const qc = useQueryClient();
+  const myQ = useQuery({ queryKey: ["my-role-requests"], queryFn: () => fetchMine() });
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const mut = useMutation({
+    mutationFn: () => requestFn({ data: { requested_role: "staff", message } }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["my-role-requests"] });
+      setOpen(false);
+      setMessage("");
+      setError(null);
+    },
+    onError: (e: any) => setError(e?.message ?? "Could not submit request."),
+  });
+
+  const pending = (myQ.data ?? []).find((r: any) => r.status === "pending" && r.requested_role === "staff");
+  const lastDecided = (myQ.data ?? []).find((r: any) => r.status !== "pending" && r.requested_role === "staff");
+
+  return (
+    <div className="mb-8 rounded-2xl border border-border/70 bg-card p-5 shadow-soft">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-xs uppercase tracking-[0.14em] text-rosewood">Access level</p>
+          <h3 className="mt-1 font-display text-lg">Need staff access?</h3>
+          <p className="mt-1 max-w-xl text-sm text-muted-foreground">
+            Partners see only their own referrals. Staff can review and update
+            every referral routed to LuxeNova Community Wellness. Submit a
+            request and an admin will follow up.
+          </p>
+          {pending && (
+            <p className="mt-2 text-xs text-amber-700">
+              Your request is pending review (submitted {new Date(pending.created_at).toLocaleDateString()}).
+            </p>
+          )}
+          {!pending && lastDecided && (
+            <p className="mt-2 text-xs text-muted-foreground">
+              Last request: <span className="font-medium text-foreground">{lastDecided.status}</span>{" "}
+              · {new Date(lastDecided.decided_at ?? lastDecided.updated_at).toLocaleDateString()}
+            </p>
+          )}
+        </div>
+        {!pending && (
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:border-foreground/30"
+          >
+            {open ? "Cancel" : "Request staff access"}
+          </button>
+        )}
+      </div>
+
+      {open && !pending && (
+        <div className="mt-4 space-y-3">
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={3}
+            maxLength={1000}
+            placeholder="Briefly describe your role and why you need staff access (optional)…"
+            className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:border-rosewood focus:ring-2 focus:ring-rosewood/20"
+          />
+          {error && (
+            <p className="rounded-xl border border-rosewood/30 bg-accent/40 px-3 py-2 text-xs text-rosewood">
+              {error}
+            </p>
+          )}
+          <button
+            onClick={() => mut.mutate()}
+            disabled={mut.isPending}
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-rosewood px-5 py-2 text-sm font-medium text-rosewood-foreground shadow-luxe disabled:opacity-50"
+          >
+            {mut.isPending ? "Submitting…" : "Submit request"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}

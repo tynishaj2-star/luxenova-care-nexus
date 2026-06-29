@@ -40,6 +40,8 @@ import {
   listRoleRequests,
   decideRoleRequest,
 } from "@/lib/admin.functions";
+import { ExecutiveDirectorSection } from "./ExecutiveDirectorSection";
+import { Crown } from "lucide-react";
 
 type Status =
   | "New"
@@ -102,6 +104,7 @@ const URGENCY_TONE: Record<"Routine" | "Priority" | "Urgent", string> = {
 };
 
 type SectionId =
+  | "executive"
   | "overview"
   | "requests"
   | "food-drives"
@@ -113,6 +116,7 @@ type SectionId =
   | "settings";
 
 const NAV: { id: SectionId; label: string; icon: typeof Inbox }[] = [
+  { id: "executive", label: "Executive Director", icon: Crown },
   { id: "overview", label: "Overview", icon: LayoutDashboard },
   { id: "requests", label: "Requests", icon: Inbox },
   { id: "food-drives", label: "Food Drives", icon: Utensils },
@@ -145,7 +149,7 @@ export function AdminDashboard({
   const setStatusFn = useServerFn(updateReferralStatus);
   const addNoteFn = useServerFn(addReferralNote);
 
-  const [section, setSection] = useState<SectionId>("overview");
+  const [section, setSection] = useState<SectionId>("executive");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<Status | "All">("All");
@@ -281,6 +285,7 @@ export function AdminDashboard({
         </aside>
 
         <main className="min-w-0">
+          {section === "executive" && <ExecutiveDirectorSection />}
           {section === "overview" && <OverviewSection counts={counts} referrals={referrals} onJump={(s) => { setSection("requests"); setStatusFilter(s); }} />}
 
           {section === "requests" && (

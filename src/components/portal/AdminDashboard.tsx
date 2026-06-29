@@ -41,7 +41,8 @@ import {
   decideRoleRequest,
 } from "@/lib/admin.functions";
 import { ExecutiveDirectorSection } from "./ExecutiveDirectorSection";
-import { Crown, Eye } from "lucide-react";
+import { OperationsSection } from "./OperationsSection";
+import { Crown, Eye, Activity } from "lucide-react";
 import { STAFF_DIRECTORY, type JobRole, JOB_ROLE_LABEL } from "@/lib/staff-roles";
 import { StaffWorkspaceShell } from "./StaffWorkspaceShell";
 
@@ -108,6 +109,7 @@ const URGENCY_TONE: Record<"Routine" | "Priority" | "Urgent", string> = {
 type SectionId =
   | "executive"
   | "overview"
+  | "operations"
   | "requests"
   | "food-drives"
   | "volunteers"
@@ -120,6 +122,7 @@ type SectionId =
 const NAV: { id: SectionId; label: string; icon: typeof Inbox }[] = [
   { id: "executive", label: "Executive Director", icon: Crown },
   { id: "overview", label: "Overview", icon: LayoutDashboard },
+  { id: "operations", label: "Operations", icon: Activity },
   { id: "requests", label: "Requests", icon: Inbox },
   { id: "food-drives", label: "Food Drives", icon: Utensils },
   { id: "volunteers", label: "Volunteers", icon: HandHeart },
@@ -320,6 +323,7 @@ export function AdminDashboard({
         <main className="min-w-0">
           {section === "executive" && <ExecutiveDirectorSection />}
           {section === "overview" && <OverviewSection counts={counts} referrals={referrals} onJump={(s) => { setSection("requests"); setStatusFilter(s); }} />}
+          {section === "operations" && <OperationsSection />}
 
           {section === "requests" && (
             <RequestsSection

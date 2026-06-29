@@ -14,6 +14,75 @@ export type Database = {
   }
   public: {
     Tables: {
+      announcements: {
+        Row: {
+          audience: string
+          body: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          title: string
+        }
+        Insert: {
+          audience?: string
+          body?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          title: string
+        }
+        Update: {
+          audience?: string
+          body?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      audit_logs: {
+        Row: {
+          action: string
+          actor_email: string | null
+          actor_id: string | null
+          entity_id: string | null
+          entity_type: string | null
+          event_type: string
+          id: string
+          ip_address: string | null
+          metadata: Json
+          occurred_at: string
+          summary: string | null
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          actor_id?: string | null
+          entity_id?: string | null
+          entity_type?: string | null
+          event_type: string
+          id?: string
+          ip_address?: string | null
+          metadata?: Json
+          occurred_at?: string
+          summary?: string | null
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          actor_id?: string | null
+          entity_id?: string | null
+          entity_type?: string | null
+          event_type?: string
+          id?: string
+          ip_address?: string | null
+          metadata?: Json
+          occurred_at?: string
+          summary?: string | null
+        }
+        Relationships: []
+      }
       board_members: {
         Row: {
           created_at: string
@@ -35,6 +104,45 @@ export type Database = {
           id?: string
           member_key?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      donations: {
+        Row: {
+          amount_cents: number
+          created_at: string
+          currency: string
+          designation: string | null
+          donor_email: string | null
+          donor_name: string
+          id: string
+          notes: string | null
+          recorded_by: string | null
+          source: string
+        }
+        Insert: {
+          amount_cents: number
+          created_at?: string
+          currency?: string
+          designation?: string | null
+          donor_email?: string | null
+          donor_name: string
+          id?: string
+          notes?: string | null
+          recorded_by?: string | null
+          source?: string
+        }
+        Update: {
+          amount_cents?: number
+          created_at?: string
+          currency?: string
+          designation?: string | null
+          donor_email?: string | null
+          donor_name?: string
+          id?: string
+          notes?: string | null
+          recorded_by?: string | null
+          source?: string
         }
         Relationships: []
       }
@@ -122,6 +230,39 @@ export type Database = {
           id?: string
           token?: string
           used_at?: string | null
+        }
+        Relationships: []
+      }
+      emergency_alerts: {
+        Row: {
+          body: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          is_active: boolean
+          resolved_at: string | null
+          severity: string
+          title: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          resolved_at?: string | null
+          severity?: string
+          title: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          resolved_at?: string | null
+          severity?: string
+          title?: string
         }
         Relationships: []
       }

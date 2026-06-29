@@ -111,6 +111,7 @@ type SectionId =
   | "executive"
   | "overview"
   | "operations"
+  | "permissions"
   | "requests"
   | "food-drives"
   | "volunteers"

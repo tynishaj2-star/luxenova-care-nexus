@@ -17,11 +17,11 @@ export const Route = createFileRoute("/login")({
   validateSearch: (s) => searchSchema.parse(s),
   head: () => ({
     meta: [
-      { title: "Partner Sign In — LuxeNova Community Wellness, Inc." },
+      { title: "Sign In — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Secure sign-in for community partners, navigators, and staff to submit and track referrals confidentially.",
+          "Secure sign-in for LuxeNova Community Wellness, Inc. staff, board, and community partners.",
       },
     ],
   }),

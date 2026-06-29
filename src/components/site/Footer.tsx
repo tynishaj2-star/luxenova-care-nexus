@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Linkedin, Facebook, Mail, Phone, MapPin } from "lucide-react";
+import { ORG } from "@/lib/org";
 
 export function Footer() {
   const cols = [

@@ -227,12 +227,7 @@ function PortalAuthed() {
   }
 
   if (profileQ.data?.isStaff) {
-    const email = profileQ.data?.profile?.id
-      ? undefined
-      : undefined;
-    // Resolve staff member by auth email
-    const authEmail = (typeof window !== "undefined" && (window as any).__lnEmail) || undefined;
-    const staff = getStaffByEmail(authEmail);
+    const staff = getStaffByEmail(profileQ.data?.email);
     const role = staff?.jobRole ?? "coo";
     if (role === "admin") {
       return <AdminDashboard profile={profileQ.data?.profile ?? null} />;

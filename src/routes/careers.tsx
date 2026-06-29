@@ -12,7 +12,7 @@ export const Route = createFileRoute("/careers")({
       {
         name: "description",
         content:
-          "Volunteer with LuxeNova Community Wellness, Inc.. Community volunteers, resource navigators, intake coordinators, and grant & outreach support roles.",
+          "Volunteer with LuxeNova Community Wellness, Inc. Community volunteers, resource navigators, intake coordinators, and grant & outreach support roles.",
       },
       { property: "og:title", content: "Get Involved — LuxeNova" },
       {

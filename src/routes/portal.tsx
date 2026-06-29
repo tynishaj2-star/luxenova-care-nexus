@@ -718,7 +718,7 @@ function RequestStaffAccessPanel() {
           <h3 className="mt-1 font-display text-lg">Need staff access?</h3>
           <p className="mt-1 max-w-xl text-sm text-muted-foreground">
             Partners see only their own referrals. Staff can review and update
-            every referral routed to LuxeNova Community Wellness, Inc.. Submit a
+            every referral routed to LuxeNova Community Wellness, Inc. Submit a
             request and an admin will follow up.
           </p>
           {pending && (

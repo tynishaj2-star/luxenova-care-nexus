@@ -18,7 +18,7 @@ export const Route = createFileRoute("/bylaws")({
       {
         property: "og:description",
         content:
-          "Full adopted bylaws governing LuxeNova Community Wellness, Inc..",
+          "Full adopted bylaws governing LuxeNova Community Wellness, Inc.",
       },
     ],
   }),

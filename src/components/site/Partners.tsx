@@ -24,7 +24,7 @@ export function Partners() {
             <div className="lg:col-span-7">
               <p className="text-xs uppercase tracking-[0.2em] text-ivory/70">Community Partners</p>
               <h2 className="mt-3 font-display text-4xl text-balance md:text-5xl">
-                Partner with LuxeNova Community Wellness, Inc..
+                Partner with LuxeNova Community Wellness, Inc.
               </h2>
               <p className="mt-5 max-w-xl text-ivory/75">
                 We work alongside the organizations that touch families every

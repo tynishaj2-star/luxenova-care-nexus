@@ -27,7 +27,7 @@ export const Route = createFileRoute("/governance")({
       {
         property: "og:description",
         content:
-          "Transparent governance, board oversight, and financial accountability for LuxeNova Community Wellness, Inc..",
+          "Transparent governance, board oversight, and financial accountability for LuxeNova Community Wellness, Inc.",
       },
     ],
   }),

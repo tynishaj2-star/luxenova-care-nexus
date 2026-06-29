@@ -28,7 +28,7 @@ export const Route = createFileRoute("/board")({
       {
         property: "og:description",
         content:
-          "Meet the founding board and review the governance commitments behind LuxeNova Community Wellness, Inc..",
+          "Meet the founding board and review the governance commitments behind LuxeNova Community Wellness, Inc.",
       },
     ],
   }),
@@ -72,7 +72,7 @@ const boardMembers = [
 
 
 const responsibilities = [
-  { icon: ShieldAlert, title: "Protecting the mission", body: "Safeguarding the purpose, values, and community focus of LuxeNova Community Wellness, Inc.." },
+  { icon: ShieldAlert, title: "Protecting the mission", body: "Safeguarding the purpose, values, and community focus of LuxeNova Community Wellness, Inc." },
   { icon: Wallet, title: "Reviewing finances and donation use", body: "Independent review of how funds are received, allocated, and reported to the community." },
   { icon: Scale, title: "Conflicts of interest", body: "A documented policy for declaring and managing personal, financial, or organizational conflicts." },
   { icon: Users, title: "Public accountability", body: "Answering to the families and partners we serve through transparent communication and reporting." },

@@ -31,7 +31,7 @@ function DonationPolicyPage() {
         <PageHeader
           eyebrow="Donation Policy"
           title="Clear, honest, and donor-respectful."
-          description="This policy explains how donations are accepted, applied, and reported by LuxeNova Community Wellness, Inc.."
+          description="This policy explains how donations are accepted, applied, and reported by LuxeNova Community Wellness, Inc."
         />
 
         <ContentSection title="Purpose of donations">

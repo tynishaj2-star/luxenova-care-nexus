@@ -20,7 +20,7 @@ export const Route = createFileRoute("/conflict-of-interest")({
       {
         name: "description",
         content:
-          "Conflict of Interest Policy and annual disclosure procedures for the directors, officers, and key personnel of LuxeNova Community Wellness, Inc..",
+          "Conflict of Interest Policy and annual disclosure procedures for the directors, officers, and key personnel of LuxeNova Community Wellness, Inc.",
       },
       {
         property: "og:title",
@@ -40,7 +40,7 @@ const whoIsCovered = [
   {
     icon: Users,
     title: "Directors",
-    body: "All members of the Board of Directors of LuxeNova Community Wellness, Inc..",
+    body: "All members of the Board of Directors of LuxeNova Community Wellness, Inc.",
   },
   {
     icon: ShieldCheck,
@@ -101,7 +101,7 @@ const procedure = [
 ];
 
 const annualDisclosure = [
-  "I have received, read, and understand the Conflict of Interest Policy of LuxeNova Community Wellness, Inc..",
+  "I have received, read, and understand the Conflict of Interest Policy of LuxeNova Community Wellness, Inc.",
   "I agree to comply with the Policy and to disclose actual or potential conflicts as they arise.",
   "I understand that LuxeNova Community Wellness, Inc. is a charitable, tax-exempt organization and that, to maintain its federal tax exemption, it must engage primarily in activities that accomplish its exempt purposes.",
   "I will not use my position with the Corporation for personal gain, nor will I use confidential information acquired through my role for any purpose other than to advance the mission of the Corporation.",
@@ -134,7 +134,7 @@ function ConflictOfInterestPage() {
         <ContentSection title="Who is covered">
           <p>
             This Policy applies to every person with decision-making
-            responsibility on behalf of LuxeNova Community Wellness, Inc..
+            responsibility on behalf of LuxeNova Community Wellness, Inc.
           </p>
         </ContentSection>
         <CardGrid items={whoIsCovered} columns={3} />

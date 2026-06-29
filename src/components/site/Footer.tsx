@@ -107,7 +107,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border/70 pt-6 text-xs text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} LuxeNova Community Wellness, Inc.. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} LuxeNova Community Wellness, Inc. All rights reserved.</p>
           <p>Confidential · Community-centered · Transparent impact</p>
         </div>
       </div>

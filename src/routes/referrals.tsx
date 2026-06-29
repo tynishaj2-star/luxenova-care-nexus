@@ -11,7 +11,7 @@ export const Route = createFileRoute("/referrals")({
       {
         name: "description",
         content:
-          "Submit a confidential Emergency Stabilization Request to LuxeNova Community Wellness, Inc.. Our team reviews each request and follows up regarding next steps.",
+          "Submit a confidential Emergency Stabilization Request to LuxeNova Community Wellness, Inc. Our team reviews each request and follows up regarding next steps.",
       },
     ],
   }),

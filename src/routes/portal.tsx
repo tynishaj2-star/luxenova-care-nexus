@@ -220,8 +220,28 @@ function PortalAuthed() {
     return <ForcePasswordChange onDone={() => qc.invalidateQueries({ queryKey: ["profile"] })} />;
   }
 
-  if (profileQ.data?.isAdmin || profileQ.data?.isStaff) {
+  if (profileQ.data?.isAdmin) {
     return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
+  }
+
+  if (profileQ.data?.isStaff) {
+    const email = profileQ.data?.profile?.id
+      ? undefined
+      : undefined;
+    // Resolve staff member by auth email
+    const authEmail = (typeof window !== "undefined" && (window as any).__lnEmail) || undefined;
+    const staff = getStaffByEmail(authEmail);
+    const role = staff?.jobRole ?? "coo";
+    if (role === "admin") {
+      return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
+    }
+    return (
+      <StaffWorkspaceShell
+        role={role}
+        viewerName={staff?.name ?? profileQ.data?.profile?.full_name ?? "Staff"}
+        viewerTitle={staff?.title ?? "LuxeNova Staff"}
+      />
+    );
   }
 
   return <PartnerDashboard profile={profileQ.data?.profile ?? null} />;

@@ -146,6 +146,12 @@ function PortalAuthed() {
       </div>
     );
   }
+
+  // Forced password change for newly-invited employees
+  if (profileQ.data?.profile?.must_change_password) {
+    return <ForcePasswordChange onDone={() => qc.invalidateQueries({ queryKey: ["profile"] })} />;
+  }
+
   if (profileQ.data?.isAdmin || profileQ.data?.isStaff) {
     return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
   }

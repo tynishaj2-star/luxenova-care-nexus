@@ -122,6 +122,7 @@ type SectionId =
 const NAV: { id: SectionId; label: string; icon: typeof Inbox }[] = [
   { id: "executive", label: "Executive Director", icon: Crown },
   { id: "overview", label: "Overview", icon: LayoutDashboard },
+  { id: "operations", label: "Operations", icon: Activity },
   { id: "requests", label: "Requests", icon: Inbox },
   { id: "food-drives", label: "Food Drives", icon: Utensils },
   { id: "volunteers", label: "Volunteers", icon: HandHeart },

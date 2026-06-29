@@ -42,7 +42,8 @@ import {
 } from "@/lib/admin.functions";
 import { ExecutiveDirectorSection } from "./ExecutiveDirectorSection";
 import { OperationsSection } from "./OperationsSection";
-import { Crown, Eye, Activity } from "lucide-react";
+import { PermissionsSection } from "./PermissionsSection";
+import { Crown, Eye, Activity, ShieldAlert } from "lucide-react";
 import { STAFF_DIRECTORY, type JobRole, JOB_ROLE_LABEL } from "@/lib/staff-roles";
 import { StaffWorkspaceShell } from "./StaffWorkspaceShell";
 
@@ -110,6 +111,7 @@ type SectionId =
   | "executive"
   | "overview"
   | "operations"
+  | "permissions"
   | "requests"
   | "food-drives"
   | "volunteers"
@@ -123,6 +125,7 @@ const NAV: { id: SectionId; label: string; icon: typeof Inbox }[] = [
   { id: "executive", label: "Executive Director", icon: Crown },
   { id: "overview", label: "Overview", icon: LayoutDashboard },
   { id: "operations", label: "Operations", icon: Activity },
+  { id: "permissions", label: "Permissions & Readiness", icon: ShieldAlert },
   { id: "requests", label: "Requests", icon: Inbox },
   { id: "food-drives", label: "Food Drives", icon: Utensils },
   { id: "volunteers", label: "Volunteers", icon: HandHeart },
@@ -324,6 +327,7 @@ export function AdminDashboard({
           {section === "executive" && <ExecutiveDirectorSection />}
           {section === "overview" && <OverviewSection counts={counts} referrals={referrals} onJump={(s) => { setSection("requests"); setStatusFilter(s); }} />}
           {section === "operations" && <OperationsSection />}
+          {section === "permissions" && <PermissionsSection />}
 
           {section === "requests" && (
             <RequestsSection

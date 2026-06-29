@@ -17,11 +17,11 @@ export const Route = createFileRoute("/login")({
   validateSearch: (s) => searchSchema.parse(s),
   head: () => ({
     meta: [
-      { title: "Partner Sign In — LuxeNova Community Wellness, Inc." },
+      { title: "Sign In — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Secure sign-in for community partners, navigators, and staff to submit and track referrals confidentially.",
+          "Secure sign-in for LuxeNova Community Wellness, Inc. staff, board, and community partners.",
       },
     ],
   }),
@@ -136,20 +136,21 @@ function LoginPage() {
 
       <main className="mx-auto grid max-w-6xl gap-12 px-6 pb-24 pt-8 lg:grid-cols-2 lg:items-center">
         <section className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Partner Portal</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Secure Sign In</p>
           <h1 className="font-display text-4xl md:text-5xl text-balance">
-            Submit and track referrals — securely, end to end.
+            One sign-in for staff, board, and community partners.
           </h1>
           <p className="max-w-xl text-muted-foreground">
-            For clinicians, school staff, faith leaders, shelters, and community
-            partners. Submit Emergency Stabilization Requests, attach
-            documents, and follow each referral through to relief delivered.
+            Admins and staff land on the internal dashboard. Community
+            partners — clinicians, school staff, faith leaders, shelters —
+            land on the referral workspace. Same sign-in, the right view
+            for your role.
           </p>
           <ul className="space-y-3 pt-2 text-sm">
             {[
               "Encrypted in transit (TLS 1.2+) · HIPAA-aware intake",
-              "You only see referrals your organization submitted",
-              "LuxeNova navigators respond with status updates and notes",
+              "Role-aware: staff see the admin dashboard, partners see referrals",
+              "Invited employees are prompted to set a new password on first sign-in",
             ].map((t) => (
               <li key={t} className="flex items-start gap-3 text-foreground/85">
                 <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-rosewood" strokeWidth={1.5} />
@@ -183,7 +184,7 @@ function LoginPage() {
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
               {mode === "signin"
-                ? "Use your partner credentials to access the referral dashboard."
+                ? "Sign in with your staff or partner credentials — we'll route you to the right dashboard."
                 : "We'll email you a secure link to choose a new password."}
             </p>
 
@@ -265,10 +266,10 @@ function LoginPage() {
 
             <div className="mt-6 rounded-xl border border-border/70 bg-background px-4 py-3 text-xs text-muted-foreground">
               <strong className="block text-foreground">Invite-only access</strong>
-              New partner accounts are created by invitation from a LuxeNova
-              Community Wellness admin. Contact us at{" "}
-              <a href="mailto:partners@luxenovacommunitywellnessinc.com" className="text-rosewood underline">
-                partners@luxenovacommunitywellnessinc.com
+              Staff and partner accounts are created by a LuxeNova Community
+              Wellness, Inc. admin. Contact us at{" "}
+              <a href="mailto:tjohnson@luxenovacommunitywellness.com" className="text-rosewood underline">
+                tjohnson@luxenovacommunitywellness.com
               </a>{" "}
               to request access.
             </div>

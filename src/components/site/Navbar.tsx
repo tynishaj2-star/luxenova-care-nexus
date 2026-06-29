@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "@/assets/luxenova-logo.png";
+import { ORG } from "@/lib/org";
 
 const mainLinks = [
   { label: "Home", to: "/" as const },

@@ -266,10 +266,10 @@ function LoginPage() {
 
             <div className="mt-6 rounded-xl border border-border/70 bg-background px-4 py-3 text-xs text-muted-foreground">
               <strong className="block text-foreground">Invite-only access</strong>
-              New partner accounts are created by invitation from a LuxeNova
-              Community Wellness admin. Contact us at{" "}
-              <a href="mailto:partners@luxenovacommunitywellnessinc.com" className="text-rosewood underline">
-                partners@luxenovacommunitywellnessinc.com
+              Staff and partner accounts are created by a LuxeNova Community
+              Wellness, Inc. admin. Contact us at{" "}
+              <a href="mailto:tjohnson@luxenovacommunitywellness.com" className="text-rosewood underline">
+                tjohnson@luxenovacommunitywellness.com
               </a>{" "}
               to request access.
             </div>

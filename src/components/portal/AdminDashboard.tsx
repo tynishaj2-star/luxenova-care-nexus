@@ -42,7 +42,8 @@ import {
 } from "@/lib/admin.functions";
 import { ExecutiveDirectorSection } from "./ExecutiveDirectorSection";
 import { OperationsSection } from "./OperationsSection";
-import { Crown, Eye, Activity } from "lucide-react";
+import { PermissionsSection } from "./PermissionsSection";
+import { Crown, Eye, Activity, ShieldAlert } from "lucide-react";
 import { STAFF_DIRECTORY, type JobRole, JOB_ROLE_LABEL } from "@/lib/staff-roles";
 import { StaffWorkspaceShell } from "./StaffWorkspaceShell";
 

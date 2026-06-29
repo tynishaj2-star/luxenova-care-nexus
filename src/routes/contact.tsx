@@ -68,8 +68,8 @@ function ContactPage() {
                       <Mail className="mt-0.5 h-4 w-4 text-rosewood" />
                       <div>
                         <p className="text-muted-foreground text-xs uppercase tracking-[0.14em]">Email</p>
-                        <a href="mailto:tjohnson@luxenovawellnesscommunity.com" className="hover:text-rosewood transition-colors break-all">
-                          tjohnson@luxenovawellnesscommunity.com
+                        <a href="mailto:tjohnson@luxenovacommunitywellness.com" className="hover:text-rosewood transition-colors break-all">
+                          tjohnson@luxenovacommunitywellness.com
                         </a>
                       </div>
                     </li>

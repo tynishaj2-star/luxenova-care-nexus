@@ -165,11 +165,6 @@ function Portal() {
 
 function PortalAuthed() {
   const qc = useQueryClient();
-  const fetchList = useServerFn(listReferrals);
-  const fetchOne = useServerFn(getReferral);
-  const createFn = useServerFn(createReferral);
-  const setStatusFn = useServerFn(updateReferralStatus);
-  const addNoteFn = useServerFn(addReferralNote);
 
   const profileQ = useQuery({
     queryKey: ["profile"],
@@ -226,6 +221,17 @@ function PortalAuthed() {
   if (profileQ.data?.isAdmin || profileQ.data?.isStaff) {
     return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
   }
+
+  return <PartnerDashboard profile={profileQ.data?.profile ?? null} />;
+}
+
+function PartnerDashboard({ profile }: { profile: CurrentWorkspace["profile"] }) {
+  const qc = useQueryClient();
+  const fetchList = useServerFn(listReferrals);
+  const fetchOne = useServerFn(getReferral);
+  const createFn = useServerFn(createReferral);
+  const setStatusFn = useServerFn(updateReferralStatus);
+  const addNoteFn = useServerFn(addReferralNote);
 
   const listQ = useQuery({
     queryKey: ["referrals"],
@@ -315,7 +321,7 @@ function PortalAuthed() {
     },
   });
 
-  const isStaff = profileQ.data?.isStaff;
+  const isStaff = false;
   const detail = detailQ.data;
   const [draftNote, setDraftNote] = useState("");
 
@@ -627,7 +633,7 @@ function PortalAuthed() {
           onSubmit={(vals) => createMut.mutate(vals)}
           submitting={createMut.isPending}
           error={createMut.error instanceof Error ? createMut.error.message : null}
-          profile={profileQ.data?.profile}
+          profile={profile}
         />
       )}
     </div>

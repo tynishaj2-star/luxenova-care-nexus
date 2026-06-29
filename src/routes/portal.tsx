@@ -33,6 +33,8 @@ import {
 } from "@/lib/role-requests.functions";
 import { markPasswordChanged } from "@/lib/admin.functions";
 import { AdminDashboard } from "@/components/portal/AdminDashboard";
+import { StaffWorkspaceShell } from "@/components/portal/StaffWorkspaceShell";
+import { getStaffByEmail } from "@/lib/staff-roles";
 
 export const Route = createFileRoute("/portal")({
   head: () => ({
@@ -87,6 +89,7 @@ type CurrentWorkspace = {
     organization: string | null;
     must_change_password: boolean | null;
   } | null;
+  email: string | null;
   isStaff: boolean;
   isAdmin: boolean;
   roles: string[];
@@ -115,6 +118,7 @@ async function getCurrentWorkspace(): Promise<CurrentWorkspace> {
   const roleList = roles?.map((r) => r.role) ?? [];
   return {
     profile,
+    email: userData.user.email ?? null,
     isStaff: roleList.includes("staff"),
     isAdmin: roleList.includes("admin"),
     roles: roleList,
@@ -218,8 +222,23 @@ function PortalAuthed() {
     return <ForcePasswordChange onDone={() => qc.invalidateQueries({ queryKey: ["profile"] })} />;
   }
 
-  if (profileQ.data?.isAdmin || profileQ.data?.isStaff) {
+  if (profileQ.data?.isAdmin) {
     return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
+  }
+
+  if (profileQ.data?.isStaff) {
+    const staff = getStaffByEmail(profileQ.data?.email);
+    const role = staff?.jobRole ?? "coo";
+    if (role === "admin") {
+      return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
+    }
+    return (
+      <StaffWorkspaceShell
+        role={role}
+        viewerName={staff?.name ?? profileQ.data?.profile?.full_name ?? "Staff"}
+        viewerTitle={staff?.title ?? "LuxeNova Staff"}
+      />
+    );
   }
 
   return <PartnerDashboard profile={profileQ.data?.profile ?? null} />;

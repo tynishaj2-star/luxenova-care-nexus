@@ -18,17 +18,17 @@ import {
 export const Route = createFileRoute("/board")({
   head: () => ({
     meta: [
-      { title: "Board — LuxeNova Community Wellness" },
+      { title: "Board — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Founding board of LuxeNova Community Wellness — leadership, governance responsibilities, and shared community impact and program oversight.",
+          "Founding board of LuxeNova Community Wellness, Inc. — leadership, governance responsibilities, and shared community impact and program oversight.",
       },
-      { property: "og:title", content: "Board — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Board — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content:
-          "Meet the founding board and review the governance commitments behind LuxeNova Community Wellness.",
+          "Meet the founding board and review the governance commitments behind LuxeNova Community Wellness, Inc..",
       },
     ],
   }),
@@ -72,7 +72,7 @@ const boardMembers = [
 
 
 const responsibilities = [
-  { icon: ShieldAlert, title: "Protecting the mission", body: "Safeguarding the purpose, values, and community focus of LuxeNova Community Wellness." },
+  { icon: ShieldAlert, title: "Protecting the mission", body: "Safeguarding the purpose, values, and community focus of LuxeNova Community Wellness, Inc.." },
   { icon: Wallet, title: "Reviewing finances and donation use", body: "Independent review of how funds are received, allocated, and reported to the community." },
   { icon: Scale, title: "Conflicts of interest", body: "A documented policy for declaring and managing personal, financial, or organizational conflicts." },
   { icon: Users, title: "Public accountability", body: "Answering to the families and partners we serve through transparent communication and reporting." },
@@ -90,7 +90,7 @@ function BoardPage() {
         <PageHeader
           eyebrow="Board"
           title="Our founding board."
-          description="The founding board of LuxeNova Community Wellness — leading mission, governance, finance, and community impact with shared accountability."
+          description="The founding board of LuxeNova Community Wellness, Inc. — leading mission, governance, finance, and community impact with shared accountability."
         />
 
         {/* Founding board members */}

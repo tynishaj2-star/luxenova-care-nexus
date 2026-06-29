@@ -17,7 +17,7 @@ export const Route = createFileRoute("/login")({
   validateSearch: (s) => searchSchema.parse(s),
   head: () => ({
     meta: [
-      { title: "Partner Sign In — LuxeNova Community Wellness" },
+      { title: "Partner Sign In — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
@@ -124,7 +124,7 @@ function LoginPage() {
           <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-rosewood text-rosewood-foreground font-display">
             L
           </span>
-          <span className="font-display text-lg">LuxeNova Community Wellness</span>
+          <span className="font-display text-lg">LuxeNova Community Wellness, Inc.</span>
         </Link>
         <Link
           to="/"

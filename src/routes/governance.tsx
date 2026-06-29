@@ -17,17 +17,17 @@ import {
 export const Route = createFileRoute("/governance")({
   head: () => ({
     meta: [
-      { title: "Governance & Bylaws — LuxeNova Community Wellness" },
+      { title: "Governance & Bylaws — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Governance framework for LuxeNova Community Wellness — board oversight, officer roles, bylaws summary, financial controls, conflict of interest, recordkeeping, and policy development.",
+          "Governance framework for LuxeNova Community Wellness, Inc. — board oversight, officer roles, bylaws summary, financial controls, conflict of interest, recordkeeping, and policy development.",
       },
-      { property: "og:title", content: "Governance & Bylaws — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Governance & Bylaws — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content:
-          "Transparent governance, board oversight, and financial accountability for LuxeNova Community Wellness.",
+          "Transparent governance, board oversight, and financial accountability for LuxeNova Community Wellness, Inc..",
       },
     ],
   }),
@@ -103,12 +103,12 @@ function GovernancePage() {
         <PageHeader
           eyebrow="Governance & Bylaws"
           title="Built on transparency and accountability."
-          description="LuxeNova Community Wellness is building a transparent governance structure to support responsible community relief, family stabilization, donation oversight, and public accountability."
+          description="LuxeNova Community Wellness, Inc. is building a transparent governance structure to support responsible community relief, family stabilization, donation oversight, and public accountability."
         />
 
         <ContentSection title="Governance overview">
           <p>
-            LuxeNova Community Wellness is structured around board
+            LuxeNova Community Wellness, Inc. is structured around board
             oversight, mission accountability, financial stewardship, and
             community-centered decision-making. Governance practices are
             documented, reviewed, and continuously refined so families,

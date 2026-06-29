@@ -8,11 +8,11 @@ import { Shield, Phone, HeartHandshake, Scale, ArrowUpRight } from "lucide-react
 export const Route = createFileRoute("/chauntaes-voice")({
   head: () => ({
     meta: [
-      { title: "Chauntae's Voice — Domestic Violence Support | LuxeNova Community Wellness" },
+      { title: "Chauntae's Voice — Domestic Violence Support | LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Chauntae's Voice is a domestic violence support initiative of LuxeNova Community Wellness, established in loving memory of Chauntae Renee Jones (1985–1999). Confidential safety planning, shelter and legal referrals, and trauma-informed advocacy for women and families.",
+          "Chauntae's Voice is a domestic violence support initiative of LuxeNova Community Wellness, Inc., established in loving memory of Chauntae Renee Jones (1985–1999). Confidential safety planning, shelter and legal referrals, and trauma-informed advocacy for women and families.",
       },
       { property: "og:title", content: "Chauntae's Voice — In Loving Memory" },
       {
@@ -33,7 +33,7 @@ function ChauntaesVoicePage() {
         <PageHeader
           eyebrow="Chauntae's Voice · In Loving Memory"
           title="A voice for women who can no longer speak for themselves."
-          description="Chauntae's Voice is a domestic violence support initiative of LuxeNova Community Wellness, established in honor of Chauntae Renee Jones (1985–1999). What was taken from her, we work every day to protect for others."
+          description="Chauntae's Voice is a domestic violence support initiative of LuxeNova Community Wellness, Inc., established in honor of Chauntae Renee Jones (1985–1999). What was taken from her, we work every day to protect for others."
         />
 
         <ContentSection title="Her story is why we exist">

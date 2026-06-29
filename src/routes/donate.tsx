@@ -8,13 +8,13 @@ import { HandCoins, Users, Sparkles } from "lucide-react";
 export const Route = createFileRoute("/donate")({
   head: () => ({
     meta: [
-      { title: "Donate — LuxeNova Community Wellness" },
+      { title: "Donate — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Support LuxeNova Community Wellness — transparent community relief funding for Massachusetts families facing rent emergencies, utility shutoffs, domestic violence, homelessness, autism support needs, and education and empowerment programs.",
+          "Support LuxeNova Community Wellness, Inc. — transparent community relief funding for Massachusetts families facing rent emergencies, utility shutoffs, domestic violence, homelessness, autism support needs, and education and empowerment programs.",
       },
-      { property: "og:title", content: "Donate — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Donate — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content:
@@ -40,7 +40,7 @@ function DonatePage() {
         <PageHeader
           eyebrow="Donate"
           title="Fund family stabilization & empowerment. With transparency."
-          description="LuxeNova Community Wellness is building transparent community relief funding for Massachusetts families — rent and utility emergencies, Chauntae's Voice domestic violence support, feed & clothe the homeless outreach, autism family support, and education programs including tax prep, resume building, business structuring, and credit repair."
+          description="LuxeNova Community Wellness, Inc. is building transparent community relief funding for Massachusetts families — rent and utility emergencies, Chauntae's Voice domestic violence support, feed & clothe the homeless outreach, autism family support, and education programs including tax prep, resume building, business structuring, and credit repair."
         />
 
         <section className="pb-16">

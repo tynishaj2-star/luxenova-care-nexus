@@ -7,11 +7,11 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "Set a new password — LuxeNova Community Wellness" },
+      { title: "Set a new password — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Set a new password for your LuxeNova Community Wellness partner account.",
+          "Set a new password for your LuxeNova Community Wellness, Inc. partner account.",
       },
     ],
   }),
@@ -77,7 +77,7 @@ function ResetPasswordPage() {
           <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-rosewood text-rosewood-foreground font-display">
             L
           </span>
-          <span className="font-display text-lg">LuxeNova Community Wellness</span>
+          <span className="font-display text-lg">LuxeNova Community Wellness, Inc.</span>
         </Link>
       </header>
 

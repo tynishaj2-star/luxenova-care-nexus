@@ -6,13 +6,13 @@ import { PageHeader } from "@/components/site/PageHeader";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ — LuxeNova Community Wellness" },
+      { title: "FAQ — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Frequently asked questions about LuxeNova Community Wellness — who can request help, eligibility, referrals, documents, sponsorship, and nonprofit status.",
+          "Frequently asked questions about LuxeNova Community Wellness, Inc. — who can request help, eligibility, referrals, documents, sponsorship, and nonprofit status.",
       },
-      { property: "og:title", content: "FAQ — LuxeNova Community Wellness" },
+      { property: "og:title", content: "FAQ — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "Answers about requests, eligibility, sponsorship, and status.",

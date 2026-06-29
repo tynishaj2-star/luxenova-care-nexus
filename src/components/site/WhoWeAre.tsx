@@ -4,7 +4,7 @@ const cards = [
   {
     icon: Building2,
     title: "Our Mission",
-    body: "LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative helping households move through housing, utility, domestic violence, homelessness, autism support, education, and economic empowerment barriers with dignity.",
+    body: "LuxeNova Community Wellness, Inc. is a Massachusetts community relief and family stabilization initiative helping households move through housing, utility, domestic violence, homelessness, autism support, education, and economic empowerment barriers with dignity.",
   },
   {
     icon: HeartHandshake,

@@ -21,13 +21,13 @@ import { PageHeader } from "@/components/site/PageHeader";
 export const Route = createFileRoute("/documents")({
   head: () => ({
     meta: [
-      { title: "Internal Document Hub — LuxeNova Community Wellness" },
+      { title: "Internal Document Hub — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Internal staff hub: policies, compliance documents, and confidentiality references for LuxeNova Community Wellness navigators, volunteers, and board members.",
+          "Internal staff hub: policies, compliance documents, and confidentiality references for LuxeNova Community Wellness, Inc. navigators, volunteers, and board members.",
       },
-      { property: "og:title", content: "Internal Document Hub — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Internal Document Hub — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content:
@@ -349,7 +349,7 @@ function DocumentsHub() {
                 <div className="space-y-2 text-sm leading-relaxed text-foreground/85">
                   <p className="font-medium text-foreground">Confidentiality reminder</p>
                   <p>
-                    These policies guide how LuxeNova Community Wellness handles household information,
+                    These policies guide how LuxeNova Community Wellness, Inc. handles household information,
                     Protected Health Information (PHI), staff compensation, donor data, and board governance.
                     Staff and volunteers are expected to review them at onboarding and whenever updates are issued.
                     Specific salaries, individual donor records, and household case details remain confidential

@@ -8,13 +8,13 @@ import { Church, Store, Building2, GraduationCap, Users, HandCoins, ArrowUpRight
 export const Route = createFileRoute("/community-partners")({
   head: () => ({
     meta: [
-      { title: "Community Partners — LuxeNova Community Wellness" },
+      { title: "Community Partners — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Partner with LuxeNova Community Wellness — faith communities, local businesses, housing partners, schools, community organizations, sponsors, and donors.",
+          "Partner with LuxeNova Community Wellness, Inc. — faith communities, local businesses, housing partners, schools, community organizations, sponsors, and donors.",
       },
-      { property: "og:title", content: "Community Partners — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Community Partners — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "Partnership pathways for organizations standing alongside Massachusetts families.",
@@ -50,7 +50,7 @@ function PartnersPage() {
         <PageHeader
           eyebrow="Community Partners"
           title="Stronger together. By design."
-          description="LuxeNova Community Wellness partners with the people and organizations already trusted in the communities we serve."
+          description="LuxeNova Community Wellness, Inc. partners with the people and organizations already trusted in the communities we serve."
         />
         <CardGrid items={partners} columns={3} />
         <ContentSection title="Partnership pathways">

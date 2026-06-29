@@ -9,13 +9,13 @@ import { Apple, HandHeart, Users, Building2, CheckCircle2, Drumstick, Gift, Snow
 export const Route = createFileRoute("/food-drives")({
   head: () => ({
     meta: [
-      { title: "Community Drives — LuxeNova Community Wellness" },
+      { title: "Community Drives — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Host, volunteer for, donate to, or request support from LuxeNova Community Wellness drives — food, holiday, winter warmth, and seasonal essentials.",
+          "Host, volunteer for, donate to, or request support from LuxeNova Community Wellness, Inc. drives — food, holiday, winter warmth, and seasonal essentials.",
       },
-      { property: "og:title", content: "Community Drives — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Community Drives — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content:
@@ -219,7 +219,7 @@ function FoodDrivesPage() {
                   Holiday Drives
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  Each year LuxeNova Community Wellness organizes seasonal
+                  Each year LuxeNova Community Wellness, Inc. organizes seasonal
                   drives so families across our service area can experience
                   the warmth, dignity, and joy of the holidays.
                 </p>
@@ -389,7 +389,7 @@ function FoodDrivesPage() {
         </ContentSection>
 
         <CalloutNote>
-          LuxeNova Community Wellness coordinates food drives in
+          LuxeNova Community Wellness, Inc. coordinates food drives in
           partnership with churches, schools, businesses, and community
           groups. We honor dignity at every step — for donors,
           volunteers, and families receiving support.

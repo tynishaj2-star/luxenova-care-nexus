@@ -8,17 +8,17 @@ import { ScrollText } from "lucide-react";
 export const Route = createFileRoute("/bylaws")({
   head: () => ({
     meta: [
-      { title: "Bylaws — LuxeNova Community Wellness" },
+      { title: "Bylaws — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Adopted bylaws of LuxeNova Community Wellness, a Massachusetts nonprofit corporation — purpose, board structure, officers, meetings, finances, conflicts, indemnification, amendments, and dissolution.",
+          "Adopted bylaws of LuxeNova Community Wellness, Inc., a Massachusetts nonprofit corporation — purpose, board structure, officers, meetings, finances, conflicts, indemnification, amendments, and dissolution.",
       },
-      { property: "og:title", content: "Bylaws — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Bylaws — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content:
-          "Full adopted bylaws governing LuxeNova Community Wellness.",
+          "Full adopted bylaws governing LuxeNova Community Wellness, Inc..",
       },
     ],
   }),
@@ -47,7 +47,7 @@ const articles: Article[] = [
         num: "1.1",
         title: "Name",
         paragraphs: [
-          'The name of the corporation is "LuxeNova Community Wellness," a Massachusetts nonprofit corporation (the "Corporation").',
+          'The name of the corporation is "LuxeNova Community Wellness, Inc.," a Massachusetts nonprofit corporation (the "Corporation").',
         ],
       },
       {
@@ -340,7 +340,7 @@ const articles: Article[] = [
         num: "11.1",
         title: "Adoption",
         paragraphs: [
-          "These bylaws were adopted by the founding Board of Directors of LuxeNova Community Wellness and shall take effect upon adoption. The Secretary shall maintain the executed bylaws as part of the official records of the Corporation.",
+          "These bylaws were adopted by the founding Board of Directors of LuxeNova Community Wellness, Inc. and shall take effect upon adoption. The Secretary shall maintain the executed bylaws as part of the official records of the Corporation.",
         ],
       },
     ],
@@ -354,8 +354,8 @@ function BylawsPage() {
       <main>
         <PageHeader
           eyebrow="Governance Document"
-          title="Bylaws of LuxeNova Community Wellness"
-          description="Adopted bylaws governing the operations, board, finances, and accountability of LuxeNova Community Wellness, a Massachusetts nonprofit corporation."
+          title="Bylaws of LuxeNova Community Wellness, Inc."
+          description="Adopted bylaws governing the operations, board, finances, and accountability of LuxeNova Community Wellness, Inc., a Massachusetts nonprofit corporation."
         />
 
         <section className="mx-auto max-w-4xl px-6 pb-10">
@@ -369,7 +369,7 @@ function BylawsPage() {
                   Official Record
                 </p>
                 <p className="font-display text-base">
-                  Bylaws of LuxeNova Community Wellness
+                  Bylaws of LuxeNova Community Wellness, Inc.
                 </p>
               </div>
             </div>
@@ -440,7 +440,7 @@ function BylawsPage() {
               Certification
             </p>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              The undersigned, Secretary of LuxeNova Community Wellness,
+              The undersigned, Secretary of LuxeNova Community Wellness, Inc.,
               certifies that the foregoing bylaws were adopted by the founding
               Board of Directors of the Corporation and constitute the bylaws
               currently in effect.

@@ -8,13 +8,13 @@ import { Rocket, HandCoins, Users, TrendingUp, Handshake, UserPlus } from "lucid
 export const Route = createFileRoute("/updates")({
   head: () => ({
     meta: [
-      { title: "Updates — LuxeNova Community Wellness" },
+      { title: "Updates — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Updates from LuxeNova Community Wellness — launch updates, donation drives, community needs, impact milestones, partner announcements, and volunteer calls.",
+          "Updates from LuxeNova Community Wellness, Inc. — launch updates, donation drives, community needs, impact milestones, partner announcements, and volunteer calls.",
       },
-      { property: "og:title", content: "Updates — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Updates — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "What's happening across the LuxeNova initiative.",

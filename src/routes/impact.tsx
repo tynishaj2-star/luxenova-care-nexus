@@ -7,13 +7,13 @@ import communityImg from "@/assets/community-families.jpg";
 export const Route = createFileRoute("/impact")({
   head: () => ({
     meta: [
-      { title: "Impact — LuxeNova Community Wellness" },
+      { title: "Impact — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Transparent impact tracking from LuxeNova Community Wellness — families supported, relief tracked, utility shutoffs avoided, autism family supports connected, and community referrals completed across Massachusetts.",
+          "Transparent impact tracking from LuxeNova Community Wellness, Inc. — families supported, relief tracked, utility shutoffs avoided, autism family supports connected, and community referrals completed across Massachusetts.",
       },
-      { property: "og:title", content: "Impact — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Impact — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content:
@@ -95,7 +95,7 @@ function ImpactPage() {
             <div className="mt-10 rounded-3xl border border-border/70 bg-card p-8 shadow-soft md:p-10">
               <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Our reporting commitment</p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/85">
-                LuxeNova Community Wellness commits to publishing meaningful
+                LuxeNova Community Wellness, Inc. commits to publishing meaningful
                 impact metrics as the initiative grows — not vanity numbers.
                 Every dollar of relief, every referral completed, and every
                 family stabilized is tracked, documented, and reported back to

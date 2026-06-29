@@ -6,11 +6,11 @@ import { PageHeader } from "@/components/site/PageHeader";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — LuxeNova Community Wellness" },
+      { title: "Privacy Policy — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Privacy Policy describing how LuxeNova Community Wellness collects, uses, and safeguards family information, support requests, donor inquiries, and volunteer interest.",
+          "Privacy Policy describing how LuxeNova Community Wellness, Inc. collects, uses, and safeguards family information, support requests, donor inquiries, and volunteer interest.",
       },
     ],
   }),
@@ -36,7 +36,7 @@ const sections = [
   {
     title: "SMS Consent",
     body:
-      "By submitting a form or providing your mobile number, you consent to receive text messages from LuxeNova Community Wellness related to your support request or inquiry. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties. Message frequency may vary. Message and data rates may apply. You may opt out of text messages at any time by replying STOP.",
+      "By submitting a form or providing your mobile number, you consent to receive text messages from LuxeNova Community Wellness, Inc. related to your support request or inquiry. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties. Message frequency may vary. Message and data rates may apply. You may opt out of text messages at any time by replying STOP.",
   },
   {
     title: "Confidentiality",
@@ -63,7 +63,7 @@ function PrivacyPage() {
         <PageHeader
           eyebrow="Legal"
           title="Privacy Policy"
-          description="How LuxeNova Community Wellness collects, uses, and safeguards information you provide."
+          description="How LuxeNova Community Wellness, Inc. collects, uses, and safeguards information you provide."
         />
         <section className="pb-24">
           <div className="mx-auto max-w-3xl px-6">

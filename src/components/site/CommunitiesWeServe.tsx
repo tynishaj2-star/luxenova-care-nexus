@@ -33,7 +33,7 @@ export function CommunitiesWeServe() {
           </h2>
           <p className="mt-4 text-base text-muted-foreground text-pretty">
             From Black and Hispanic households to working-class families across
-            the Commonwealth, LuxeNova Community Wellness meets neighbors where
+            the Commonwealth, LuxeNova Community Wellness, Inc. meets neighbors where
             they are — with dignity, transparency, and culturally-aware support.
           </p>
         </div>

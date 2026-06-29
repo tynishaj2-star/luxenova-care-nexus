@@ -6,11 +6,11 @@ import { PageHeader } from "@/components/site/PageHeader";
 export const Route = createFileRoute("/hipaa")({
   head: () => ({
     meta: [
-      { title: "Confidentiality Notice — LuxeNova Community Wellness" },
+      { title: "Confidentiality Notice — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Confidentiality Notice describing how LuxeNova Community Wellness handles family information, support requests, and household documents.",
+          "Confidentiality Notice describing how LuxeNova Community Wellness, Inc. handles family information, support requests, and household documents.",
       },
     ],
   }),
@@ -21,7 +21,7 @@ const sections = [
   {
     title: "Our Commitment to Confidentiality",
     body:
-      "LuxeNova Community Wellness treats every family's information as confidential. Support requests, household details, donation inquiries, volunteer interest, partner communications, and uploaded household documents are handled with care and respect.",
+      "LuxeNova Community Wellness, Inc. treats every family's information as confidential. Support requests, household details, donation inquiries, volunteer interest, partner communications, and uploaded household documents are handled with care and respect.",
   },
   {
     title: "What We Collect",
@@ -63,7 +63,7 @@ function ConfidentialityPage() {
         <PageHeader
           eyebrow="Legal"
           title="Confidentiality Notice"
-          description="How LuxeNova Community Wellness handles family information, support requests, and household documents."
+          description="How LuxeNova Community Wellness, Inc. handles family information, support requests, and household documents."
         />
         <section className="pb-24">
           <div className="mx-auto max-w-3xl px-6">

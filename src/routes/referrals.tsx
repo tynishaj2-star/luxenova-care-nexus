@@ -7,11 +7,11 @@ import { ReferralForm } from "@/components/site/ReferralForm";
 export const Route = createFileRoute("/referrals")({
   head: () => ({
     meta: [
-      { title: "Request Help — LuxeNova Community Wellness" },
+      { title: "Request Help — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Submit a confidential Emergency Stabilization Request to LuxeNova Community Wellness. Our team reviews each request and follows up regarding next steps.",
+          "Submit a confidential Emergency Stabilization Request to LuxeNova Community Wellness, Inc.. Our team reviews each request and follows up regarding next steps.",
       },
     ],
   }),

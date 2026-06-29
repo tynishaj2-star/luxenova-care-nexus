@@ -8,13 +8,13 @@ import { Receipt, FileSearch, BarChart3, ShieldCheck, Users } from "lucide-react
 export const Route = createFileRoute("/transparency")({
   head: () => ({
     meta: [
-      { title: "Transparency — LuxeNova Community Wellness" },
+      { title: "Transparency — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "How LuxeNova Community Wellness tracks donations, documents requests, reports impact, and protects family privacy — our public trust framework.",
+          "How LuxeNova Community Wellness, Inc. tracks donations, documents requests, reports impact, and protects family privacy — our public trust framework.",
       },
-      { property: "og:title", content: "Transparency — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Transparency — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "Donation tracking, request documentation, impact reporting, and responsible privacy.",
@@ -40,7 +40,7 @@ function TransparencyPage() {
         <PageHeader
           eyebrow="Transparency"
           title="Open by design. Accountable by practice."
-          description="LuxeNova Community Wellness is built on five commitments that keep donors, partners, and families informed without compromising privacy."
+          description="LuxeNova Community Wellness, Inc. is built on five commitments that keep donors, partners, and families informed without compromising privacy."
         />
         <CardGrid items={pillars} columns={3} />
       </main>

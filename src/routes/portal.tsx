@@ -37,11 +37,11 @@ import { AdminDashboard } from "@/components/portal/AdminDashboard";
 export const Route = createFileRoute("/portal")({
   head: () => ({
     meta: [
-      { title: "Admin Intake Dashboard — LuxeNova Community Wellness" },
+      { title: "Admin Intake Dashboard — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Secure LuxeNova Community Wellness intake dashboard for staff and partners to manage requests, referrals, and support submissions.",
+          "Secure LuxeNova Community Wellness, Inc. intake dashboard for staff and partners to manage requests, referrals, and support submissions.",
       },
     ],
   }),
@@ -251,7 +251,7 @@ function PortalAuthed() {
               L
             </span>
             <span className="font-display text-lg">
-              LuxeNova Community Wellness — Partner Portal
+              LuxeNova Community Wellness, Inc. — Partner Portal
             </span>
           </Link>
           <div className="flex items-center gap-3">
@@ -718,7 +718,7 @@ function RequestStaffAccessPanel() {
           <h3 className="mt-1 font-display text-lg">Need staff access?</h3>
           <p className="mt-1 max-w-xl text-sm text-muted-foreground">
             Partners see only their own referrals. Staff can review and update
-            every referral routed to LuxeNova Community Wellness. Submit a
+            every referral routed to LuxeNova Community Wellness, Inc.. Submit a
             request and an admin will follow up.
           </p>
           {pending && (

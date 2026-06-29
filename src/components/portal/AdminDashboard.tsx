@@ -228,7 +228,7 @@ export function AdminDashboard({
               L
             </span>
             <span className="font-display text-lg">
-              LuxeNova Community Wellness — Admin Intake Dashboard
+              LuxeNova Community Wellness, Inc. — Admin Intake Dashboard
             </span>
           </Link>
           <div className="flex items-center gap-3">
@@ -239,7 +239,7 @@ export function AdminDashboard({
             <div className="hidden text-right sm:block">
               <div className="text-sm">{profile?.full_name || "Staff member"}</div>
               <div className="text-[11px] text-muted-foreground">
-                {profile?.organization || "LuxeNova Community Wellness"}
+                {profile?.organization || "LuxeNova Community Wellness, Inc."}
               </div>
             </div>
             <button

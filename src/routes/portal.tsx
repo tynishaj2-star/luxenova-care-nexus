@@ -862,7 +862,7 @@ function ForcePasswordChange({ onDone }: { onDone: () => void }) {
           </button>
 
           <button
-            onClick={() => signOut()}
+            onClick={() => supabase.auth.signOut()}
             className="mt-3 w-full text-xs text-muted-foreground underline"
           >
             Sign out instead

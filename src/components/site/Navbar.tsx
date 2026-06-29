@@ -63,7 +63,7 @@ export function Navbar() {
             className="h-10 w-10 object-contain"
           />
           <span className="font-display text-lg tracking-tight leading-tight">
-            LuxeNova<span className="text-muted-foreground"> Community Wellness</span>
+            LuxeNova<span className="text-muted-foreground"> Community Wellness, Inc.</span>
           </span>
         </Link>
 

@@ -8,13 +8,13 @@ import { ArrowUpRight } from "lucide-react";
 export const Route = createFileRoute("/founder")({
   head: () => ({
     meta: [
-      { title: "Founder — LuxeNova Community Wellness" },
+      { title: "Founder — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "The founder vision behind LuxeNova Community Wellness — a Massachusetts community relief and family stabilization initiative shaped by lived awareness and practical problem-solving.",
+          "The founder vision behind LuxeNova Community Wellness, Inc. — a Massachusetts community relief and family stabilization initiative shaped by lived awareness and practical problem-solving.",
       },
-      { property: "og:title", content: "Founder — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Founder — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "Why LuxeNova exists and the values guiding it.",
@@ -32,7 +32,7 @@ function FounderPage() {
         <PageHeader
           eyebrow="Founder"
           title="Built from the community it serves."
-          description="LuxeNova Community Wellness is being shaped from lived community awareness, practical problem-solving, and a belief that emergency support should be organized, respectful, and transparent."
+          description="LuxeNova Community Wellness, Inc. is being shaped from lived community awareness, practical problem-solving, and a belief that emergency support should be organized, respectful, and transparent."
         />
         <ContentSection title="Why LuxeNova exists">
           <p>

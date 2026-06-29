@@ -19,20 +19,20 @@ import {
 export const Route = createFileRoute("/staffing-compensation")({
   head: () => ({
     meta: [
-      { title: "Staffing & Compensation — LuxeNova Community Wellness" },
+      { title: "Staffing & Compensation — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Internal staffing and compensation policy for LuxeNova Community Wellness — reasonable compensation, board approval, classification, and responsible use of funds.",
+          "Internal staffing and compensation policy for LuxeNova Community Wellness, Inc. — reasonable compensation, board approval, classification, and responsible use of funds.",
       },
       {
         property: "og:title",
-        content: "Staffing & Compensation — LuxeNova Community Wellness",
+        content: "Staffing & Compensation — LuxeNova Community Wellness, Inc.",
       },
       {
         property: "og:description",
         content:
-          "How LuxeNova Community Wellness approaches paid roles, classification, and oversight.",
+          "How LuxeNova Community Wellness, Inc. approaches paid roles, classification, and oversight.",
       },
     ],
   }),
@@ -80,12 +80,12 @@ function StaffingCompensationPage() {
         <PageHeader
           eyebrow="Internal Policy"
           title="Staffing & Compensation."
-          description="How LuxeNova Community Wellness approaches paid roles, classification, oversight, and the responsible use of donor and grant funds."
+          description="How LuxeNova Community Wellness, Inc. approaches paid roles, classification, oversight, and the responsible use of donor and grant funds."
         />
 
         <ContentSection title="Our commitment">
           <p>
-            LuxeNova Community Wellness is built on transparency and
+            LuxeNova Community Wellness, Inc. is built on transparency and
             dignity — for the families we serve and for anyone who works
             on the mission. This policy outlines the principles that
             guide how we structure paid roles as the organization grows.

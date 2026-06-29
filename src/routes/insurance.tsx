@@ -7,11 +7,11 @@ import { Home, Zap, Puzzle, Compass } from "lucide-react";
 export const Route = createFileRoute("/insurance")({
   head: () => ({
     meta: [
-      { title: "Eligibility & Access — LuxeNova Community Wellness" },
+      { title: "Eligibility & Access — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Who LuxeNova Community Wellness can help — Massachusetts families facing rent, utility, autism support, and resource barriers.",
+          "Who LuxeNova Community Wellness, Inc. can help — Massachusetts families facing rent, utility, autism support, and resource barriers.",
       },
     ],
   }),
@@ -49,7 +49,7 @@ function EligibilityPage() {
         <PageHeader
           eyebrow="Eligibility & Access"
           title="Who LuxeNova helps."
-          description="LuxeNova Community Wellness supports Massachusetts families facing housing, utility, autism-related, and resource barriers. Every request is reviewed individually."
+          description="LuxeNova Community Wellness, Inc. supports Massachusetts families facing housing, utility, autism-related, and resource barriers. Every request is reviewed individually."
         />
         <section className="pb-16 md:pb-24">
           <div className="mx-auto max-w-6xl px-6">

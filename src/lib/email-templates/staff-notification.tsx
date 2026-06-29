@@ -12,7 +12,7 @@ import {
 } from '@react-email/components'
 import type { TemplateEntry } from './registry'
 
-const SITE_NAME = 'LuxeNova Community Wellness'
+const SITE_NAME = 'LuxeNova Community Wellness, Inc., Inc.'
 const STAFF_EMAIL = 'tjohnson@luxenovawellnesscommunity.com'
 
 interface StaffNotificationProps {

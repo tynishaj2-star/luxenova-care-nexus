@@ -31,7 +31,7 @@ export function Hero() {
               <span className="block text-rosewood italic">Before Crisis Becomes Collapse.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground text-pretty">
-              LuxeNova Community Wellness helps Massachusetts families facing
+              LuxeNova Community Wellness, Inc. helps Massachusetts families facing
               housing instability, utility shutoffs, domestic violence,
               homelessness, autism-related support gaps, and resource barriers —
               with stabilization, education, and economic empowerment

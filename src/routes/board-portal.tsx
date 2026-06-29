@@ -24,12 +24,12 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/board-portal")({
   head: () => ({
     meta: [
-      { title: "Board Portal — LuxeNova Community Wellness" },
+      { title: "Board Portal — LuxeNova Community Wellness, Inc." },
       { name: "robots", content: "noindex, nofollow" },
       {
         name: "description",
         content:
-          "Confidential board portal for LuxeNova Community Wellness founding board members.",
+          "Confidential board portal for LuxeNova Community Wellness, Inc. founding board members.",
       },
     ],
   }),
@@ -187,7 +187,7 @@ function BoardPortalPage() {
     return (
       <Gate
         title="Board sign-in required"
-        body="This portal is restricted to LuxeNova Community Wellness founding board members. Please sign in to continue."
+        body="This portal is restricted to LuxeNova Community Wellness, Inc. founding board members. Please sign in to continue."
         primary={{ label: "Sign in", onClick: () => navigate({ to: "/login" }) }}
       />
     );
@@ -225,7 +225,7 @@ function BoardPortalPage() {
           <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-rosewood text-rosewood-foreground font-display">
             L
           </span>
-          <span className="font-display text-lg">LuxeNova Community Wellness</span>
+          <span className="font-display text-lg">LuxeNova Community Wellness, Inc.</span>
         </Link>
         <div className="flex items-center gap-3">
           <button

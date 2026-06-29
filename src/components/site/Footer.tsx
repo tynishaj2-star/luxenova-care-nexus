@@ -64,7 +64,7 @@ export function Footer() {
               <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-rosewood text-rosewood-foreground font-display">
                 L
               </span>
-              <span className="font-display text-lg">LuxeNova Community Wellness</span>
+              <span className="font-display text-lg">LuxeNova Community Wellness, Inc.</span>
             </Link>
             <p className="mt-5 max-w-sm text-sm text-muted-foreground">
               A Massachusetts community relief and family stabilization
@@ -107,7 +107,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border/70 pt-6 text-xs text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} LuxeNova Community Wellness. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} LuxeNova Community Wellness, Inc. All rights reserved.</p>
           <p>Confidential · Community-centered · Transparent impact</p>
         </div>
       </div>

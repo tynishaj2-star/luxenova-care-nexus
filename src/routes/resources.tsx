@@ -8,13 +8,13 @@ import { Home, Zap, Puzzle, FileText } from "lucide-react";
 export const Route = createFileRoute("/resources")({
   head: () => ({
     meta: [
-      { title: "Resource Hub — LuxeNova Community Wellness" },
+      { title: "Resource Hub — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
           "LuxeNova Resource Hub for Massachusetts families — housing, utility, autism family support, and documentation resources.",
       },
-      { property: "og:title", content: "Resource Hub — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Resource Hub — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "Verified Massachusetts resources for families in need.",

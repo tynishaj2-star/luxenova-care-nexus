@@ -8,13 +8,13 @@ import { MapPin, Home, Zap, Puzzle, FileText, LifeBuoy } from "lucide-react";
 export const Route = createFileRoute("/eligibility")({
   head: () => ({
     meta: [
-      { title: "Eligibility — LuxeNova Community Wellness" },
+      { title: "Eligibility — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Eligibility focus for LuxeNova Community Wellness — Massachusetts families facing housing, utility, autism support, documentation, and urgent stabilization needs.",
+          "Eligibility focus for LuxeNova Community Wellness, Inc. — Massachusetts families facing housing, utility, autism support, documentation, and urgent stabilization needs.",
       },
-      { property: "og:title", content: "Eligibility — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Eligibility — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "Who LuxeNova can support and how requests are reviewed.",
@@ -45,7 +45,7 @@ function EligibilityPage() {
         />
         <CardGrid items={focus} columns={3} />
         <CalloutNote>
-          LuxeNova Community Wellness is not an emergency crisis response
+          LuxeNova Community Wellness, Inc. is not an emergency crisis response
           service and cannot guarantee funds, approval, or immediate
           intervention. If there is immediate danger, call 911 or local
           emergency services.

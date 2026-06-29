@@ -7,13 +7,13 @@ import { ContentSection, CalloutNote } from "@/components/site/ContentPage";
 export const Route = createFileRoute("/donation-policy")({
   head: () => ({
     meta: [
-      { title: "Donation Policy — LuxeNova Community Wellness" },
+      { title: "Donation Policy — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Donation Policy for LuxeNova Community Wellness — purpose of donations, restricted vs general support, no guaranteed assistance, refunds, and transparency.",
+          "Donation Policy for LuxeNova Community Wellness, Inc. — purpose of donations, restricted vs general support, no guaranteed assistance, refunds, and transparency.",
       },
-      { property: "og:title", content: "Donation Policy — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Donation Policy — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "How donations are accepted, used, and reported.",
@@ -31,7 +31,7 @@ function DonationPolicyPage() {
         <PageHeader
           eyebrow="Donation Policy"
           title="Clear, honest, and donor-respectful."
-          description="This policy explains how donations are accepted, applied, and reported by LuxeNova Community Wellness."
+          description="This policy explains how donations are accepted, applied, and reported by LuxeNova Community Wellness, Inc."
         />
 
         <ContentSection title="Purpose of donations">
@@ -79,7 +79,7 @@ function DonationPolicyPage() {
         </ContentSection>
 
         <CalloutNote>
-          LuxeNova Community Wellness does not currently claim 501(c)(3)
+          LuxeNova Community Wellness, Inc. does not currently claim 501(c)(3)
           tax-exempt status. Donations should not be assumed tax-deductible
           unless and until formal IRS approval is confirmed on the
           Nonprofit Status page.

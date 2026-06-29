@@ -16,20 +16,20 @@ import {
 export const Route = createFileRoute("/conflict-of-interest")({
   head: () => ({
     meta: [
-      { title: "Conflict of Interest Policy — LuxeNova Community Wellness" },
+      { title: "Conflict of Interest Policy — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Conflict of Interest Policy and annual disclosure procedures for the directors, officers, and key personnel of LuxeNova Community Wellness.",
+          "Conflict of Interest Policy and annual disclosure procedures for the directors, officers, and key personnel of LuxeNova Community Wellness, Inc.",
       },
       {
         property: "og:title",
-        content: "Conflict of Interest Policy — LuxeNova Community Wellness",
+        content: "Conflict of Interest Policy — LuxeNova Community Wellness, Inc.",
       },
       {
         property: "og:description",
         content:
-          "How LuxeNova Community Wellness identifies, discloses, and manages conflicts of interest.",
+          "How LuxeNova Community Wellness, Inc. identifies, discloses, and manages conflicts of interest.",
       },
     ],
   }),
@@ -40,7 +40,7 @@ const whoIsCovered = [
   {
     icon: Users,
     title: "Directors",
-    body: "All members of the Board of Directors of LuxeNova Community Wellness.",
+    body: "All members of the Board of Directors of LuxeNova Community Wellness, Inc.",
   },
   {
     icon: ShieldCheck,
@@ -101,9 +101,9 @@ const procedure = [
 ];
 
 const annualDisclosure = [
-  "I have received, read, and understand the Conflict of Interest Policy of LuxeNova Community Wellness.",
+  "I have received, read, and understand the Conflict of Interest Policy of LuxeNova Community Wellness, Inc.",
   "I agree to comply with the Policy and to disclose actual or potential conflicts as they arise.",
-  "I understand that LuxeNova Community Wellness is a charitable, tax-exempt organization and that, to maintain its federal tax exemption, it must engage primarily in activities that accomplish its exempt purposes.",
+  "I understand that LuxeNova Community Wellness, Inc. is a charitable, tax-exempt organization and that, to maintain its federal tax exemption, it must engage primarily in activities that accomplish its exempt purposes.",
   "I will not use my position with the Corporation for personal gain, nor will I use confidential information acquired through my role for any purpose other than to advance the mission of the Corporation.",
 ];
 
@@ -115,13 +115,13 @@ function ConflictOfInterestPage() {
         <PageHeader
           eyebrow="Governance Policy"
           title="Conflict of Interest Policy"
-          description="How LuxeNova Community Wellness identifies, discloses, and manages conflicts of interest to protect the mission, the families we serve, and the trust of our donors and partners."
+          description="How LuxeNova Community Wellness, Inc. identifies, discloses, and manages conflicts of interest to protect the mission, the families we serve, and the trust of our donors and partners."
         />
 
         <ContentSection title="Purpose">
           <p>
             This Conflict of Interest Policy is intended to protect the
-            charitable interests of LuxeNova Community Wellness (the
+            charitable interests of LuxeNova Community Wellness, Inc. (the
             "Corporation") when it considers entering into a transaction or
             arrangement that might benefit the private interest of a director,
             officer, employee, contractor, or family member. This Policy is
@@ -134,7 +134,7 @@ function ConflictOfInterestPage() {
         <ContentSection title="Who is covered">
           <p>
             This Policy applies to every person with decision-making
-            responsibility on behalf of LuxeNova Community Wellness.
+            responsibility on behalf of LuxeNova Community Wellness, Inc.
           </p>
         </ContentSection>
         <CardGrid items={whoIsCovered} columns={3} />
@@ -233,7 +233,7 @@ function ConflictOfInterestPage() {
                   Annual Disclosure Statement
                 </p>
                 <p className="font-display text-base">
-                  LuxeNova Community Wellness
+                  LuxeNova Community Wellness, Inc.
                 </p>
               </div>
             </div>

@@ -173,7 +173,7 @@ export function ReferralForm() {
           <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-rosewood" strokeWidth={1.5} />
           <p>
             This is a confidential stabilization request. By submitting
-            this form, you agree that LuxeNova Community Wellness may contact you
+            this form, you agree that LuxeNova Community Wellness, Inc. may contact you
             by phone, email, or text regarding this request. Message and data
             rates may apply. You may opt out of text messages at any time by
             replying STOP.
@@ -554,12 +554,12 @@ export function ReferralForm() {
                   {
                     key: "c" as const,
                     label:
-                      "I acknowledge LuxeNova Community Wellness may contact the family or submitter regarding this request and may coordinate with trusted community partners as appropriate.",
+                      "I acknowledge LuxeNova Community Wellness, Inc. may contact the family or submitter regarding this request and may coordinate with trusted community partners as appropriate.",
                   },
                   {
                     key: "hipaa" as const,
                     label:
-                      "HIPAA Authorization: I authorize LuxeNova Community Wellness and the submitting partner to exchange the uploaded documents and any Protected Health Information (PHI) contained within for the limited purpose of coordinating stabilization services. This authorization may be revoked in writing at any time.",
+                      "HIPAA Authorization: I authorize LuxeNova Community Wellness, Inc. and the submitting partner to exchange the uploaded documents and any Protected Health Information (PHI) contained within for the limited purpose of coordinating stabilization services. This authorization may be revoked in writing at any time.",
                   },
                 ].map(({ key, label }) => (
                   <label

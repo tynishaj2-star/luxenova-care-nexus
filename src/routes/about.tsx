@@ -8,13 +8,13 @@ import { WhyUs } from "@/components/site/WhyUs";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Mission — LuxeNova Community Wellness" },
+      { title: "Mission — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative — supporting families through housing, utility, domestic violence, homelessness, autism, education, and economic empowerment barriers with dignity, transparency, and care.",
+          "LuxeNova Community Wellness, Inc. is a Massachusetts community relief and family stabilization initiative — supporting families through housing, utility, domestic violence, homelessness, autism, education, and economic empowerment barriers with dignity, transparency, and care.",
       },
-      { property: "og:title", content: "Our Mission — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Our Mission — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content:
@@ -33,7 +33,7 @@ function AboutPage() {
         <PageHeader
           eyebrow="Mission"
           title="Stabilizing families. Strengthening communities."
-          description="LuxeNova Community Wellness is a Massachusetts community relief and family stabilization initiative supporting households through housing, utility, domestic violence, homelessness, autism, education, and economic empowerment barriers."
+          description="LuxeNova Community Wellness, Inc. is a Massachusetts community relief and family stabilization initiative supporting households through housing, utility, domestic violence, homelessness, autism, education, and economic empowerment barriers."
         />
         <WhoWeAre />
         <WhyUs />

@@ -8,7 +8,7 @@ import { ReferralCTA } from "@/components/site/ReferralCTA";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Programs — LuxeNova Community Wellness" },
+      { title: "Programs — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:

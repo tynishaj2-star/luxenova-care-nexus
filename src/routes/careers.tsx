@@ -8,11 +8,11 @@ import { CheckCircle2, Upload, HeartHandshake, Users, Compass, Megaphone } from 
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
-      { title: "Get Involved — LuxeNova Community Wellness" },
+      { title: "Get Involved — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Volunteer with LuxeNova Community Wellness. Community volunteers, resource navigators, intake coordinators, and grant & outreach support roles.",
+          "Volunteer with LuxeNova Community Wellness, Inc. Community volunteers, resource navigators, intake coordinators, and grant & outreach support roles.",
       },
       { property: "og:title", content: "Get Involved — LuxeNova" },
       {
@@ -42,7 +42,7 @@ function GetInvolvedPage() {
         <PageHeader
           eyebrow="Get Involved"
           title="Stand with Massachusetts families."
-          description="LuxeNova Community Wellness is building a community-rooted team of volunteers, navigators, and outreach supporters helping families stabilize."
+          description="LuxeNova Community Wellness, Inc. is building a community-rooted team of volunteers, navigators, and outreach supporters helping families stabilize."
         />
 
         <section className="pb-16">

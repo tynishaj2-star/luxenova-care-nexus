@@ -8,13 +8,13 @@ import { Lock, ListChecks, Ban, HeartHandshake, BadgeCheck, AlertTriangle } from
 export const Route = createFileRoute("/volunteer-policy")({
   head: () => ({
     meta: [
-      { title: "Volunteer Policy — LuxeNova Community Wellness" },
+      { title: "Volunteer Policy — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Volunteer expectations for LuxeNova Community Wellness — respect family privacy, follow assigned roles, dignity, screening, and reporting.",
+          "Volunteer expectations for LuxeNova Community Wellness, Inc. — respect family privacy, follow assigned roles, dignity, screening, and reporting.",
       },
-      { property: "og:title", content: "Volunteer Policy — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Volunteer Policy — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "What we ask of every LuxeNova volunteer.",

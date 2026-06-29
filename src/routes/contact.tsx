@@ -10,11 +10,11 @@ import { notifyStaff } from "@/lib/notify-staff";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — LuxeNova Community Wellness" },
+      { title: "Contact — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Contact LuxeNova Community Wellness for general inquiries, referrals, partnerships, or career questions.",
+          "Contact LuxeNova Community Wellness, Inc. for general inquiries, referrals, partnerships, or career questions.",
       },
       { property: "og:title", content: "Contact LuxeNova" },
       {

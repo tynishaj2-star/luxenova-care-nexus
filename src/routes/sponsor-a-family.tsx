@@ -8,13 +8,13 @@ import { Home, Zap, Puzzle, ShoppingBasket, ArrowUpRight } from "lucide-react";
 export const Route = createFileRoute("/sponsor-a-family")({
   head: () => ({
     meta: [
-      { title: "Sponsor a Family — LuxeNova Community Wellness" },
+      { title: "Sponsor a Family — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Sponsor a Massachusetts family through LuxeNova Community Wellness — rent gaps, utility relief, autism family support, and essentials. For donors, churches, businesses, and community groups.",
+          "Sponsor a Massachusetts family through LuxeNova Community Wellness, Inc. — rent gaps, utility relief, autism family support, and essentials. For donors, churches, businesses, and community groups.",
       },
-      { property: "og:title", content: "Sponsor a Family — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Sponsor a Family — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "Sponsor pathways for donors, churches, businesses, and community groups.",
@@ -43,7 +43,7 @@ function SponsorPage() {
         />
         <CardGrid items={categories} columns={2} />
         <CalloutNote>
-          Sponsor pathways are being prepared. LuxeNova Community Wellness
+          Sponsor pathways are being prepared. LuxeNova Community Wellness, Inc.
           will protect family privacy at every step — sponsors receive
           documented impact updates without identifying details. Reach out
           to be matched with a sponsorship opportunity as our intake opens.

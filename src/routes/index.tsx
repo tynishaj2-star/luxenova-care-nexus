@@ -15,13 +15,13 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "LuxeNova Community Wellness — Helping Massachusetts Families Stabilize" },
+      { title: "LuxeNova Community Wellness, Inc. — Helping Massachusetts Families Stabilize" },
       {
         name: "description",
         content:
-          "LuxeNova Community Wellness is a Massachusetts community relief initiative supporting families through emergency rental assistance, utility relief, autism family support, and resource navigation.",
+          "LuxeNova Community Wellness, Inc. is a Massachusetts community relief initiative supporting families through emergency rental assistance, utility relief, autism family support, and resource navigation.",
       },
-      { property: "og:title", content: "LuxeNova Community Wellness" },
+      { property: "og:title", content: "LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content:

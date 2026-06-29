@@ -7,13 +7,13 @@ import { CalloutNote } from "@/components/site/ContentPage";
 export const Route = createFileRoute("/nonprofit-status")({
   head: () => ({
     meta: [
-      { title: "Nonprofit Status — LuxeNova Community Wellness" },
+      { title: "Nonprofit Status — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "Current nonprofit status of LuxeNova Community Wellness — mission and program structure, board formation, nonprofit filings, and donation processing.",
+          "Current nonprofit status of LuxeNova Community Wellness, Inc. — mission and program structure, board formation, nonprofit filings, and donation processing.",
       },
-      { property: "og:title", content: "Nonprofit Status — LuxeNova Community Wellness" },
+      { property: "og:title", content: "Nonprofit Status — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "Honest, current status of our nonprofit structure.",
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/nonprofit-status")({
 const statuses = [
   { title: "Mission and program structure", state: "Established", body: "Mission, programs, eligibility, and intake pathways are clearly defined and actively serving families across Massachusetts." },
   { title: "Board governance", state: "Active", body: "Board officers and governance framework are in place, providing oversight, accountability, and mission alignment." },
-  { title: "Nonprofit incorporation and EIN", state: "Approved", body: "LuxeNova Community Wellness is incorporated as a nonprofit organization with a registered EIN and recognized 501(c)(3) status." },
+  { title: "Nonprofit incorporation and EIN", state: "Approved", body: "LuxeNova Community Wellness, Inc. is incorporated as a nonprofit organization with a registered EIN and recognized 501(c)(3) status." },
   { title: "Donation processing", state: "Active", body: "Secure, transparent, and policy-compliant donation infrastructure is live and accepting contributions." },
 ];
 
@@ -44,7 +44,7 @@ function NonprofitStatusPage() {
         <PageHeader
           eyebrow="Nonprofit Status"
           title="A recognized 501(c)(3) nonprofit."
-          description="LuxeNova Community Wellness is an established nonprofit organization serving Massachusetts families with transparency, accountability, and care."
+          description="LuxeNova Community Wellness, Inc. is an established nonprofit organization serving Massachusetts families with transparency, accountability, and care."
         />
         <section className="pb-12">
           <div className="mx-auto max-w-5xl px-6">
@@ -71,7 +71,7 @@ function NonprofitStatusPage() {
           </div>
         </section>
         <CalloutNote>
-          LuxeNova Community Wellness operates as a recognized 501(c)(3)
+          LuxeNova Community Wellness, Inc. operates as a recognized 501(c)(3)
           nonprofit. Donations are tax-deductible to the fullest extent
           allowed by law, and the organization is eligible for grants
           and institutional funding.

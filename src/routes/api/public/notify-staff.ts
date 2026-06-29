@@ -5,7 +5,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
 import { TEMPLATES } from '@/lib/email-templates/registry'
 
-const SITE_NAME = 'LuxeNova Community Wellness'
+const SITE_NAME = 'LuxeNova Community Wellness, Inc.'
 const SENDER_DOMAIN = 'notify.luxenovataxandfinancials.com'
 const FROM_DOMAIN = 'notify.luxenovataxandfinancials.com'
 

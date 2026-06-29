@@ -8,13 +8,13 @@ import { Home, Zap, Puzzle, Compass, LifeBuoy } from "lucide-react";
 export const Route = createFileRoute("/how-funds-are-used")({
   head: () => ({
     meta: [
-      { title: "How Funds Are Used — LuxeNova Community Wellness" },
+      { title: "How Funds Are Used — LuxeNova Community Wellness, Inc." },
       {
         name: "description",
         content:
-          "How LuxeNova Community Wellness uses donated funds — emergency housing stabilization, utility relief, autism family support, navigation, and household stabilization barriers.",
+          "How LuxeNova Community Wellness, Inc. uses donated funds — emergency housing stabilization, utility relief, autism family support, navigation, and household stabilization barriers.",
       },
-      { property: "og:title", content: "How Funds Are Used — LuxeNova Community Wellness" },
+      { property: "og:title", content: "How Funds Are Used — LuxeNova Community Wellness, Inc." },
       {
         property: "og:description",
         content: "Where donations go and how stabilization decisions are made.",
@@ -46,7 +46,7 @@ function FundsPage() {
         <CalloutNote>
           Support is not guaranteed. Each request is reviewed based on
           available funds, documentation provided, urgency, eligibility
-          guidelines, and team review. LuxeNova Community Wellness is not an
+          guidelines, and team review. LuxeNova Community Wellness, Inc. is not an
           emergency crisis response service. If a household is in immediate
           danger, please call 911 or local emergency services.
         </CalloutNote>

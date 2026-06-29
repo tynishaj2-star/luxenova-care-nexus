@@ -12,8 +12,8 @@ import {
 } from '@react-email/components'
 import type { TemplateEntry } from './registry'
 
-const SITE_NAME = 'LuxeNova Community Wellness, Inc., Inc.'
-const STAFF_EMAIL = 'tjohnson@luxenovawellnesscommunity.com'
+const SITE_NAME = 'LuxeNova Community Wellness, Inc.'
+const STAFF_EMAIL = 'tjohnson@luxenovacommunitywellness.com'
 
 interface StaffNotificationProps {
   formName?: string

@@ -227,6 +227,20 @@ export function AdminDashboard({
     },
   });
 
+  // Admin "View as" preview — re-render any staff member's workspace read-only.
+  if (previewRole && previewRole !== "admin") {
+    const member = STAFF_DIRECTORY.find((s) => s.jobRole === previewRole);
+    return (
+      <StaffWorkspaceShell
+        role={previewRole as JobRole}
+        viewerName={member?.name ?? "Staff"}
+        viewerTitle={member?.title ?? ""}
+        previewing
+        onExitPreview={() => setPreviewRole("")}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-warm">
       <header className="border-b border-border/60 bg-card/70 backdrop-blur">
@@ -240,6 +254,22 @@ export function AdminDashboard({
             </span>
           </Link>
           <div className="flex items-center gap-3">
+            <label className="hidden items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground sm:flex">
+              <Eye className="h-3.5 w-3.5 text-rosewood" strokeWidth={1.5} />
+              View as
+              <select
+                value={previewRole}
+                onChange={(e) => setPreviewRole(e.target.value as JobRole | "")}
+                className="rounded-md border border-border bg-background px-2 py-0.5 text-xs"
+              >
+                <option value="">— myself (Admin) —</option>
+                {STAFF_DIRECTORY.filter((s) => s.jobRole !== "admin").map((s) => (
+                  <option key={s.email} value={s.jobRole}>
+                    {s.name} ({JOB_ROLE_LABEL[s.jobRole]})
+                  </option>
+                ))}
+              </select>
+            </label>
             <span className="hidden items-center gap-1.5 rounded-full border border-rosewood/30 bg-accent px-3 py-1.5 text-xs text-rosewood sm:flex">
               <ShieldCheck className="h-3.5 w-3.5" strokeWidth={1.5} />
               Admin · Confidential

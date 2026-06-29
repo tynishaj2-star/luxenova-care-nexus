@@ -31,8 +31,8 @@ export function PermissionsSection() {
       try {
         const idx = path.indexOf(" ");
         const clean = idx >= 0 ? path.slice(0, idx) : path;
-        // @ts-expect-error — routesByPath is a runtime map on the router
-        return !!router.routesByPath?.[clean];
+        const map = (router as unknown as { routesByPath?: Record<string, unknown> }).routesByPath;
+        return !!map?.[clean];
       } catch {
         return false;
       }

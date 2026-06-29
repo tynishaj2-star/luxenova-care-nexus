@@ -254,7 +254,7 @@ export function OperationsSection() {
         </h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <QuickAction icon={UserPlus} label="Add Volunteer" href="/careers" />
-          <QuickAction icon={Users} label="Add Client" href="/get-help" />
+          <QuickAction icon={Users} label="Add Client" href="/referrals" />
           <QuickAction icon={CalendarPlus} label="Create Event" href="/food-drives" />
           <QuickAction icon={Mail} label="Send Email" href="/contact" />
           <QuickAction icon={ClipboardCheck} label="Create Board Meeting" href="/board-portal" />

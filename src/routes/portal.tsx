@@ -89,6 +89,7 @@ type CurrentWorkspace = {
     organization: string | null;
     must_change_password: boolean | null;
   } | null;
+  email: string | null;
   isStaff: boolean;
   isAdmin: boolean;
   roles: string[];
@@ -117,6 +118,7 @@ async function getCurrentWorkspace(): Promise<CurrentWorkspace> {
   const roleList = roles?.map((r) => r.role) ?? [];
   return {
     profile,
+    email: userData.user.email ?? null,
     isStaff: roleList.includes("staff"),
     isAdmin: roleList.includes("admin"),
     roles: roleList,

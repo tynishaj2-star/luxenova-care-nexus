@@ -33,6 +33,8 @@ import {
 } from "@/lib/role-requests.functions";
 import { markPasswordChanged } from "@/lib/admin.functions";
 import { AdminDashboard } from "@/components/portal/AdminDashboard";
+import { StaffWorkspaceShell } from "@/components/portal/StaffWorkspaceShell";
+import { getStaffByEmail } from "@/lib/staff-roles";
 
 export const Route = createFileRoute("/portal")({
   head: () => ({

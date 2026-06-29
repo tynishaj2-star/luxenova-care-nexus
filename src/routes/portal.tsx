@@ -32,6 +32,7 @@ import {
   listMyRoleRequests,
   requestRoleElevation,
 } from "@/lib/role-requests.functions";
+import { markPasswordChanged } from "@/lib/admin.functions";
 import { AdminDashboard } from "@/components/portal/AdminDashboard";
 
 export const Route = createFileRoute("/portal")({

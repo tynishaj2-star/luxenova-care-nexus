@@ -104,6 +104,7 @@ const URGENCY_TONE: Record<"Routine" | "Priority" | "Urgent", string> = {
 };
 
 type SectionId =
+  | "executive"
   | "overview"
   | "requests"
   | "food-drives"
@@ -115,6 +116,7 @@ type SectionId =
   | "settings";
 
 const NAV: { id: SectionId; label: string; icon: typeof Inbox }[] = [
+  { id: "executive", label: "Executive Director", icon: Crown },
   { id: "overview", label: "Overview", icon: LayoutDashboard },
   { id: "requests", label: "Requests", icon: Inbox },
   { id: "food-drives", label: "Food Drives", icon: Utensils },

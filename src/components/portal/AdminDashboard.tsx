@@ -109,6 +109,7 @@ const URGENCY_TONE: Record<"Routine" | "Priority" | "Urgent", string> = {
 type SectionId =
   | "executive"
   | "overview"
+  | "operations"
   | "requests"
   | "food-drives"
   | "volunteers"

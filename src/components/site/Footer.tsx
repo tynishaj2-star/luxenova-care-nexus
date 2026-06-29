@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Linkedin, Facebook, Mail, Phone, MapPin } from "lucide-react";
+import { ORG } from "@/lib/org";
 
 export function Footer() {
   const cols = [
@@ -64,7 +65,7 @@ export function Footer() {
               <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-rosewood text-rosewood-foreground font-display">
                 L
               </span>
-              <span className="font-display text-lg">LuxeNova Community Wellness, Inc.</span>
+              <span className="font-display text-lg">{ORG.legalName}</span>
             </Link>
             <p className="mt-5 max-w-sm text-sm text-muted-foreground">
               A Massachusetts community relief and family stabilization
@@ -72,7 +73,7 @@ export function Footer() {
             </p>
             <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> <a href="tel:+18665663146" className="hover:text-rosewood transition-colors">(866) 566-3146</a></li>
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> <a href="mailto:tjohnson@luxenovacommunitywellness.com" className="hover:text-rosewood transition-colors break-all">tjohnson@luxenovacommunitywellness.com</a></li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> <a href={`mailto:${ORG.email}`} className="hover:text-rosewood transition-colors break-all">{ORG.email}</a></li>
               <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Greater Boston · Statewide MA</li>
             </ul>
             <div className="mt-6 flex items-center gap-2">
@@ -107,7 +108,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border/70 pt-6 text-xs text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} LuxeNova Community Wellness, Inc. All rights reserved.</p>
+          <p>© {ORG.copyrightYear} {ORG.legalName} All rights reserved.</p>
           <p>Confidential · Community-centered · Transparent impact</p>
         </div>
       </div>

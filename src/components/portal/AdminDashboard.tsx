@@ -323,6 +323,7 @@ export function AdminDashboard({
         <main className="min-w-0">
           {section === "executive" && <ExecutiveDirectorSection />}
           {section === "overview" && <OverviewSection counts={counts} referrals={referrals} onJump={(s) => { setSection("requests"); setStatusFilter(s); }} />}
+          {section === "operations" && <OperationsSection />}
 
           {section === "requests" && (
             <RequestsSection

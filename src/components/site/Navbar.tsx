@@ -58,13 +58,13 @@ export function Navbar() {
         <Link to="/" className="flex items-center gap-3">
           <img
             src={logo}
-            alt="LuxeNova Community Wellness, Inc. logo"
+            alt={`${ORG.legalName} logo`}
             width={40}
             height={40}
             className="h-10 w-10 object-contain"
           />
           <span className="font-display text-lg tracking-tight leading-tight">
-            LuxeNova<span className="text-muted-foreground"> Community Wellness, Inc.</span>
+            {ORG.shortName}<span className="text-muted-foreground"> {ORG.legalName.replace(ORG.shortName, "").trim()}</span>
           </span>
         </Link>
 

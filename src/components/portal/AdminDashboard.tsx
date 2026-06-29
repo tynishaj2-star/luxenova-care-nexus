@@ -41,7 +41,9 @@ import {
   decideRoleRequest,
 } from "@/lib/admin.functions";
 import { ExecutiveDirectorSection } from "./ExecutiveDirectorSection";
-import { Crown } from "lucide-react";
+import { Crown, Eye } from "lucide-react";
+import { STAFF_DIRECTORY, type JobRole, JOB_ROLE_LABEL } from "@/lib/staff-roles";
+import { StaffWorkspaceShell } from "./StaffWorkspaceShell";
 
 type Status =
   | "New"
@@ -150,6 +152,7 @@ export function AdminDashboard({
   const addNoteFn = useServerFn(addReferralNote);
 
   const [section, setSection] = useState<SectionId>("executive");
+  const [previewRole, setPreviewRole] = useState<JobRole | "">("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<Status | "All">("All");

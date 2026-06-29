@@ -777,3 +777,99 @@ function RequestStaffAccessPanel() {
     </div>
   );
 }
+
+function ForcePasswordChange({ onDone }: { onDone: () => void }) {
+  const markChanged = useServerFn(markPasswordChanged);
+  const [pw, setPw] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const { signOut } = useAuth();
+
+  async function submit() {
+    setError(null);
+    if (pw.length < 10) {
+      setError("Password must be at least 10 characters.");
+      return;
+    }
+    if (!/[A-Z]/.test(pw) || !/[a-z]/.test(pw) || !/[0-9]/.test(pw)) {
+      setError("Use upper-case, lower-case, and a number.");
+      return;
+    }
+    if (pw !== confirm) {
+      setError("Passwords don't match.");
+      return;
+    }
+    setBusy(true);
+    try {
+      const { error: upErr } = await supabase.auth.updateUser({ password: pw });
+      if (upErr) throw upErr;
+      await markChanged();
+      onDone();
+    } catch (e: any) {
+      setError(e?.message ?? "Could not update password.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-warm py-16">
+      <div className="mx-auto max-w-md px-4">
+        <div className="rounded-3xl border border-border/70 bg-card p-8 shadow-luxe">
+          <p className="text-xs uppercase tracking-[0.2em] text-rosewood">First sign-in</p>
+          <h1 className="mt-2 font-display text-3xl">Set your new password</h1>
+          <p className="mt-3 text-sm text-muted-foreground">
+            For your security, please replace the temporary password you were given
+            with one only you know. You won't be able to use the portal until this
+            is done.
+          </p>
+
+          <div className="mt-6 space-y-3">
+            <label className="block">
+              <span className="text-xs font-medium text-muted-foreground">New password</span>
+              <input
+                type="password"
+                value={pw}
+                onChange={(e) => setPw(e.target.value)}
+                placeholder="At least 10 characters"
+                className="mt-1 h-11 w-full rounded-xl border border-border bg-background px-3 text-sm outline-none focus:border-rosewood focus:ring-2 focus:ring-rosewood/20"
+              />
+            </label>
+            <label className="block">
+              <span className="text-xs font-medium text-muted-foreground">Confirm password</span>
+              <input
+                type="password"
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && submit()}
+                className="mt-1 h-11 w-full rounded-xl border border-border bg-background px-3 text-sm outline-none focus:border-rosewood focus:ring-2 focus:ring-rosewood/20"
+              />
+            </label>
+          </div>
+
+          {error && (
+            <p className="mt-4 rounded-xl border border-rosewood/30 bg-accent/40 px-3 py-2 text-xs text-rosewood">
+              {error}
+            </p>
+          )}
+
+          <button
+            onClick={submit}
+            disabled={busy || !pw || !confirm}
+            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-rosewood px-5 py-2.5 text-sm font-medium text-rosewood-foreground shadow-luxe disabled:opacity-50"
+          >
+            {busy ? "Updating…" : "Update password & continue"}
+          </button>
+
+          <button
+            onClick={() => signOut()}
+            className="mt-3 w-full text-xs text-muted-foreground underline"
+          >
+            Sign out instead
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

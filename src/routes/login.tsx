@@ -184,7 +184,7 @@ function LoginPage() {
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
               {mode === "signin"
-                ? "Use your partner credentials to access the referral dashboard."
+                ? "Sign in with your staff or partner credentials — we'll route you to the right dashboard."
                 : "We'll email you a secure link to choose a new password."}
             </p>
 

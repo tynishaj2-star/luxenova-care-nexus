@@ -40,6 +40,8 @@ import {
   listRoleRequests,
   decideRoleRequest,
 } from "@/lib/admin.functions";
+import { ExecutiveDirectorSection } from "./ExecutiveDirectorSection";
+import { Crown } from "lucide-react";
 
 type Status =
   | "New"

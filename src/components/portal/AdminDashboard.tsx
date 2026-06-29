@@ -149,7 +149,7 @@ export function AdminDashboard({
   const setStatusFn = useServerFn(updateReferralStatus);
   const addNoteFn = useServerFn(addReferralNote);
 
-  const [section, setSection] = useState<SectionId>("overview");
+  const [section, setSection] = useState<SectionId>("executive");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<Status | "All">("All");

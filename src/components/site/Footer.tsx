@@ -73,7 +73,7 @@ export function Footer() {
             </p>
             <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> <a href="tel:+18665663146" className="hover:text-rosewood transition-colors">(866) 566-3146</a></li>
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> <a href="mailto:tjohnson@luxenovacommunitywellness.com" className="hover:text-rosewood transition-colors break-all">tjohnson@luxenovacommunitywellness.com</a></li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> <a href={`mailto:${ORG.email}`} className="hover:text-rosewood transition-colors break-all">{ORG.email}</a></li>
               <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Greater Boston · Statewide MA</li>
             </ul>
             <div className="mt-6 flex items-center gap-2">

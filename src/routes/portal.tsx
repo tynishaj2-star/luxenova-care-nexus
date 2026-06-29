@@ -784,7 +784,6 @@ function ForcePasswordChange({ onDone }: { onDone: () => void }) {
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const { signOut } = useAuth();
 
   async function submit() {
     setError(null);

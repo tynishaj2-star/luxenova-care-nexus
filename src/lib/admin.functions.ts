@@ -1,7 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 const roleEnum = z.enum(["partner", "staff", "admin"]);
 
@@ -30,6 +29,7 @@ export const inviteUser = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const redirectTo = `${process.env.SITE_URL ?? ""}/reset-password`;
     const { data: invited, error } = await supabaseAdmin.auth.admin.inviteUserByEmail(
@@ -70,6 +70,7 @@ export const createEmployeeAccount = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     // Generate a cryptographically random temp password (16 chars, mixed)
     const alphabet =
@@ -128,6 +129,8 @@ export const listRoleRequests = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
     const { data: reqs, error } = await supabaseAdmin
       .from("role_requests")
       .select("*")
@@ -156,6 +159,7 @@ export const decideRoleRequest = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const { data: req, error: rErr } = await supabaseAdmin
       .from("role_requests")

@@ -26,7 +26,6 @@ import {
   createReferral,
   updateReferralStatus,
   addReferralNote,
-  getCurrentProfile,
 } from "@/lib/referrals.functions";
 import {
   listMyRoleRequests,
@@ -81,6 +80,47 @@ const URGENCY_TONE: Record<"Routine" | "Priority" | "Urgent", string> = {
   Urgent: "text-rosewood",
 };
 
+type CurrentWorkspace = {
+  profile: {
+    id: string;
+    full_name: string | null;
+    organization: string | null;
+    must_change_password: boolean | null;
+  } | null;
+  isStaff: boolean;
+  isAdmin: boolean;
+  roles: string[];
+};
+
+async function getCurrentWorkspace(): Promise<CurrentWorkspace> {
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  if (userError || !userData.user) {
+    throw new Error("Please sign in again so we can verify your access.");
+  }
+
+  const userId = userData.user.id;
+  const [{ data: profile, error: profileError }, { data: roles, error: rolesError }] =
+    await Promise.all([
+      supabase
+        .from("profiles")
+        .select("id, full_name, organization, must_change_password")
+        .eq("id", userId)
+        .maybeSingle(),
+      supabase.from("user_roles").select("role").eq("user_id", userId),
+    ]);
+
+  if (profileError) throw new Error(profileError.message);
+  if (rolesError) throw new Error(rolesError.message);
+
+  const roleList = roles?.map((r) => r.role) ?? [];
+  return {
+    profile,
+    isStaff: roleList.includes("staff"),
+    isAdmin: roleList.includes("admin"),
+    roles: roleList,
+  };
+}
+
 function formatRelative(iso: string) {
   const diff = Date.now() - new Date(iso).getTime();
   const m = Math.floor(diff / 60_000);
@@ -125,16 +165,10 @@ function Portal() {
 
 function PortalAuthed() {
   const qc = useQueryClient();
-  const fetchList = useServerFn(listReferrals);
-  const fetchProfile = useServerFn(getCurrentProfile);
-  const fetchOne = useServerFn(getReferral);
-  const createFn = useServerFn(createReferral);
-  const setStatusFn = useServerFn(updateReferralStatus);
-  const addNoteFn = useServerFn(addReferralNote);
 
   const profileQ = useQuery({
     queryKey: ["profile"],
-    queryFn: () => fetchProfile(),
+    queryFn: getCurrentWorkspace,
   });
 
   // Route admins and staff to the Admin Intake Dashboard;
@@ -147,6 +181,38 @@ function PortalAuthed() {
     );
   }
 
+  if (profileQ.isError) {
+    return (
+      <div className="grid min-h-screen place-items-center bg-gradient-warm px-4">
+        <div className="max-w-md rounded-3xl border border-border/70 bg-card p-8 text-center shadow-luxe">
+          <ShieldCheck className="mx-auto h-8 w-8 text-rosewood" strokeWidth={1.5} />
+          <h1 className="mt-4 font-display text-2xl">Access check failed</h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            We could not verify your staff or admin role. Please sign out, sign
+            back in, and try again.
+          </p>
+          <p className="mt-3 rounded-xl border border-border bg-background px-3 py-2 text-xs text-muted-foreground">
+            {profileQ.error instanceof Error ? profileQ.error.message : "Unable to verify access."}
+          </p>
+          <div className="mt-5 flex justify-center gap-2">
+            <button
+              onClick={() => qc.invalidateQueries({ queryKey: ["profile"] })}
+              className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:border-foreground/30"
+            >
+              Try again
+            </button>
+            <button
+              onClick={() => supabase.auth.signOut()}
+              className="rounded-full bg-gradient-rosewood px-4 py-2 text-sm font-medium text-rosewood-foreground shadow-luxe"
+            >
+              Sign out
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Forced password change for newly-invited employees
   if (profileQ.data?.profile?.must_change_password) {
     return <ForcePasswordChange onDone={() => qc.invalidateQueries({ queryKey: ["profile"] })} />;
@@ -155,6 +221,17 @@ function PortalAuthed() {
   if (profileQ.data?.isAdmin || profileQ.data?.isStaff) {
     return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
   }
+
+  return <PartnerDashboard profile={profileQ.data?.profile ?? null} />;
+}
+
+function PartnerDashboard({ profile }: { profile: CurrentWorkspace["profile"] }) {
+  const qc = useQueryClient();
+  const fetchList = useServerFn(listReferrals);
+  const fetchOne = useServerFn(getReferral);
+  const createFn = useServerFn(createReferral);
+  const setStatusFn = useServerFn(updateReferralStatus);
+  const addNoteFn = useServerFn(addReferralNote);
 
   const listQ = useQuery({
     queryKey: ["referrals"],
@@ -244,7 +321,7 @@ function PortalAuthed() {
     },
   });
 
-  const isStaff = profileQ.data?.isStaff;
+  const isStaff = false;
   const detail = detailQ.data;
   const [draftNote, setDraftNote] = useState("");
 
@@ -556,7 +633,7 @@ function PortalAuthed() {
           onSubmit={(vals) => createMut.mutate(vals)}
           submitting={createMut.isPending}
           error={createMut.error instanceof Error ? createMut.error.message : null}
-          profile={profileQ.data?.profile}
+          profile={profile}
         />
       )}
     </div>

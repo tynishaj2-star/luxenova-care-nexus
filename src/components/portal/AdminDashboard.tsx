@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import {
@@ -36,6 +36,7 @@ import {
 } from "@/lib/referrals.functions";
 import {
   inviteUser,
+  createEmployeeAccount,
   listRoleRequests,
   decideRoleRequest,
 } from "@/lib/admin.functions";
@@ -778,27 +779,60 @@ function SettingsSection() {
 
 function InviteUserPanel() {
   const inviteFn = useServerFn(inviteUser);
+  const createEmpFn = useServerFn(createEmployeeAccount);
+  const [mode, setMode] = useState<"invite" | "employee">("invite");
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [organization, setOrganization] = useState("");
   const [role, setRole] = useState<"partner" | "staff" | "admin">("partner");
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
+  const [tempPassword, setTempPassword] = useState<string | null>(null);
+  const [tempEmail, setTempEmail] = useState<string | null>(null);
+
+  // When switching modes, normalize role
+  useEffect(() => {
+    if (mode === "employee" && role === "partner") setRole("staff");
+    if (mode === "invite" && role !== "partner" && role !== "staff" && role !== "admin") {
+      setRole("partner");
+    }
+  }, [mode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const mut = useMutation({
-    mutationFn: () =>
-      inviteFn({ data: { email, full_name: fullName, organization, role } }),
-    onSuccess: (r) => {
-      setInfo(`Invitation sent to ${r.email}.`);
+    mutationFn: async () => {
+      if (mode === "employee") {
+        return createEmpFn({
+          data: {
+            email,
+            full_name: fullName,
+            organization: organization || "LuxeNova Community Wellness, Inc.",
+            role: role === "admin" ? "admin" : "staff",
+          },
+        });
+      }
+      return inviteFn({
+        data: { email, full_name: fullName, organization, role },
+      });
+    },
+    onSuccess: (r: any) => {
       setError(null);
+      if (r?.temp_password) {
+        setTempPassword(r.temp_password);
+        setTempEmail(r.email);
+        setInfo(null);
+      } else {
+        setInfo(`Invitation sent to ${r.email}.`);
+        setTempPassword(null);
+        setTempEmail(null);
+      }
       setEmail("");
       setFullName("");
       setOrganization("");
-      setRole("partner");
     },
     onError: (e: any) => {
-      setError(e?.message ?? "Could not send invitation.");
+      setError(e?.message ?? "Could not complete request.");
       setInfo(null);
+      setTempPassword(null);
     },
   });
 
@@ -806,11 +840,33 @@ function InviteUserPanel() {
     <section className="rounded-2xl border border-border/70 bg-card p-6 shadow-soft">
       <div className="flex items-center gap-3">
         <UserPlus className="h-5 w-5 text-rosewood" strokeWidth={1.5} />
-        <h2 className="font-display text-xl">Invite a user</h2>
+        <h2 className="font-display text-xl">Add a user</h2>
       </div>
-      <p className="mt-2 text-sm text-muted-foreground">
-        Sends a secure invitation email. They'll set their own password before
-        signing in.
+
+      {/* Mode switch */}
+      <div className="mt-4 inline-flex rounded-full border border-border bg-background p-1 text-xs">
+        <button
+          onClick={() => setMode("invite")}
+          className={`rounded-full px-3 py-1.5 transition ${
+            mode === "invite" ? "bg-rosewood text-rosewood-foreground" : "text-muted-foreground"
+          }`}
+        >
+          Invite by email
+        </button>
+        <button
+          onClick={() => setMode("employee")}
+          className={`rounded-full px-3 py-1.5 transition ${
+            mode === "employee" ? "bg-rosewood text-rosewood-foreground" : "text-muted-foreground"
+          }`}
+        >
+          Create employee (temp password)
+        </button>
+      </div>
+
+      <p className="mt-3 text-sm text-muted-foreground">
+        {mode === "invite"
+          ? "Sends a secure invitation email. The user sets their own password before signing in."
+          : "Creates the account immediately with a one-time temporary password. The employee will be forced to set a new password on first login."}
       </p>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -826,7 +882,7 @@ function InviteUserPanel() {
           onChange={(e) => setRole(e.target.value as any)}
           className="h-10 rounded-xl border border-border bg-background px-3 text-sm outline-none focus:border-rosewood focus:ring-2 focus:ring-rosewood/20"
         >
-          <option value="partner">Partner</option>
+          {mode === "invite" && <option value="partner">Partner</option>}
           <option value="staff">Staff</option>
           <option value="admin">Admin</option>
         </select>
@@ -839,7 +895,11 @@ function InviteUserPanel() {
         <input
           value={organization}
           onChange={(e) => setOrganization(e.target.value)}
-          placeholder="Organization (optional)"
+          placeholder={
+            mode === "employee"
+              ? "LuxeNova Community Wellness, Inc."
+              : "Organization (optional)"
+          }
           className="h-10 rounded-xl border border-border bg-background px-3 text-sm outline-none focus:border-rosewood focus:ring-2 focus:ring-rosewood/20"
         />
       </div>
@@ -854,6 +914,48 @@ function InviteUserPanel() {
           {info}
         </p>
       )}
+      {tempPassword && (
+        <div className="mt-4 rounded-xl border border-amber-300 bg-amber-50 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-900">
+            One-time credentials — copy now, this won't be shown again
+          </p>
+          <div className="mt-3 grid gap-2 text-sm">
+            <div>
+              <span className="text-xs text-amber-900/70">Email</span>
+              <code className="ml-2 rounded bg-white px-2 py-0.5 text-amber-900">{tempEmail}</code>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-amber-900/70">Temp password</span>
+              <code className="rounded bg-white px-2 py-0.5 font-mono text-amber-900">
+                {tempPassword}
+              </code>
+              <button
+                onClick={() => {
+                  navigator.clipboard?.writeText(
+                    `Email: ${tempEmail}\nTemporary password: ${tempPassword}\nSign in at: ${window.location.origin}/login`,
+                  );
+                }}
+                className="rounded-full border border-amber-400 px-3 py-1 text-xs text-amber-900 hover:bg-amber-100"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+          <p className="mt-3 text-xs text-amber-900/80">
+            Share this securely (Signal, in person — not email). They'll be required
+            to set a new password the first time they sign in.
+          </p>
+          <button
+            onClick={() => {
+              setTempPassword(null);
+              setTempEmail(null);
+            }}
+            className="mt-3 text-xs text-amber-900 underline"
+          >
+            I've saved it — dismiss
+          </button>
+        </div>
+      )}
 
       <button
         onClick={() => mut.mutate()}
@@ -861,7 +963,13 @@ function InviteUserPanel() {
         className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-rosewood px-5 py-2 text-sm font-medium text-rosewood-foreground shadow-luxe disabled:opacity-50"
       >
         <Send className="h-4 w-4" strokeWidth={1.5} />
-        {mut.isPending ? "Sending…" : "Send invitation"}
+        {mut.isPending
+          ? mode === "employee"
+            ? "Creating…"
+            : "Sending…"
+          : mode === "employee"
+            ? "Create employee account"
+            : "Send invitation"}
       </button>
     </section>
   );

@@ -136,20 +136,21 @@ function LoginPage() {
 
       <main className="mx-auto grid max-w-6xl gap-12 px-6 pb-24 pt-8 lg:grid-cols-2 lg:items-center">
         <section className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Partner Portal</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Secure Sign In</p>
           <h1 className="font-display text-4xl md:text-5xl text-balance">
-            Submit and track referrals — securely, end to end.
+            One sign-in for staff, board, and community partners.
           </h1>
           <p className="max-w-xl text-muted-foreground">
-            For clinicians, school staff, faith leaders, shelters, and community
-            partners. Submit Emergency Stabilization Requests, attach
-            documents, and follow each referral through to relief delivered.
+            Admins and staff land on the internal dashboard. Community
+            partners — clinicians, school staff, faith leaders, shelters —
+            land on the referral workspace. Same sign-in, the right view
+            for your role.
           </p>
           <ul className="space-y-3 pt-2 text-sm">
             {[
               "Encrypted in transit (TLS 1.2+) · HIPAA-aware intake",
-              "You only see referrals your organization submitted",
-              "LuxeNova navigators respond with status updates and notes",
+              "Role-aware: staff see the admin dashboard, partners see referrals",
+              "Invited employees are prompted to set a new password on first sign-in",
             ].map((t) => (
               <li key={t} className="flex items-start gap-3 text-foreground/85">
                 <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-rosewood" strokeWidth={1.5} />

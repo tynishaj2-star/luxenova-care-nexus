@@ -74,7 +74,7 @@ export function downloadReadinessPdf(rows: ReadinessReportRow[]) {
   const now = new Date().toLocaleString();
 
   doc.setFontSize(16);
-  doc.text(`${ORG.name} — Onboarding Readiness Report`, 40, 40);
+  doc.text(`${ORG.legalName} — Onboarding Readiness Report`, 40, 40);
   doc.setFontSize(10);
   doc.setTextColor(110);
   doc.text(`Generated ${now}`, 40, 58);

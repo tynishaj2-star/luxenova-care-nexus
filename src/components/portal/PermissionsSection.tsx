@@ -87,6 +87,51 @@ export function PermissionsSection() {
     setSmokeBusy(false);
   }
 
+  const reportRows: ReadinessReportRow[] = useMemo(() => {
+    const rows: ReadinessReportRow[] = [];
+    for (const r of READINESS) {
+      for (const item of r.items) {
+        let status: "Pass" | "Fail" | "Manual" = "Pass";
+        let target = "";
+        let reason = "";
+        if (item.kind === "route") {
+          target = item.route ?? "";
+          const ok = item.route ? routeExists(item.route) : false;
+          status = ok ? "Pass" : "Fail";
+          if (!ok) reason = `Missing route: ${item.route}`;
+        } else if (item.kind === "table_read") {
+          target = item.table ?? "";
+          const s = probes[item.table!];
+          if (s === "pending" || s === undefined) {
+            status = "Manual";
+            reason = "Probe pending";
+          } else if (s === "ok") {
+            status = "Pass";
+          } else {
+            status = "Fail";
+            reason = `Blocked table: ${item.table}`;
+          }
+        } else {
+          status = "Manual";
+          target = item.hint ?? "component";
+          reason = "Verified by build";
+        }
+        rows.push({
+          role: r.role,
+          workspace: JOB_ROLE_LABEL[r.role],
+          homePath: r.homePath,
+          itemId: item.id,
+          itemLabel: item.label,
+          kind: item.kind,
+          target,
+          status,
+          reason,
+        });
+      }
+    }
+    return rows;
+  }, [probes, routeExists]);
+
   return (
     <div className="space-y-10">
       <header>

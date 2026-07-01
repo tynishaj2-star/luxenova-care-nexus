@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "@tanstack/react-router";
-import { Check, X, ShieldCheck, ListChecks, PlayCircle, Loader2, AlertTriangle } from "lucide-react";
+import { Check, X, ShieldCheck, ListChecks, PlayCircle, Loader2, AlertTriangle, FileDown, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { PERMISSION_MATRIX, READINESS, type Action } from "@/lib/permissions-matrix";
 import { JOB_ROLE_LABEL, type JobRole, STAFF_DIRECTORY } from "@/lib/staff-roles";
+import { downloadReadinessCsv, downloadReadinessPdf, type ReadinessReportRow } from "@/lib/readiness-report";
 
 type ProbeStatus = "pending" | "ok" | "fail";
 

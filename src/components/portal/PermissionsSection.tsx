@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "@tanstack/react-router";
-import { Check, X, ShieldCheck, ListChecks, PlayCircle, Loader2, AlertTriangle } from "lucide-react";
+import { Check, X, ShieldCheck, ListChecks, PlayCircle, Loader2, AlertTriangle, FileDown, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { PERMISSION_MATRIX, READINESS, type Action } from "@/lib/permissions-matrix";
 import { JOB_ROLE_LABEL, type JobRole, STAFF_DIRECTORY } from "@/lib/staff-roles";
+import { downloadReadinessCsv, downloadReadinessPdf, type ReadinessReportRow } from "@/lib/readiness-report";
 
 type ProbeStatus = "pending" | "ok" | "fail";
 
@@ -86,6 +87,51 @@ export function PermissionsSection() {
     setSmokeBusy(false);
   }
 
+  const reportRows: ReadinessReportRow[] = useMemo(() => {
+    const rows: ReadinessReportRow[] = [];
+    for (const r of READINESS) {
+      for (const item of r.items) {
+        let status: "Pass" | "Fail" | "Manual" = "Pass";
+        let target = "";
+        let reason = "";
+        if (item.kind === "route") {
+          target = item.route ?? "";
+          const ok = item.route ? routeExists(item.route) : false;
+          status = ok ? "Pass" : "Fail";
+          if (!ok) reason = `Missing route: ${item.route}`;
+        } else if (item.kind === "table_read") {
+          target = item.table ?? "";
+          const s = probes[item.table!];
+          if (s === "pending" || s === undefined) {
+            status = "Manual";
+            reason = "Probe pending";
+          } else if (s === "ok") {
+            status = "Pass";
+          } else {
+            status = "Fail";
+            reason = `Blocked table: ${item.table}`;
+          }
+        } else {
+          status = "Manual";
+          target = item.hint ?? "component";
+          reason = "Verified by build";
+        }
+        rows.push({
+          role: r.role,
+          workspace: JOB_ROLE_LABEL[r.role],
+          homePath: r.homePath,
+          itemId: item.id,
+          itemLabel: item.label,
+          kind: item.kind,
+          target,
+          status,
+          reason,
+        });
+      }
+    }
+    return rows;
+  }, [probes, routeExists]);
+
   return (
     <div className="space-y-10">
       <header>
@@ -102,14 +148,30 @@ export function PermissionsSection() {
           <h2 className="flex items-center gap-2 font-display text-lg">
             <PlayCircle className="h-4 w-4 text-rosewood" strokeWidth={1.5} /> Workspace smoke test
           </h2>
-          <button
-            onClick={runSmoke}
-            disabled={smokeBusy}
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-rosewood px-4 py-1.5 text-xs text-rosewood-foreground shadow-luxe transition hover:opacity-90 disabled:opacity-60"
-          >
-            {smokeBusy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <PlayCircle className="h-3.5 w-3.5" />}
-            {smokeBusy ? "Running…" : "Run smoke check"}
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => downloadReadinessCsv(reportRows)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-foreground shadow-soft transition hover:border-rosewood/40"
+              title="Download onboarding readiness report as CSV"
+            >
+              <FileDown className="h-3.5 w-3.5" /> CSV
+            </button>
+            <button
+              onClick={() => downloadReadinessPdf(reportRows)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-foreground shadow-soft transition hover:border-rosewood/40"
+              title="Download onboarding readiness report as PDF"
+            >
+              <FileText className="h-3.5 w-3.5" /> PDF
+            </button>
+            <button
+              onClick={runSmoke}
+              disabled={smokeBusy}
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-rosewood px-4 py-1.5 text-xs text-rosewood-foreground shadow-luxe transition hover:opacity-90 disabled:opacity-60"
+            >
+              {smokeBusy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <PlayCircle className="h-3.5 w-3.5" />}
+              {smokeBusy ? "Running…" : "Run smoke check"}
+            </button>
+          </div>
         </div>
         <p className="mb-3 text-xs text-muted-foreground">
           Verifies that every route in each workspace exists in the router and that the database tables each role needs are readable by the signed-in account. For a true end-to-end test that signs in as each staff member, use the Playwright spec at <code className="rounded bg-accent px-1.5 py-0.5">tests/smoke-workspaces.spec.ts</code>.

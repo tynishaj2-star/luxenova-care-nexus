@@ -265,7 +265,34 @@ export function AdminDashboard({
               View as
               <select
                 value={previewRole}
-                onChange={(e) => setPreviewRole(e.target.value as JobRole | "")}
+                onChange={async (e) => {
+                  const next = e.target.value as JobRole | "";
+                  setPreviewRole(next);
+                  // Audit trail: record every admin impersonation session.
+                  try {
+                    const { data: { user } } = await supabase.auth.getUser();
+                    if (!user) return;
+                    const target = STAFF_DIRECTORY.find((s) => s.jobRole === next);
+                    await supabase.from("audit_logs").insert({
+                      actor_id: user.id,
+                      event_type: "impersonation",
+                      entity_type: "staff_role",
+                      entity_id: next || "self",
+                      action: next && next !== "admin" ? "impersonation_started" : "impersonation_ended",
+                      summary:
+                        next && next !== "admin"
+                          ? `${user.email ?? "Admin"} started viewing as ${target?.name ?? next} (${JOB_ROLE_LABEL[next]})`
+                          : `${user.email ?? "Admin"} exited impersonation view`,
+                      metadata: {
+                        target_role: next || null,
+                        target_email: target?.email ?? null,
+                        target_name: target?.name ?? null,
+                      },
+                    });
+                  } catch {
+                    // Non-blocking — audit failure shouldn't break the UI.
+                  }
+                }}
                 className="rounded-md border border-border bg-background px-2 py-0.5 text-xs"
               >
                 <option value="">— myself (Admin) —</option>

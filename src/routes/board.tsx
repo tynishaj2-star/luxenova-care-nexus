@@ -38,35 +38,37 @@ export const Route = createFileRoute("/board")({
 const boardMembers = [
   {
     name: "Tynisha Johnson",
-    role: "Founder / President / Treasurer / Director (State Filing)",
+    role: "Founder / President / Executive Director / Officer",
     summary:
-      "Mission leadership, executive direction, financial stewardship, donation oversight, state-filed director of record, and organizational formation.",
+      "Mission leadership, executive direction, organizational formation, and officer of the corporation.",
   },
   {
     name: "Trina Everett",
-    role: "Co-Founder / Community Impact & Program Oversight",
+    role: "Director",
     summary:
-      "Mission leadership, family stabilization priorities, program review, partner relationships, and community impact guidance.",
+      "Co-founder, family stabilization priorities, program review, partner relationships, and community impact guidance.",
   },
   {
-    name: "Victoria Roscoe",
-    role: "Board Chair",
+    name: "Darien Everett",
+    role: "Treasurer / Officer / Director",
     summary:
-      "Board leadership, meeting oversight, mission accountability, and governance direction.",
+      "Financial stewardship, donation oversight, treasury operations, and officer of the corporation.",
   },
   {
-    name: "Latoia Moses",
-    role: "Vice Chair / Community Impact & Program Oversight",
+    name: "Jerez Dyer",
+    role: "Secretary / Clerk / SOC Signatory / Officer / Director",
     summary:
-      "Board support, program review, family stabilization priorities, and community impact guidance.",
+      "Official records, board minutes, corporate signatory authority, and officer of the corporation.",
   },
   {
-    name: "Joe Younge",
-    role: "Clerk / Secretary / Treasurer Support",
+    name: "Mary Powell",
+    role: "Assistant Clerk / Assistant Secretary",
     summary:
-      "Meeting records, official documents, board minutes, policy tracking, compliance organization, and hands-on treasurer support for donation logging, expense tracking, and financial reporting.",
+      "Supports the Secretary/Clerk with meeting records, official documents, and governance filings.",
   },
 ];
+
+// Note: Joe Younge serves as Treasurer Support & Event Organizer (staff role, not on the board).
 
 
 

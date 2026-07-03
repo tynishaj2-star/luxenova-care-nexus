@@ -47,6 +47,10 @@ import { Route as BoardRouteImport } from './routes/board'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as BoardPortalTasksRouteImport } from './routes/board-portal.tasks'
+import { Route as BoardPortalNotificationsRouteImport } from './routes/board-portal.notifications'
+import { Route as BoardPortalMessagesRouteImport } from './routes/board-portal.messages'
+import { Route as BoardPortalCalendarRouteImport } from './routes/board-portal.calendar'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicNotifyStaffRouteImport } from './routes/api/public/notify-staff'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
@@ -243,6 +247,27 @@ const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   path: '/email/unsubscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BoardPortalTasksRoute = BoardPortalTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => BoardPortalRoute,
+} as any)
+const BoardPortalNotificationsRoute =
+  BoardPortalNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => BoardPortalRoute,
+  } as any)
+const BoardPortalMessagesRoute = BoardPortalMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => BoardPortalRoute,
+} as any)
+const BoardPortalCalendarRoute = BoardPortalCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => BoardPortalRoute,
+} as any)
 const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   id: '/lovable/email/suppression',
   path: '/lovable/email/suppression',
@@ -276,7 +301,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
-  '/board-portal': typeof BoardPortalRoute
+  '/board-portal': typeof BoardPortalRouteWithChildren
   '/bylaws': typeof BylawsRoute
   '/careers': typeof CareersRoute
   '/chauntaes-voice': typeof ChauntaesVoiceRoute
@@ -310,6 +335,10 @@ export interface FileRoutesByFullPath {
   '/transparency': typeof TransparencyRoute
   '/updates': typeof UpdatesRoute
   '/volunteer-policy': typeof VolunteerPolicyRoute
+  '/board-portal/calendar': typeof BoardPortalCalendarRoute
+  '/board-portal/messages': typeof BoardPortalMessagesRoute
+  '/board-portal/notifications': typeof BoardPortalNotificationsRoute
+  '/board-portal/tasks': typeof BoardPortalTasksRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/api/public/notify-staff': typeof ApiPublicNotifyStaffRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
@@ -321,7 +350,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
-  '/board-portal': typeof BoardPortalRoute
+  '/board-portal': typeof BoardPortalRouteWithChildren
   '/bylaws': typeof BylawsRoute
   '/careers': typeof CareersRoute
   '/chauntaes-voice': typeof ChauntaesVoiceRoute
@@ -355,6 +384,10 @@ export interface FileRoutesByTo {
   '/transparency': typeof TransparencyRoute
   '/updates': typeof UpdatesRoute
   '/volunteer-policy': typeof VolunteerPolicyRoute
+  '/board-portal/calendar': typeof BoardPortalCalendarRoute
+  '/board-portal/messages': typeof BoardPortalMessagesRoute
+  '/board-portal/notifications': typeof BoardPortalNotificationsRoute
+  '/board-portal/tasks': typeof BoardPortalTasksRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/api/public/notify-staff': typeof ApiPublicNotifyStaffRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
@@ -367,7 +400,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
-  '/board-portal': typeof BoardPortalRoute
+  '/board-portal': typeof BoardPortalRouteWithChildren
   '/bylaws': typeof BylawsRoute
   '/careers': typeof CareersRoute
   '/chauntaes-voice': typeof ChauntaesVoiceRoute
@@ -401,6 +434,10 @@ export interface FileRoutesById {
   '/transparency': typeof TransparencyRoute
   '/updates': typeof UpdatesRoute
   '/volunteer-policy': typeof VolunteerPolicyRoute
+  '/board-portal/calendar': typeof BoardPortalCalendarRoute
+  '/board-portal/messages': typeof BoardPortalMessagesRoute
+  '/board-portal/notifications': typeof BoardPortalNotificationsRoute
+  '/board-portal/tasks': typeof BoardPortalTasksRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/api/public/notify-staff': typeof ApiPublicNotifyStaffRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
@@ -448,6 +485,10 @@ export interface FileRouteTypes {
     | '/transparency'
     | '/updates'
     | '/volunteer-policy'
+    | '/board-portal/calendar'
+    | '/board-portal/messages'
+    | '/board-portal/notifications'
+    | '/board-portal/tasks'
     | '/email/unsubscribe'
     | '/api/public/notify-staff'
     | '/lovable/email/suppression'
@@ -493,6 +534,10 @@ export interface FileRouteTypes {
     | '/transparency'
     | '/updates'
     | '/volunteer-policy'
+    | '/board-portal/calendar'
+    | '/board-portal/messages'
+    | '/board-portal/notifications'
+    | '/board-portal/tasks'
     | '/email/unsubscribe'
     | '/api/public/notify-staff'
     | '/lovable/email/suppression'
@@ -538,6 +583,10 @@ export interface FileRouteTypes {
     | '/transparency'
     | '/updates'
     | '/volunteer-policy'
+    | '/board-portal/calendar'
+    | '/board-portal/messages'
+    | '/board-portal/notifications'
+    | '/board-portal/tasks'
     | '/email/unsubscribe'
     | '/api/public/notify-staff'
     | '/lovable/email/suppression'
@@ -550,7 +599,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BoardRoute: typeof BoardRoute
-  BoardPortalRoute: typeof BoardPortalRoute
+  BoardPortalRoute: typeof BoardPortalRouteWithChildren
   BylawsRoute: typeof BylawsRoute
   CareersRoute: typeof CareersRoute
   ChauntaesVoiceRoute: typeof ChauntaesVoiceRoute
@@ -860,6 +909,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmailUnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/board-portal/tasks': {
+      id: '/board-portal/tasks'
+      path: '/tasks'
+      fullPath: '/board-portal/tasks'
+      preLoaderRoute: typeof BoardPortalTasksRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
+    '/board-portal/notifications': {
+      id: '/board-portal/notifications'
+      path: '/notifications'
+      fullPath: '/board-portal/notifications'
+      preLoaderRoute: typeof BoardPortalNotificationsRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
+    '/board-portal/messages': {
+      id: '/board-portal/messages'
+      path: '/messages'
+      fullPath: '/board-portal/messages'
+      preLoaderRoute: typeof BoardPortalMessagesRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
+    '/board-portal/calendar': {
+      id: '/board-portal/calendar'
+      path: '/calendar'
+      fullPath: '/board-portal/calendar'
+      preLoaderRoute: typeof BoardPortalCalendarRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
     '/lovable/email/suppression': {
       id: '/lovable/email/suppression'
       path: '/lovable/email/suppression'
@@ -898,11 +975,29 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface BoardPortalRouteChildren {
+  BoardPortalCalendarRoute: typeof BoardPortalCalendarRoute
+  BoardPortalMessagesRoute: typeof BoardPortalMessagesRoute
+  BoardPortalNotificationsRoute: typeof BoardPortalNotificationsRoute
+  BoardPortalTasksRoute: typeof BoardPortalTasksRoute
+}
+
+const BoardPortalRouteChildren: BoardPortalRouteChildren = {
+  BoardPortalCalendarRoute: BoardPortalCalendarRoute,
+  BoardPortalMessagesRoute: BoardPortalMessagesRoute,
+  BoardPortalNotificationsRoute: BoardPortalNotificationsRoute,
+  BoardPortalTasksRoute: BoardPortalTasksRoute,
+}
+
+const BoardPortalRouteWithChildren = BoardPortalRoute._addFileChildren(
+  BoardPortalRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BoardRoute: BoardRoute,
-  BoardPortalRoute: BoardPortalRoute,
+  BoardPortalRoute: BoardPortalRouteWithChildren,
   BylawsRoute: BylawsRoute,
   CareersRoute: CareersRoute,
   ChauntaesVoiceRoute: ChauntaesVoiceRoute,

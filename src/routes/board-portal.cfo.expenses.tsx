@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { WorkspacePage, ActionButton, DataCard } from "@/components/portal/workspace/WorkspacePage";
 import { exportCsv, printCurrentView } from "@/lib/export-csv";
-import { Plus, Download, Printer, Search, Trash2, Save } from "lucide-react";
+import { Plus, Download, Printer, Search, Trash2, Save, Paperclip, FileText, X } from "lucide-react";
 
 export const Route = createFileRoute("/board-portal/cfo/expenses")({
   head: () => ({ meta: [{ title: "Expense Entry — Treasurer" }, { name: "robots", content: "noindex, nofollow" }] }),
@@ -12,16 +12,23 @@ export const Route = createFileRoute("/board-portal/cfo/expenses")({
 
 type Expense = {
   id: string; category: string; vendor: string | null; amount: number;
-  paid_at: string | null; method: string | null; notes: string | null; created_at: string;
+  paid_at: string | null; method: string | null; notes: string | null;
+  receipt_path: string | null; created_at: string;
 };
 
 const CATEGORIES = ["Programs", "Fundraising", "Administration", "Payroll", "Rent", "Utilities", "Insurance", "Supplies", "Travel", "Professional services", "Other"];
+const BUCKET = "expense-receipts";
+const MAX_MB = 10;
 
 function ExpensesPage() {
   const [rows, setRows] = useState<Expense[]>([]);
   const [q, setQ] = useState("");
   const [form, setForm] = useState<Partial<Expense> | null>(null);
   const [uid, setUid] = useState<string | null>(null);
+  const [pendingReceipt, setPendingReceipt] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [receiptError, setReceiptError] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   async function load() {
     const { data } = await supabase.from("expenses").select("*").order("paid_at", { ascending: false });
@@ -29,8 +36,37 @@ function ExpensesPage() {
   }
   useEffect(() => { supabase.auth.getSession().then(({ data }) => setUid(data.session?.user.id ?? null)); load(); }, []);
 
+  function openForm(next: Partial<Expense> | null) {
+    setPendingReceipt(null);
+    setReceiptError(null);
+    setForm(next);
+  }
+
+  async function uploadReceipt(file: File): Promise<string | null> {
+    const ext = file.name.split(".").pop()?.toLowerCase() ?? "bin";
+    const key = `${uid ?? "unknown"}/${crypto.randomUUID()}.${ext}`;
+    const { error } = await supabase.storage.from(BUCKET).upload(key, file, {
+      cacheControl: "3600",
+      upsert: false,
+      contentType: file.type || undefined,
+    });
+    if (error) { setReceiptError(error.message); return null; }
+    return key;
+  }
+
   async function save() {
     if (!form || !form.category || form.amount == null) return;
+    setUploading(true);
+    let receipt_path: string | null | undefined = form.receipt_path ?? null;
+    if (pendingReceipt) {
+      // Remove previous receipt when replacing
+      if (form.id && form.receipt_path) {
+        await supabase.storage.from(BUCKET).remove([form.receipt_path]);
+      }
+      const key = await uploadReceipt(pendingReceipt);
+      if (!key) { setUploading(false); return; }
+      receipt_path = key;
+    }
     const payload = {
       category: form.category,
       vendor: form.vendor ?? null,
@@ -38,15 +74,43 @@ function ExpensesPage() {
       paid_at: form.paid_at ?? null,
       method: form.method ?? null,
       notes: form.notes ?? null,
+      receipt_path: receipt_path ?? null,
       created_by: uid,
     };
     if (form.id) await supabase.from("expenses").update(payload).eq("id", form.id);
     else await supabase.from("expenses").insert(payload);
-    setForm(null); load();
+    setUploading(false);
+    openForm(null); load();
   }
   async function remove(id: string) {
     if (!confirm("Delete expense?")) return;
+    const row = rows.find((r) => r.id === id);
+    if (row?.receipt_path) await supabase.storage.from(BUCKET).remove([row.receipt_path]);
     await supabase.from("expenses").delete().eq("id", id); load();
+  }
+  async function viewReceipt(path: string) {
+    const { data, error } = await supabase.storage.from(BUCKET).createSignedUrl(path, 60);
+    if (error || !data) { alert("Could not open receipt: " + (error?.message ?? "unknown error")); return; }
+    window.open(data.signedUrl, "_blank", "noopener");
+  }
+  async function clearReceipt() {
+    if (!form?.receipt_path) { setPendingReceipt(null); return; }
+    if (!confirm("Remove attached receipt?")) return;
+    await supabase.storage.from(BUCKET).remove([form.receipt_path]);
+    setForm({ ...form, receipt_path: null });
+    setPendingReceipt(null);
+    if (fileRef.current) fileRef.current.value = "";
+  }
+  function handlePick(e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0] ?? null;
+    setReceiptError(null);
+    if (f && f.size > MAX_MB * 1024 * 1024) {
+      setReceiptError(`File exceeds ${MAX_MB} MB limit.`);
+      setPendingReceipt(null);
+      if (fileRef.current) fileRef.current.value = "";
+      return;
+    }
+    setPendingReceipt(f);
   }
 
   const filtered = rows.filter((r) => !q || `${r.category} ${r.vendor ?? ""} ${r.notes ?? ""}`.toLowerCase().includes(q.toLowerCase()));

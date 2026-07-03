@@ -130,6 +130,29 @@ const members: BoardMember[] = [
       { title: "Policies", icon: Gavel, description: "Assist Secretary with policy tracking and updates." },
     ],
   },
+  {
+    id: "joe",
+    name: "Joe Young",
+    role: "Assistant Treasurer / Event Organizer & Decorator",
+    initials: "JY",
+    sections: [
+      { title: "Upcoming Events", icon: CalendarCheck, description: "All events on the calendar with dates and status." },
+      { title: "Event Budget", icon: Wallet, description: "Per-event budget, spend to date, remaining balance." },
+      { title: "Expense Tracker", icon: Receipt, description: "Log event expenses and upload receipts." },
+      { title: "Purchase Requests", icon: ClipboardList, description: "Request approvals for event purchases." },
+      { title: "Reimbursement Requests", icon: DollarSign, description: "Submit personal out-of-pocket reimbursements." },
+      { title: "Vendor Directory", icon: Truck, description: "Vendor contacts, quotes, contracts, pricing history." },
+      { title: "Sponsorships & Donations", icon: HeartHandshake, description: "Sponsor contributions, in-kind & raffle donations." },
+      { title: "Volunteer Assignments", icon: Users, description: "Assigned volunteers, schedules, check-ins." },
+      { title: "Inventory", icon: Package, description: "Tables, chairs, linens, decor, tents, signs, storage." },
+      { title: "Shopping Lists", icon: ShoppingBag, description: "Event shopping checklists by category." },
+      { title: "Decoration Ideas", icon: Sparkles, description: "Theme boards, color palettes, mood inspiration." },
+      { title: "Design Studio", icon: Palette, description: "Table layouts, centerpieces, backdrops, signage." },
+      { title: "Photo Booth Planning", icon: Camera, description: "Photo booth layout, props, and signage." },
+      { title: "Event Timeline & Checklists", icon: CheckSquare, description: "Setup, breakdown, cleanup, emergency plans." },
+      { title: "Event Documents", icon: FileText, description: "Permits, floor plans, setup instructions, contracts." },
+    ],
+  },
 ];
 
 type AuthStatus =

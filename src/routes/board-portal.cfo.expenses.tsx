@@ -178,7 +178,7 @@ function ExpensesPage() {
       </DataCard>
 
       {form && (
-        <div className="fixed inset-0 z-40 grid place-items-center bg-black/40 p-4" onClick={() => setForm(null)}>
+        <div className="fixed inset-0 z-40 grid place-items-center bg-black/40 p-4" onClick={() => openForm(null)}>
           <div onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-3xl border border-border bg-card p-6 shadow-luxe">
             <h2 className="font-display text-lg">{form.id ? "Edit Expense" : "Add Expense"}</h2>
             <div className="mt-4 grid gap-3">
@@ -199,11 +199,41 @@ function ExpensesPage() {
                   {["card", "ach", "check", "cash", "other"].map((m) => <option key={m}>{m}</option>)}
                 </select>
               </F>
+              <F label="Receipt">
+                <div className="rounded-xl border border-dashed border-border bg-background p-3">
+                  {form.receipt_path && !pendingReceipt ? (
+                    <div className="flex items-center justify-between gap-2 text-sm">
+                      <button type="button" onClick={() => viewReceipt(form.receipt_path!)} className="inline-flex items-center gap-1.5 text-rosewood hover:underline">
+                        <FileText className="h-4 w-4" strokeWidth={1.5} /> View current receipt
+                      </button>
+                      <button type="button" onClick={clearReceipt} className="text-xs text-muted-foreground hover:text-destructive">Remove</button>
+                    </div>
+                  ) : pendingReceipt ? (
+                    <div className="flex items-center justify-between gap-2 text-sm">
+                      <span className="inline-flex items-center gap-1.5"><Paperclip className="h-4 w-4" strokeWidth={1.5} />{pendingReceipt.name} <span className="text-xs text-muted-foreground">({(pendingReceipt.size / 1024).toFixed(0)} KB)</span></span>
+                      <button type="button" onClick={() => { setPendingReceipt(null); if (fileRef.current) fileRef.current.value = ""; }} className="text-muted-foreground hover:text-destructive"><X className="h-4 w-4" strokeWidth={1.5} /></button>
+                    </div>
+                  ) : (
+                    <label className="flex cursor-pointer items-center gap-2 text-sm text-muted-foreground">
+                      <Paperclip className="h-4 w-4" strokeWidth={1.5} />
+                      <span>Attach receipt (PDF or image, up to {MAX_MB} MB)</span>
+                      <input ref={fileRef} type="file" accept="image/*,application/pdf" onChange={handlePick} className="hidden" />
+                    </label>
+                  )}
+                  {(form.receipt_path || pendingReceipt) && (
+                    <label className="mt-2 block cursor-pointer text-xs text-rosewood hover:underline">
+                      Replace file…
+                      <input ref={fileRef} type="file" accept="image/*,application/pdf" onChange={handlePick} className="hidden" />
+                    </label>
+                  )}
+                  {receiptError && <p className="mt-2 text-xs text-destructive">{receiptError}</p>}
+                </div>
+              </F>
               <F label="Notes"><textarea rows={3} value={form.notes ?? ""} onChange={(e) => setForm({ ...form, notes: e.target.value })} className={inp} /></F>
             </div>
             <div className="mt-6 flex justify-end gap-2">
-              <ActionButton label="Cancel" onClick={() => setForm(null)} />
-              <ActionButton icon={Save} label="Save" variant="primary" onClick={save} />
+              <ActionButton label="Cancel" onClick={() => openForm(null)} />
+              <ActionButton icon={Save} label={uploading ? "Saving…" : "Save"} variant="primary" onClick={save} />
             </div>
           </div>
         </div>

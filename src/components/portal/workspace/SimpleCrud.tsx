@@ -57,6 +57,8 @@ export function SimpleCrud<T extends Row>({
     for (const f of fields) {
       const v = form[f.key];
       if (v === "" || v === undefined) payload[f.key] = null;
+      else if (v === "true") payload[f.key] = true;
+      else if (v === "false") payload[f.key] = false;
       else payload[f.key] = v;
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

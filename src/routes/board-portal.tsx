@@ -342,6 +342,7 @@ function Dashboard({ member }: { member: BoardMember }) {
     { to: "/board-portal/notifications", label: "Notifications", icon: ScrollText },
     { to: "/board-portal/messages", label: "Messages", icon: Users },
     { to: "/board-portal/calendar", label: "Calendar", icon: CalendarCheck },
+    { to: "/board-portal/documents", label: "Documents", icon: FileText },
   ] as const;
 
   return (

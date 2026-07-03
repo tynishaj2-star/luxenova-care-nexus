@@ -11,7 +11,7 @@ export const Route = createFileRoute("/board-portal/ed/financial-reports")({
 });
 
 type Expense = { id: string; category: string; vendor: string | null; amount: number; paid_at: string | null; method: string | null; notes: string | null };
-type Donation = { id: string; amount: number; received_at: string | null; donor_name: string | null };
+type Donation = { id: string; amount_cents: number; created_at: string; donor_name: string };
 
 function FinancialReports() {
   const [start, setStart] = useState(new Date(new Date().getFullYear(), 0, 1).toISOString().slice(0,10));
@@ -24,7 +24,7 @@ function FinancialReports() {
   async function load() {
     const [ex, dn] = await Promise.all([
       supabase.from("expenses").select("*").gte("paid_at", start).lte("paid_at", end).order("paid_at", { ascending: false }),
-      supabase.from("donations").select("id,amount,received_at,donor_name").gte("received_at", start).lte("received_at", end).order("received_at", { ascending: false }),
+      supabase.from("donations").select("id,amount_cents,created_at,donor_name").gte("created_at", start).lte("created_at", end + "T23:59:59").order("created_at", { ascending: false }),
     ]);
     setExpenses((ex.data as Expense[]) ?? []);
     setDonations((dn.data as Donation[]) ?? []);
@@ -32,10 +32,11 @@ function FinancialReports() {
   useEffect(() => { supabase.auth.getSession().then(({data}) => setUid(data.session?.user.id ?? null)); load(); }, [start, end]);
 
   const totals = useMemo(() => {
-    const d = donations.reduce((s, r) => s + Number(r.amount), 0);
+    const d = donations.reduce((s, r) => s + r.amount_cents / 100, 0);
     const e = expenses.reduce((s, r) => s + Number(r.amount), 0);
     return { donations: d, expenses: e, net: d - e };
   }, [donations, expenses]);
+
 
   async function saveExpense() {
     if (!form || !form.category || !form.amount) return;

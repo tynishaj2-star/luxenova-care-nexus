@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { NotificationsBell } from "@/components/portal/NotificationsBell";
 
 export function BoardPortalShell({ title, subtitle, children }: { title: string; subtitle?: string; children: React.ReactNode }) {
   return (

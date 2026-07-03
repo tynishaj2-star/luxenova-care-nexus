@@ -338,14 +338,21 @@ function Dashboard({ member }: { member: BoardMember }) {
   }, []);
 
   const isED = member.id === "tynisha";
+  const roleLinks: Array<{ to: string; label: string; icon: typeof ShieldCheck }> = [];
+  if (isED) roleLinks.push({ to: "/board-portal/ed", label: "ED Back Office", icon: ShieldCheck });
+  if (member.id === "darien") roleLinks.push({ to: "/board-portal/cfo", label: "Treasurer Back Office", icon: Wallet });
+  if (member.id === "jerez" || member.id === "mary") roleLinks.push({ to: "/board-portal/clerk", label: "Clerk Back Office", icon: ScrollText });
+  if (member.id === "trina") roleLinks.push({ to: "/board-portal/coo", label: "Programs Back Office", icon: PieChart });
+  if (member.id === "joe") roleLinks.push({ to: "/board-portal/events", label: "Events Back Office", icon: CalendarCheck });
   const quickLinks = [
-    ...(isED ? [{ to: "/board-portal/ed", label: "ED Back Office", icon: ShieldCheck }] : []),
+    ...roleLinks,
     { to: "/board-portal/tasks", label: "Tasks", icon: CheckSquare },
     { to: "/board-portal/notifications", label: "Notifications", icon: ScrollText },
     { to: "/board-portal/messages", label: "Messages", icon: Users },
     { to: "/board-portal/calendar", label: "Calendar", icon: CalendarCheck },
     { to: "/board-portal/documents", label: "Documents", icon: FileText },
   ] as const;
+
 
   return (
     <section>

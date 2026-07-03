@@ -124,7 +124,7 @@ function ExpensesPage() {
       backLabel="Back to Treasurer hub"
       actions={
         <>
-          <ActionButton icon={Plus} label="Add Expense" variant="primary" onClick={() => setForm({ paid_at: new Date().toISOString().slice(0, 10) })} />
+          <ActionButton icon={Plus} label="Add Expense" variant="primary" onClick={() => openForm({ paid_at: new Date().toISOString().slice(0, 10) })} />
           <ActionButton icon={Download} label="Export CSV" onClick={() => exportCsv("expenses", filtered)} />
           <ActionButton icon={Printer} label="Print" onClick={printCurrentView} />
         </>

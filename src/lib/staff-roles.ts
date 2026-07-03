@@ -42,6 +42,13 @@ export const STAFF_DIRECTORY: StaffMember[] = [
     title: "Clerk / Secretary",
     jobRole: "clerk",
   },
+  {
+    email: "mpowell@luxenovacommunitywellness.com",
+    name: "Mary Powell",
+    title: "Assistant Clerk / Assistant Secretary · Background Checks",
+    jobRole: "clerk",
+  },
+
 ];
 
 export function getStaffByEmail(email?: string | null): StaffMember | null {

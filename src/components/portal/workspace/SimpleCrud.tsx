@@ -171,7 +171,7 @@ function renderInput<T extends Row>(f: FieldDef<T>, form: Partial<T>, setForm: (
     return (
       <select value={(v as string) ?? ""} onChange={(e) => set(e.target.value)} className={inp}>
         <option value="">Select…</option>
-        {(f.options ?? []).map((o) => <option key={o} value={o}>{o}</option>)}
+        {(f.options ?? []).map((o) => <option key={o} value={o}>{f.optionLabels?.[o] ?? o}</option>)}
       </select>
     );
   if (f.type === "number")

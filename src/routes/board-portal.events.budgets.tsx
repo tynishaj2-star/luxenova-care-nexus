@@ -18,10 +18,11 @@ function Budgets() {
       .then(({ data }) => setEvents(data ?? []));
   }, []);
   const eventOptions = events.map((e) => e.id);
-  const eventLabel = (id: unknown) => events.find((e) => e.id === id)?.title ?? "—";
+  const eventLabels: Record<string, string> = Object.fromEntries(events.map((e) => [e.id, e.title]));
+  const eventLabel = (id: unknown) => eventLabels[String(id)] ?? "—";
 
   const fields: FieldDef<Budget>[] = [
-    { key: "event_id", label: "Event", type: "select", options: eventOptions, required: true, formatCell: (v) => eventLabel(v) },
+    { key: "event_id", label: "Event", type: "select", options: eventOptions, optionLabels: eventLabels, required: true, formatCell: (v) => eventLabel(v) },
     { key: "category", label: "Category", required: true, placeholder: "Catering, décor, rentals…" },
     { key: "planned_cents", label: "Planned amount (USD)", type: "money", required: true },
     { key: "notes", label: "Notes", type: "textarea" },

@@ -52,7 +52,7 @@ function FinancialReports() {
       actions={<>
         <ActionButton icon={Plus} label="Add Expense" variant="primary" onClick={() => setForm({ paid_at: new Date().toISOString().slice(0,10) })} />
         <ActionButton icon={Download} label="Export CSV" onClick={() => exportCsv(`financial-${start}-to-${end}`, [
-          ...donations.map(d => ({ type: "donation", date: d.received_at, party: d.donor_name, amount: d.amount })),
+          ...donations.map(d => ({ type: "donation", date: d.created_at, party: d.donor_name, amount: (d.amount_cents/100).toFixed(2) })),
           ...expenses.map(e => ({ type: "expense", date: e.paid_at, party: e.vendor, amount: -Number(e.amount), category: e.category })),
         ])} />
         <ActionButton icon={Printer} label="Print" onClick={printCurrentView} />

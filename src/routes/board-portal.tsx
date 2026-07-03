@@ -27,6 +27,7 @@ import {
   Receipt,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { NotificationsBell } from "@/components/portal/NotificationsBell";
 
 export const Route = createFileRoute("/board-portal")({
   head: () => ({

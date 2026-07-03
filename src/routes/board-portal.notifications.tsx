@@ -34,6 +34,20 @@ function NotificationsPage() {
 
   useEffect(() => { load(); }, []);
 
+  useEffect(() => {
+    let channel: ReturnType<typeof supabase.channel> | null = null;
+    (async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+      channel = supabase
+        .channel(`notifs-page:${session.user.id}`)
+        .on("postgres_changes", { event: "*", schema: "public", table: "notifications", filter: `user_id=eq.${session.user.id}` }, () => load())
+        .subscribe();
+    })();
+    return () => { if (channel) supabase.removeChannel(channel); };
+  }, []);
+
+
   async function markRead(id: string) {
     await supabase.from("notifications").update({ read_at: new Date().toISOString() }).eq("id", id);
     load();

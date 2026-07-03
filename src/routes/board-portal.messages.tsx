@@ -48,6 +48,15 @@ function MessagesPage() {
 
   useEffect(() => { load(); }, []);
 
+  useEffect(() => {
+    const channel = supabase
+      .channel("messages-live")
+      .on("postgres_changes", { event: "*", schema: "public", table: "messages" }, () => load())
+      .subscribe();
+    return () => { supabase.removeChannel(channel); };
+  }, []);
+
+
   async function send(e: React.FormEvent) {
     e.preventDefault();
     if (!uid || !body.trim() || !to) return;

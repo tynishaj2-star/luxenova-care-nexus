@@ -337,7 +337,9 @@ function Dashboard({ member }: { member: BoardMember }) {
     return () => { cancelled = true; };
   }, []);
 
+  const isED = member.id === "tynisha";
   const quickLinks = [
+    ...(isED ? [{ to: "/board-portal/ed", label: "ED Back Office", icon: ShieldCheck }] : []),
     { to: "/board-portal/tasks", label: "Tasks", icon: CheckSquare },
     { to: "/board-portal/notifications", label: "Notifications", icon: ScrollText },
     { to: "/board-portal/messages", label: "Messages", icon: Users },

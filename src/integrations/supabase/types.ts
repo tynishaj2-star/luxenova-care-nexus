@@ -107,6 +107,48 @@ export type Database = {
         }
         Relationships: []
       }
+      calendar_events: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          ends_at: string | null
+          event_type: string
+          id: string
+          location: string | null
+          starts_at: string
+          title: string
+          updated_at: string
+          visibility: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          ends_at?: string | null
+          event_type?: string
+          id?: string
+          location?: string | null
+          starts_at: string
+          title: string
+          updated_at?: string
+          visibility?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          ends_at?: string | null
+          event_type?: string
+          id?: string
+          location?: string | null
+          starts_at?: string
+          title?: string
+          updated_at?: string
+          visibility?: string
+        }
+        Relationships: []
+      }
       donations: {
         Row: {
           amount_cents: number
@@ -263,6 +305,75 @@ export type Database = {
           resolved_at?: string | null
           severity?: string
           title?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          read_at: string | null
+          recipient_id: string | null
+          sender_id: string
+          subject: string | null
+          updated_at: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id?: string | null
+          sender_id: string
+          subject?: string | null
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id?: string | null
+          sender_id?: string
+          subject?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          category: string
+          created_at: string
+          id: string
+          link: string | null
+          read_at: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          category?: string
+          created_at?: string
+          id?: string
+          link?: string | null
+          read_at?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          category?: string
+          created_at?: string
+          id?: string
+          link?: string | null
+          read_at?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -457,6 +568,51 @@ export type Database = {
           id?: string
           metadata?: Json | null
           reason?: string
+        }
+        Relationships: []
+      }
+      tasks: {
+        Row: {
+          assigned_to: string | null
+          completed_at: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          due_at: string | null
+          id: string
+          priority: string
+          role_scope: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          completed_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          due_at?: string | null
+          id?: string
+          priority?: string
+          role_scope?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          completed_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          due_at?: string | null
+          id?: string
+          priority?: string
+          role_scope?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }

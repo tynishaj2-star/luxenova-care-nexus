@@ -281,27 +281,36 @@ function Dashboard({ member }: { member: BoardMember }) {
     day: "numeric",
   });
 
-  const [announcements, setAnnouncements] = useState<
-    Array<{ id: string; title: string; body: string | null; created_at: string }>
-  >([]);
-  const [loadingAnn, setLoadingAnn] = useState(true);
+  const [announcements, setAnnouncements] = useState<Array<{ id: string; title: string; body: string | null; created_at: string }>>([]);
+  const [tasks, setTasks] = useState<Array<{ id: string; title: string; due_at: string | null; status: string }>>([]);
+  const [notifs, setNotifs] = useState<Array<{ id: string; title: string; body: string | null; created_at: string; read_at: string | null }>>([]);
 
   useEffect(() => {
     let cancelled = false;
-    supabase
-      .from("announcements")
-      .select("id,title,body,created_at")
-      .order("created_at", { ascending: false })
-      .limit(3)
-      .then(({ data }) => {
-        if (cancelled) return;
-        setAnnouncements(data ?? []);
-        setLoadingAnn(false);
-      });
-    return () => {
-      cancelled = true;
-    };
+    (async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      const uid = session?.user.id;
+      const [{ data: ann }, { data: tk }, notifRes] = await Promise.all([
+        supabase.from("announcements").select("id,title,body,created_at").order("created_at", { ascending: false }).limit(3),
+        supabase.from("tasks").select("id,title,due_at,status").neq("status", "done").order("due_at", { ascending: true, nullsFirst: false }).limit(5),
+        uid
+          ? supabase.from("notifications").select("id,title,body,created_at,read_at").eq("user_id", uid).order("created_at", { ascending: false }).limit(5)
+          : Promise.resolve({ data: [] as Array<{ id: string; title: string; body: string | null; created_at: string; read_at: string | null }> }),
+      ]);
+      if (cancelled) return;
+      setAnnouncements(ann ?? []);
+      setTasks(tk ?? []);
+      setNotifs((notifRes.data as Array<{ id: string; title: string; body: string | null; created_at: string; read_at: string | null }>) ?? []);
+    })();
+    return () => { cancelled = true; };
   }, []);
+
+  const quickLinks = [
+    { to: "/board-portal/tasks", label: "Tasks", icon: CheckSquare },
+    { to: "/board-portal/notifications", label: "Notifications", icon: ScrollText },
+    { to: "/board-portal/messages", label: "Messages", icon: Users },
+    { to: "/board-portal/calendar", label: "Calendar", icon: CalendarCheck },
+  ] as const;
 
   return (
     <section>
@@ -325,23 +334,45 @@ function Dashboard({ member }: { member: BoardMember }) {
         </div>
       </div>
 
+      <nav className="mt-6 flex flex-wrap gap-2">
+        {quickLinks.map((q) => (
+          <Link
+            key={q.to}
+            to={q.to}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-soft transition hover:border-rosewood/40"
+          >
+            <q.icon className="h-4 w-4 text-rosewood" strokeWidth={1.5} />
+            {q.label}
+          </Link>
+        ))}
+      </nav>
+
       <div className="mt-6 grid gap-5 md:grid-cols-3">
         <SnapshotCard
           title="Upcoming Tasks"
           icon={CheckSquare}
-          empty="No tasks assigned yet. Task management goes live in the next update."
-          items={[]}
+          empty="No open tasks. Head to Tasks to add one."
+          items={tasks.map((t) => ({
+            id: t.id,
+            title: t.title,
+            meta: t.due_at ? `Due ${new Date(t.due_at).toLocaleDateString()}` : "No due date",
+          }))}
         />
         <SnapshotCard
           title="Recent Notifications"
           icon={ScrollText}
-          empty="You're all caught up. Notifications will appear here."
-          items={[]}
+          empty="You're all caught up."
+          items={notifs.map((n) => ({
+            id: n.id,
+            title: n.title,
+            meta: new Date(n.created_at).toLocaleDateString(),
+            body: n.body ?? undefined,
+          }))}
         />
         <SnapshotCard
           title="Board Announcements"
           icon={BookOpenCheck}
-          empty={loadingAnn ? "Loading…" : "No announcements posted yet."}
+          empty="No announcements posted yet."
           items={announcements.map((a) => ({
             id: a.id,
             title: a.title,

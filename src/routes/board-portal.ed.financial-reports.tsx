@@ -91,8 +91,8 @@ function FinancialReports() {
           <ul className="mt-3 divide-y divide-border/60">
             {donations.map((d) => (
               <li key={d.id} className="flex items-center justify-between py-2 text-sm">
-                <span>{d.donor_name ?? "Anonymous"} · <span className="text-muted-foreground">{d.received_at ?? "—"}</span></span>
-                <strong>${Number(d.amount).toFixed(2)}</strong>
+                <span>{d.donor_name} · <span className="text-muted-foreground">{new Date(d.created_at).toLocaleDateString()}</span></span>
+                <strong>${(d.amount_cents/100).toFixed(2)}</strong>
               </li>
             ))}
           </ul>

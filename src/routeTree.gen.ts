@@ -50,9 +50,24 @@ import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe
 import { Route as BoardPortalTasksRouteImport } from './routes/board-portal.tasks'
 import { Route as BoardPortalNotificationsRouteImport } from './routes/board-portal.notifications'
 import { Route as BoardPortalMessagesRouteImport } from './routes/board-portal.messages'
+import { Route as BoardPortalEdRouteImport } from './routes/board-portal.ed'
 import { Route as BoardPortalDocumentsRouteImport } from './routes/board-portal.documents'
 import { Route as BoardPortalCalendarRouteImport } from './routes/board-portal.calendar'
+import { Route as BoardPortalEdIndexRouteImport } from './routes/board-portal.ed.index'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as BoardPortalEdWebsiteRouteImport } from './routes/board-portal.ed.website'
+import { Route as BoardPortalEdVolunteersRouteImport } from './routes/board-portal.ed.volunteers'
+import { Route as BoardPortalEdUsersRouteImport } from './routes/board-portal.ed.users'
+import { Route as BoardPortalEdStaffRouteImport } from './routes/board-portal.ed.staff'
+import { Route as BoardPortalEdSettingsRouteImport } from './routes/board-portal.ed.settings'
+import { Route as BoardPortalEdReportsRouteImport } from './routes/board-portal.ed.reports'
+import { Route as BoardPortalEdProgramsRouteImport } from './routes/board-portal.ed.programs'
+import { Route as BoardPortalEdGrantsRouteImport } from './routes/board-portal.ed.grants'
+import { Route as BoardPortalEdFinancialReportsRouteImport } from './routes/board-portal.ed.financial-reports'
+import { Route as BoardPortalEdDonationsRouteImport } from './routes/board-portal.ed.donations'
+import { Route as BoardPortalEdDocumentsRouteImport } from './routes/board-portal.ed.documents'
+import { Route as BoardPortalEdBoardRouteImport } from './routes/board-portal.ed.board'
+import { Route as BoardPortalEdAuditRouteImport } from './routes/board-portal.ed.audit'
 import { Route as ApiPublicNotifyStaffRouteImport } from './routes/api/public/notify-staff'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -264,6 +279,11 @@ const BoardPortalMessagesRoute = BoardPortalMessagesRouteImport.update({
   path: '/messages',
   getParentRoute: () => BoardPortalRoute,
 } as any)
+const BoardPortalEdRoute = BoardPortalEdRouteImport.update({
+  id: '/ed',
+  path: '/ed',
+  getParentRoute: () => BoardPortalRoute,
+} as any)
 const BoardPortalDocumentsRoute = BoardPortalDocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
@@ -274,10 +294,81 @@ const BoardPortalCalendarRoute = BoardPortalCalendarRouteImport.update({
   path: '/calendar',
   getParentRoute: () => BoardPortalRoute,
 } as any)
+const BoardPortalEdIndexRoute = BoardPortalEdIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
 const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   id: '/lovable/email/suppression',
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
+} as any)
+const BoardPortalEdWebsiteRoute = BoardPortalEdWebsiteRouteImport.update({
+  id: '/website',
+  path: '/website',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdVolunteersRoute = BoardPortalEdVolunteersRouteImport.update({
+  id: '/volunteers',
+  path: '/volunteers',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdUsersRoute = BoardPortalEdUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdStaffRoute = BoardPortalEdStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdSettingsRoute = BoardPortalEdSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdReportsRoute = BoardPortalEdReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdProgramsRoute = BoardPortalEdProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdGrantsRoute = BoardPortalEdGrantsRouteImport.update({
+  id: '/grants',
+  path: '/grants',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdFinancialReportsRoute =
+  BoardPortalEdFinancialReportsRouteImport.update({
+    id: '/financial-reports',
+    path: '/financial-reports',
+    getParentRoute: () => BoardPortalEdRoute,
+  } as any)
+const BoardPortalEdDonationsRoute = BoardPortalEdDonationsRouteImport.update({
+  id: '/donations',
+  path: '/donations',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdDocumentsRoute = BoardPortalEdDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdBoardRoute = BoardPortalEdBoardRouteImport.update({
+  id: '/board',
+  path: '/board',
+  getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalEdAuditRoute = BoardPortalEdAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => BoardPortalEdRoute,
 } as any)
 const ApiPublicNotifyStaffRoute = ApiPublicNotifyStaffRouteImport.update({
   id: '/api/public/notify-staff',
@@ -343,12 +434,27 @@ export interface FileRoutesByFullPath {
   '/volunteer-policy': typeof VolunteerPolicyRoute
   '/board-portal/calendar': typeof BoardPortalCalendarRoute
   '/board-portal/documents': typeof BoardPortalDocumentsRoute
+  '/board-portal/ed': typeof BoardPortalEdRouteWithChildren
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/api/public/notify-staff': typeof ApiPublicNotifyStaffRoute
+  '/board-portal/ed/audit': typeof BoardPortalEdAuditRoute
+  '/board-portal/ed/board': typeof BoardPortalEdBoardRoute
+  '/board-portal/ed/documents': typeof BoardPortalEdDocumentsRoute
+  '/board-portal/ed/donations': typeof BoardPortalEdDonationsRoute
+  '/board-portal/ed/financial-reports': typeof BoardPortalEdFinancialReportsRoute
+  '/board-portal/ed/grants': typeof BoardPortalEdGrantsRoute
+  '/board-portal/ed/programs': typeof BoardPortalEdProgramsRoute
+  '/board-portal/ed/reports': typeof BoardPortalEdReportsRoute
+  '/board-portal/ed/settings': typeof BoardPortalEdSettingsRoute
+  '/board-portal/ed/staff': typeof BoardPortalEdStaffRoute
+  '/board-portal/ed/users': typeof BoardPortalEdUsersRoute
+  '/board-portal/ed/volunteers': typeof BoardPortalEdVolunteersRoute
+  '/board-portal/ed/website': typeof BoardPortalEdWebsiteRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
+  '/board-portal/ed/': typeof BoardPortalEdIndexRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
@@ -398,7 +504,21 @@ export interface FileRoutesByTo {
   '/board-portal/tasks': typeof BoardPortalTasksRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/api/public/notify-staff': typeof ApiPublicNotifyStaffRoute
+  '/board-portal/ed/audit': typeof BoardPortalEdAuditRoute
+  '/board-portal/ed/board': typeof BoardPortalEdBoardRoute
+  '/board-portal/ed/documents': typeof BoardPortalEdDocumentsRoute
+  '/board-portal/ed/donations': typeof BoardPortalEdDonationsRoute
+  '/board-portal/ed/financial-reports': typeof BoardPortalEdFinancialReportsRoute
+  '/board-portal/ed/grants': typeof BoardPortalEdGrantsRoute
+  '/board-portal/ed/programs': typeof BoardPortalEdProgramsRoute
+  '/board-portal/ed/reports': typeof BoardPortalEdReportsRoute
+  '/board-portal/ed/settings': typeof BoardPortalEdSettingsRoute
+  '/board-portal/ed/staff': typeof BoardPortalEdStaffRoute
+  '/board-portal/ed/users': typeof BoardPortalEdUsersRoute
+  '/board-portal/ed/volunteers': typeof BoardPortalEdVolunteersRoute
+  '/board-portal/ed/website': typeof BoardPortalEdWebsiteRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
+  '/board-portal/ed': typeof BoardPortalEdIndexRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
@@ -444,12 +564,27 @@ export interface FileRoutesById {
   '/volunteer-policy': typeof VolunteerPolicyRoute
   '/board-portal/calendar': typeof BoardPortalCalendarRoute
   '/board-portal/documents': typeof BoardPortalDocumentsRoute
+  '/board-portal/ed': typeof BoardPortalEdRouteWithChildren
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/api/public/notify-staff': typeof ApiPublicNotifyStaffRoute
+  '/board-portal/ed/audit': typeof BoardPortalEdAuditRoute
+  '/board-portal/ed/board': typeof BoardPortalEdBoardRoute
+  '/board-portal/ed/documents': typeof BoardPortalEdDocumentsRoute
+  '/board-portal/ed/donations': typeof BoardPortalEdDonationsRoute
+  '/board-portal/ed/financial-reports': typeof BoardPortalEdFinancialReportsRoute
+  '/board-portal/ed/grants': typeof BoardPortalEdGrantsRoute
+  '/board-portal/ed/programs': typeof BoardPortalEdProgramsRoute
+  '/board-portal/ed/reports': typeof BoardPortalEdReportsRoute
+  '/board-portal/ed/settings': typeof BoardPortalEdSettingsRoute
+  '/board-portal/ed/staff': typeof BoardPortalEdStaffRoute
+  '/board-portal/ed/users': typeof BoardPortalEdUsersRoute
+  '/board-portal/ed/volunteers': typeof BoardPortalEdVolunteersRoute
+  '/board-portal/ed/website': typeof BoardPortalEdWebsiteRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
+  '/board-portal/ed/': typeof BoardPortalEdIndexRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
@@ -496,12 +631,27 @@ export interface FileRouteTypes {
     | '/volunteer-policy'
     | '/board-portal/calendar'
     | '/board-portal/documents'
+    | '/board-portal/ed'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
     | '/email/unsubscribe'
     | '/api/public/notify-staff'
+    | '/board-portal/ed/audit'
+    | '/board-portal/ed/board'
+    | '/board-portal/ed/documents'
+    | '/board-portal/ed/donations'
+    | '/board-portal/ed/financial-reports'
+    | '/board-portal/ed/grants'
+    | '/board-portal/ed/programs'
+    | '/board-portal/ed/reports'
+    | '/board-portal/ed/settings'
+    | '/board-portal/ed/staff'
+    | '/board-portal/ed/users'
+    | '/board-portal/ed/volunteers'
+    | '/board-portal/ed/website'
     | '/lovable/email/suppression'
+    | '/board-portal/ed/'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
     | '/lovable/email/transactional/send'
@@ -551,7 +701,21 @@ export interface FileRouteTypes {
     | '/board-portal/tasks'
     | '/email/unsubscribe'
     | '/api/public/notify-staff'
+    | '/board-portal/ed/audit'
+    | '/board-portal/ed/board'
+    | '/board-portal/ed/documents'
+    | '/board-portal/ed/donations'
+    | '/board-portal/ed/financial-reports'
+    | '/board-portal/ed/grants'
+    | '/board-portal/ed/programs'
+    | '/board-portal/ed/reports'
+    | '/board-portal/ed/settings'
+    | '/board-portal/ed/staff'
+    | '/board-portal/ed/users'
+    | '/board-portal/ed/volunteers'
+    | '/board-portal/ed/website'
     | '/lovable/email/suppression'
+    | '/board-portal/ed'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
     | '/lovable/email/transactional/send'
@@ -596,12 +760,27 @@ export interface FileRouteTypes {
     | '/volunteer-policy'
     | '/board-portal/calendar'
     | '/board-portal/documents'
+    | '/board-portal/ed'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
     | '/email/unsubscribe'
     | '/api/public/notify-staff'
+    | '/board-portal/ed/audit'
+    | '/board-portal/ed/board'
+    | '/board-portal/ed/documents'
+    | '/board-portal/ed/donations'
+    | '/board-portal/ed/financial-reports'
+    | '/board-portal/ed/grants'
+    | '/board-portal/ed/programs'
+    | '/board-portal/ed/reports'
+    | '/board-portal/ed/settings'
+    | '/board-portal/ed/staff'
+    | '/board-portal/ed/users'
+    | '/board-portal/ed/volunteers'
+    | '/board-portal/ed/website'
     | '/lovable/email/suppression'
+    | '/board-portal/ed/'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
     | '/lovable/email/transactional/send'
@@ -942,6 +1121,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BoardPortalMessagesRouteImport
       parentRoute: typeof BoardPortalRoute
     }
+    '/board-portal/ed': {
+      id: '/board-portal/ed'
+      path: '/ed'
+      fullPath: '/board-portal/ed'
+      preLoaderRoute: typeof BoardPortalEdRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
     '/board-portal/documents': {
       id: '/board-portal/documents'
       path: '/documents'
@@ -956,12 +1142,110 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BoardPortalCalendarRouteImport
       parentRoute: typeof BoardPortalRoute
     }
+    '/board-portal/ed/': {
+      id: '/board-portal/ed/'
+      path: '/'
+      fullPath: '/board-portal/ed/'
+      preLoaderRoute: typeof BoardPortalEdIndexRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
     '/lovable/email/suppression': {
       id: '/lovable/email/suppression'
       path: '/lovable/email/suppression'
       fullPath: '/lovable/email/suppression'
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/board-portal/ed/website': {
+      id: '/board-portal/ed/website'
+      path: '/website'
+      fullPath: '/board-portal/ed/website'
+      preLoaderRoute: typeof BoardPortalEdWebsiteRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/volunteers': {
+      id: '/board-portal/ed/volunteers'
+      path: '/volunteers'
+      fullPath: '/board-portal/ed/volunteers'
+      preLoaderRoute: typeof BoardPortalEdVolunteersRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/users': {
+      id: '/board-portal/ed/users'
+      path: '/users'
+      fullPath: '/board-portal/ed/users'
+      preLoaderRoute: typeof BoardPortalEdUsersRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/staff': {
+      id: '/board-portal/ed/staff'
+      path: '/staff'
+      fullPath: '/board-portal/ed/staff'
+      preLoaderRoute: typeof BoardPortalEdStaffRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/settings': {
+      id: '/board-portal/ed/settings'
+      path: '/settings'
+      fullPath: '/board-portal/ed/settings'
+      preLoaderRoute: typeof BoardPortalEdSettingsRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/reports': {
+      id: '/board-portal/ed/reports'
+      path: '/reports'
+      fullPath: '/board-portal/ed/reports'
+      preLoaderRoute: typeof BoardPortalEdReportsRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/programs': {
+      id: '/board-portal/ed/programs'
+      path: '/programs'
+      fullPath: '/board-portal/ed/programs'
+      preLoaderRoute: typeof BoardPortalEdProgramsRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/grants': {
+      id: '/board-portal/ed/grants'
+      path: '/grants'
+      fullPath: '/board-portal/ed/grants'
+      preLoaderRoute: typeof BoardPortalEdGrantsRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/financial-reports': {
+      id: '/board-portal/ed/financial-reports'
+      path: '/financial-reports'
+      fullPath: '/board-portal/ed/financial-reports'
+      preLoaderRoute: typeof BoardPortalEdFinancialReportsRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/donations': {
+      id: '/board-portal/ed/donations'
+      path: '/donations'
+      fullPath: '/board-portal/ed/donations'
+      preLoaderRoute: typeof BoardPortalEdDonationsRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/documents': {
+      id: '/board-portal/ed/documents'
+      path: '/documents'
+      fullPath: '/board-portal/ed/documents'
+      preLoaderRoute: typeof BoardPortalEdDocumentsRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/board': {
+      id: '/board-portal/ed/board'
+      path: '/board'
+      fullPath: '/board-portal/ed/board'
+      preLoaderRoute: typeof BoardPortalEdBoardRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/ed/audit': {
+      id: '/board-portal/ed/audit'
+      path: '/audit'
+      fullPath: '/board-portal/ed/audit'
+      preLoaderRoute: typeof BoardPortalEdAuditRouteImport
+      parentRoute: typeof BoardPortalEdRoute
     }
     '/api/public/notify-staff': {
       id: '/api/public/notify-staff'
@@ -994,9 +1278,48 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface BoardPortalEdRouteChildren {
+  BoardPortalEdAuditRoute: typeof BoardPortalEdAuditRoute
+  BoardPortalEdBoardRoute: typeof BoardPortalEdBoardRoute
+  BoardPortalEdDocumentsRoute: typeof BoardPortalEdDocumentsRoute
+  BoardPortalEdDonationsRoute: typeof BoardPortalEdDonationsRoute
+  BoardPortalEdFinancialReportsRoute: typeof BoardPortalEdFinancialReportsRoute
+  BoardPortalEdGrantsRoute: typeof BoardPortalEdGrantsRoute
+  BoardPortalEdProgramsRoute: typeof BoardPortalEdProgramsRoute
+  BoardPortalEdReportsRoute: typeof BoardPortalEdReportsRoute
+  BoardPortalEdSettingsRoute: typeof BoardPortalEdSettingsRoute
+  BoardPortalEdStaffRoute: typeof BoardPortalEdStaffRoute
+  BoardPortalEdUsersRoute: typeof BoardPortalEdUsersRoute
+  BoardPortalEdVolunteersRoute: typeof BoardPortalEdVolunteersRoute
+  BoardPortalEdWebsiteRoute: typeof BoardPortalEdWebsiteRoute
+  BoardPortalEdIndexRoute: typeof BoardPortalEdIndexRoute
+}
+
+const BoardPortalEdRouteChildren: BoardPortalEdRouteChildren = {
+  BoardPortalEdAuditRoute: BoardPortalEdAuditRoute,
+  BoardPortalEdBoardRoute: BoardPortalEdBoardRoute,
+  BoardPortalEdDocumentsRoute: BoardPortalEdDocumentsRoute,
+  BoardPortalEdDonationsRoute: BoardPortalEdDonationsRoute,
+  BoardPortalEdFinancialReportsRoute: BoardPortalEdFinancialReportsRoute,
+  BoardPortalEdGrantsRoute: BoardPortalEdGrantsRoute,
+  BoardPortalEdProgramsRoute: BoardPortalEdProgramsRoute,
+  BoardPortalEdReportsRoute: BoardPortalEdReportsRoute,
+  BoardPortalEdSettingsRoute: BoardPortalEdSettingsRoute,
+  BoardPortalEdStaffRoute: BoardPortalEdStaffRoute,
+  BoardPortalEdUsersRoute: BoardPortalEdUsersRoute,
+  BoardPortalEdVolunteersRoute: BoardPortalEdVolunteersRoute,
+  BoardPortalEdWebsiteRoute: BoardPortalEdWebsiteRoute,
+  BoardPortalEdIndexRoute: BoardPortalEdIndexRoute,
+}
+
+const BoardPortalEdRouteWithChildren = BoardPortalEdRoute._addFileChildren(
+  BoardPortalEdRouteChildren,
+)
+
 interface BoardPortalRouteChildren {
   BoardPortalCalendarRoute: typeof BoardPortalCalendarRoute
   BoardPortalDocumentsRoute: typeof BoardPortalDocumentsRoute
+  BoardPortalEdRoute: typeof BoardPortalEdRouteWithChildren
   BoardPortalMessagesRoute: typeof BoardPortalMessagesRoute
   BoardPortalNotificationsRoute: typeof BoardPortalNotificationsRoute
   BoardPortalTasksRoute: typeof BoardPortalTasksRoute
@@ -1005,6 +1328,7 @@ interface BoardPortalRouteChildren {
 const BoardPortalRouteChildren: BoardPortalRouteChildren = {
   BoardPortalCalendarRoute: BoardPortalCalendarRoute,
   BoardPortalDocumentsRoute: BoardPortalDocumentsRoute,
+  BoardPortalEdRoute: BoardPortalEdRouteWithChildren,
   BoardPortalMessagesRoute: BoardPortalMessagesRoute,
   BoardPortalNotificationsRoute: BoardPortalNotificationsRoute,
   BoardPortalTasksRoute: BoardPortalTasksRoute,

@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_feed: {
+        Row: {
+          action: string
+          actor_id: string | null
+          created_at: string
+          entity_id: string | null
+          entity_type: string
+          id: string
+          metadata: Json | null
+          summary: string
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type: string
+          id?: string
+          metadata?: Json | null
+          summary: string
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string
+          id?: string
+          metadata?: Json | null
+          summary?: string
+        }
+        Relationships: []
+      }
       announcements: {
         Row: {
           audience: string
@@ -353,6 +386,99 @@ export type Database = {
         }
         Relationships: []
       }
+      expenses: {
+        Row: {
+          amount: number
+          approved_by: string | null
+          category: string
+          created_at: string
+          created_by: string | null
+          id: string
+          method: string | null
+          notes: string | null
+          paid_at: string | null
+          program_id: string | null
+          receipt_path: string | null
+          updated_at: string
+          vendor: string | null
+        }
+        Insert: {
+          amount: number
+          approved_by?: string | null
+          category: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          method?: string | null
+          notes?: string | null
+          paid_at?: string | null
+          program_id?: string | null
+          receipt_path?: string | null
+          updated_at?: string
+          vendor?: string | null
+        }
+        Update: {
+          amount?: number
+          approved_by?: string | null
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          method?: string | null
+          notes?: string | null
+          paid_at?: string | null
+          program_id?: string | null
+          receipt_path?: string | null
+          updated_at?: string
+          vendor?: string | null
+        }
+        Relationships: []
+      }
+      grants: {
+        Row: {
+          amount_awarded: number | null
+          amount_requested: number | null
+          created_at: string
+          created_by: string | null
+          deadline: string | null
+          funder: string
+          id: string
+          notes: string | null
+          program: string | null
+          report_due_at: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount_awarded?: number | null
+          amount_requested?: number | null
+          created_at?: string
+          created_by?: string | null
+          deadline?: string | null
+          funder: string
+          id?: string
+          notes?: string | null
+          program?: string | null
+          report_due_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount_awarded?: number | null
+          amount_requested?: number | null
+          created_at?: string
+          created_by?: string | null
+          deadline?: string | null
+          funder?: string
+          id?: string
+          notes?: string | null
+          program?: string | null
+          report_due_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       messages: {
         Row: {
           body: string
@@ -440,6 +566,42 @@ export type Database = {
         }
         Relationships: []
       }
+      org_settings: {
+        Row: {
+          address: string | null
+          brand_color: string | null
+          ein: string | null
+          email: string | null
+          id: number
+          logo_path: string | null
+          org_name: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          brand_color?: string | null
+          ein?: string | null
+          email?: string | null
+          id?: number
+          logo_path?: string | null
+          org_name?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          brand_color?: string | null
+          ein?: string | null
+          email?: string | null
+          id?: number
+          logo_path?: string | null
+          org_name?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -469,6 +631,92 @@ export type Database = {
           organization?: string | null
           phone?: string | null
           title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      program_outcomes: {
+        Row: {
+          created_at: string
+          id: string
+          metric: string
+          notes: string | null
+          period: string | null
+          program_id: string
+          updated_at: string
+          value: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          metric: string
+          notes?: string | null
+          period?: string | null
+          program_id: string
+          updated_at?: string
+          value?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          metric?: string
+          notes?: string | null
+          period?: string | null
+          program_id?: string
+          updated_at?: string
+          value?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_outcomes_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      programs: {
+        Row: {
+          budget: number | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          end_at: string | null
+          id: string
+          name: string
+          outcomes: string | null
+          participant_count: number | null
+          start_at: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          budget?: number | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_at?: string | null
+          id?: string
+          name: string
+          outcomes?: string | null
+          participant_count?: number | null
+          start_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          budget?: number | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_at?: string | null
+          id?: string
+          name?: string
+          outcomes?: string | null
+          participant_count?: number | null
+          start_at?: string | null
+          status?: string
           updated_at?: string
         }
         Relationships: []
@@ -592,6 +840,48 @@ export type Database = {
         }
         Relationships: []
       }
+      staff: {
+        Row: {
+          created_at: string
+          email: string | null
+          employment_status: string | null
+          full_name: string
+          id: string
+          notes: string | null
+          phone: string | null
+          start_date: string | null
+          title: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          employment_status?: string | null
+          full_name: string
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          start_date?: string | null
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          employment_status?: string | null
+          full_name?: string
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          start_date?: string | null
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string
@@ -616,6 +906,41 @@ export type Database = {
         }
         Relationships: []
       }
+      task_attachments: {
+        Row: {
+          created_at: string
+          file_name: string
+          file_path: string
+          id: string
+          task_id: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          file_name: string
+          file_path: string
+          id?: string
+          task_id: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          file_name?: string
+          file_path?: string
+          id?: string
+          task_id?: string
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_attachments_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tasks: {
         Row: {
           assigned_to: string | null
@@ -626,6 +951,7 @@ export type Database = {
           due_at: string | null
           id: string
           priority: string
+          progress: number
           role_scope: string | null
           status: string
           title: string
@@ -640,6 +966,7 @@ export type Database = {
           due_at?: string | null
           id?: string
           priority?: string
+          progress?: number
           role_scope?: string | null
           status?: string
           title: string
@@ -654,6 +981,7 @@ export type Database = {
           due_at?: string | null
           id?: string
           priority?: string
+          progress?: number
           role_scope?: string | null
           status?: string
           title?: string
@@ -679,6 +1007,101 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      volunteer_assignments: {
+        Row: {
+          assignment_date: string | null
+          created_at: string
+          event_id: string | null
+          hours: number | null
+          id: string
+          notes: string | null
+          program_id: string | null
+          role: string | null
+          updated_at: string
+          volunteer_id: string
+        }
+        Insert: {
+          assignment_date?: string | null
+          created_at?: string
+          event_id?: string | null
+          hours?: number | null
+          id?: string
+          notes?: string | null
+          program_id?: string | null
+          role?: string | null
+          updated_at?: string
+          volunteer_id: string
+        }
+        Update: {
+          assignment_date?: string | null
+          created_at?: string
+          event_id?: string | null
+          hours?: number | null
+          id?: string
+          notes?: string | null
+          program_id?: string | null
+          role?: string | null
+          updated_at?: string
+          volunteer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "volunteer_assignments_volunteer_id_fkey"
+            columns: ["volunteer_id"]
+            isOneToOne: false
+            referencedRelation: "volunteers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      volunteers: {
+        Row: {
+          active: boolean
+          background_check_status: string | null
+          background_checked_at: string | null
+          created_at: string
+          created_by: string | null
+          email: string | null
+          full_name: string
+          hours_ytd: number
+          id: string
+          notes: string | null
+          phone: string | null
+          skills: string | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          background_check_status?: string | null
+          background_checked_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          full_name: string
+          hours_ytd?: number
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          skills?: string | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          background_check_status?: string | null
+          background_checked_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          full_name?: string
+          hours_ytd?: number
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          skills?: string | null
+          updated_at?: string
         }
         Relationships: []
       }

@@ -50,6 +50,7 @@ import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe
 import { Route as BoardPortalTasksRouteImport } from './routes/board-portal.tasks'
 import { Route as BoardPortalNotificationsRouteImport } from './routes/board-portal.notifications'
 import { Route as BoardPortalMessagesRouteImport } from './routes/board-portal.messages'
+import { Route as BoardPortalDocumentsRouteImport } from './routes/board-portal.documents'
 import { Route as BoardPortalCalendarRouteImport } from './routes/board-portal.calendar'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicNotifyStaffRouteImport } from './routes/api/public/notify-staff'
@@ -263,6 +264,11 @@ const BoardPortalMessagesRoute = BoardPortalMessagesRouteImport.update({
   path: '/messages',
   getParentRoute: () => BoardPortalRoute,
 } as any)
+const BoardPortalDocumentsRoute = BoardPortalDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => BoardPortalRoute,
+} as any)
 const BoardPortalCalendarRoute = BoardPortalCalendarRouteImport.update({
   id: '/calendar',
   path: '/calendar',
@@ -336,6 +342,7 @@ export interface FileRoutesByFullPath {
   '/updates': typeof UpdatesRoute
   '/volunteer-policy': typeof VolunteerPolicyRoute
   '/board-portal/calendar': typeof BoardPortalCalendarRoute
+  '/board-portal/documents': typeof BoardPortalDocumentsRoute
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
@@ -385,6 +392,7 @@ export interface FileRoutesByTo {
   '/updates': typeof UpdatesRoute
   '/volunteer-policy': typeof VolunteerPolicyRoute
   '/board-portal/calendar': typeof BoardPortalCalendarRoute
+  '/board-portal/documents': typeof BoardPortalDocumentsRoute
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
@@ -435,6 +443,7 @@ export interface FileRoutesById {
   '/updates': typeof UpdatesRoute
   '/volunteer-policy': typeof VolunteerPolicyRoute
   '/board-portal/calendar': typeof BoardPortalCalendarRoute
+  '/board-portal/documents': typeof BoardPortalDocumentsRoute
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
@@ -486,6 +495,7 @@ export interface FileRouteTypes {
     | '/updates'
     | '/volunteer-policy'
     | '/board-portal/calendar'
+    | '/board-portal/documents'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
@@ -535,6 +545,7 @@ export interface FileRouteTypes {
     | '/updates'
     | '/volunteer-policy'
     | '/board-portal/calendar'
+    | '/board-portal/documents'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
@@ -584,6 +595,7 @@ export interface FileRouteTypes {
     | '/updates'
     | '/volunteer-policy'
     | '/board-portal/calendar'
+    | '/board-portal/documents'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
@@ -930,6 +942,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BoardPortalMessagesRouteImport
       parentRoute: typeof BoardPortalRoute
     }
+    '/board-portal/documents': {
+      id: '/board-portal/documents'
+      path: '/documents'
+      fullPath: '/board-portal/documents'
+      preLoaderRoute: typeof BoardPortalDocumentsRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
     '/board-portal/calendar': {
       id: '/board-portal/calendar'
       path: '/calendar'
@@ -977,6 +996,7 @@ declare module '@tanstack/react-router' {
 
 interface BoardPortalRouteChildren {
   BoardPortalCalendarRoute: typeof BoardPortalCalendarRoute
+  BoardPortalDocumentsRoute: typeof BoardPortalDocumentsRoute
   BoardPortalMessagesRoute: typeof BoardPortalMessagesRoute
   BoardPortalNotificationsRoute: typeof BoardPortalNotificationsRoute
   BoardPortalTasksRoute: typeof BoardPortalTasksRoute
@@ -984,6 +1004,7 @@ interface BoardPortalRouteChildren {
 
 const BoardPortalRouteChildren: BoardPortalRouteChildren = {
   BoardPortalCalendarRoute: BoardPortalCalendarRoute,
+  BoardPortalDocumentsRoute: BoardPortalDocumentsRoute,
   BoardPortalMessagesRoute: BoardPortalMessagesRoute,
   BoardPortalNotificationsRoute: BoardPortalNotificationsRoute,
   BoardPortalTasksRoute: BoardPortalTasksRoute,

@@ -132,7 +132,7 @@ const members: BoardMember[] = [
   },
   {
     id: "joe",
-    name: "Joe Young",
+    name: "Joe Younge",
     role: "Assistant Treasurer / Event Organizer & Decorator",
     initials: "JY",
     sections: [

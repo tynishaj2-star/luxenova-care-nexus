@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { DollarSign, Wallet, Receipt, PiggyBank, FileText, ShieldCheck } from "lucide-react";
+import { DollarSign, Wallet, Receipt, PiggyBank, FileText, ShieldCheck, ArrowRight } from "lucide-react";
 
 export function CfoWorkspace() {
   return (
@@ -10,6 +10,9 @@ export function CfoWorkspace() {
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
           Cash position, donations, grants, expenses, and compliance — everything needed to keep LuxeNova's 501(c)(3) finances clean and audit-ready.
         </p>
+        <Link to="/board-portal/cfo" className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-rosewood px-5 py-2.5 text-sm text-rosewood-foreground shadow-luxe">
+          Open Treasurer back office <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+        </Link>
       </header>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

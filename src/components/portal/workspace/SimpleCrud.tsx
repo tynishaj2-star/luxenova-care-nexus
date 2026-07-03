@@ -110,7 +110,7 @@ export function SimpleCrud<T extends Row>({
                   <tr key={r.id} className="border-t border-border/60">
                     {tableFields.map((f) => (
                       <td key={f.key} className="py-2 pr-3 align-top">
-                        {f.formatCell ? f.formatCell(r[f.key], r) : formatDefault(r[f.key], f)}
+                        {f.formatCell ? f.formatCell(r[f.key], r) : formatDefault(r[f.key], f as unknown as FieldDef<Row>)}
                       </td>
                     ))}
                     <td className="whitespace-nowrap py-2 text-right">

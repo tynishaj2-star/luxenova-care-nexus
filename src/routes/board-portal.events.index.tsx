@@ -21,11 +21,11 @@ const tiles = [
 ] as const;
 
 function EventsHub() {
-  const [upcoming, setUpcoming] = useState<Array<{ id: string; title: string; start_at: string }>>([]);
+  const [upcoming, setUpcoming] = useState<Array<{ id: string; title: string; starts_at: string }>>([]);
   const [activity, setActivity] = useState<Array<{ id: string; summary: string; entity_type: string; created_at: string }>>([]);
 
   useEffect(() => {
-    supabase.from("calendar_events").select("id,title,start_at").gte("start_at", new Date().toISOString()).order("start_at", { ascending: true }).limit(5)
+    supabase.from("calendar_events").select("id,title,starts_at").gte("starts_at", new Date().toISOString()).order("starts_at", { ascending: true }).limit(5)
       .then(({ data }) => setUpcoming(data ?? []));
     supabase.from("activity_feed").select("id,summary,entity_type,created_at")
       .in("entity_type", ["calendar_events", "event_budgets", "purchase_requests", "reimbursements", "vendors", "inventory_items", "shopping_lists", "shopping_list_items"])
@@ -48,7 +48,7 @@ function EventsHub() {
             {upcoming.map((e) => (
               <li key={e.id} className="flex justify-between border-b border-border/60 pb-2 last:border-0">
                 <span className="text-sm">{e.title}</span>
-                <span className="text-xs text-muted-foreground">{new Date(e.start_at).toLocaleString()}</span>
+                <span className="text-xs text-muted-foreground">{new Date(e.starts_at).toLocaleString()}</span>
               </li>
             ))}
           </ul>

@@ -1,119 +1,89 @@
+# Welcome + Remaining Back Offices
 
-# Executive Director Workspace — Full Build
+## 1. First-name welcome
 
-Turn Tynisha's dashboard from static cards into a working back office. Every section opens a real workspace with action buttons, uploads, exports, and an activity feed. Scoped to ED-level permissions (view/manage everything).
+**Portal dashboard** (`/board-portal`): already renders `Welcome back, {firstName}!` from `member.name.split(" ")[0]`. Verify at runtime; no change expected.
 
-## Scope (this pass — ED only)
+**Public homepage** (`/`): add a dismissible banner that appears only when the visitor is signed in and has a `profiles.full_name`. Copy: `Welcome back, {firstName}! — Go to your board portal →`. Uses `supabase.auth.getUser()` + a lightweight `profiles` query. First name = first whitespace token of `full_name`, falling back to email local-part.
 
-Twelve workspaces under `/board-portal/ed/*`, each a real page with CRUD, filters, and role-gated actions:
+## 2. Back offices to build
 
-1. **Board Management** — add/remove board members, edit roles, assign portal access
-2. **User Management** — list all users, assign/revoke roles (`admin`, `staff`, `board`, `partner`), reset access
-3. **Grant Management** — grants CRUD (funder, amount, status, deadlines, docs, report due)
-4. **Donations** — record donation, list, filter, export CSV, acknowledgment status
-5. **Financial Reports** — period reports from donations + expenses, export PDF/CSV, print
-6. **Volunteer Management** — volunteer records, hours, assignments, background-check tracking
-7. **Staff Management** — staff list, role/title, contact, onboarding status
-8. **Website Management** — announcements & site updates CRUD, publish/unpublish
-9. **Program Management** — programs CRUD, outcomes, participant counts
-10. **Reports Hub** — links + generators for org-wide reports (finance, program, impact, audit)
-11. **Organization Documents** — bylaws, articles, EIN, filings — upload/download/archive/version
-12. **Audit Logs** — read-only stream of `audit_logs` with filter/search/export
-13. **Settings** — org profile, contact, branding, portal preferences
+Each role gets a layout guard route + hub + workspace pages, styled like the existing ED/CFO back offices (`WorkspacePage`, tiles, activity feed on hub). All writes go through Supabase with RLS; all mutations produce `activity_feed` entries via existing `log_activity` trigger where the underlying table already has it, and via new triggers where it doesn't.
 
-Plus a shared **Task Center** and **Activity Feed** available to ED (and reused later by other roles).
+### Secretary (Jerez) — `/board-portal/secretary/*`
+Job-role guard: `admin` OR `staff` with `job_role = 'secretary'`.
 
-## Data model (new tables, all with RLS + GRANTs + `updated_at` triggers)
+- Hub — tiles + activity feed
+- Board Minutes — CRUD (new table `board_minutes`: meeting_date, title, body, status draft|approved, approved_at)
+- Meeting Records — CRUD (new table `meeting_records`: meeting_date, kind, attendees jsonb, quorum bool, notes)
+- Policies — CRUD (new table `policies`: title, category, body, effective_at, version)
+- Filing Tracker — CRUD (new table `filings`: name, jurisdiction, due_at, status, notes, filed_at)
+- Board Votes — CRUD (new table `board_votes`: motion, meeting_date, tally jsonb, outcome)
+- Documents (reuse `documents` table, filtered to governance category)
 
-- `grants` — funder, program, amount_requested, amount_awarded, status, deadline, report_due_at, notes, attachments
-- `expenses` — category, vendor, amount, paid_at, method, receipt_path, program_id, notes, approved_by
-- `volunteers` — full_name, email, phone, skills, background_check_status, checked_at, hours_ytd, active
-- `volunteer_assignments` — volunteer_id, event_id/program_id, role, hours, date
-- `staff` — user_id (nullable for pre-hire), full_name, title, email, phone, employment_status, start_date
-- `programs` — name, description, status, start_at, end_at, budget, participant_count, outcomes
-- `program_outcomes` — program_id, metric, value, period, notes
-- `org_settings` — singleton row: org name, ein, address, phone, email, brand color, logo_path
-- `activity_feed` — actor_id, entity_type, entity_id, action, summary, metadata (materialized via triggers on the tables above + existing tasks/announcements/documents)
+### Programs Director (Trina) — `/board-portal/programs/*`
+Guard: `admin` OR `staff` with `job_role = 'programs'` (or the existing Director role check).
 
-Existing tables reused: `board_members`, `user_roles`, `profiles`, `donations`, `documents`, `announcements`, `tasks`, `audit_logs`, `notifications`.
+- Hub — tiles + activity feed
+- Programs — CRUD on existing `programs` table
+- Program Outcomes — CRUD on existing `program_outcomes`
+- Family Stabilization — read-only view over `referrals` grouped by household, with note-adding via existing `referral_notes`
+- Partner Feedback — new table `partner_feedback`: partner_name, kind, body, submitted_at
+- Resource Gaps — new table `resource_gaps`: title, description, priority, status
 
-## RLS policy shape
+### Assistant Secretary (Mary) — `/board-portal/asst-secretary/*`
+Guard: `admin` OR `staff` with `job_role = 'assistant_secretary'`. Read/edit access to Secretary tables scoped down (no delete):
 
-- Every new table: `SELECT/INSERT/UPDATE/DELETE` for authenticated + `has_role(auth.uid(),'admin')` for full access; scoped read for `staff`/`board` where appropriate; no `anon` grants.
-- ED (Tynisha) gets the `admin` role in `user_roles` (migration seeds if missing).
-- Activity feed: insert via `SECURITY DEFINER` triggers; select gated to `admin`/`staff`.
+- Hub
+- Draft Minutes (create + edit own drafts on `board_minutes` where status='draft')
+- Meeting Records (create + edit)
+- Filing Tracker (mark reminders / notes; no delete)
+- Document Archive (upload to existing `documents` bucket, categorize)
 
-## Shared UI kit for workspaces
+### Events / Asst Treasurer (Joe) — `/board-portal/events/*`
+Guard: `admin` OR `staff` with `job_role IN ('events','assistant_treasurer')`.
 
-New `src/components/portal/workspace/` primitives, reused across every ED page (and future roles):
+- Hub — upcoming events + activity feed
+- Events — CRUD on `calendar_events` (kind='event')
+- Event Budgets — new table `event_budgets`: event_id fk, category, planned_cents, spent_cents view
+- Event Expenses — reuse `expenses` with new `event_id` nullable fk + receipt upload (already built for CFO)
+- Purchase Requests — new table `purchase_requests`: event_id, item, amount_cents, vendor, status pending|approved|denied, requested_by, decided_by
+- Reimbursements — new table `reimbursements`: user_id, amount_cents, description, receipt_path, status
+- Vendors — new table `vendors`: name, category, contact, phone, email, notes
+- Volunteer Assignments — CRUD on existing `volunteer_assignments`
+- Inventory — new table `inventory_items`: name, category, quantity, location, notes
+- Shopping Lists — new table `shopping_lists` + `shopping_list_items`
+- Event Documents — reuse `documents` filtered to category='event'
 
-- `WorkspacePage` — header with title, back link, action bar
-- `ActionBar` — New / Edit / Save / Upload / Download / Archive / Delete / Export PDF / Export CSV / Print / Search / Filter (permission-aware, hides buttons the current role can't use)
-- `DataTable` — sortable, searchable, filterable list with row actions
-- `RecordDrawer` — side panel for create/edit forms (zod-validated)
-- `FileDropzone` — reused upload UI wired to `board-documents` bucket, saves under owner folder
-- `ActivityStream` — reusable list bound to `activity_feed` (filter by entity type)
-- `TaskCenter` — reusable component: assigned tasks, due dates, priority, notes, attachments, progress; wired to existing `tasks` table plus new `task_attachments` and `progress` column
+## 3. Data & security
 
-## Dashboard changes (`/board-portal`)
+Single migration that:
 
-- Fix welcome name — already `firstName`, confirm rendering; add fallback to `profiles.full_name` if `board_members.name` missing.
-- ED-only rail: replace ED's read-only section cards with clickable tiles linking to the 13 workspaces above.
-- Snapshot cards become clickable (Tasks → Task Center, Notifications → Notifications page, Announcements → Website Management).
-- Add "Recent Activity" card on ED dashboard reading from `activity_feed`.
+- Adds `profiles.job_role text` (nullable) if not already present — used by all job-role guards.
+- Creates new tables above with `created_at`, `updated_at`, `created_by uuid default auth.uid()`.
+- GRANTs `SELECT,INSERT,UPDATE,DELETE` to `authenticated`, `ALL` to `service_role`.
+- Enables RLS on each new table. Policies:
+  - SELECT: any signed-in board member (`has_role('board') OR has_role('staff') OR has_role('admin')`).
+  - INSERT/UPDATE/DELETE: role-scoped via `has_role('admin')` OR `has_role('staff')` with matching `job_role` on `profiles`.
+- Adds `log_activity` `AFTER INSERT/UPDATE/DELETE` trigger on every new table.
+- Adds `set_updated_at` `BEFORE UPDATE` trigger on every new table.
+- Adds `event_id uuid REFERENCES calendar_events(id) ON DELETE SET NULL` to `expenses` (nullable — CFO flow unchanged).
+- Storage: reuse `expense-receipts` bucket for reimbursement receipts; add policy already permits staff.
 
-## Server functions (new, all under `src/lib/*.functions.ts`)
+## 4. Wiring
 
-- `grants.functions.ts`, `expenses.functions.ts`, `volunteers.functions.ts`, `staff.functions.ts`, `programs.functions.ts`, `org-settings.functions.ts`, `reports.functions.ts` (CSV/PDF generation), `user-admin.functions.ts` (list users, assign roles — verified admin only, loads `supabaseAdmin` inside handler).
-- All use `requireSupabaseAuth` middleware + `has_role(userId,'admin')` gate.
+- Route files created for every workspace above under `src/routes/board-portal.<role>.*.tsx`.
+- Dashboard quick-links on `/board-portal` grow role-aware: show only the back-office link matching the signed-in member (ED for Tynisha, CFO for Darien, Secretary for Jerez, Programs for Trina, Events for Joe, Asst Secretary for Mary).
+- Each workspace's `WorkspacePage` uses the same header/back-link pattern used by CFO.
 
-## Exports
+## Deliverables
 
-- CSV: generated in-browser via a small util (`src/lib/export-csv.ts`).
-- PDF: server function using `pdf-lib` (edge-compatible), streams response.
-- Print: `window.print()` with print-only stylesheet on report pages.
+1. One migration containing all new tables, grants, RLS, triggers, and the `expenses.event_id` column.
+2. New route files per section above (~25 files).
+3. Updated `board-portal.tsx` for role-aware quick links.
+4. New homepage welcome banner component + integration.
 
-## Out of scope (this pass)
+## Notes / limits
 
-- Treasurer, Events (Joe), Clerk, Assistant Clerk, Director workspaces — will be built role-by-role in follow-up passes, reusing the same primitives and tables.
-- Real-time collaboration inside forms.
-- Email digest of activity feed.
-
-## Files to add (high level)
-
-```text
-supabase/migrations/<ts>_ed_workspace_schema.sql
-supabase/migrations/<ts>_activity_feed_triggers.sql
-src/components/portal/workspace/{WorkspacePage,ActionBar,DataTable,RecordDrawer,FileDropzone,ActivityStream,TaskCenter}.tsx
-src/lib/{grants,expenses,volunteers,staff,programs,org-settings,reports,user-admin}.functions.ts
-src/lib/export-csv.ts
-src/routes/board-portal.ed.tsx                    (ED hub layout)
-src/routes/board-portal.ed.index.tsx              (tile grid)
-src/routes/board-portal.ed.board.tsx
-src/routes/board-portal.ed.users.tsx
-src/routes/board-portal.ed.grants.tsx
-src/routes/board-portal.ed.donations.tsx
-src/routes/board-portal.ed.financial-reports.tsx
-src/routes/board-portal.ed.volunteers.tsx
-src/routes/board-portal.ed.staff.tsx
-src/routes/board-portal.ed.website.tsx
-src/routes/board-portal.ed.programs.tsx
-src/routes/board-portal.ed.reports.tsx
-src/routes/board-portal.ed.documents.tsx
-src/routes/board-portal.ed.audit.tsx
-src/routes/board-portal.ed.settings.tsx
-src/routes/board-portal.tasks.tsx                 (upgrade to full Task Center)
-```
-
-## Order of execution
-
-1. Migrations (schema + RLS + grants + triggers) — one call, awaits approval.
-2. Shared workspace primitives + Task Center upgrade.
-3. Server functions for all ED entities.
-4. Route files (13 workspaces) in parallel batches.
-5. Dashboard ED tile rail + Recent Activity card.
-6. Smoke-test with Playwright signed in as Tynisha; verify permissions block non-admin.
-
-## Confirm before I start
-
-This will be ~25 new files, one large migration awaiting your approval, and roughly 3-4 build cycles. Reply "go" and I'll start with the migration.
+- I will NOT auto-seed `profiles.job_role` values for existing board members — you'll be able to set them from the ED → User Management workspace (already built). Until you assign a `job_role`, non-ED/non-Treasurer back offices will be admin-only. Tell me if you want me to seed defaults now (Jerez=secretary, Trina=programs, Mary=assistant_secretary, Joe=events) and I'll add an `insert` step.
+- Design Studio / Photo Booth / Decoration Ideas from Joe's list will render as free-form notes tables initially, not visual editors.

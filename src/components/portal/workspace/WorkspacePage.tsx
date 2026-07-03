@@ -7,6 +7,7 @@ import type { ReactNode } from "react";
 export function WorkspacePage({
   title,
   subtitle,
+  eyebrow = "Executive Director · Workspace",
   actions,
   children,
   backTo = "/board-portal/ed",
@@ -14,6 +15,7 @@ export function WorkspacePage({
 }: {
   title: string;
   subtitle?: string;
+  eyebrow?: string;
   actions?: ReactNode;
   children: ReactNode;
   backTo?: string;
@@ -40,7 +42,7 @@ export function WorkspacePage({
         <div className="rounded-3xl border border-border/70 bg-card p-6 shadow-soft md:p-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Executive Director · Workspace</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-rosewood">{eyebrow}</p>
               <h1 className="mt-1 font-display text-2xl md:text-3xl">{title}</h1>
               {subtitle && <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>}
             </div>

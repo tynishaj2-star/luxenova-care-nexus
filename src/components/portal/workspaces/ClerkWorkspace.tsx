@@ -40,7 +40,10 @@ export function ClerkWorkspace() {
               "Circulate draft minutes within 7 days",
               "File approved minutes in records archive",
               "Update board roster & contact list as needed",
+              "Run background checks on new staff & volunteers (Assistant Clerk)",
+              "File signed background-check consent forms in records archive",
             ].map((t) => (
+
               <li key={t} className="flex items-start gap-2">
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-rosewood" />
                 <span>{t}</span>

@@ -50,13 +50,25 @@ import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe
 import { Route as BoardPortalTasksRouteImport } from './routes/board-portal.tasks'
 import { Route as BoardPortalNotificationsRouteImport } from './routes/board-portal.notifications'
 import { Route as BoardPortalMessagesRouteImport } from './routes/board-portal.messages'
+import { Route as BoardPortalEventsRouteImport } from './routes/board-portal.events'
 import { Route as BoardPortalEdRouteImport } from './routes/board-portal.ed'
 import { Route as BoardPortalDocumentsRouteImport } from './routes/board-portal.documents'
+import { Route as BoardPortalCooRouteImport } from './routes/board-portal.coo'
+import { Route as BoardPortalClerkRouteImport } from './routes/board-portal.clerk'
 import { Route as BoardPortalCfoRouteImport } from './routes/board-portal.cfo'
 import { Route as BoardPortalCalendarRouteImport } from './routes/board-portal.calendar'
+import { Route as BoardPortalEventsIndexRouteImport } from './routes/board-portal.events.index'
 import { Route as BoardPortalEdIndexRouteImport } from './routes/board-portal.ed.index'
+import { Route as BoardPortalCooIndexRouteImport } from './routes/board-portal.coo.index'
+import { Route as BoardPortalClerkIndexRouteImport } from './routes/board-portal.clerk.index'
 import { Route as BoardPortalCfoIndexRouteImport } from './routes/board-portal.cfo.index'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as BoardPortalEventsVendorsRouteImport } from './routes/board-portal.events.vendors'
+import { Route as BoardPortalEventsShoppingRouteImport } from './routes/board-portal.events.shopping'
+import { Route as BoardPortalEventsReimbursementsRouteImport } from './routes/board-portal.events.reimbursements'
+import { Route as BoardPortalEventsPurchaseRequestsRouteImport } from './routes/board-portal.events.purchase-requests'
+import { Route as BoardPortalEventsInventoryRouteImport } from './routes/board-portal.events.inventory'
+import { Route as BoardPortalEventsBudgetsRouteImport } from './routes/board-portal.events.budgets'
 import { Route as BoardPortalEdWebsiteRouteImport } from './routes/board-portal.ed.website'
 import { Route as BoardPortalEdVolunteersRouteImport } from './routes/board-portal.ed.volunteers'
 import { Route as BoardPortalEdUsersRouteImport } from './routes/board-portal.ed.users'
@@ -70,6 +82,13 @@ import { Route as BoardPortalEdDonationsRouteImport } from './routes/board-porta
 import { Route as BoardPortalEdDocumentsRouteImport } from './routes/board-portal.ed.documents'
 import { Route as BoardPortalEdBoardRouteImport } from './routes/board-portal.ed.board'
 import { Route as BoardPortalEdAuditRouteImport } from './routes/board-portal.ed.audit'
+import { Route as BoardPortalCooGapsRouteImport } from './routes/board-portal.coo.gaps'
+import { Route as BoardPortalCooFeedbackRouteImport } from './routes/board-portal.coo.feedback'
+import { Route as BoardPortalClerkVotesRouteImport } from './routes/board-portal.clerk.votes'
+import { Route as BoardPortalClerkRecordsRouteImport } from './routes/board-portal.clerk.records'
+import { Route as BoardPortalClerkPoliciesRouteImport } from './routes/board-portal.clerk.policies'
+import { Route as BoardPortalClerkMinutesRouteImport } from './routes/board-portal.clerk.minutes'
+import { Route as BoardPortalClerkFilingsRouteImport } from './routes/board-portal.clerk.filings'
 import { Route as BoardPortalCfoReportsRouteImport } from './routes/board-portal.cfo.reports'
 import { Route as BoardPortalCfoExpensesRouteImport } from './routes/board-portal.cfo.expenses'
 import { Route as BoardPortalCfoDonationsRouteImport } from './routes/board-portal.cfo.donations'
@@ -285,6 +304,11 @@ const BoardPortalMessagesRoute = BoardPortalMessagesRouteImport.update({
   path: '/messages',
   getParentRoute: () => BoardPortalRoute,
 } as any)
+const BoardPortalEventsRoute = BoardPortalEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => BoardPortalRoute,
+} as any)
 const BoardPortalEdRoute = BoardPortalEdRouteImport.update({
   id: '/ed',
   path: '/ed',
@@ -293,6 +317,16 @@ const BoardPortalEdRoute = BoardPortalEdRouteImport.update({
 const BoardPortalDocumentsRoute = BoardPortalDocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
+  getParentRoute: () => BoardPortalRoute,
+} as any)
+const BoardPortalCooRoute = BoardPortalCooRouteImport.update({
+  id: '/coo',
+  path: '/coo',
+  getParentRoute: () => BoardPortalRoute,
+} as any)
+const BoardPortalClerkRoute = BoardPortalClerkRouteImport.update({
+  id: '/clerk',
+  path: '/clerk',
   getParentRoute: () => BoardPortalRoute,
 } as any)
 const BoardPortalCfoRoute = BoardPortalCfoRouteImport.update({
@@ -305,10 +339,25 @@ const BoardPortalCalendarRoute = BoardPortalCalendarRouteImport.update({
   path: '/calendar',
   getParentRoute: () => BoardPortalRoute,
 } as any)
+const BoardPortalEventsIndexRoute = BoardPortalEventsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BoardPortalEventsRoute,
+} as any)
 const BoardPortalEdIndexRoute = BoardPortalEdIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalCooIndexRoute = BoardPortalCooIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BoardPortalCooRoute,
+} as any)
+const BoardPortalClerkIndexRoute = BoardPortalClerkIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BoardPortalClerkRoute,
 } as any)
 const BoardPortalCfoIndexRoute = BoardPortalCfoIndexRouteImport.update({
   id: '/',
@@ -320,6 +369,42 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BoardPortalEventsVendorsRoute =
+  BoardPortalEventsVendorsRouteImport.update({
+    id: '/vendors',
+    path: '/vendors',
+    getParentRoute: () => BoardPortalEventsRoute,
+  } as any)
+const BoardPortalEventsShoppingRoute =
+  BoardPortalEventsShoppingRouteImport.update({
+    id: '/shopping',
+    path: '/shopping',
+    getParentRoute: () => BoardPortalEventsRoute,
+  } as any)
+const BoardPortalEventsReimbursementsRoute =
+  BoardPortalEventsReimbursementsRouteImport.update({
+    id: '/reimbursements',
+    path: '/reimbursements',
+    getParentRoute: () => BoardPortalEventsRoute,
+  } as any)
+const BoardPortalEventsPurchaseRequestsRoute =
+  BoardPortalEventsPurchaseRequestsRouteImport.update({
+    id: '/purchase-requests',
+    path: '/purchase-requests',
+    getParentRoute: () => BoardPortalEventsRoute,
+  } as any)
+const BoardPortalEventsInventoryRoute =
+  BoardPortalEventsInventoryRouteImport.update({
+    id: '/inventory',
+    path: '/inventory',
+    getParentRoute: () => BoardPortalEventsRoute,
+  } as any)
+const BoardPortalEventsBudgetsRoute =
+  BoardPortalEventsBudgetsRouteImport.update({
+    id: '/budgets',
+    path: '/budgets',
+    getParentRoute: () => BoardPortalEventsRoute,
+  } as any)
 const BoardPortalEdWebsiteRoute = BoardPortalEdWebsiteRouteImport.update({
   id: '/website',
   path: '/website',
@@ -385,6 +470,42 @@ const BoardPortalEdAuditRoute = BoardPortalEdAuditRouteImport.update({
   id: '/audit',
   path: '/audit',
   getParentRoute: () => BoardPortalEdRoute,
+} as any)
+const BoardPortalCooGapsRoute = BoardPortalCooGapsRouteImport.update({
+  id: '/gaps',
+  path: '/gaps',
+  getParentRoute: () => BoardPortalCooRoute,
+} as any)
+const BoardPortalCooFeedbackRoute = BoardPortalCooFeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => BoardPortalCooRoute,
+} as any)
+const BoardPortalClerkVotesRoute = BoardPortalClerkVotesRouteImport.update({
+  id: '/votes',
+  path: '/votes',
+  getParentRoute: () => BoardPortalClerkRoute,
+} as any)
+const BoardPortalClerkRecordsRoute = BoardPortalClerkRecordsRouteImport.update({
+  id: '/records',
+  path: '/records',
+  getParentRoute: () => BoardPortalClerkRoute,
+} as any)
+const BoardPortalClerkPoliciesRoute =
+  BoardPortalClerkPoliciesRouteImport.update({
+    id: '/policies',
+    path: '/policies',
+    getParentRoute: () => BoardPortalClerkRoute,
+  } as any)
+const BoardPortalClerkMinutesRoute = BoardPortalClerkMinutesRouteImport.update({
+  id: '/minutes',
+  path: '/minutes',
+  getParentRoute: () => BoardPortalClerkRoute,
+} as any)
+const BoardPortalClerkFilingsRoute = BoardPortalClerkFilingsRouteImport.update({
+  id: '/filings',
+  path: '/filings',
+  getParentRoute: () => BoardPortalClerkRoute,
 } as any)
 const BoardPortalCfoReportsRoute = BoardPortalCfoReportsRouteImport.update({
   id: '/reports',
@@ -470,8 +591,11 @@ export interface FileRoutesByFullPath {
   '/volunteer-policy': typeof VolunteerPolicyRoute
   '/board-portal/calendar': typeof BoardPortalCalendarRoute
   '/board-portal/cfo': typeof BoardPortalCfoRouteWithChildren
+  '/board-portal/clerk': typeof BoardPortalClerkRouteWithChildren
+  '/board-portal/coo': typeof BoardPortalCooRouteWithChildren
   '/board-portal/documents': typeof BoardPortalDocumentsRoute
   '/board-portal/ed': typeof BoardPortalEdRouteWithChildren
+  '/board-portal/events': typeof BoardPortalEventsRouteWithChildren
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
@@ -481,6 +605,13 @@ export interface FileRoutesByFullPath {
   '/board-portal/cfo/donations': typeof BoardPortalCfoDonationsRoute
   '/board-portal/cfo/expenses': typeof BoardPortalCfoExpensesRoute
   '/board-portal/cfo/reports': typeof BoardPortalCfoReportsRoute
+  '/board-portal/clerk/filings': typeof BoardPortalClerkFilingsRoute
+  '/board-portal/clerk/minutes': typeof BoardPortalClerkMinutesRoute
+  '/board-portal/clerk/policies': typeof BoardPortalClerkPoliciesRoute
+  '/board-portal/clerk/records': typeof BoardPortalClerkRecordsRoute
+  '/board-portal/clerk/votes': typeof BoardPortalClerkVotesRoute
+  '/board-portal/coo/feedback': typeof BoardPortalCooFeedbackRoute
+  '/board-portal/coo/gaps': typeof BoardPortalCooGapsRoute
   '/board-portal/ed/audit': typeof BoardPortalEdAuditRoute
   '/board-portal/ed/board': typeof BoardPortalEdBoardRoute
   '/board-portal/ed/documents': typeof BoardPortalEdDocumentsRoute
@@ -494,9 +625,18 @@ export interface FileRoutesByFullPath {
   '/board-portal/ed/users': typeof BoardPortalEdUsersRoute
   '/board-portal/ed/volunteers': typeof BoardPortalEdVolunteersRoute
   '/board-portal/ed/website': typeof BoardPortalEdWebsiteRoute
+  '/board-portal/events/budgets': typeof BoardPortalEventsBudgetsRoute
+  '/board-portal/events/inventory': typeof BoardPortalEventsInventoryRoute
+  '/board-portal/events/purchase-requests': typeof BoardPortalEventsPurchaseRequestsRoute
+  '/board-portal/events/reimbursements': typeof BoardPortalEventsReimbursementsRoute
+  '/board-portal/events/shopping': typeof BoardPortalEventsShoppingRoute
+  '/board-portal/events/vendors': typeof BoardPortalEventsVendorsRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/board-portal/cfo/': typeof BoardPortalCfoIndexRoute
+  '/board-portal/clerk/': typeof BoardPortalClerkIndexRoute
+  '/board-portal/coo/': typeof BoardPortalCooIndexRoute
   '/board-portal/ed/': typeof BoardPortalEdIndexRoute
+  '/board-portal/events/': typeof BoardPortalEventsIndexRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
@@ -550,6 +690,13 @@ export interface FileRoutesByTo {
   '/board-portal/cfo/donations': typeof BoardPortalCfoDonationsRoute
   '/board-portal/cfo/expenses': typeof BoardPortalCfoExpensesRoute
   '/board-portal/cfo/reports': typeof BoardPortalCfoReportsRoute
+  '/board-portal/clerk/filings': typeof BoardPortalClerkFilingsRoute
+  '/board-portal/clerk/minutes': typeof BoardPortalClerkMinutesRoute
+  '/board-portal/clerk/policies': typeof BoardPortalClerkPoliciesRoute
+  '/board-portal/clerk/records': typeof BoardPortalClerkRecordsRoute
+  '/board-portal/clerk/votes': typeof BoardPortalClerkVotesRoute
+  '/board-portal/coo/feedback': typeof BoardPortalCooFeedbackRoute
+  '/board-portal/coo/gaps': typeof BoardPortalCooGapsRoute
   '/board-portal/ed/audit': typeof BoardPortalEdAuditRoute
   '/board-portal/ed/board': typeof BoardPortalEdBoardRoute
   '/board-portal/ed/documents': typeof BoardPortalEdDocumentsRoute
@@ -563,9 +710,18 @@ export interface FileRoutesByTo {
   '/board-portal/ed/users': typeof BoardPortalEdUsersRoute
   '/board-portal/ed/volunteers': typeof BoardPortalEdVolunteersRoute
   '/board-portal/ed/website': typeof BoardPortalEdWebsiteRoute
+  '/board-portal/events/budgets': typeof BoardPortalEventsBudgetsRoute
+  '/board-portal/events/inventory': typeof BoardPortalEventsInventoryRoute
+  '/board-portal/events/purchase-requests': typeof BoardPortalEventsPurchaseRequestsRoute
+  '/board-portal/events/reimbursements': typeof BoardPortalEventsReimbursementsRoute
+  '/board-portal/events/shopping': typeof BoardPortalEventsShoppingRoute
+  '/board-portal/events/vendors': typeof BoardPortalEventsVendorsRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/board-portal/cfo': typeof BoardPortalCfoIndexRoute
+  '/board-portal/clerk': typeof BoardPortalClerkIndexRoute
+  '/board-portal/coo': typeof BoardPortalCooIndexRoute
   '/board-portal/ed': typeof BoardPortalEdIndexRoute
+  '/board-portal/events': typeof BoardPortalEventsIndexRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
@@ -611,8 +767,11 @@ export interface FileRoutesById {
   '/volunteer-policy': typeof VolunteerPolicyRoute
   '/board-portal/calendar': typeof BoardPortalCalendarRoute
   '/board-portal/cfo': typeof BoardPortalCfoRouteWithChildren
+  '/board-portal/clerk': typeof BoardPortalClerkRouteWithChildren
+  '/board-portal/coo': typeof BoardPortalCooRouteWithChildren
   '/board-portal/documents': typeof BoardPortalDocumentsRoute
   '/board-portal/ed': typeof BoardPortalEdRouteWithChildren
+  '/board-portal/events': typeof BoardPortalEventsRouteWithChildren
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
@@ -622,6 +781,13 @@ export interface FileRoutesById {
   '/board-portal/cfo/donations': typeof BoardPortalCfoDonationsRoute
   '/board-portal/cfo/expenses': typeof BoardPortalCfoExpensesRoute
   '/board-portal/cfo/reports': typeof BoardPortalCfoReportsRoute
+  '/board-portal/clerk/filings': typeof BoardPortalClerkFilingsRoute
+  '/board-portal/clerk/minutes': typeof BoardPortalClerkMinutesRoute
+  '/board-portal/clerk/policies': typeof BoardPortalClerkPoliciesRoute
+  '/board-portal/clerk/records': typeof BoardPortalClerkRecordsRoute
+  '/board-portal/clerk/votes': typeof BoardPortalClerkVotesRoute
+  '/board-portal/coo/feedback': typeof BoardPortalCooFeedbackRoute
+  '/board-portal/coo/gaps': typeof BoardPortalCooGapsRoute
   '/board-portal/ed/audit': typeof BoardPortalEdAuditRoute
   '/board-portal/ed/board': typeof BoardPortalEdBoardRoute
   '/board-portal/ed/documents': typeof BoardPortalEdDocumentsRoute
@@ -635,9 +801,18 @@ export interface FileRoutesById {
   '/board-portal/ed/users': typeof BoardPortalEdUsersRoute
   '/board-portal/ed/volunteers': typeof BoardPortalEdVolunteersRoute
   '/board-portal/ed/website': typeof BoardPortalEdWebsiteRoute
+  '/board-portal/events/budgets': typeof BoardPortalEventsBudgetsRoute
+  '/board-portal/events/inventory': typeof BoardPortalEventsInventoryRoute
+  '/board-portal/events/purchase-requests': typeof BoardPortalEventsPurchaseRequestsRoute
+  '/board-portal/events/reimbursements': typeof BoardPortalEventsReimbursementsRoute
+  '/board-portal/events/shopping': typeof BoardPortalEventsShoppingRoute
+  '/board-portal/events/vendors': typeof BoardPortalEventsVendorsRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/board-portal/cfo/': typeof BoardPortalCfoIndexRoute
+  '/board-portal/clerk/': typeof BoardPortalClerkIndexRoute
+  '/board-portal/coo/': typeof BoardPortalCooIndexRoute
   '/board-portal/ed/': typeof BoardPortalEdIndexRoute
+  '/board-portal/events/': typeof BoardPortalEventsIndexRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
@@ -684,8 +859,11 @@ export interface FileRouteTypes {
     | '/volunteer-policy'
     | '/board-portal/calendar'
     | '/board-portal/cfo'
+    | '/board-portal/clerk'
+    | '/board-portal/coo'
     | '/board-portal/documents'
     | '/board-portal/ed'
+    | '/board-portal/events'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
@@ -695,6 +873,13 @@ export interface FileRouteTypes {
     | '/board-portal/cfo/donations'
     | '/board-portal/cfo/expenses'
     | '/board-portal/cfo/reports'
+    | '/board-portal/clerk/filings'
+    | '/board-portal/clerk/minutes'
+    | '/board-portal/clerk/policies'
+    | '/board-portal/clerk/records'
+    | '/board-portal/clerk/votes'
+    | '/board-portal/coo/feedback'
+    | '/board-portal/coo/gaps'
     | '/board-portal/ed/audit'
     | '/board-portal/ed/board'
     | '/board-portal/ed/documents'
@@ -708,9 +893,18 @@ export interface FileRouteTypes {
     | '/board-portal/ed/users'
     | '/board-portal/ed/volunteers'
     | '/board-portal/ed/website'
+    | '/board-portal/events/budgets'
+    | '/board-portal/events/inventory'
+    | '/board-portal/events/purchase-requests'
+    | '/board-portal/events/reimbursements'
+    | '/board-portal/events/shopping'
+    | '/board-portal/events/vendors'
     | '/lovable/email/suppression'
     | '/board-portal/cfo/'
+    | '/board-portal/clerk/'
+    | '/board-portal/coo/'
     | '/board-portal/ed/'
+    | '/board-portal/events/'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
     | '/lovable/email/transactional/send'
@@ -764,6 +958,13 @@ export interface FileRouteTypes {
     | '/board-portal/cfo/donations'
     | '/board-portal/cfo/expenses'
     | '/board-portal/cfo/reports'
+    | '/board-portal/clerk/filings'
+    | '/board-portal/clerk/minutes'
+    | '/board-portal/clerk/policies'
+    | '/board-portal/clerk/records'
+    | '/board-portal/clerk/votes'
+    | '/board-portal/coo/feedback'
+    | '/board-portal/coo/gaps'
     | '/board-portal/ed/audit'
     | '/board-portal/ed/board'
     | '/board-portal/ed/documents'
@@ -777,9 +978,18 @@ export interface FileRouteTypes {
     | '/board-portal/ed/users'
     | '/board-portal/ed/volunteers'
     | '/board-portal/ed/website'
+    | '/board-portal/events/budgets'
+    | '/board-portal/events/inventory'
+    | '/board-portal/events/purchase-requests'
+    | '/board-portal/events/reimbursements'
+    | '/board-portal/events/shopping'
+    | '/board-portal/events/vendors'
     | '/lovable/email/suppression'
     | '/board-portal/cfo'
+    | '/board-portal/clerk'
+    | '/board-portal/coo'
     | '/board-portal/ed'
+    | '/board-portal/events'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
     | '/lovable/email/transactional/send'
@@ -824,8 +1034,11 @@ export interface FileRouteTypes {
     | '/volunteer-policy'
     | '/board-portal/calendar'
     | '/board-portal/cfo'
+    | '/board-portal/clerk'
+    | '/board-portal/coo'
     | '/board-portal/documents'
     | '/board-portal/ed'
+    | '/board-portal/events'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
@@ -835,6 +1048,13 @@ export interface FileRouteTypes {
     | '/board-portal/cfo/donations'
     | '/board-portal/cfo/expenses'
     | '/board-portal/cfo/reports'
+    | '/board-portal/clerk/filings'
+    | '/board-portal/clerk/minutes'
+    | '/board-portal/clerk/policies'
+    | '/board-portal/clerk/records'
+    | '/board-portal/clerk/votes'
+    | '/board-portal/coo/feedback'
+    | '/board-portal/coo/gaps'
     | '/board-portal/ed/audit'
     | '/board-portal/ed/board'
     | '/board-portal/ed/documents'
@@ -848,9 +1068,18 @@ export interface FileRouteTypes {
     | '/board-portal/ed/users'
     | '/board-portal/ed/volunteers'
     | '/board-portal/ed/website'
+    | '/board-portal/events/budgets'
+    | '/board-portal/events/inventory'
+    | '/board-portal/events/purchase-requests'
+    | '/board-portal/events/reimbursements'
+    | '/board-portal/events/shopping'
+    | '/board-portal/events/vendors'
     | '/lovable/email/suppression'
     | '/board-portal/cfo/'
+    | '/board-portal/clerk/'
+    | '/board-portal/coo/'
     | '/board-portal/ed/'
+    | '/board-portal/events/'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
     | '/lovable/email/transactional/send'
@@ -1191,6 +1420,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BoardPortalMessagesRouteImport
       parentRoute: typeof BoardPortalRoute
     }
+    '/board-portal/events': {
+      id: '/board-portal/events'
+      path: '/events'
+      fullPath: '/board-portal/events'
+      preLoaderRoute: typeof BoardPortalEventsRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
     '/board-portal/ed': {
       id: '/board-portal/ed'
       path: '/ed'
@@ -1203,6 +1439,20 @@ declare module '@tanstack/react-router' {
       path: '/documents'
       fullPath: '/board-portal/documents'
       preLoaderRoute: typeof BoardPortalDocumentsRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
+    '/board-portal/coo': {
+      id: '/board-portal/coo'
+      path: '/coo'
+      fullPath: '/board-portal/coo'
+      preLoaderRoute: typeof BoardPortalCooRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
+    '/board-portal/clerk': {
+      id: '/board-portal/clerk'
+      path: '/clerk'
+      fullPath: '/board-portal/clerk'
+      preLoaderRoute: typeof BoardPortalClerkRouteImport
       parentRoute: typeof BoardPortalRoute
     }
     '/board-portal/cfo': {
@@ -1219,12 +1469,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BoardPortalCalendarRouteImport
       parentRoute: typeof BoardPortalRoute
     }
+    '/board-portal/events/': {
+      id: '/board-portal/events/'
+      path: '/'
+      fullPath: '/board-portal/events/'
+      preLoaderRoute: typeof BoardPortalEventsIndexRouteImport
+      parentRoute: typeof BoardPortalEventsRoute
+    }
     '/board-portal/ed/': {
       id: '/board-portal/ed/'
       path: '/'
       fullPath: '/board-portal/ed/'
       preLoaderRoute: typeof BoardPortalEdIndexRouteImport
       parentRoute: typeof BoardPortalEdRoute
+    }
+    '/board-portal/coo/': {
+      id: '/board-portal/coo/'
+      path: '/'
+      fullPath: '/board-portal/coo/'
+      preLoaderRoute: typeof BoardPortalCooIndexRouteImport
+      parentRoute: typeof BoardPortalCooRoute
+    }
+    '/board-portal/clerk/': {
+      id: '/board-portal/clerk/'
+      path: '/'
+      fullPath: '/board-portal/clerk/'
+      preLoaderRoute: typeof BoardPortalClerkIndexRouteImport
+      parentRoute: typeof BoardPortalClerkRoute
     }
     '/board-portal/cfo/': {
       id: '/board-portal/cfo/'
@@ -1239,6 +1510,48 @@ declare module '@tanstack/react-router' {
       fullPath: '/lovable/email/suppression'
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/board-portal/events/vendors': {
+      id: '/board-portal/events/vendors'
+      path: '/vendors'
+      fullPath: '/board-portal/events/vendors'
+      preLoaderRoute: typeof BoardPortalEventsVendorsRouteImport
+      parentRoute: typeof BoardPortalEventsRoute
+    }
+    '/board-portal/events/shopping': {
+      id: '/board-portal/events/shopping'
+      path: '/shopping'
+      fullPath: '/board-portal/events/shopping'
+      preLoaderRoute: typeof BoardPortalEventsShoppingRouteImport
+      parentRoute: typeof BoardPortalEventsRoute
+    }
+    '/board-portal/events/reimbursements': {
+      id: '/board-portal/events/reimbursements'
+      path: '/reimbursements'
+      fullPath: '/board-portal/events/reimbursements'
+      preLoaderRoute: typeof BoardPortalEventsReimbursementsRouteImport
+      parentRoute: typeof BoardPortalEventsRoute
+    }
+    '/board-portal/events/purchase-requests': {
+      id: '/board-portal/events/purchase-requests'
+      path: '/purchase-requests'
+      fullPath: '/board-portal/events/purchase-requests'
+      preLoaderRoute: typeof BoardPortalEventsPurchaseRequestsRouteImport
+      parentRoute: typeof BoardPortalEventsRoute
+    }
+    '/board-portal/events/inventory': {
+      id: '/board-portal/events/inventory'
+      path: '/inventory'
+      fullPath: '/board-portal/events/inventory'
+      preLoaderRoute: typeof BoardPortalEventsInventoryRouteImport
+      parentRoute: typeof BoardPortalEventsRoute
+    }
+    '/board-portal/events/budgets': {
+      id: '/board-portal/events/budgets'
+      path: '/budgets'
+      fullPath: '/board-portal/events/budgets'
+      preLoaderRoute: typeof BoardPortalEventsBudgetsRouteImport
+      parentRoute: typeof BoardPortalEventsRoute
     }
     '/board-portal/ed/website': {
       id: '/board-portal/ed/website'
@@ -1331,6 +1644,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BoardPortalEdAuditRouteImport
       parentRoute: typeof BoardPortalEdRoute
     }
+    '/board-portal/coo/gaps': {
+      id: '/board-portal/coo/gaps'
+      path: '/gaps'
+      fullPath: '/board-portal/coo/gaps'
+      preLoaderRoute: typeof BoardPortalCooGapsRouteImport
+      parentRoute: typeof BoardPortalCooRoute
+    }
+    '/board-portal/coo/feedback': {
+      id: '/board-portal/coo/feedback'
+      path: '/feedback'
+      fullPath: '/board-portal/coo/feedback'
+      preLoaderRoute: typeof BoardPortalCooFeedbackRouteImport
+      parentRoute: typeof BoardPortalCooRoute
+    }
+    '/board-portal/clerk/votes': {
+      id: '/board-portal/clerk/votes'
+      path: '/votes'
+      fullPath: '/board-portal/clerk/votes'
+      preLoaderRoute: typeof BoardPortalClerkVotesRouteImport
+      parentRoute: typeof BoardPortalClerkRoute
+    }
+    '/board-portal/clerk/records': {
+      id: '/board-portal/clerk/records'
+      path: '/records'
+      fullPath: '/board-portal/clerk/records'
+      preLoaderRoute: typeof BoardPortalClerkRecordsRouteImport
+      parentRoute: typeof BoardPortalClerkRoute
+    }
+    '/board-portal/clerk/policies': {
+      id: '/board-portal/clerk/policies'
+      path: '/policies'
+      fullPath: '/board-portal/clerk/policies'
+      preLoaderRoute: typeof BoardPortalClerkPoliciesRouteImport
+      parentRoute: typeof BoardPortalClerkRoute
+    }
+    '/board-portal/clerk/minutes': {
+      id: '/board-portal/clerk/minutes'
+      path: '/minutes'
+      fullPath: '/board-portal/clerk/minutes'
+      preLoaderRoute: typeof BoardPortalClerkMinutesRouteImport
+      parentRoute: typeof BoardPortalClerkRoute
+    }
+    '/board-portal/clerk/filings': {
+      id: '/board-portal/clerk/filings'
+      path: '/filings'
+      fullPath: '/board-portal/clerk/filings'
+      preLoaderRoute: typeof BoardPortalClerkFilingsRouteImport
+      parentRoute: typeof BoardPortalClerkRoute
+    }
     '/board-portal/cfo/reports': {
       id: '/board-portal/cfo/reports'
       path: '/reports'
@@ -1410,6 +1772,43 @@ const BoardPortalCfoRouteWithChildren = BoardPortalCfoRoute._addFileChildren(
   BoardPortalCfoRouteChildren,
 )
 
+interface BoardPortalClerkRouteChildren {
+  BoardPortalClerkFilingsRoute: typeof BoardPortalClerkFilingsRoute
+  BoardPortalClerkMinutesRoute: typeof BoardPortalClerkMinutesRoute
+  BoardPortalClerkPoliciesRoute: typeof BoardPortalClerkPoliciesRoute
+  BoardPortalClerkRecordsRoute: typeof BoardPortalClerkRecordsRoute
+  BoardPortalClerkVotesRoute: typeof BoardPortalClerkVotesRoute
+  BoardPortalClerkIndexRoute: typeof BoardPortalClerkIndexRoute
+}
+
+const BoardPortalClerkRouteChildren: BoardPortalClerkRouteChildren = {
+  BoardPortalClerkFilingsRoute: BoardPortalClerkFilingsRoute,
+  BoardPortalClerkMinutesRoute: BoardPortalClerkMinutesRoute,
+  BoardPortalClerkPoliciesRoute: BoardPortalClerkPoliciesRoute,
+  BoardPortalClerkRecordsRoute: BoardPortalClerkRecordsRoute,
+  BoardPortalClerkVotesRoute: BoardPortalClerkVotesRoute,
+  BoardPortalClerkIndexRoute: BoardPortalClerkIndexRoute,
+}
+
+const BoardPortalClerkRouteWithChildren =
+  BoardPortalClerkRoute._addFileChildren(BoardPortalClerkRouteChildren)
+
+interface BoardPortalCooRouteChildren {
+  BoardPortalCooFeedbackRoute: typeof BoardPortalCooFeedbackRoute
+  BoardPortalCooGapsRoute: typeof BoardPortalCooGapsRoute
+  BoardPortalCooIndexRoute: typeof BoardPortalCooIndexRoute
+}
+
+const BoardPortalCooRouteChildren: BoardPortalCooRouteChildren = {
+  BoardPortalCooFeedbackRoute: BoardPortalCooFeedbackRoute,
+  BoardPortalCooGapsRoute: BoardPortalCooGapsRoute,
+  BoardPortalCooIndexRoute: BoardPortalCooIndexRoute,
+}
+
+const BoardPortalCooRouteWithChildren = BoardPortalCooRoute._addFileChildren(
+  BoardPortalCooRouteChildren,
+)
+
 interface BoardPortalEdRouteChildren {
   BoardPortalEdAuditRoute: typeof BoardPortalEdAuditRoute
   BoardPortalEdBoardRoute: typeof BoardPortalEdBoardRoute
@@ -1448,11 +1847,38 @@ const BoardPortalEdRouteWithChildren = BoardPortalEdRoute._addFileChildren(
   BoardPortalEdRouteChildren,
 )
 
+interface BoardPortalEventsRouteChildren {
+  BoardPortalEventsBudgetsRoute: typeof BoardPortalEventsBudgetsRoute
+  BoardPortalEventsInventoryRoute: typeof BoardPortalEventsInventoryRoute
+  BoardPortalEventsPurchaseRequestsRoute: typeof BoardPortalEventsPurchaseRequestsRoute
+  BoardPortalEventsReimbursementsRoute: typeof BoardPortalEventsReimbursementsRoute
+  BoardPortalEventsShoppingRoute: typeof BoardPortalEventsShoppingRoute
+  BoardPortalEventsVendorsRoute: typeof BoardPortalEventsVendorsRoute
+  BoardPortalEventsIndexRoute: typeof BoardPortalEventsIndexRoute
+}
+
+const BoardPortalEventsRouteChildren: BoardPortalEventsRouteChildren = {
+  BoardPortalEventsBudgetsRoute: BoardPortalEventsBudgetsRoute,
+  BoardPortalEventsInventoryRoute: BoardPortalEventsInventoryRoute,
+  BoardPortalEventsPurchaseRequestsRoute:
+    BoardPortalEventsPurchaseRequestsRoute,
+  BoardPortalEventsReimbursementsRoute: BoardPortalEventsReimbursementsRoute,
+  BoardPortalEventsShoppingRoute: BoardPortalEventsShoppingRoute,
+  BoardPortalEventsVendorsRoute: BoardPortalEventsVendorsRoute,
+  BoardPortalEventsIndexRoute: BoardPortalEventsIndexRoute,
+}
+
+const BoardPortalEventsRouteWithChildren =
+  BoardPortalEventsRoute._addFileChildren(BoardPortalEventsRouteChildren)
+
 interface BoardPortalRouteChildren {
   BoardPortalCalendarRoute: typeof BoardPortalCalendarRoute
   BoardPortalCfoRoute: typeof BoardPortalCfoRouteWithChildren
+  BoardPortalClerkRoute: typeof BoardPortalClerkRouteWithChildren
+  BoardPortalCooRoute: typeof BoardPortalCooRouteWithChildren
   BoardPortalDocumentsRoute: typeof BoardPortalDocumentsRoute
   BoardPortalEdRoute: typeof BoardPortalEdRouteWithChildren
+  BoardPortalEventsRoute: typeof BoardPortalEventsRouteWithChildren
   BoardPortalMessagesRoute: typeof BoardPortalMessagesRoute
   BoardPortalNotificationsRoute: typeof BoardPortalNotificationsRoute
   BoardPortalTasksRoute: typeof BoardPortalTasksRoute
@@ -1461,8 +1887,11 @@ interface BoardPortalRouteChildren {
 const BoardPortalRouteChildren: BoardPortalRouteChildren = {
   BoardPortalCalendarRoute: BoardPortalCalendarRoute,
   BoardPortalCfoRoute: BoardPortalCfoRouteWithChildren,
+  BoardPortalClerkRoute: BoardPortalClerkRouteWithChildren,
+  BoardPortalCooRoute: BoardPortalCooRouteWithChildren,
   BoardPortalDocumentsRoute: BoardPortalDocumentsRoute,
   BoardPortalEdRoute: BoardPortalEdRouteWithChildren,
+  BoardPortalEventsRoute: BoardPortalEventsRouteWithChildren,
   BoardPortalMessagesRoute: BoardPortalMessagesRoute,
   BoardPortalNotificationsRoute: BoardPortalNotificationsRoute,
   BoardPortalTasksRoute: BoardPortalTasksRoute,

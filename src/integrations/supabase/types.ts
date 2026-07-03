@@ -140,6 +140,75 @@ export type Database = {
         }
         Relationships: []
       }
+      board_minutes: {
+        Row: {
+          approved_at: string | null
+          body: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          meeting_date: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          approved_at?: string | null
+          body?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          meeting_date: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          approved_at?: string | null
+          body?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          meeting_date?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      board_votes: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          meeting_date: string | null
+          motion: string
+          outcome: string | null
+          tally: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          meeting_date?: string | null
+          motion: string
+          outcome?: string | null
+          tally?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          meeting_date?: string | null
+          motion?: string
+          outcome?: string | null
+          tally?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       budgets: {
         Row: {
           amount: number
@@ -419,6 +488,47 @@ export type Database = {
         }
         Relationships: []
       }
+      event_budgets: {
+        Row: {
+          category: string
+          created_at: string
+          created_by: string | null
+          event_id: string | null
+          id: string
+          notes: string | null
+          planned_cents: number
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          created_by?: string | null
+          event_id?: string | null
+          id?: string
+          notes?: string | null
+          planned_cents?: number
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          event_id?: string | null
+          id?: string
+          notes?: string | null
+          planned_cents?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_budgets_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "calendar_events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       expenses: {
         Row: {
           amount: number
@@ -426,6 +536,7 @@ export type Database = {
           category: string
           created_at: string
           created_by: string | null
+          event_id: string | null
           id: string
           method: string | null
           notes: string | null
@@ -441,6 +552,7 @@ export type Database = {
           category: string
           created_at?: string
           created_by?: string | null
+          event_id?: string | null
           id?: string
           method?: string | null
           notes?: string | null
@@ -456,6 +568,7 @@ export type Database = {
           category?: string
           created_at?: string
           created_by?: string | null
+          event_id?: string | null
           id?: string
           method?: string | null
           notes?: string | null
@@ -464,6 +577,53 @@ export type Database = {
           receipt_path?: string | null
           updated_at?: string
           vendor?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expenses_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "calendar_events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      filings: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          due_at: string | null
+          filed_at: string | null
+          id: string
+          jurisdiction: string | null
+          name: string
+          notes: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          due_at?: string | null
+          filed_at?: string | null
+          id?: string
+          jurisdiction?: string | null
+          name: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          due_at?: string | null
+          filed_at?: string | null
+          id?: string
+          jurisdiction?: string | null
+          name?: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -508,6 +668,78 @@ export type Database = {
           program?: string | null
           report_due_at?: string | null
           status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      inventory_items: {
+        Row: {
+          category: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          location: string | null
+          name: string
+          notes: string | null
+          quantity: number
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          location?: string | null
+          name: string
+          notes?: string | null
+          quantity?: number
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          location?: string | null
+          name?: string
+          notes?: string | null
+          quantity?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      meeting_records: {
+        Row: {
+          attendees: Json
+          created_at: string
+          created_by: string | null
+          id: string
+          kind: string
+          meeting_date: string
+          notes: string | null
+          quorum: boolean
+          updated_at: string
+        }
+        Insert: {
+          attendees?: Json
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          kind?: string
+          meeting_date: string
+          notes?: string | null
+          quorum?: boolean
+          updated_at?: string
+        }
+        Update: {
+          attendees?: Json
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          kind?: string
+          meeting_date?: string
+          notes?: string | null
+          quorum?: boolean
           updated_at?: string
         }
         Relationships: []
@@ -599,6 +831,42 @@ export type Database = {
         }
         Relationships: []
       }
+      org_policies: {
+        Row: {
+          body: string | null
+          category: string | null
+          created_at: string
+          created_by: string | null
+          effective_at: string | null
+          id: string
+          title: string
+          updated_at: string
+          version: string | null
+        }
+        Insert: {
+          body?: string | null
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          effective_at?: string | null
+          id?: string
+          title: string
+          updated_at?: string
+          version?: string | null
+        }
+        Update: {
+          body?: string | null
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          effective_at?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+          version?: string | null
+        }
+        Relationships: []
+      }
       org_settings: {
         Row: {
           address: string | null
@@ -631,6 +899,39 @@ export type Database = {
           logo_path?: string | null
           org_name?: string
           phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      partner_feedback: {
+        Row: {
+          body: string
+          created_at: string
+          created_by: string | null
+          id: string
+          kind: string | null
+          partner_name: string
+          submitted_at: string
+          updated_at: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          kind?: string | null
+          partner_name: string
+          submitted_at?: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          kind?: string | null
+          partner_name?: string
+          submitted_at?: string
           updated_at?: string
         }
         Relationships: []
@@ -754,6 +1055,62 @@ export type Database = {
         }
         Relationships: []
       }
+      purchase_requests: {
+        Row: {
+          amount_cents: number
+          created_at: string
+          created_by: string | null
+          decided_at: string | null
+          decided_by: string | null
+          event_id: string | null
+          id: string
+          item: string
+          notes: string | null
+          requested_by: string | null
+          status: string
+          updated_at: string
+          vendor: string | null
+        }
+        Insert: {
+          amount_cents?: number
+          created_at?: string
+          created_by?: string | null
+          decided_at?: string | null
+          decided_by?: string | null
+          event_id?: string | null
+          id?: string
+          item: string
+          notes?: string | null
+          requested_by?: string | null
+          status?: string
+          updated_at?: string
+          vendor?: string | null
+        }
+        Update: {
+          amount_cents?: number
+          created_at?: string
+          created_by?: string | null
+          decided_at?: string | null
+          decided_by?: string | null
+          event_id?: string | null
+          id?: string
+          item?: string
+          notes?: string | null
+          requested_by?: string | null
+          status?: string
+          updated_at?: string
+          vendor?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchase_requests_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "calendar_events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       referral_notes: {
         Row: {
           author_id: string
@@ -837,6 +1194,81 @@ export type Database = {
         }
         Relationships: []
       }
+      reimbursements: {
+        Row: {
+          amount_cents: number
+          created_at: string
+          decided_at: string | null
+          decided_by: string | null
+          description: string | null
+          id: string
+          receipt_path: string | null
+          status: string
+          submitted_by: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          amount_cents?: number
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          description?: string | null
+          id?: string
+          receipt_path?: string | null
+          status?: string
+          submitted_by?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          amount_cents?: number
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          description?: string | null
+          id?: string
+          receipt_path?: string | null
+          status?: string
+          submitted_by?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      resource_gaps: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          priority: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          priority?: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          priority?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       role_requests: {
         Row: {
           created_at: string
@@ -872,6 +1304,82 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      shopping_list_items: {
+        Row: {
+          created_at: string
+          id: string
+          item: string
+          list_id: string
+          notes: string | null
+          purchased: boolean
+          qty: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          item: string
+          list_id: string
+          notes?: string | null
+          purchased?: boolean
+          qty?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          item?: string
+          list_id?: string
+          notes?: string | null
+          purchased?: boolean
+          qty?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shopping_list_items_list_id_fkey"
+            columns: ["list_id"]
+            isOneToOne: false
+            referencedRelation: "shopping_lists"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shopping_lists: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          event_id: string | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          event_id?: string | null
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          event_id?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shopping_lists_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "calendar_events"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       staff: {
         Row: {
@@ -1040,6 +1548,45 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      vendors: {
+        Row: {
+          category: string | null
+          contact: string | null
+          created_at: string
+          created_by: string | null
+          email: string | null
+          id: string
+          name: string
+          notes: string | null
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          contact?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          contact?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          updated_at?: string
         }
         Relationships: []
       }

@@ -30,12 +30,12 @@ function UsersPage() {
   useEffect(() => { load(); }, []);
 
   async function addRole(user_id: string, role: string) {
-    await supabase.from("user_roles").insert({ user_id, role });
+    await supabase.from("user_roles").insert({ user_id, role: role as any });
     load();
   }
   async function removeRole(user_id: string, role: string) {
     if (!confirm(`Remove role "${role}"?`)) return;
-    await supabase.from("user_roles").delete().eq("user_id", user_id).eq("role", role);
+    await supabase.from("user_roles").delete().eq("user_id", user_id).eq("role", role as any);
     load();
   }
 

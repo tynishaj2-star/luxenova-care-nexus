@@ -273,6 +273,36 @@ function Gate({
 }
 
 function Dashboard({ member }: { member: BoardMember }) {
+  const firstName = member.name.split(" ")[0];
+  const today = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const [announcements, setAnnouncements] = useState<
+    Array<{ id: string; title: string; body: string | null; created_at: string }>
+  >([]);
+  const [loadingAnn, setLoadingAnn] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    supabase
+      .from("announcements")
+      .select("id,title,body,created_at")
+      .order("created_at", { ascending: false })
+      .limit(3)
+      .then(({ data }) => {
+        if (cancelled) return;
+        setAnnouncements(data ?? []);
+        setLoadingAnn(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <section>
       <div className="flex flex-col gap-4 rounded-3xl border border-border/70 bg-card p-6 shadow-soft md:flex-row md:items-center md:justify-between md:p-8">
@@ -282,8 +312,11 @@ function Dashboard({ member }: { member: BoardMember }) {
           </span>
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-rosewood">Board Portal</p>
-            <h1 className="font-display text-2xl md:text-3xl">{member.name}</h1>
+            <h1 className="font-display text-2xl md:text-3xl">
+              Welcome back, {firstName}! <span aria-hidden>👋</span>
+            </h1>
             <p className="mt-1 text-sm text-muted-foreground">{member.role}</p>
+            <p className="mt-0.5 text-xs text-muted-foreground">{today}</p>
           </div>
         </div>
         <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
@@ -292,7 +325,34 @@ function Dashboard({ member }: { member: BoardMember }) {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-5 md:grid-cols-3">
+        <SnapshotCard
+          title="Upcoming Tasks"
+          icon={CheckSquare}
+          empty="No tasks assigned yet. Task management goes live in the next update."
+          items={[]}
+        />
+        <SnapshotCard
+          title="Recent Notifications"
+          icon={ScrollText}
+          empty="You're all caught up. Notifications will appear here."
+          items={[]}
+        />
+        <SnapshotCard
+          title="Board Announcements"
+          icon={BookOpenCheck}
+          empty={loadingAnn ? "Loading…" : "No announcements posted yet."}
+          items={announcements.map((a) => ({
+            id: a.id,
+            title: a.title,
+            meta: new Date(a.created_at).toLocaleDateString(),
+            body: a.body ?? undefined,
+          }))}
+        />
+      </div>
+
+      <h2 className="mt-10 font-display text-xl">Your workspace</h2>
+      <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {member.sections.map((s) => (
           <article
             key={s.title}
@@ -312,5 +372,47 @@ function Dashboard({ member }: { member: BoardMember }) {
         ))}
       </div>
     </section>
+  );
+}
+
+function SnapshotCard({
+  title,
+  icon: Icon,
+  items,
+  empty,
+}: {
+  title: string;
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  items: Array<{ id: string; title: string; meta?: string; body?: string }>;
+  empty: string;
+}) {
+  return (
+    <article className="rounded-3xl border border-border/70 bg-card p-6 shadow-soft">
+      <div className="flex items-center gap-2.5">
+        <span className="grid h-9 w-9 place-items-center rounded-2xl bg-accent/50 text-rosewood">
+          <Icon className="h-4 w-4" strokeWidth={1.5} />
+        </span>
+        <h3 className="font-display text-base">{title}</h3>
+      </div>
+      {items.length === 0 ? (
+        <p className="mt-4 text-sm text-muted-foreground">{empty}</p>
+      ) : (
+        <ul className="mt-4 space-y-3">
+          {items.map((it) => (
+            <li key={it.id} className="border-b border-border/60 pb-3 last:border-0 last:pb-0">
+              <p className="text-sm font-medium">{it.title}</p>
+              {it.body && (
+                <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{it.body}</p>
+              )}
+              {it.meta && (
+                <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                  {it.meta}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </article>
   );
 }

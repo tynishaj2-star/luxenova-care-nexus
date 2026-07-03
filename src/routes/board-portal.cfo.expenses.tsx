@@ -144,7 +144,7 @@ function ExpensesPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="text-left text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                <tr><th className="py-2">Date</th><th>Category</th><th>Vendor</th><th>Method</th><th>Amount</th><th></th></tr>
+                <tr><th className="py-2">Date</th><th>Category</th><th>Vendor</th><th>Method</th><th>Amount</th><th>Receipt</th><th></th></tr>
               </thead>
               <tbody>
                 {filtered.map((r) => (
@@ -154,9 +154,18 @@ function ExpensesPage() {
                     <td className="pr-3">{r.vendor ?? "—"}</td>
                     <td className="pr-3">{r.method ?? "—"}</td>
                     <td className="pr-3">${Number(r.amount).toFixed(2)}</td>
+                    <td className="pr-3">
+                      {r.receipt_path ? (
+                        <button onClick={() => viewReceipt(r.receipt_path!)} className="inline-flex items-center gap-1 text-xs text-rosewood hover:underline">
+                          <FileText className="h-3.5 w-3.5" strokeWidth={1.5} /> View
+                        </button>
+                      ) : (
+                        <span className="text-xs text-muted-foreground">—</span>
+                      )}
+                    </td>
                     <td>
                       <div className="flex gap-1">
-                        <button onClick={() => setForm(r)} className="text-xs text-rosewood hover:underline">Edit</button>
+                        <button onClick={() => openForm(r)} className="text-xs text-rosewood hover:underline">Edit</button>
                         <button onClick={() => remove(r.id)} className="text-muted-foreground hover:text-destructive"><Trash2 className="h-3.5 w-3.5" strokeWidth={1.5} /></button>
                       </div>
                     </td>

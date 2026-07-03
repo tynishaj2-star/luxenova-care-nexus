@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
+import { WelcomeBanner } from "@/components/site/WelcomeBanner";
 import { Hero } from "@/components/site/Hero";
 import { GivebutterEmbed } from "@/components/site/GivebutterEmbed";
 import { Services } from "@/components/site/Services";

@@ -243,6 +243,7 @@ function BoardPortalPage() {
           <span className="font-display text-lg">LuxeNova Community Wellness, Inc.</span>
         </Link>
         <div className="flex items-center gap-3">
+          <NotificationsBell />
           <button
             onClick={async () => { await supabase.auth.signOut(); }}
             className="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-soft transition hover:border-foreground/30"

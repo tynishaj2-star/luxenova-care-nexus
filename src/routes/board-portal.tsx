@@ -18,6 +18,13 @@ import {
   Briefcase,
   Lock,
   Wallet,
+  Palette,
+  Package,
+  Sparkles,
+  Truck,
+  Camera,
+  ShoppingBag,
+  Receipt,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 

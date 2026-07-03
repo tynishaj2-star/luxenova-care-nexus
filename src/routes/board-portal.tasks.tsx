@@ -42,6 +42,14 @@ function TasksPage() {
     load();
   }, []);
 
+  useEffect(() => {
+    const channel = supabase
+      .channel("tasks-live")
+      .on("postgres_changes", { event: "*", schema: "public", table: "tasks" }, () => load())
+      .subscribe();
+    return () => { supabase.removeChannel(channel); };
+  }, []);
+
   async function addTask(e: React.FormEvent) {
     e.preventDefault();
     if (!title.trim() || !uid) return;

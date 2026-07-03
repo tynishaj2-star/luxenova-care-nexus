@@ -10,7 +10,8 @@ export type FieldDef<T> = {
   label: string;
   type?: FieldType;
   required?: boolean;
-  options?: string[]; // for select
+  options?: string[]; // for select values
+  optionLabels?: Record<string, string>; // for select display labels
   placeholder?: string;
   hideInTable?: boolean;
   formatCell?: (v: unknown, row: T) => React.ReactNode;

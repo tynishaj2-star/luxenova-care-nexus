@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { NotificationsBell } from "@/components/portal/NotificationsBell";
+import { getStaffByEmail } from "@/lib/staff-roles";
 
 export const Route = createFileRoute("/board-portal")({
   head: () => ({
@@ -162,6 +163,15 @@ type AuthStatus =
   | { state: "unauthorized"; email: string | null }
   | { state: "authorized"; memberKey: string };
 
+const memberKeyByStaffEmail: Record<string, string> = {
+  "tjohnson@luxenovacommunitywellness.com": "tynisha",
+  "teverett@luxenovacommunitywellness.com": "trina",
+  "deverett@luxenovacommunitywellness.com": "darien",
+  "jdyer@luxenovacommunitywellness.com": "jerez",
+  "mpowell@luxenovacommunitywellness.com": "mary",
+  "jyounge@luxenovacommunitywellness.com": "joe",
+};
+
 function BoardPortalPage() {
   const navigate = useNavigate();
   const [status, setStatus] = useState<AuthStatus>({ state: "loading" });
@@ -179,11 +189,23 @@ function BoardPortalPage() {
         .select("member_key")
         .eq("user_id", session.user.id)
         .maybeSingle();
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id);
       if (cancelled) return;
-      if (error || !data) {
-        setStatus({ state: "unauthorized", email: session.user.email ?? null });
-      } else {
+      const roleList = roles?.map((r) => r.role) ?? [];
+      const email = session.user.email?.trim().toLowerCase() ?? null;
+      const staffMember = getStaffByEmail(email);
+      const fallbackMemberKey = email ? memberKeyByStaffEmail[email] : null;
+      const isRecognizedInternalUser = roleList.includes("admin") || roleList.includes("board") || roleList.includes("staff") || !!staffMember;
+
+      if (data?.member_key) {
         setStatus({ state: "authorized", memberKey: data.member_key });
+      } else if (isRecognizedInternalUser && fallbackMemberKey) {
+        setStatus({ state: "authorized", memberKey: fallbackMemberKey });
+      } else if (error || !data) {
+        setStatus({ state: "unauthorized", email: session.user.email ?? null });
       }
     }
     check();
@@ -194,7 +216,7 @@ function BoardPortalPage() {
   if (status.state === "loading") {
     return (
       <div className="min-h-screen grid place-items-center bg-gradient-warm">
-        <p className="text-sm text-muted-foreground">Verifying board access…</p>
+        <p className="text-sm text-muted-foreground">Opening your board portal…</p>
       </div>
     );
   }
@@ -213,7 +235,7 @@ function BoardPortalPage() {
     return (
       <Gate
         title="Access not authorized"
-        body={`The account ${status.email ?? ""} is signed in but is not provisioned as a board member. Contact the LuxeNova administrator to request board portal access.`}
+        body={`The account ${status.email ?? ""} is signed in, but its internal access record is not active yet. Please sign out and sign back in, then try again.`}
         primary={{
           label: "Sign out",
           onClick: async () => {

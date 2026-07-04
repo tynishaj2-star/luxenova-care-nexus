@@ -23,10 +23,13 @@ function CfoLayout() {
       if (!session) { navigate({ to: "/login" }); return; }
       const email = session.user.email ?? null;
       const job = getJobRole(email);
-      const [{ data: isAdmin }, { data: isStaff }] = await Promise.all([
-        supabase.rpc("has_role", { _user_id: session.user.id, _role: "admin" }),
-        supabase.rpc("has_role", { _user_id: session.user.id, _role: "staff" }),
-      ]);
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id);
+      const roleList = roles?.map((r) => r.role) ?? [];
+      const isAdmin = roleList.includes("admin");
+      const isStaff = roleList.includes("staff") || roleList.includes("board");
       // Admin (ED) can also enter; CFO staff can enter.
       if (isAdmin || (isStaff && (job === "cfo" || job === "admin"))) {
         setState("ok");

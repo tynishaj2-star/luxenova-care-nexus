@@ -71,7 +71,9 @@ const STRATEGIC_PILLARS = [
   { icon: Megaphone, label: "Community Voice", body: "Awareness campaigns, listening sessions, partner convenings." },
 ];
 
-export function ExecutiveDirectorSection() {
+export function ExecutiveDirectorSection({ firstName }: { firstName?: string | null }) {
+  const displayName = firstName?.trim() || "there";
+
   return (
     <div className="space-y-10">
       {/* Header */}
@@ -80,7 +82,7 @@ export function ExecutiveDirectorSection() {
           <Crown className="h-4 w-4" strokeWidth={1.5} />
           <p className="text-xs uppercase tracking-[0.22em]">Executive Director Back Office</p>
         </div>
-        <h1 className="mt-3 font-display text-3xl md:text-4xl">Welcome back, Director.</h1>
+        <h1 className="mt-3 font-display text-3xl md:text-4xl">Welcome back, {displayName}.</h1>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
           Your private command center for LuxeNova Community Wellness, Inc. — organizational health,
           board oversight, compliance, programs, and the strategic priorities you're driving this quarter.

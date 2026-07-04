@@ -148,8 +148,10 @@ function formatDate(iso: string) {
 
 export function AdminDashboard({
   profile,
+  accountEmail,
 }: {
   profile: { full_name?: string | null; organization?: string | null } | null;
+  accountEmail?: string | null;
 }) {
   const qc = useQueryClient();
   const fetchList = useServerFn(listReferrals);
@@ -164,6 +166,12 @@ export function AdminDashboard({
   const [statusFilter, setStatusFilter] = useState<Status | "All">("All");
   const [urgencyFilter, setUrgencyFilter] = useState<"All" | "Routine" | "Priority" | "Urgent">("All");
   const [draftNote, setDraftNote] = useState("");
+
+  const firstName = useMemo(() => {
+    const raw = (profile?.full_name || accountEmail || "").trim();
+    const first = raw.includes(" ") ? raw.split(/\s+/)[0] : raw.split("@")[0];
+    return first ? first.charAt(0).toUpperCase() + first.slice(1) : "there";
+  }, [profile?.full_name, accountEmail]);
 
   const listQ = useQuery({
     queryKey: ["referrals"],
@@ -351,7 +359,7 @@ export function AdminDashboard({
         </aside>
 
         <main className="min-w-0">
-          {section === "executive" && <ExecutiveDirectorSection />}
+          {section === "executive" && <ExecutiveDirectorSection firstName={firstName} />}
           {section === "overview" && <OverviewSection counts={counts} referrals={referrals} onJump={(s) => { setSection("requests"); setStatusFilter(s); }} />}
           {section === "operations" && <OperationsSection />}
           {section === "permissions" && <PermissionsSection />}

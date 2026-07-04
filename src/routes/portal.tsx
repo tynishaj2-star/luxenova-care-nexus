@@ -223,14 +223,14 @@ function PortalAuthed() {
   }
 
   if (profileQ.data?.isAdmin) {
-    return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
+    return <AdminDashboard profile={profileQ.data?.profile ?? null} accountEmail={profileQ.data?.email ?? null} />;
   }
 
   if (profileQ.data?.isStaff) {
     const staff = getStaffByEmail(profileQ.data?.email);
     const role = staff?.jobRole ?? "coo";
     if (role === "admin") {
-      return <AdminDashboard profile={profileQ.data?.profile ?? null} />;
+      return <AdminDashboard profile={profileQ.data?.profile ?? null} accountEmail={profileQ.data?.email ?? null} />;
     }
     return (
       <StaffWorkspaceShell

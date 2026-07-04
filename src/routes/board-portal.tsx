@@ -216,7 +216,7 @@ function BoardPortalPage() {
   if (status.state === "loading") {
     return (
       <div className="min-h-screen grid place-items-center bg-gradient-warm">
-        <p className="text-sm text-muted-foreground">Verifying board access…</p>
+        <p className="text-sm text-muted-foreground">Opening your board portal…</p>
       </div>
     );
   }
@@ -235,7 +235,7 @@ function BoardPortalPage() {
     return (
       <Gate
         title="Access not authorized"
-        body={`The account ${status.email ?? ""} is signed in but is not provisioned as a board member. Contact the LuxeNova administrator to request board portal access.`}
+        body={`The account ${status.email ?? ""} is signed in, but its internal access record is not active yet. Please sign out and sign back in, then try again.`}
         primary={{
           label: "Sign out",
           onClick: async () => {

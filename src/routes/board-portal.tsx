@@ -92,20 +92,6 @@ const members: BoardMember[] = [
     sections: treasurySections,
   },
   {
-    id: "trina",
-    name: "Trina Everett",
-    role: "Director",
-    initials: "TE",
-    sections: [
-      { title: "Family Stabilization Summary", icon: HeartHandshake, description: "Aggregate view of families currently in stabilization." },
-      { title: "Program Outcomes", icon: PieChart, description: "Program-level KPIs and trend lines." },
-      { title: "Community Impact Reports", icon: BookOpenCheck, description: "Narrative + data reports for community sharing." },
-      { title: "Partner Feedback", icon: Users, description: "Notes from churches, schools, and agencies." },
-      { title: "Program Review Tasks", icon: CheckSquare, description: "Open program review and QA assignments." },
-      { title: "Resource Gaps", icon: TrendingUp, description: "Identified service gaps awaiting partner match." },
-    ],
-  },
-  {
     id: "darien",
     name: "Darien Everett",
     role: "Treasurer / Officer / Director",
@@ -165,7 +151,6 @@ type AuthStatus =
 
 const memberKeyByStaffEmail: Record<string, string> = {
   "tjohnson@luxenovacommunitywellness.com": "tynisha",
-  "teverett@luxenovacommunitywellness.com": "trina",
   "deverett@luxenovacommunitywellness.com": "darien",
   "jdyer@luxenovacommunitywellness.com": "jerez",
   "mpowell@luxenovacommunitywellness.com": "mary",

@@ -19,12 +19,6 @@ export const STAFF_DIRECTORY: StaffMember[] = [
     jobRole: "admin",
   },
   {
-    email: "teverett@luxenovacommunitywellness.com",
-    name: "Trina Everett",
-    title: "Co-Founder · Director / COO · Community Impact & Program Oversight",
-    jobRole: "coo",
-  },
-  {
     email: "deverett@luxenovacommunitywellness.com",
     name: "Darien Everett",
     title: "Treasurer / CFO",

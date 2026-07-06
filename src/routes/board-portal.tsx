@@ -165,7 +165,6 @@ type AuthStatus =
 
 const memberKeyByStaffEmail: Record<string, string> = {
   "tjohnson@luxenovacommunitywellness.com": "tynisha",
-  "teverett@luxenovacommunitywellness.com": "trina",
   "deverett@luxenovacommunitywellness.com": "darien",
   "jdyer@luxenovacommunitywellness.com": "jerez",
   "mpowell@luxenovacommunitywellness.com": "mary",

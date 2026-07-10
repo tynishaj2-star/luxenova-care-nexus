@@ -14,13 +14,13 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact LuxeNova Community Wellness, Inc. for general inquiries, referrals, partnerships, or career questions.",
+          "Contact LuxeNova Community Wellness, Inc. for general inquiries, referrals, sponsors, or career questions.",
       },
       { property: "og:title", content: "Contact LuxeNova" },
       {
         property: "og:description",
         content:
-          "Reach our team for inquiries, referrals, partnerships, or careers.",
+          "Reach our team for inquiries, referrals, sponsors, or careers.",
       },
     ],
   }),
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/contact")({
 const inquiryTypes = [
   "General Inquiry",
   "Referral Assistance",
-  "Partnership Inquiry",
+  "Sponsor Inquiry",
   "Career Inquiry",
 ];
 
@@ -45,7 +45,7 @@ function ContactPage() {
         <PageHeader
           eyebrow="Contact"
           title="We're here to help."
-          description="Reach out for general questions, referrals, partnerships, or career opportunities. We respond within one business day."
+          description="Reach out for general questions, referrals, sponsors, or career opportunities. We respond within one business day."
         />
 
         <section className="pb-24">

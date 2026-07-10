@@ -14,7 +14,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact LuxeNova Community Wellness, Inc. for general inquiries, referrals, partnerships, or career questions.",
+          "Contact LuxeNova Community Wellness, Inc. for general inquiries, referrals, sponsors, or career questions.",
       },
       { property: "og:title", content: "Contact LuxeNova" },
       {

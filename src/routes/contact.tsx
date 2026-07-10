@@ -45,7 +45,7 @@ function ContactPage() {
         <PageHeader
           eyebrow="Contact"
           title="We're here to help."
-          description="Reach out for general questions, referrals, partnerships, or career opportunities. We respond within one business day."
+          description="Reach out for general questions, referrals, sponsors, or career opportunities. We respond within one business day."
         />
 
         <section className="pb-24">

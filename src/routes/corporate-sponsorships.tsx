@@ -110,14 +110,19 @@ const whySponsor = [
   { icon: HeartHandshake, title: "Meaningful Community Engagement", body: "Authentic partnership with the families, leaders, and organizations we serve." },
 ];
 
-const tiers = [
+const tiers: {
+  name: string;
+  amount: string;
+  accent: string;
+  featured?: boolean;
+}[] = [
   { name: "Community Supporter", amount: "$250 – $499", accent: "text-foreground/70" },
   { name: "Bronze Sponsor", amount: "$500 – $999", accent: "text-[#a97142]" },
   { name: "Silver Sponsor", amount: "$1,000 – $2,499", accent: "text-[#8a8f98]" },
   { name: "Gold Sponsor", amount: "$2,500 – $4,999", accent: "text-[#b8892b]" },
   { name: "Platinum Sponsor", amount: "$5,000 – $9,999", accent: "text-[#4a5568]" },
   { name: "Presenting Sponsor", amount: "$10,000+", accent: "text-rosewood", featured: true },
-] as const;
+];
 
 // Each level inherits prior benefits (indices 0..n).
 const benefits = [

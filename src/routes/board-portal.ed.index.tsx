@@ -19,6 +19,7 @@ const tiles = [
   { to: "/board-portal/ed/donations", label: "Donations", desc: "Record, acknowledge, export.", icon: HeartHandshake },
   { to: "/board-portal/ed/financial-reports", label: "Financial Reports", desc: "Period reports & exports.", icon: DollarSign },
   { to: "/board-portal/ed/volunteers", label: "Volunteer Management", desc: "Records, hours, checks.", icon: HandHeart },
+  { to: "/board-portal/ed/back-to-school", label: "Back-to-School Registrations", desc: "Families, students, supply needs.", icon: Backpack },
   { to: "/board-portal/ed/staff", label: "Staff Management", desc: "Team roster and status.", icon: Users },
   { to: "/board-portal/ed/website", label: "Website Management", desc: "Announcements & site updates.", icon: Megaphone },
   { to: "/board-portal/ed/programs", label: "Program Management", desc: "Programs & outcomes.", icon: Layers },

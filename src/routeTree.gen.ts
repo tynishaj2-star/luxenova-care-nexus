@@ -36,6 +36,7 @@ import { Route as EligibilityRouteImport } from './routes/eligibility'
 import { Route as DonationPolicyRouteImport } from './routes/donation-policy'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as DocumentsRouteImport } from './routes/documents'
+import { Route as CorporateSponsorshipsRouteImport } from './routes/corporate-sponsorships'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConflictOfInterestRouteImport } from './routes/conflict-of-interest'
 import { Route as CommunityPartnersRouteImport } from './routes/community-partners'
@@ -231,6 +232,11 @@ const DonateRoute = DonateRouteImport.update({
 const DocumentsRoute = DocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorporateSponsorshipsRoute = CorporateSponsorshipsRouteImport.update({
+  id: '/corporate-sponsorships',
+  path: '/corporate-sponsorships',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -562,6 +568,7 @@ export interface FileRoutesByFullPath {
   '/community-partners': typeof CommunityPartnersRoute
   '/conflict-of-interest': typeof ConflictOfInterestRoute
   '/contact': typeof ContactRoute
+  '/corporate-sponsorships': typeof CorporateSponsorshipsRoute
   '/documents': typeof DocumentsRoute
   '/donate': typeof DonateRoute
   '/donation-policy': typeof DonationPolicyRoute
@@ -652,6 +659,7 @@ export interface FileRoutesByTo {
   '/community-partners': typeof CommunityPartnersRoute
   '/conflict-of-interest': typeof ConflictOfInterestRoute
   '/contact': typeof ContactRoute
+  '/corporate-sponsorships': typeof CorporateSponsorshipsRoute
   '/documents': typeof DocumentsRoute
   '/donate': typeof DonateRoute
   '/donation-policy': typeof DonationPolicyRoute
@@ -738,6 +746,7 @@ export interface FileRoutesById {
   '/community-partners': typeof CommunityPartnersRoute
   '/conflict-of-interest': typeof ConflictOfInterestRoute
   '/contact': typeof ContactRoute
+  '/corporate-sponsorships': typeof CorporateSponsorshipsRoute
   '/documents': typeof DocumentsRoute
   '/donate': typeof DonateRoute
   '/donation-policy': typeof DonationPolicyRoute
@@ -830,6 +839,7 @@ export interface FileRouteTypes {
     | '/community-partners'
     | '/conflict-of-interest'
     | '/contact'
+    | '/corporate-sponsorships'
     | '/documents'
     | '/donate'
     | '/donation-policy'
@@ -920,6 +930,7 @@ export interface FileRouteTypes {
     | '/community-partners'
     | '/conflict-of-interest'
     | '/contact'
+    | '/corporate-sponsorships'
     | '/documents'
     | '/donate'
     | '/donation-policy'
@@ -1005,6 +1016,7 @@ export interface FileRouteTypes {
     | '/community-partners'
     | '/conflict-of-interest'
     | '/contact'
+    | '/corporate-sponsorships'
     | '/documents'
     | '/donate'
     | '/donation-policy'
@@ -1096,6 +1108,7 @@ export interface RootRouteChildren {
   CommunityPartnersRoute: typeof CommunityPartnersRoute
   ConflictOfInterestRoute: typeof ConflictOfInterestRoute
   ContactRoute: typeof ContactRoute
+  CorporateSponsorshipsRoute: typeof CorporateSponsorshipsRoute
   DocumentsRoute: typeof DocumentsRoute
   DonateRoute: typeof DonateRoute
   DonationPolicyRoute: typeof DonationPolicyRoute
@@ -1320,6 +1333,13 @@ declare module '@tanstack/react-router' {
       path: '/documents'
       fullPath: '/documents'
       preLoaderRoute: typeof DocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corporate-sponsorships': {
+      id: '/corporate-sponsorships'
+      path: '/corporate-sponsorships'
+      fullPath: '/corporate-sponsorships'
+      preLoaderRoute: typeof CorporateSponsorshipsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -1912,6 +1932,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityPartnersRoute: CommunityPartnersRoute,
   ConflictOfInterestRoute: ConflictOfInterestRoute,
   ContactRoute: ContactRoute,
+  CorporateSponsorshipsRoute: CorporateSponsorshipsRoute,
   DocumentsRoute: DocumentsRoute,
   DonateRoute: DonateRoute,
   DonationPolicyRoute: DonationPolicyRoute,
@@ -1949,13 +1970,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -116,11 +116,11 @@ const tiers: {
   accent: string;
   featured?: boolean;
 }[] = [
-  { name: "Community Supporter", amount: "$250 – $499", accent: "text-foreground/70" },
-  { name: "Bronze Sponsor", amount: "$500 – $999", accent: "text-[#a97142]" },
-  { name: "Silver Sponsor", amount: "$1,000 – $2,499", accent: "text-[#8a8f98]" },
-  { name: "Gold Sponsor", amount: "$2,500 – $4,999", accent: "text-[#b8892b]" },
-  { name: "Platinum Sponsor", amount: "$5,000 – $9,999", accent: "text-[#4a5568]" },
+  { name: "Community Supporter", amount: "$250 to $499", accent: "text-foreground/70" },
+  { name: "Bronze Sponsor", amount: "$500 to $999", accent: "text-[#a97142]" },
+  { name: "Silver Sponsor", amount: "$1,000 to $2,499", accent: "text-[#8a8f98]" },
+  { name: "Gold Sponsor", amount: "$2,500 to $4,999", accent: "text-[#b8892b]" },
+  { name: "Platinum Sponsor", amount: "$5,000 to $9,999", accent: "text-[#4a5568]" },
   { name: "Presenting Sponsor", amount: "$10,000+", accent: "text-rosewood", featured: true },
 ];
 

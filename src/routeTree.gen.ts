@@ -45,6 +45,7 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BylawsRouteImport } from './routes/bylaws'
 import { Route as BoardPortalRouteImport } from './routes/board-portal'
 import { Route as BoardRouteImport } from './routes/board'
+import { Route as BackToSchoolRouteImport } from './routes/back-to-school'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
@@ -277,6 +278,11 @@ const BoardPortalRoute = BoardPortalRouteImport.update({
 const BoardRoute = BoardRouteImport.update({
   id: '/board',
   path: '/board',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BackToSchoolRoute = BackToSchoolRouteImport.update({
+  id: '/back-to-school',
+  path: '/back-to-school',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -560,6 +566,7 @@ const LovableEmailQueueProcessRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/back-to-school': typeof BackToSchoolRoute
   '/board': typeof BoardRoute
   '/board-portal': typeof BoardPortalRouteWithChildren
   '/bylaws': typeof BylawsRoute
@@ -651,6 +658,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/back-to-school': typeof BackToSchoolRoute
   '/board': typeof BoardRoute
   '/board-portal': typeof BoardPortalRouteWithChildren
   '/bylaws': typeof BylawsRoute
@@ -738,6 +746,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/back-to-school': typeof BackToSchoolRoute
   '/board': typeof BoardRoute
   '/board-portal': typeof BoardPortalRouteWithChildren
   '/bylaws': typeof BylawsRoute
@@ -831,6 +840,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/back-to-school'
     | '/board'
     | '/board-portal'
     | '/bylaws'
@@ -922,6 +932,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/back-to-school'
     | '/board'
     | '/board-portal'
     | '/bylaws'
@@ -1008,6 +1019,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/back-to-school'
     | '/board'
     | '/board-portal'
     | '/bylaws'
@@ -1100,6 +1112,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BackToSchoolRoute: typeof BackToSchoolRoute
   BoardRoute: typeof BoardRoute
   BoardPortalRoute: typeof BoardPortalRouteWithChildren
   BylawsRoute: typeof BylawsRoute
@@ -1396,6 +1409,13 @@ declare module '@tanstack/react-router' {
       path: '/board'
       fullPath: '/board'
       preLoaderRoute: typeof BoardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/back-to-school': {
+      id: '/back-to-school'
+      path: '/back-to-school'
+      fullPath: '/back-to-school'
+      preLoaderRoute: typeof BackToSchoolRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -1924,6 +1944,7 @@ const BoardPortalRouteWithChildren = BoardPortalRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BackToSchoolRoute: BackToSchoolRoute,
   BoardRoute: BoardRoute,
   BoardPortalRoute: BoardPortalRouteWithChildren,
   BylawsRoute: BylawsRoute,

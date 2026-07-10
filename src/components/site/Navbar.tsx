@@ -9,6 +9,7 @@ const mainLinks = [
   { label: "Mission", to: "/about" as const },
   { label: "Programs", to: "/services" as const },
   { label: "Request Help", to: "/referrals" as const },
+  { label: "Back-to-School", to: "/back-to-school" as const },
   { label: "Donate", to: "/donate" as const },
   { label: "Contact", to: "/contact" as const },
 ];

@@ -45,6 +45,7 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BylawsRouteImport } from './routes/bylaws'
 import { Route as BoardPortalRouteImport } from './routes/board-portal'
 import { Route as BoardRouteImport } from './routes/board'
+import { Route as BackToSchoolRouteImport } from './routes/back-to-school'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
@@ -82,6 +83,7 @@ import { Route as BoardPortalEdFinancialReportsRouteImport } from './routes/boar
 import { Route as BoardPortalEdDonationsRouteImport } from './routes/board-portal.ed.donations'
 import { Route as BoardPortalEdDocumentsRouteImport } from './routes/board-portal.ed.documents'
 import { Route as BoardPortalEdBoardRouteImport } from './routes/board-portal.ed.board'
+import { Route as BoardPortalEdBackToSchoolRouteImport } from './routes/board-portal.ed.back-to-school'
 import { Route as BoardPortalEdAuditRouteImport } from './routes/board-portal.ed.audit'
 import { Route as BoardPortalCooGapsRouteImport } from './routes/board-portal.coo.gaps'
 import { Route as BoardPortalCooFeedbackRouteImport } from './routes/board-portal.coo.feedback'
@@ -279,6 +281,11 @@ const BoardRoute = BoardRouteImport.update({
   path: '/board',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BackToSchoolRoute = BackToSchoolRouteImport.update({
+  id: '/back-to-school',
+  path: '/back-to-school',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -472,6 +479,12 @@ const BoardPortalEdBoardRoute = BoardPortalEdBoardRouteImport.update({
   path: '/board',
   getParentRoute: () => BoardPortalEdRoute,
 } as any)
+const BoardPortalEdBackToSchoolRoute =
+  BoardPortalEdBackToSchoolRouteImport.update({
+    id: '/back-to-school',
+    path: '/back-to-school',
+    getParentRoute: () => BoardPortalEdRoute,
+  } as any)
 const BoardPortalEdAuditRoute = BoardPortalEdAuditRouteImport.update({
   id: '/audit',
   path: '/audit',
@@ -560,6 +573,7 @@ const LovableEmailQueueProcessRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/back-to-school': typeof BackToSchoolRoute
   '/board': typeof BoardRoute
   '/board-portal': typeof BoardPortalRouteWithChildren
   '/bylaws': typeof BylawsRoute
@@ -620,6 +634,7 @@ export interface FileRoutesByFullPath {
   '/board-portal/coo/feedback': typeof BoardPortalCooFeedbackRoute
   '/board-portal/coo/gaps': typeof BoardPortalCooGapsRoute
   '/board-portal/ed/audit': typeof BoardPortalEdAuditRoute
+  '/board-portal/ed/back-to-school': typeof BoardPortalEdBackToSchoolRoute
   '/board-portal/ed/board': typeof BoardPortalEdBoardRoute
   '/board-portal/ed/documents': typeof BoardPortalEdDocumentsRoute
   '/board-portal/ed/donations': typeof BoardPortalEdDonationsRoute
@@ -651,6 +666,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/back-to-school': typeof BackToSchoolRoute
   '/board': typeof BoardRoute
   '/board-portal': typeof BoardPortalRouteWithChildren
   '/bylaws': typeof BylawsRoute
@@ -706,6 +722,7 @@ export interface FileRoutesByTo {
   '/board-portal/coo/feedback': typeof BoardPortalCooFeedbackRoute
   '/board-portal/coo/gaps': typeof BoardPortalCooGapsRoute
   '/board-portal/ed/audit': typeof BoardPortalEdAuditRoute
+  '/board-portal/ed/back-to-school': typeof BoardPortalEdBackToSchoolRoute
   '/board-portal/ed/board': typeof BoardPortalEdBoardRoute
   '/board-portal/ed/documents': typeof BoardPortalEdDocumentsRoute
   '/board-portal/ed/donations': typeof BoardPortalEdDonationsRoute
@@ -738,6 +755,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/back-to-school': typeof BackToSchoolRoute
   '/board': typeof BoardRoute
   '/board-portal': typeof BoardPortalRouteWithChildren
   '/bylaws': typeof BylawsRoute
@@ -798,6 +816,7 @@ export interface FileRoutesById {
   '/board-portal/coo/feedback': typeof BoardPortalCooFeedbackRoute
   '/board-portal/coo/gaps': typeof BoardPortalCooGapsRoute
   '/board-portal/ed/audit': typeof BoardPortalEdAuditRoute
+  '/board-portal/ed/back-to-school': typeof BoardPortalEdBackToSchoolRoute
   '/board-portal/ed/board': typeof BoardPortalEdBoardRoute
   '/board-portal/ed/documents': typeof BoardPortalEdDocumentsRoute
   '/board-portal/ed/donations': typeof BoardPortalEdDonationsRoute
@@ -831,6 +850,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/back-to-school'
     | '/board'
     | '/board-portal'
     | '/bylaws'
@@ -891,6 +911,7 @@ export interface FileRouteTypes {
     | '/board-portal/coo/feedback'
     | '/board-portal/coo/gaps'
     | '/board-portal/ed/audit'
+    | '/board-portal/ed/back-to-school'
     | '/board-portal/ed/board'
     | '/board-portal/ed/documents'
     | '/board-portal/ed/donations'
@@ -922,6 +943,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/back-to-school'
     | '/board'
     | '/board-portal'
     | '/bylaws'
@@ -977,6 +999,7 @@ export interface FileRouteTypes {
     | '/board-portal/coo/feedback'
     | '/board-portal/coo/gaps'
     | '/board-portal/ed/audit'
+    | '/board-portal/ed/back-to-school'
     | '/board-portal/ed/board'
     | '/board-portal/ed/documents'
     | '/board-portal/ed/donations'
@@ -1008,6 +1031,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/back-to-school'
     | '/board'
     | '/board-portal'
     | '/bylaws'
@@ -1068,6 +1092,7 @@ export interface FileRouteTypes {
     | '/board-portal/coo/feedback'
     | '/board-portal/coo/gaps'
     | '/board-portal/ed/audit'
+    | '/board-portal/ed/back-to-school'
     | '/board-portal/ed/board'
     | '/board-portal/ed/documents'
     | '/board-portal/ed/donations'
@@ -1100,6 +1125,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BackToSchoolRoute: typeof BackToSchoolRoute
   BoardRoute: typeof BoardRoute
   BoardPortalRoute: typeof BoardPortalRouteWithChildren
   BylawsRoute: typeof BylawsRoute
@@ -1398,6 +1424,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BoardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/back-to-school': {
+      id: '/back-to-school'
+      path: '/back-to-school'
+      fullPath: '/back-to-school'
+      preLoaderRoute: typeof BackToSchoolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -1657,6 +1690,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BoardPortalEdBoardRouteImport
       parentRoute: typeof BoardPortalEdRoute
     }
+    '/board-portal/ed/back-to-school': {
+      id: '/board-portal/ed/back-to-school'
+      path: '/back-to-school'
+      fullPath: '/board-portal/ed/back-to-school'
+      preLoaderRoute: typeof BoardPortalEdBackToSchoolRouteImport
+      parentRoute: typeof BoardPortalEdRoute
+    }
     '/board-portal/ed/audit': {
       id: '/board-portal/ed/audit'
       path: '/audit'
@@ -1831,6 +1871,7 @@ const BoardPortalCooRouteWithChildren = BoardPortalCooRoute._addFileChildren(
 
 interface BoardPortalEdRouteChildren {
   BoardPortalEdAuditRoute: typeof BoardPortalEdAuditRoute
+  BoardPortalEdBackToSchoolRoute: typeof BoardPortalEdBackToSchoolRoute
   BoardPortalEdBoardRoute: typeof BoardPortalEdBoardRoute
   BoardPortalEdDocumentsRoute: typeof BoardPortalEdDocumentsRoute
   BoardPortalEdDonationsRoute: typeof BoardPortalEdDonationsRoute
@@ -1848,6 +1889,7 @@ interface BoardPortalEdRouteChildren {
 
 const BoardPortalEdRouteChildren: BoardPortalEdRouteChildren = {
   BoardPortalEdAuditRoute: BoardPortalEdAuditRoute,
+  BoardPortalEdBackToSchoolRoute: BoardPortalEdBackToSchoolRoute,
   BoardPortalEdBoardRoute: BoardPortalEdBoardRoute,
   BoardPortalEdDocumentsRoute: BoardPortalEdDocumentsRoute,
   BoardPortalEdDonationsRoute: BoardPortalEdDonationsRoute,
@@ -1924,6 +1966,7 @@ const BoardPortalRouteWithChildren = BoardPortalRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BackToSchoolRoute: BackToSchoolRoute,
   BoardRoute: BoardRoute,
   BoardPortalRoute: BoardPortalRouteWithChildren,
   BylawsRoute: BylawsRoute,

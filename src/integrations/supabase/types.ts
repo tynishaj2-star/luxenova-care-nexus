@@ -116,6 +116,143 @@ export type Database = {
         }
         Relationships: []
       }
+      back_to_school_registrations: {
+        Row: {
+          additional_info: string | null
+          adults_count: number | null
+          agree_accurate: boolean
+          agree_contact: boolean
+          agree_no_guarantee: boolean
+          apartment: string | null
+          children_count: number | null
+          city: string | null
+          created_at: string
+          email: string | null
+          housing_status: string | null
+          id: string
+          internal_notes: string | null
+          masshealth: boolean
+          parent_first_name: string
+          parent_last_name: string
+          phone: string
+          preferred_contact: string
+          snap: boolean
+          state: string
+          status: string
+          street_address: string
+          submitted_by: string | null
+          updated_at: string
+          wic: boolean
+          zip: string | null
+        }
+        Insert: {
+          additional_info?: string | null
+          adults_count?: number | null
+          agree_accurate?: boolean
+          agree_contact?: boolean
+          agree_no_guarantee?: boolean
+          apartment?: string | null
+          children_count?: number | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          housing_status?: string | null
+          id?: string
+          internal_notes?: string | null
+          masshealth?: boolean
+          parent_first_name: string
+          parent_last_name: string
+          phone: string
+          preferred_contact?: string
+          snap?: boolean
+          state?: string
+          status?: string
+          street_address: string
+          submitted_by?: string | null
+          updated_at?: string
+          wic?: boolean
+          zip?: string | null
+        }
+        Update: {
+          additional_info?: string | null
+          adults_count?: number | null
+          agree_accurate?: boolean
+          agree_contact?: boolean
+          agree_no_guarantee?: boolean
+          apartment?: string | null
+          children_count?: number | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          housing_status?: string | null
+          id?: string
+          internal_notes?: string | null
+          masshealth?: boolean
+          parent_first_name?: string
+          parent_last_name?: string
+          phone?: string
+          preferred_contact?: string
+          snap?: boolean
+          state?: string
+          status?: string
+          street_address?: string
+          submitted_by?: string | null
+          updated_at?: string
+          wic?: boolean
+          zip?: string | null
+        }
+        Relationships: []
+      }
+      back_to_school_students: {
+        Row: {
+          backpack_needed: boolean
+          created_at: string
+          date_of_birth: string | null
+          first_name: string
+          grade: string | null
+          id: string
+          last_name: string
+          registration_id: string
+          school_name: string | null
+          shirt_size: string | null
+          special_needs: string | null
+        }
+        Insert: {
+          backpack_needed?: boolean
+          created_at?: string
+          date_of_birth?: string | null
+          first_name: string
+          grade?: string | null
+          id?: string
+          last_name: string
+          registration_id: string
+          school_name?: string | null
+          shirt_size?: string | null
+          special_needs?: string | null
+        }
+        Update: {
+          backpack_needed?: boolean
+          created_at?: string
+          date_of_birth?: string | null
+          first_name?: string
+          grade?: string | null
+          id?: string
+          last_name?: string
+          registration_id?: string
+          school_name?: string | null
+          shirt_size?: string | null
+          special_needs?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "back_to_school_students_registration_id_fkey"
+            columns: ["registration_id"]
+            isOneToOne: false
+            referencedRelation: "back_to_school_registrations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       board_members: {
         Row: {
           created_at: string

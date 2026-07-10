@@ -20,7 +20,7 @@ export const Route = createFileRoute("/contact")({
       {
         property: "og:description",
         content:
-          "Reach our team for inquiries, referrals, partnerships, or careers.",
+          "Reach our team for inquiries, referrals, sponsors, or careers.",
       },
     ],
   }),

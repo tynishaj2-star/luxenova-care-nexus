@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Users, ShieldCheck, HeartHandshake, DollarSign, PieChart, HandHeart,
-  Briefcase, Megaphone, Layers, FileText, Archive, Settings, Activity,
+  Briefcase, Megaphone, Layers, FileText, Archive, Settings, Activity, Backpack,
 } from "lucide-react";
 import { WorkspacePage } from "@/components/portal/workspace/WorkspacePage";
 import { useEffect, useState } from "react";

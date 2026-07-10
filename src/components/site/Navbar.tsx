@@ -127,7 +127,7 @@ export function Navbar() {
       {open && (
         <div className="border-t border-border/60 bg-background/95 backdrop-blur-md lg:hidden">
           <div className="mx-auto max-w-7xl px-6 py-5">
-            <div className="flex flex-col gap-1">
+            <div className="flex max-h-[75vh] flex-col gap-1 overflow-y-auto overscroll-contain">
               {[...mainLinks, ...moreLinks].map((l) => (
                 <Link
                   key={l.to}

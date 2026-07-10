@@ -30,7 +30,7 @@ export const Route = createFileRoute("/contact")({
 const inquiryTypes = [
   "General Inquiry",
   "Referral Assistance",
-  "Partnership Inquiry",
+  "Sponsor Inquiry",
   "Career Inquiry",
 ];
 

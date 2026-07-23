@@ -25,6 +25,7 @@ import {
   Camera,
   ShoppingBag,
   Receipt,
+  Video,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { NotificationsBell } from "@/components/portal/NotificationsBell";

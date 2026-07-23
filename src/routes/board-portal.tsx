@@ -25,6 +25,7 @@ import {
   Camera,
   ShoppingBag,
   Receipt,
+  Video,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { NotificationsBell } from "@/components/portal/NotificationsBell";
@@ -353,6 +354,7 @@ function Dashboard({ member }: { member: BoardMember }) {
   if (member.id === "joe") roleLinks.push({ to: "/board-portal/events", label: "Events Back Office", icon: CalendarCheck });
   const quickLinks = [
     ...roleLinks,
+    { to: "/board-portal/meetings", label: "Meeting Room", icon: Video },
     { to: "/board-portal/tasks", label: "Tasks", icon: CheckSquare },
     { to: "/board-portal/notifications", label: "Notifications", icon: ScrollText },
     { to: "/board-portal/messages", label: "Messages", icon: Users },

@@ -881,6 +881,51 @@ export type Database = {
         }
         Relationships: []
       }
+      meetings: {
+        Row: {
+          agenda: string | null
+          created_at: string
+          duration_min: number
+          host_id: string | null
+          host_name: string | null
+          id: string
+          meeting_link: string
+          passcode: string | null
+          provider: string
+          scheduled_at: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          agenda?: string | null
+          created_at?: string
+          duration_min?: number
+          host_id?: string | null
+          host_name?: string | null
+          id?: string
+          meeting_link: string
+          passcode?: string | null
+          provider?: string
+          scheduled_at: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          agenda?: string | null
+          created_at?: string
+          duration_min?: number
+          host_id?: string | null
+          host_name?: string | null
+          id?: string
+          meeting_link?: string
+          passcode?: string | null
+          provider?: string
+          scheduled_at?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       messages: {
         Row: {
           body: string

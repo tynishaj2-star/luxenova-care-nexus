@@ -52,6 +52,7 @@ import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe
 import { Route as BoardPortalTasksRouteImport } from './routes/board-portal.tasks'
 import { Route as BoardPortalNotificationsRouteImport } from './routes/board-portal.notifications'
 import { Route as BoardPortalMessagesRouteImport } from './routes/board-portal.messages'
+import { Route as BoardPortalMeetingsRouteImport } from './routes/board-portal.meetings'
 import { Route as BoardPortalEventsRouteImport } from './routes/board-portal.events'
 import { Route as BoardPortalEdRouteImport } from './routes/board-portal.ed'
 import { Route as BoardPortalDocumentsRouteImport } from './routes/board-portal.documents'
@@ -315,6 +316,11 @@ const BoardPortalNotificationsRoute =
 const BoardPortalMessagesRoute = BoardPortalMessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
+  getParentRoute: () => BoardPortalRoute,
+} as any)
+const BoardPortalMeetingsRoute = BoardPortalMeetingsRouteImport.update({
+  id: '/meetings',
+  path: '/meetings',
   getParentRoute: () => BoardPortalRoute,
 } as any)
 const BoardPortalEventsRoute = BoardPortalEventsRouteImport.update({
@@ -617,6 +623,7 @@ export interface FileRoutesByFullPath {
   '/board-portal/documents': typeof BoardPortalDocumentsRoute
   '/board-portal/ed': typeof BoardPortalEdRouteWithChildren
   '/board-portal/events': typeof BoardPortalEventsRouteWithChildren
+  '/board-portal/meetings': typeof BoardPortalMeetingsRoute
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
@@ -705,6 +712,7 @@ export interface FileRoutesByTo {
   '/volunteer-policy': typeof VolunteerPolicyRoute
   '/board-portal/calendar': typeof BoardPortalCalendarRoute
   '/board-portal/documents': typeof BoardPortalDocumentsRoute
+  '/board-portal/meetings': typeof BoardPortalMeetingsRoute
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
@@ -799,6 +807,7 @@ export interface FileRoutesById {
   '/board-portal/documents': typeof BoardPortalDocumentsRoute
   '/board-portal/ed': typeof BoardPortalEdRouteWithChildren
   '/board-portal/events': typeof BoardPortalEventsRouteWithChildren
+  '/board-portal/meetings': typeof BoardPortalMeetingsRoute
   '/board-portal/messages': typeof BoardPortalMessagesRoute
   '/board-portal/notifications': typeof BoardPortalNotificationsRoute
   '/board-portal/tasks': typeof BoardPortalTasksRoute
@@ -894,6 +903,7 @@ export interface FileRouteTypes {
     | '/board-portal/documents'
     | '/board-portal/ed'
     | '/board-portal/events'
+    | '/board-portal/meetings'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
@@ -982,6 +992,7 @@ export interface FileRouteTypes {
     | '/volunteer-policy'
     | '/board-portal/calendar'
     | '/board-portal/documents'
+    | '/board-portal/meetings'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
@@ -1075,6 +1086,7 @@ export interface FileRouteTypes {
     | '/board-portal/documents'
     | '/board-portal/ed'
     | '/board-portal/events'
+    | '/board-portal/meetings'
     | '/board-portal/messages'
     | '/board-portal/notifications'
     | '/board-portal/tasks'
@@ -1471,6 +1483,13 @@ declare module '@tanstack/react-router' {
       path: '/messages'
       fullPath: '/board-portal/messages'
       preLoaderRoute: typeof BoardPortalMessagesRouteImport
+      parentRoute: typeof BoardPortalRoute
+    }
+    '/board-portal/meetings': {
+      id: '/board-portal/meetings'
+      path: '/meetings'
+      fullPath: '/board-portal/meetings'
+      preLoaderRoute: typeof BoardPortalMeetingsRouteImport
       parentRoute: typeof BoardPortalRoute
     }
     '/board-portal/events': {
@@ -1941,6 +1960,7 @@ interface BoardPortalRouteChildren {
   BoardPortalDocumentsRoute: typeof BoardPortalDocumentsRoute
   BoardPortalEdRoute: typeof BoardPortalEdRouteWithChildren
   BoardPortalEventsRoute: typeof BoardPortalEventsRouteWithChildren
+  BoardPortalMeetingsRoute: typeof BoardPortalMeetingsRoute
   BoardPortalMessagesRoute: typeof BoardPortalMessagesRoute
   BoardPortalNotificationsRoute: typeof BoardPortalNotificationsRoute
   BoardPortalTasksRoute: typeof BoardPortalTasksRoute
@@ -1954,6 +1974,7 @@ const BoardPortalRouteChildren: BoardPortalRouteChildren = {
   BoardPortalDocumentsRoute: BoardPortalDocumentsRoute,
   BoardPortalEdRoute: BoardPortalEdRouteWithChildren,
   BoardPortalEventsRoute: BoardPortalEventsRouteWithChildren,
+  BoardPortalMeetingsRoute: BoardPortalMeetingsRoute,
   BoardPortalMessagesRoute: BoardPortalMessagesRoute,
   BoardPortalNotificationsRoute: BoardPortalNotificationsRoute,
   BoardPortalTasksRoute: BoardPortalTasksRoute,
@@ -2013,13 +2034,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

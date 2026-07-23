@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck, LogOut, Eye, X } from "lucide-react";
+import { ShieldCheck, LogOut, Eye, X, Video } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { JobRole } from "@/lib/staff-roles";
 import { JOB_ROLE_LABEL, STAFF_DIRECTORY } from "@/lib/staff-roles";
@@ -84,7 +84,27 @@ export function StaffWorkspaceShell({
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-[1400px] px-6 py-10">{renderWorkspace(role)}</main>
+      <main className="mx-auto max-w-[1400px] px-6 py-10">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/70 bg-card/70 p-4 shadow-soft">
+          <div className="flex items-center gap-3">
+            <span className="grid h-10 w-10 place-items-center rounded-full bg-rosewood/10 text-rosewood">
+              <Video className="h-5 w-5" strokeWidth={1.5} />
+            </span>
+            <div>
+              <p className="font-display text-base">Meeting Room</p>
+              <p className="text-xs text-muted-foreground">Join or schedule live Google Meet, Zoom, or Teams meetings with the LuxeNova team.</p>
+            </div>
+          </div>
+          <Link
+            to="/board-portal/meetings"
+            className="inline-flex items-center gap-1.5 rounded-full bg-gradient-rosewood px-4 py-2 text-sm text-rosewood-foreground shadow-luxe"
+          >
+            <Video className="h-4 w-4" strokeWidth={1.5} />
+            Open meeting room
+          </Link>
+        </div>
+        {renderWorkspace(role)}
+      </main>
     </div>
   );
 }

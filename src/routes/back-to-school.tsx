@@ -104,54 +104,46 @@ function BackToSchoolPage() {
 
     setSubmitting(true);
     try {
-      const { data: reg, error: regErr } = await supabase
-        .from("back_to_school_registrations")
-        .insert({
-          parent_first_name: form.parent_first_name.trim(),
-          parent_last_name: form.parent_last_name.trim(),
-          email: form.email.trim() || null,
-          phone: form.phone.trim(),
-          preferred_contact: form.preferred_contact,
-          street_address: form.street_address.trim(),
-          apartment: form.apartment.trim() || null,
-          city: form.city.trim() || null,
-          state: form.state.trim() || "Massachusetts",
-          zip: form.zip.trim() || null,
-          adults_count: form.adults_count ? Number(form.adults_count) : null,
-          children_count: form.children_count ? Number(form.children_count) : null,
-          snap: form.snap,
-          wic: form.wic,
-          masshealth: form.masshealth,
-          housing_status: form.housing_status || null,
-          additional_info: form.additional_info.trim() || null,
-          agree_accurate: form.agree_accurate,
-          agree_no_guarantee: form.agree_no_guarantee,
-          agree_contact: form.agree_contact,
-        })
-        .select("id")
-        .single();
-
-      if (regErr || !reg) throw regErr || new Error("Registration failed");
-
       const validStudents = students.filter((s) => s.first_name.trim() || s.last_name.trim());
-      if (validStudents.length > 0) {
-        const { error: studentErr } = await supabase
-          .from("back_to_school_students")
-          .insert(
-            validStudents.map((s) => ({
-              registration_id: reg.id,
-              first_name: s.first_name.trim(),
-              last_name: s.last_name.trim(),
-              date_of_birth: s.date_of_birth || null,
-              grade: s.grade || null,
-              school_name: s.school_name.trim() || null,
-              backpack_needed: s.backpack_needed,
-              special_needs: s.special_needs.trim() || null,
-              shirt_size: s.shirt_size.trim() || null,
-            })),
-          );
-        if (studentErr) throw studentErr;
-      }
+      const { data: newId, error: rpcErr } = await supabase.rpc(
+        "submit_back_to_school_registration",
+        {
+          registration: {
+            parent_first_name: form.parent_first_name.trim(),
+            parent_last_name: form.parent_last_name.trim(),
+            email: form.email.trim() || null,
+            phone: form.phone.trim(),
+            preferred_contact: form.preferred_contact,
+            street_address: form.street_address.trim(),
+            apartment: form.apartment.trim() || null,
+            city: form.city.trim() || null,
+            state: form.state.trim() || "Massachusetts",
+            zip: form.zip.trim() || null,
+            adults_count: form.adults_count ? Number(form.adults_count) : null,
+            children_count: form.children_count ? Number(form.children_count) : null,
+            snap: form.snap,
+            wic: form.wic,
+            masshealth: form.masshealth,
+            housing_status: form.housing_status || null,
+            additional_info: form.additional_info.trim() || null,
+            agree_accurate: form.agree_accurate,
+            agree_no_guarantee: form.agree_no_guarantee,
+            agree_contact: form.agree_contact,
+          },
+          students: validStudents.map((s) => ({
+            first_name: s.first_name.trim(),
+            last_name: s.last_name.trim(),
+            date_of_birth: s.date_of_birth || null,
+            grade: s.grade || null,
+            school_name: s.school_name.trim() || null,
+            backpack_needed: s.backpack_needed,
+            special_needs: s.special_needs.trim() || null,
+            shirt_size: s.shirt_size.trim() || null,
+          })),
+        } as any,
+      );
+
+      if (rpcErr || !newId) throw rpcErr || new Error("Registration failed");
 
       // Notify staff via existing endpoint (best-effort, non-blocking failure)
       try {

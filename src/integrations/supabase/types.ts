@@ -1909,6 +1909,10 @@ export type Database = {
           read_ct: number
         }[]
       }
+      submit_back_to_school_registration: {
+        Args: { registration: Json; students?: Json }
+        Returns: string
+      }
     }
     Enums: {
       app_role: "staff" | "partner" | "admin" | "board"

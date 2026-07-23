@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck, LogOut, Eye, X } from "lucide-react";
+import { ShieldCheck, LogOut, Eye, X, Video } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { JobRole } from "@/lib/staff-roles";
 import { JOB_ROLE_LABEL, STAFF_DIRECTORY } from "@/lib/staff-roles";
